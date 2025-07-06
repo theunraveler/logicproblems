@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, useTemplateRef, defineExpose } from 'vue';
+import insertTextAtCursor from 'insert-text-at-cursor';
 import { Formula, Operator } from '../lib/logic';
 
 const formulaText = ref('');
@@ -8,16 +9,12 @@ const error = ref('');
 const formula = ref(null);
 
 function addOperator(operator) {
-    let toAdd = '';
-    if (formulaText.value && !formulaText.value.endsWith(' ')) {
-        toAdd += ' ';
-    }
-    toAdd += operator.toString();
+    input.value.focus();
+    let toAdd = ` ${operator.toString()}`;
     if (operator.isBinary) {
         toAdd += ' ';
     }
-    formulaText.value += toAdd;
-    input.value.focus();
+    insertTextAtCursor(input.value, toAdd);
 }
 
 function validate() {
@@ -45,7 +42,7 @@ defineExpose({input, formula, error, validate, reset})
     <div class="formula-input">
         <input type="text" :class="{'is-invalid': error.length > 0, 'form-control': true}" placeholder="Formula" v-model="formulaText" ref="input" required>
         <div class="btn-group mt-1" role="group" aria-label="Operators">
-            <button class="btn btn-sm btn-outline-secondary" v-for="operator in Operator.all" :key="operator.toString()" @click.stop.prevent="addOperator(operator)" :title="`Insert ${operator.label} operator (${operator})`">
+            <button class="btn btn-sm btn-outline-secondary" v-for="operator in Operator.all" :key="operator.symbol" @click.stop.prevent="addOperator(operator)" :title="`Insert ${operator.label} operator (${operator})`">
                 {{ operator }}
             </button>
         </div>
