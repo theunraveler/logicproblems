@@ -3,25 +3,41 @@ import * as propositional from 'propositional'
 export class Operator {
   static all: Operator[] = [];
 
-  static readonly CONDITIONAL = new Operator('→', 'conditional');
-  static readonly BICONDITIONAL = new Operator('↔', 'bi-conditional');
-  static readonly DISJUNCTION = new Operator('∨', 'disjunction');
+  static readonly CONDITIONAL = new Operator('→', 'conditional', '=>');
+  static readonly BICONDITIONAL = new Operator('↔', 'bi-conditional', '<=>');
+  static readonly DISJUNCTION = new Operator('∨', 'disjunction', '|');
   static readonly CONJUNCTION = new Operator('&', 'conjunction');
-  static readonly NEGATION = new Operator('-', 'negation', false);
+  static readonly NEGATION = new Operator('-', 'negation', '!', false);
 
   constructor(
     public readonly symbol: string,
     public readonly label: string,
+    private readonly _ascii: string | null = null,
     public readonly isBinary: boolean = true
   ) {
     this.symbol = symbol;
     this.label = label;
+    this._ascii = _ascii;
     this.isBinary = isBinary;
     Operator.all.push(this);
   }
 
+  get ascii(): string {
+    return this._ascii || this.symbol;
+  }
+
   toString(): string {
     return this.symbol;
+  }
+
+  public static findBySymbol(symbol: string): Operator {
+    const found = Operator.all.find(
+      (operator) => operator.symbol === symbol || operator.ascii === symbol
+    );
+    if (!found) {
+      throw new Error('Operator not found');
+    }
+    return found;
   }
 }
 
@@ -74,13 +90,6 @@ export class Rule {
 export class Formula {
   _parsed: propositional.Formula | null = null;
 
-  static readonly _TRANS = {
-    '→': '=>',
-    '↔': '<=>',
-    '∨': '|',
-    '-': '!',
-  };
-
   constructor(
     public readonly text: string
   ) {
@@ -88,17 +97,26 @@ export class Formula {
   }
 
   checkWellFormed() {
-    if (this._parsed) {
-      return;
-    }
     try {
-      this._parsed = new propositional.Formula(Formula.normalizeForParsing(this.text));
+      return this.parsed;
     } catch (error) {
       const message = error instanceof Error
         ? error.message
         : (error as string).toString();
       throw new Error(Formula.normalize(message));
     }
+  }
+
+  get parsed(): propositional.Formula {
+    if (!this._parsed) {
+      this._parsed = new propositional.Formula(Formula.normalizeForParsing(this.text));
+    }
+
+    return this._parsed;
+  }
+
+  get ast() {
+    return this.parsed.ast;
   }
 
   toString(): string {
@@ -110,17 +128,15 @@ export class Formula {
   }
 
   private static normalize(text: string): string {
-    return Object.entries(Formula._TRANS).reduce(
-      (t, [to, from]) => t.replace(from, to),
-      text
-    );
+    return Operator.all.toReversed().reduce((t: string, operator: Operator) => {
+      return t.replaceAll(operator.ascii, operator.symbol);
+    }, text);
   }
 
   private static normalizeForParsing(text: string): string {
-    return Object.entries(Formula._TRANS).reduce(
-      (t, [from, to]) => t.replace(from, to),
-      text
-    );
+    return Operator.all.toReversed().reduce((t: string, operator: Operator) => {
+      return t.replaceAll(operator.symbol, operator.ascii);
+    }, text);
   }
 }
 

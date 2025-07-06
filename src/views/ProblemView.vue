@@ -16,7 +16,7 @@ const form = {
 };
 const formulaInput = useTemplateRef('formula-input');
 
-function submitLine(event) {
+function submitLine() {
     if (!formulaInput.value) {
         return;
     }

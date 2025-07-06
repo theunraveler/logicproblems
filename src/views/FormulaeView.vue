@@ -1,25 +1,43 @@
 <script setup lang="ts">
+import { ref, useTemplateRef } from 'vue';
+
+import FormulaGraph from '../components/FormulaGraph.vue';
 import FormulaInput from '../components/FormulaInput.vue';
 import FormulaInputHelp from '../components/FormulaInputHelp.vue';
 
-function onSubmit(event) {
-    console.log(event);
+const formulaInput = useTemplateRef('formula-input');
+
+const expression = ref(null);
+
+function onSubmit() {
+    expression.value = null;
+
+    if (!formulaInput.value) {
+        return;
+    }
+
+    formulaInput.value.validate();
+    if (formulaInput.value.error) {
+        return;
+    }
+
+    expression.value = formulaInput.value.formula.ast;
 }
 </script>
 
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-9">
-                <form @submit.prevent="onSubmit">
-                    <FormulaInput />
-                    <button class="btn btn-primary">Test and Graph</button>
-                </form>
-            </div>
+        <form @submit.prevent="onSubmit" class="mb-3">
+            <FormulaInput ref="formula-input" />
+            <button class="btn btn-block w-100 btn-primary mt-2">Test and Graph</button>
+        </form>
 
-            <div class="col-12 col-lg-3 bg-light border p-4 mt-4 mt-lg-0">
-                <FormulaInputHelp />
-            </div>
+        <div v-if="expression">
+            <hr class="mb-4" />
+            <FormulaGraph :expression="expression" />
+        </div>
+        <div class="text-bg-light border p-4" v-else>
+            <FormulaInputHelp />
         </div>
     </div>
 </template>
