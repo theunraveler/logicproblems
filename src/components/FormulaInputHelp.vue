@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Line, Operator, Proof, Rule } from '../lib/logic';
+import { Operator } from '../lib/logic';
 </script>
 
 <template>
-    <h4>What symbols can I use, and how do I enter them?</h4>
+    <h4>What symbols can I use?</h4>
     <p>The following is a list of characters that can be used:</p>
     <ul>
         <li>Any alphabetical character from <code>A</code> to <code>Z</code></li>
-        <li v-for="operator in Operator.all">
+        <li v-for="operator in Operator.all" :key="operator.symbol">
             The {{ operator.label }} operator (<code>{{ operator }}</code>)
         </li>
         <li>Opening and closing parentheses (<code>()</code>)</li>
