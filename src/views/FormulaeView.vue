@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
 
-import FormulaGraph from '../components/FormulaGraph.vue';
-import FormulaInput from '../components/FormulaInput.vue';
-import FormulaInputHelp from '../components/FormulaInputHelp.vue';
-
 const formulaInput = useTemplateRef('formula-input');
-
 const expression = ref(null);
 
 function onSubmit() {
@@ -26,18 +21,20 @@ function onSubmit() {
 </script>
 
 <template>
-    <div class="container">
-        <form @submit.prevent="onSubmit" class="mb-3">
+    <BContainer>
+        <BForm @submit.prevent="onSubmit" class="mb-3">
             <FormulaInput ref="formula-input" />
-            <button class="btn btn-block w-100 btn-primary mt-2">Test and Graph</button>
-        </form>
+            <div class="d-grid gap-2 mt-2">
+                <BButton type="submit" variant="primary">Test and Graph</BButton>
+            </div>
+        </BForm>
 
         <div v-if="expression">
             <hr class="mb-4" />
             <FormulaGraph :expression="expression" />
         </div>
-        <div class="text-bg-light border p-4" v-else>
+        <div v-else class="text-bg-light border p-4">
             <FormulaInputHelp />
         </div>
-    </div>
+    </BContainer>
 </template>

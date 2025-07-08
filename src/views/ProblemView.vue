@@ -1,11 +1,9 @@
 <script setup type="ts">
-import { reactive, ref, useTemplateRef } from 'vue';
+import { computed, reactive, ref, useTemplateRef } from 'vue';
 import { useRoute } from 'vue-router';
 
 import problems from '../data/problems.json' with {type: 'json'};
 import { Line, Proof, Rule } from '../lib/logic';
-import FormulaInput from '../components/FormulaInput.vue';
-import FormulaInputHelp from '../components/FormulaInputHelp.vue';
 
 const $route = useRoute();
 const problem = problems[$route.params.id - 1];
@@ -14,8 +12,10 @@ const form = {
     rule: ref(''),
     justifications: ref([]),
 };
+const justifications = computed(() => form.justifications.value.toSorted().map((n) => n + 1).join(', '));
 const error = ref('');
 const formulaInput = useTemplateRef('formula-input');
+const qed = ref(false);
 
 function submitLine() {
     if (!formulaInput.value) {
@@ -40,8 +40,7 @@ function submitLine() {
     }
 
     if (proof.qed()) {
-        const modal = bootstrap.Modal.getOrCreateInstance('#qed-modal');
-        modal.show();
+        qed.value = true;
         // TODO: Remove form.
     } else {
         formulaInput.value.reset();
@@ -53,74 +52,63 @@ function submitLine() {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-9">
+    <BContainer>
+        <BRow>
+            <BCol cols="12" lg="9">
                 <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
                     <h2>{{ problem.title }}</h2>
                     <h4>Conclusion: <code>{{ proof.conclusion }}</code></h4>
                 </div>
 
-                <form @submit.prevent="submitLine">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>J</th>
-                                <th>L</th>
-                                <th>Formula</th>
-                                <th>Lines</th>
-                                <th>Rule</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <tr v-for="(line, index) in proof.lines">
-                                <td><input type="checkbox" v-model="form.justifications.value" :value="index"></td>
-                                <td>{{ index + 1 }}</td>
-                                <td><code>{{ line.formula }}</code></td>
-                                <td>{{ line.justifications.map((n) => n + 1).join(', ') }}</td>
-                                <td><abbr :title="line.rule.label">{{ line.rule }}</abbr></td>
-                            </tr>
-                            <tr id="new-line-row" class="table-group-divider">
-                                <td></td>
-                                <td>{{ proof.lines.length + 1 }}</td>
-                                <td><FormulaInput ref="formula-input" /></td>
-                                <td>{{ form.justifications.value.toSorted().map((n) => n + 1).join(', ') }}</td>
-                                <td>
-                                    <select class="form-select" v-model="form.rule.value" required>
-                                        <option value="" disabled selected hidden>Rule</option>
+                <BForm @submit.prevent="submitLine">
+                    <BTableSimple hover class="text-center">
+                        <BThead>
+                            <BTr>
+                                <BTh>J</BTh>
+                                <BTh>L</BTh>
+                                <BTh class="text-start">Formula</BTh>
+                                <BTh>Lines</BTh>
+                                <BTh>Rule</BTh>
+                            </BTr>
+                        </BThead>
+                        <BTbody class="table-group-divider">
+                            <BTr v-for="(line, index) in proof.lines">
+                                <BTd><BFormCheckbox v-model="form.justifications.value" :value="index" /></BTd>
+                                <BTd>{{ index + 1 }}</BTd>
+                                <BTd class="text-start"><code>{{ line.formula }}</code></BTd>
+                                <BTd>{{ line.justifications.map((n) => n + 1).join(', ') }}</BTd>
+                                <BTd><abbr :title="line.rule.label">{{ line.rule }}</abbr></BTd>
+                            </BTr>
+                            <BTr class="table-group-divider">
+                                <BTd></BTd>
+                                <BTd>{{ proof.lines.length + 1 }}</BTd>
+                                <BTd class="text-start"><FormulaInput ref="formula-input" /></BTd>
+                                <BTd>{{ justifications }}</BTd>
+                                <BTd>
+                                    <BFormSelect v-model="form.rule.value" required>
+                                        <BFormSelectOption value="" disabled selected hidden>Rule</BFormSelectOption>
                                         <template v-for="rule in Rule.all">
-                                            <option v-if="rule !== Rule.ASSUMPTION" :value="rule">{{ rule }}</option>
+                                            <BFormSelectOption v-if="rule !== Rule.ASSUMPTION" :value="rule">
+                                                {{ rule }}
+                                            </BFormSelectOption>
                                         </template>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </BFormSelect>
+                                </BTd>
+                            </BTr>
+                        </BTbody>
+                    </BTableSimple>
 
-                    <button type="submit" class="btn btn-block w-100 btn-primary">Submit Line</button>
-                </form>
-            </div>
+                    <div class="d-grid gap-2 mt-2">
+                        <BButton type="submit" variant="primary">Submit Line</BButton>
+                    </div>
+                </BForm>
+            </BCol>
 
-            <div class="col-12 col-lg-3 bg-light border p-4 mt-4 mt-lg-0">
+            <BCol cols="12" lg="3" class="bg-light border p-4 mt-4 mt-lg-0">
                 <FormulaInputHelp />
-            </div>
-        </div>
-    </div>
+            </BCol>
+        </BRow>
+    </BContainer>
 
-    <div id="qed-modal" class="modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Q.E.D.</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>You've completed this problem! Well done!</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <BModal v-model="qed" title="Q.E.D." ok-only ok-title="Close">Congrats, you solved the problem!</BModal>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <BContainer>
         <h1>Terms and Conditions</h1>
 
         <h2>Web Site Terms and Conditions of Use</h2>
@@ -130,5 +130,5 @@
         <p>
             We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
         </p>
-    </div>
+    </BContainer>
 </template>

@@ -14,19 +14,14 @@ console.log(paginator.totalPages());
 </script>
 
 <template>
-    <div class="card mb-3" v-for="(problem, index) in problems">
-        <div class="card-header">
-            {{ problem.title }}
-        </div>
-        <div class="card-body">
-            <ol class="mb-0">
-                <li v-for="assumption in problem.assumptions"><code>{{ new Formula(assumption) }}</code></li>
-            </ol>
-            <hr class="m-0" />
-            <div>Conclusion: <code>{{ new Formula(problem.conclusion) }}</code></div>
-            <RouterLink :to="{name: 'problem', params: {id: index + 1}}" class="btn btn-primary mt-3">
-                Solve!
-            </RouterLink>
-        </div>
-    </div>
+    <BCard v-for="(problem, index) in problems" :header="problem.title">
+        <ol class="mb-0">
+            <li v-for="assumption in problem.assumptions"><code>{{ new Formula(assumption) }}</code></li>
+        </ol>
+        <hr class="m-0" />
+        <div>Conclusion: <code>{{ new Formula(problem.conclusion) }}</code></div>
+        <BLink :to="{name: 'problem', params: {id: index + 1}}" class="btn btn-primary mt-3">
+            Solve!
+        </BLink>
+    </BCard>
 </template>

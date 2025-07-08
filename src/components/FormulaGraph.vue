@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import { toString as formulaToString } from 'propositional/lib/transform/toString'
 import * as AST from 'propositional/lib/syntax/ast'
 import { Formula, Operator } from '../lib/logic';
@@ -17,42 +16,33 @@ function operatorText(symbol: string) {
 </script>
 
 <template>
-    <div class="row">
-        <div class="col">
-            <div class="card text-bg-light text-center" v-if="props.expression">
-                <div class="card-body">
-                    <div>
-                        <span class="fw-bold">Formula: </span>
-                        <code>{{ expressionToString(props.expression) }}</code>
-                    </div>
-                    <div v-if="props.expression?.operator" class="text-capitalize">
-                        <span class="fw-bold">Operator: </span>
-                        <span v-html="operatorText(props.expression.operator.lexeme)"></span>
-                    </div>
+    <BRow>
+        <BCol>
+            <BCard class="text-bg-light text-center" v-if="props.expression">
+                <div>
+                    <span class="fw-bold">Formula: </span>
+                    <code>{{ expressionToString(props.expression) }}</code>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div v-if="props.expression?.operator" class="text-capitalize">
+                    <span class="fw-bold">Operator: </span>
+                    <span v-html="operatorText(props.expression.operator.lexeme)"></span>
+                </div>
+            </BCard>
+        </BCol>
+    </BRow>
 
-    <div class="row mt-3">
-        <div class="col" v-if="props.expression?.left">
+    <BRow class="mt-3">
+        <BCol v-if="props.expression?.left">
             <div class="arrow left mb-3 text-end me-5 fs-3">⇙</div>
             <FormulaGraph :expression="props.expression.left" />
-        </div>
-        <div class="col" v-if="props.expression?.right">
+        </BCol>
+        <BCol v-if="props.expression?.right">
             <div class="arrow right mb-3 text-start ms-5 fs-3">⇘</div>
             <FormulaGraph :expression="props.expression.right" />
-        </div>
-        <div class="col" v-if="props.expression?.inner">
+        </BCol>
+        <BCol v-if="props.expression?.inner">
             <div class="arrow mb-3 text-center fs-3">⇓</div>
             <FormulaGraph :expression="props.expression.inner" />
-        </div>
-    </div>
+        </BCol>
+    </BRow>
 </template>
-
-<style>
-.arrow {
-}
-.left {
-}
-</style>

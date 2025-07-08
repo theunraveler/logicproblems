@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-</script>
-
 <template>
     <h1>Solve Propositional logic problems online!</h1>
 
@@ -9,5 +5,5 @@ import { RouterLink } from 'vue-router';
 
     <p>An instructor can create logic proof problems by supplying the system with a set of assumptions and a desired conclusion. A student of logic may then try and solve the proof with a given set of rules.</p>
 
-    <p>Get <RouterLink :to="{name: 'contact'}">in contact</RouterLink> with us with any suggestions, problems, or general inquiries. Thanks for visiting!</p>
+    <p>Get <BLink :to="{name: 'contact'}">in contact</BLink> with us with any suggestions, problems, or general inquiries. Thanks for visiting!</p>
 </template>

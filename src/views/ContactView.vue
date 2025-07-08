@@ -1,10 +1,22 @@
 <script setup lang="ts">
-function onSubmit(event) {
-    const formData = new FormData(event.target);
-    const payload = Object.fromEntries(formData);
-    payload.access_key = '2662d8d2-a598-4646-bd14-ba3adabbcbdb';
-    payload.subject = 'Contact Form Submission from logicproblems.org';
-    payload.from_name = 'Logic Problems';
+import { ref } from 'vue'
+
+const result = ref('');
+const form = {
+    name: ref(''),
+    email: ref(''),
+    message: ref(''),
+};
+
+function onSubmit() {
+    const payload = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        access_key: '2662d8d2-a598-4646-bd14-ba3adabbcbdb',
+        subject: 'Contact Form Submission from logicproblems.org',
+        from_name: 'Logic Problems',
+    };
 
     if (import.meta.env.PROD) {
         fetch('https://api.web3forms.com/submit', {
@@ -27,28 +39,31 @@ function onSubmit(event) {
                 event.target.reset();
             });
     } else {
-        const container = document.getElementById('result');
-        container.innerHTML = `Would have submitted the following data: ${payload}`;
+        result.value = `Would have submitted the following data: ${JSON.stringify(payload)}`;
     }
 }
 </script>
 
 <template>
-    <div id="result"></div>
-    <form @submit.prevent="onSubmit" class="container">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" name="message" required></textarea>
-        </div>
-        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        <button class="btn btn-primary" type="submit">Send</button>
-    </form>
+    <BContainer>
+        <h1>Contact Us</h1>
+
+        <BAlert :model-value="result.value" variant="success">
+            {{ result.value }}
+        </BAlert>
+
+        <BForm @submit.prevent="onSubmit">
+            <BFormGroup label="Name" label-for="name" class="mb-3">
+                <BFormInput id="name" v-model="form.name.value" required />
+            </BFormGroup>
+            <BFormGroup label="Email Address" label-for="email" class="mb-3">
+                <BFormInput type="email" id="email" v-model="form.email.value" required />
+            </BFormGroup>
+            <BFormGroup label="Message" label-for="message" class="mb-3">
+                <BFormTextarea id="message" v-model="form.message.value" required />
+            </BFormGroup>
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            <BButton variant="primary" type="submit">Send</BButton>
+        </BForm>
+    </BContainer>
 </template>
