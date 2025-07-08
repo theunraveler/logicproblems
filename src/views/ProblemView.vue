@@ -14,6 +14,7 @@ const form = {
     rule: ref(''),
     justifications: ref([]),
 };
+const error = ref('');
 const formulaInput = useTemplateRef('formula-input');
 
 function submitLine() {
@@ -31,15 +32,22 @@ function submitLine() {
         form.rule.value,
         form.justifications.value.map((n) => parseInt(n)),
     );
-    proof.addDeduction(line);
+
+    try {
+        proof.addDeduction(line);
+    } catch (err) {
+        error.value = err.message;
+    }
 
     if (proof.qed()) {
-        // TODO: Show alert.
+        const modal = bootstrap.Modal.getOrCreateInstance('#qed-modal');
+        modal.show();
         // TODO: Remove form.
     } else {
         formulaInput.value.reset();
         form.rule.value = '';
         form.justifications.value = [];
+        error.value = '';
     }
 }
 </script>
@@ -72,11 +80,11 @@ function submitLine() {
                                 <td>{{ line.justifications.map((n) => n + 1).join(', ') }}</td>
                                 <td><abbr :title="line.rule.label">{{ line.rule }}</abbr></td>
                             </tr>
-                            <tr class="table-group-divider">
+                            <tr id="new-line-row" class="table-group-divider">
                                 <td></td>
                                 <td>{{ proof.lines.length + 1 }}</td>
                                 <td><FormulaInput ref="formula-input" /></td>
-                                <td></td>
+                                <td>{{ form.justifications.value.toSorted().map((n) => n + 1).join(', ') }}</td>
                                 <td>
                                     <select class="form-select" v-model="form.rule.value" required>
                                         <option value="" disabled selected hidden>Rule</option>
@@ -95,6 +103,23 @@ function submitLine() {
 
             <div class="col-12 col-lg-3 bg-light border p-4 mt-4 mt-lg-0">
                 <FormulaInputHelp />
+            </div>
+        </div>
+    </div>
+
+    <div id="qed-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Q.E.D.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You've completed this problem! Well done!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
             </div>
         </div>
     </div>

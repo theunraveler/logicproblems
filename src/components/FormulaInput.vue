@@ -19,11 +19,9 @@ function addOperator(operator) {
 
 function validate() {
     error.value = '';
-    const f = new Formula(formulaText.value);
-
     try {
-        f.checkWellFormed();
-        formula.value = f;
+        formula.value = new Formula(formulaText.value);
+        formulaText.value = formula.value.text;
     } catch (err) {
         error.value = err.message;
     }
