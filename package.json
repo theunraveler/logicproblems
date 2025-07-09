@@ -17,17 +17,16 @@
   "dependencies": {
     "bootstrap": "^5.3.7",
     "bootstrap-vue-next": "^0.30.4",
-    "capitalize": "^2.0.4",
     "insert-text-at-cursor": "^0.3.0",
     "number-to-words": "^1.2.4",
     "propositional": "^1.0.2",
+    "title-case": "^4.3.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.1",
     "@tsconfig/node22": "^22.0.2",
-    "@types/capitalize": "^2.0.2",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^24.0.10",
     "@types/number-to-words": "^1.2.3",
