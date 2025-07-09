@@ -2,9 +2,9 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createBootstrap } from 'bootstrap-vue-next'
-import { default as writtenNumber } from 'written-number';
-import * as capitalize from 'capitalize';
-import problems from './data/problems.json' with {type: 'json'};
+import { default as numberToWords } from 'number-to-words'
+import * as capitalize from 'capitalize'
+import problems from './data/problems.json' with {type: 'json'}
 import App from './App.vue'
 import router from './router.ts'
 
@@ -18,7 +18,7 @@ app.provide('chapters', Object.fromEntries(
   [...new Set(Object.values(problems).map((p) => p.chapter))]
   .sort()
   .filter((c) => !!c)
-  .map((c) => [c, `Chapter ${capitalize.words(writtenNumber(c))}`])
+  .map((c) => [c, `Chapter ${capitalize.words(numberToWords.toWords(c))}`])
 ));
 
 app.mount('#app')
