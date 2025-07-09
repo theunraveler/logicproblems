@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import * as logic from './logic';
+import * as logic from '../logic';
 
 describe('Rule', () => {
   describe('ARROW_OUT', () => {

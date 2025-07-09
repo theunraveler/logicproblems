@@ -1,5 +1,5 @@
 <template>
-    <h1>Solve Propositional logic problems online!</h1>
+    <h1>Solve Propositional Logic Problems Online!</h1>
 
     <p>Welcome to <strong>logicproblems.org</strong>! This system is capable of validating whether or not a given string of text is a Well Formed Formula or not, and give a person a visualization of that formula,and possibly the errors that cause it not to be a well formed formula.</p>
 

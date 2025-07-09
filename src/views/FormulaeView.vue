@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
+import type { Ref } from 'vue';
+import { Expression } from 'propositional/lib/syntax/ast';
+import FormulaInput from '../components/FormulaInput.vue'
 
-const formulaInput = useTemplateRef('formula-input');
-const expression = ref(null);
+type FormulaInputType = InstanceType<typeof FormulaInput>;
+const formulaInput = useTemplateRef<FormulaInputType>('formula-input');
+const expression: Ref<Expression | undefined> = ref(undefined);
 
 function onSubmit() {
-    expression.value = null;
+    expression.value = undefined;
 
     if (!formulaInput.value) {
         return;
@@ -16,7 +20,7 @@ function onSubmit() {
         return;
     }
 
-    expression.value = formulaInput.value.formula.ast;
+    expression.value = formulaInput.value.formula?.ast;
 }
 </script>
 

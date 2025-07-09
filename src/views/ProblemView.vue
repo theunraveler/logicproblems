@@ -2,6 +2,7 @@
 import { computed, inject, reactive, ref, useTemplateRef } from 'vue';
 import { useRoute } from 'vue-router';
 
+import FormulaInput from '../components/FormulaInput.vue'
 import { Line, Proof, Rule } from '../lib/logic';
 
 const $route = useRoute();
@@ -13,7 +14,8 @@ const form = {
 };
 const justifications = computed(() => form.justifications.value.toSorted().map((n) => n + 1).join(', '));
 const error = ref('');
-const formulaInput = useTemplateRef('formula-input');
+type FormulaInputType = InstanceType<typeof FormulaInput>;
+const formulaInput = useTemplateRef<FormulaInputType>('formula-input');
 const qed = ref(false);
 
 function submitLine() {
@@ -22,7 +24,7 @@ function submitLine() {
     }
 
     formulaInput.value.validate();
-    if (formulaInput.value.error) {
+    if (formulaInput.value.error || !formulaInput.value.formula) {
         return;
     }
 
