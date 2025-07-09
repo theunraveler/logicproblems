@@ -6,7 +6,7 @@ const chapters = inject('chapters');
 
 <template>
   <header>
-    <BNavbar toggleable="lg" variant="dark" data-bs-theme="dark" class="border-bottom border-body">
+    <BNavbar container toggleable="lg" variant="dark" data-bs-theme="dark" class="border-bottom border-body">
       <BNavbarBrand :to="{name: 'home'}">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
