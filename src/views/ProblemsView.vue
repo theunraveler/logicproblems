@@ -23,7 +23,7 @@ const pageProblems = computed(() => {
 });
 
 function updatePage(page) {
-    $router.replace({
+    $router.push({
         query: {
             ...$router.currentRoute.value.query,
             page: page

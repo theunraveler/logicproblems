@@ -177,7 +177,7 @@ export class Line {
 export class Proof {
   public readonly assumptions: Line[];
   public readonly conclusion: Formula;
-  _deductions: Line[] = [];
+  public readonly deductions: Line[] = [];
 
   constructor(
     assumptions: Line[] | string[],
@@ -197,7 +197,7 @@ export class Proof {
    * Return all lines of the proof, including assumptions.
    */
   get lines() {
-    return this.assumptions.concat(this._deductions);
+    return this.assumptions.concat(this.deductions);
   }
 
   addDeduction(deduction: Line) {
@@ -211,12 +211,12 @@ export class Proof {
       throw new Error('Invalid deduction');
     }
 
-    this._deductions.push(deduction);
+    this.deductions.push(deduction);
     return this;
   }
 
   qed(): boolean {
-    return this.conclusion.valueOf() === this._deductions[this._deductions.length - 1]?.formula?.valueOf();
+    return this.conclusion.valueOf() === this.deductions[this.deductions.length - 1]?.formula?.valueOf();
   }
 }
 
