@@ -21,20 +21,18 @@ function onSubmit() {
 </script>
 
 <template>
-    <BContainer>
-        <BForm @submit.prevent="onSubmit" class="mb-3">
-            <FormulaInput ref="formula-input" />
-            <div class="d-grid gap-2 mt-2">
-                <BButton type="submit" variant="primary">Test and Graph</BButton>
-            </div>
-        </BForm>
+    <BForm @submit.prevent="onSubmit" class="mb-3">
+        <FormulaInput ref="formula-input" />
+        <div class="d-grid gap-2 mt-2">
+            <BButton type="submit" variant="primary">Test and Graph</BButton>
+        </div>
+    </BForm>
 
-        <div v-if="expression">
-            <hr class="mb-4" />
-            <FormulaGraph :expression="expression" />
-        </div>
-        <div v-else class="text-bg-light border p-4">
-            <FormulaInputHelp />
-        </div>
-    </BContainer>
+    <div v-if="expression">
+        <hr class="mb-4" />
+        <FormulaGraph :expression="expression" />
+    </div>
+    <div v-else class="text-bg-light border p-4">
+        <FormulaInputHelp />
+    </div>
 </template>

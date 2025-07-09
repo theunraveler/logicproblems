@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import { inject } from 'vue';
+
+const chapters = inject('chapters');
 </script>
 
 <template>
@@ -12,7 +14,9 @@ import { RouterView } from 'vue-router';
           <BNavItemDropdown text="Problems">
             <BDropdownItem :to="{name: 'problems'}">View All</BDropdownItem>
             <li><hr class="dropdown-divider"></li>
-            <BDropdownItem href="#">Test Item</BDropdownItem>
+            <BDropdownItem v-for="(name, id) in chapters" :key="id" :to="{name: 'problems', query: {chapter: id}}">
+              {{ name }}
+            </BDropdownItem>
           </BNavItemDropdown>
           <BNavItem :to="{name: 'formulae'}">Formulae</BNavItem>
         </BNavbarNav>
@@ -24,7 +28,7 @@ import { RouterView } from 'vue-router';
     </BNavbar>
   </header>
 
-  <main class="container-fluid mt-3">
-    <RouterView />
-  </main>
+  <BContainer tag="main" class="mt-3">
+    <RouterView :key="$route.fullPath" />
+  </BContainer>
 </template>

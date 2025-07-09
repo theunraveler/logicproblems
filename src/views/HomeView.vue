@@ -5,5 +5,5 @@
 
     <p>An instructor can create logic proof problems by supplying the system with a set of assumptions and a desired conclusion. A student of logic may then try and solve the proof with a given set of rules.</p>
 
-    <p>Get <BLink :to="{name: 'contact'}">in contact</BLink> with us with any suggestions, problems, or general inquiries. Thanks for visiting!</p>
+    <p><BLink :to="{name: 'contact'}">Contact us</BLink> with any suggestions, problems, or general inquiries. Thanks for visiting!</p>
 </template>

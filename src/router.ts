@@ -1,52 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {nextTick} from 'vue';
-import HomeView from './views/HomeView.vue'
-import ProblemsView from './views/ProblemsView.vue'
-import ProblemView from './views/ProblemView.vue'
-import FormulaeView from './views/FormulaeView.vue'
-import ContactView from './views/ContactView.vue'
-import TermsView from './views/TermsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  linkActiveClass: 'active',
-  linkExactActiveClass: 'active',
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: () => import('./views/HomeView.vue'),
     },
     {
       path: '/problems',
       name: 'problems',
-      component: ProblemsView,
+      component: () => import('./views/ProblemsView.vue'),
       meta: {title: 'Problems'},
     },
     {
       path: '/problems/:id',
       name: 'problem',
-      component: ProblemView,
+      component: () => import('./views/ProblemView.vue'),
     },
     {
       path: '/formulae',
       name: 'formulae',
-      component: FormulaeView,
+      component: () => import('./views/FormulaeView.vue'),
       meta: {title: 'Formulae'},
     },
     {
       path: '/contact',
       name: 'contact',
-      component: ContactView,
+      component: () => import('./views/ContactView.vue'),
       meta: {title: 'Contact'},
     },
     {
       path: '/terms',
       name: 'terms',
-      component: TermsView,
+      component: () => import('./views/TermsView.vue'),
       meta: {title: 'Terms'},
     },
   ],
+  scrollBehavior() {
+    // always scroll to top
+    return { top: 0 };
+  },
 })
 
 router.afterEach((to) => {
