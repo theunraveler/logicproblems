@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
+import type { Ref } from 'vue';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { Formula, Operator } from '../lib/logic';
 
 const formulaText = ref('');
 const input = useTemplateRef('input');
 const error = ref('');
-const validationState = ref(undefined);
-const formula = ref(null);
+const validationState: Ref<boolean | undefined> = ref(undefined);
+const formula: Ref<Formula | null> = ref(null);
 
 function addOperator(operator: Operator) {
-    input.value.focus();
+    input.value?.focus();
     let toAdd = ` ${operator.toString()}`;
     if (operator.isBinary) {
         toAdd += ' ';

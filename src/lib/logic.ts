@@ -50,7 +50,7 @@ export class Operator {
 }
 
 type LineEvalFunction = {
-    (formula: Formula, justifications: Formula[]): boolean;
+    (exp: AST.Expression, justifications: AST.Expression[]): boolean;
 };
 
 export class Rule {
@@ -89,7 +89,7 @@ export class Rule {
   }
 
   evaluate(formula: Formula, justifications: Formula[]): boolean {
-    return this.evalFunc(formula, justifications);
+    return this.evalFunc(formula.ast, justifications.map((e) => e.ast));
   }
 
   toString() {
@@ -135,7 +135,7 @@ export class Formula {
     return this.text;
   }
 
-  private static normalize(text: string, fromPretty: boolean = false): string {
+  static normalize(text: string, fromPretty: boolean = false): string {
     let str = Operator.all.toReversed()
       .filter((o: Operator) => o['libChar'])
       .reduce((t: string, operator: Operator) => {
@@ -224,20 +224,18 @@ export class Proof {
  * Rule evaluation functions
  ***************************/
 
-function evalArrowOut(formula: Formula, justifications: Formula[]): boolean {
+function evalArrowOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
 
-  const justificationExps = justifications.map((j) => j.ast);
-  const orderedJust = [justificationExps, justificationExps.toReversed()].find(([a, b]) => {
+  const orderedJust = [justifications, justifications.toReversed()].find(([a, b]) => {
     return a instanceof AST.BinaryExpression && prettyFormula(a.left) === prettyFormula(b);
   });
   if (!orderedJust) {
     return false;
   }
 
-  const exp = formula.ast;
   const [ mainJust, ] = orderedJust;
 
   return (
@@ -245,21 +243,20 @@ function evalArrowOut(formula: Formula, justifications: Formula[]): boolean {
   );
 }
 
-function evalArrowIn(formula: Formula, justifications: Formula[]): boolean {
+function evalArrowIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   return false;
 }
 
-function evalBiconditionalOut(formula: Formula, justifications: Formula[]): boolean {
+function evalBiconditionalOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 1) {
     return false;
   }
 
-  const just = justifications[0].ast;
+  const just = justifications[0];
   if (!isBiconditional(just)) {
     return false;
   }
 
-  const exp = formula.ast;
   if (!isConditional(exp)) {
     return false;
   }
@@ -274,22 +271,20 @@ function evalBiconditionalOut(formula: Formula, justifications: Formula[]): bool
   );
 }
 
-function evalBiconditionalIn(formula: Formula, justifications: Formula[]): boolean {
+function evalBiconditionalIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
 
-  const exp = formula.ast;
   if (!isBiconditional(exp)) {
     return false;
   }
 
-  const justExps = justifications.map((j) => j.ast)
-  if (!justExps.every((e) => isConditional(e))) {
+  if (!justifications.every((e) => isConditional(e))) {
     return false;
   }
 
-  const justExpsStr = justExps.map((e) => prettyFormula(e));
+  const justExpsStr = justifications.map((e) => prettyFormula(e));
   const expLeft = prettyFormula(exp.left);
   const expRight = prettyFormula(exp.right);
 
@@ -299,70 +294,67 @@ function evalBiconditionalIn(formula: Formula, justifications: Formula[]): boole
   );
 }
 
-function evalOrOut(formula: Formula, justifications: Formula[]): boolean {
+function evalOrOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 3) {
     return false;
   }
 
-  const justExps = justifications.map((j) => j.ast);
-  const orJustIndex = justExps.findIndex(
-    (e) => e instanceof AST.BinaryExpression && e.operator.lexeme === Operator.DISJUNCTION['libChar']
-  )
+  const orJustIndex = justifications.findIndex((e) => isDisjunction(e))
   if (orJustIndex === -1) {
     return false;
   }
-  const [ orJust ] = justExps.splice(orJustIndex, 1);
-
-  if (!justExps.every((e) => isConditional(e))) {
+  const [ orJust ] = justifications.splice(orJustIndex, 1);
+  if (!isDisjunction(orJust)) {
     return false;
   }
 
-  const exp = prettyFormula(formula.ast);
+  if (!justifications.every((e) => isConditional(e))) {
+    return false;
+  }
 
-  if (!justExps.every((e) => prettyFormula(e.right) === exp)) {
+  const expStr = prettyFormula(exp);
+
+  if (!justifications.every((e) => prettyFormula(e.right) === expStr)) {
     return false;
   }
 
   const orJustParts = [orJust.left, orJust.right].map((p) => prettyFormula(p)).sort();
-  const justExpLefts = justExps.map((e) => prettyFormula(e.left)).sort();
+  const justExpLefts = justifications.map((e) => prettyFormula(e.left)).sort();
   return orJustParts.every((val, index) => val === justExpLefts[index]);
 }
 
-function evalOrIn(formula: Formula, justifications: Formula[]): boolean {
+function evalOrIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 1) {
     return false;
   }
 
-  const exp = formula.ast;
   if (!(exp instanceof AST.BinaryExpression) || exp.operator.lexeme !== Operator.DISJUNCTION['libChar']) {
     return false;
   }
 
-  const justExp = prettyFormula(justifications[0].ast);
+  const justExp = prettyFormula(justifications[0]);
 
   return prettyFormula(exp.left) === justExp || prettyFormula(exp.right) === justExp;
 }
 
-function evalAndOut(formula: Formula, justifications: Formula[]): boolean {
+function evalAndOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 1) {
     return false;
   }
 
-  const just = justifications[0].ast;
+  const just = justifications[0];
   if (!(just instanceof AST.BinaryExpression) || just.operator.lexeme !== Operator.CONJUNCTION['libChar']) {
     return false;
   }
 
-  const exp = prettyFormula(formula.ast);
-  return prettyFormula(just.left) === exp || prettyFormula(just.right) === exp;
+  const expStr = prettyFormula(exp);
+  return prettyFormula(just.left) === expStr || prettyFormula(just.right) === expStr;
 }
 
-function evalAndIn(formula: Formula, justifications: Formula[]): boolean {
+function evalAndIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
-
-  const exp = formula.ast;
 
   if (!(exp instanceof AST.BinaryExpression) || exp.operator.lexeme !== Operator.CONJUNCTION['libChar']) {
     return false;
@@ -370,59 +362,55 @@ function evalAndIn(formula: Formula, justifications: Formula[]): boolean {
 
   const expLeft = prettyFormula(exp.left);
   const expRight = prettyFormula(exp.right);
-  const justExps = justifications.map((j) => prettyFormula(j.ast));
+  const justExps = justifications.map((j) => prettyFormula(j));
 
   return justExps.includes(expLeft) && justExps.includes(expRight);
 }
 
-function evalNegationOut(formula: Formula, justifications: Formula[]): boolean {
+function evalNegationOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   return false;
 }
 
-function evalNegationIn(formula: Formula, justifications: Formula[]): boolean {
+function evalNegationIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   return false;
 }
 
-function evalSupposition(formula: Formula, justifications: Formula[]): boolean {
+function evalSupposition(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   return true;
 }
 
-function evalModusTollens(formula: Formula, justifications: Formula[]): boolean {
+function evalModusTollens(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
-
-  const exp = formula.ast;
 
   if (!isNegation(exp)) {
     return false;
   }
 
   const expInner = prettyFormula(exp.inner);
-
-  const justExps = justifications.map((e) => e.ast);
-  const negationJustIndex = justExps.findIndex((e) => isNegation(e));
+  const negationJustIndex = justifications.findIndex((e) => isNegation(e));
   if (negationJustIndex === -1) {
     return false;
   }
 
-  const negationJust = justExps[negationJustIndex];
-  const conditionalJust = justExps[negationJustIndex ? 0 : 1];
+  const negationJust = justifications[negationJustIndex];
+  const conditionalJust = justifications[negationJustIndex ? 0 : 1];
 
   return (
+    isNegation(negationJust) &&
     isConditional(conditionalJust) &&
     prettyFormula(conditionalJust.left) === expInner &&
     prettyFormula(conditionalJust.right) === prettyFormula(negationJust.inner)
   );
 }
 
-function evalDisjunctiveArgument(formula: Formula, justifications: Formula[]): boolean {
+function evalDisjunctiveArgument(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
 
-  const justExps = justifications.map((e) => e.ast);
-  const orderedJusts = [justExps, justExps.toReversed()].find(([ a, b ]) => {
+  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
     if (!isNegation(b)) {
       return false;
     }
@@ -436,27 +424,24 @@ function evalDisjunctiveArgument(formula: Formula, justifications: Formula[]): b
   }
 
   const disjunctionJust = orderedJusts[0];
-  const exp = prettyFormula(formula.ast);
-  return (
-    prettyFormula(disjunctionJust.left) === exp ||
-    prettyFormula(disjunctionJust.right) === exp
+  const expStr = prettyFormula(exp);
+  return isDisjunction(disjunctionJust) && (
+    prettyFormula(disjunctionJust.left) === expStr ||
+    prettyFormula(disjunctionJust.right) === expStr
   );
 
 }
 
-function evalConjunctiveArgument(formula: Formula, justifications: Formula[]): boolean {
+function evalConjunctiveArgument(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
-
-  const exp = formula.ast;
 
   if (!isNegation(exp)) {
     return false;
   }
 
-  const justExps = justifications.map((e) => e.ast);
-  const orderedJusts = [justExps, justExps.toReversed()].find(([ a, b ]) => {
+  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
     const bStr = prettyFormula(b);
     return isNegation(a) && isConjunction(a.inner) && (
       prettyFormula(a.inner.left) === bStr || prettyFormula(a.inner.right) === bStr
@@ -468,35 +453,33 @@ function evalConjunctiveArgument(formula: Formula, justifications: Formula[]): b
 
   const conjunctionJust = orderedJusts[0];
   const innerStr = prettyFormula(exp.inner);
-  return (
+  return isNegation(conjunctionJust) && isConjunction(conjunctionJust.inner) && (
     prettyFormula(conjunctionJust.inner.left) === innerStr ||
     prettyFormula(conjunctionJust.inner.right) === innerStr
   );
 }
 
-function evalChainRule(formula: Formula, justifications: Formula[]): boolean {
+function evalChainRule(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 2) {
     return false;
   }
 
-  const exp = formula.ast;
   if (!isConditional(exp)) {
     return false;
   }
 
-  const justExps = justifications.map((e) => e.ast);
-  if (!justExps.every((e) => isConditional(e))) {
+  if (!justifications.every((e) => isConditional(e))) {
     return false;
   }
 
   const expLeft = prettyFormula(exp.left);
-  const firstJustIndex = justExps.findIndex((e) => prettyFormula(e.left) === expLeft);
+  const firstJustIndex = justifications.findIndex((e) => prettyFormula(e.left) === expLeft);
   if (firstJustIndex === -1) {
     return false;
   }
   const expRight = prettyFormula(exp.right);
-  const firstJust = justExps[firstJustIndex];
-  const secondJust = justExps[firstJustIndex ? 0 : 1];
+  const firstJust = justifications[firstJustIndex];
+  const secondJust = justifications[firstJustIndex ? 0 : 1];
   const firstJustLeft = prettyFormula(firstJust.left);
   const firstJustRight = prettyFormula(firstJust.right);
   const secondJustLeft = prettyFormula(secondJust.left);
@@ -509,49 +492,228 @@ function evalChainRule(formula: Formula, justifications: Formula[]): boolean {
   );
 }
 
-function evalDoubleNegation(formula: Formula, justifications: Formula[]): boolean {
+function evalDoubleNegation(exp: AST.Expression, justifications: AST.Expression[]): boolean {
   if (justifications.length !== 1) {
     return false;
   }
 
   const [ justification ] = justifications;
-  const exp = prettyFormula(formula.ast);
-  const justExp = prettyFormula(justification.ast);
+  const expStr = prettyFormula(exp);
+  const justExp = prettyFormula(justification);
   const doubleNegation = Operator.NEGATION['libChar'].repeat(2);
 
   return (
-    exp === `${doubleNegation}${justExp}` || `${doubleNegation}${exp}` === justExp
+    expStr === `${doubleNegation}${justExp}` || `${doubleNegation}${expStr}` === justExp
   )
 }
 
-function evalDemorgansLaw(formula: Formula, justifications: Formula[]): boolean {
+function evalDemorgansLaw(
+  exp: AST.Expression,
+  justifications: AST.Expression[],
+  tryReciprocal: boolean = true
+): boolean {
+  if (justifications.length !== 1) {
+    return false;
+  }
+
+  const [ justification ] = justifications;
+  // If this rule doesn't pass, try it's reciprocal, since the rule works both
+  // ways.
+  const returnFalse = () => tryReciprocal ? evalDemorgansLaw(justification, [exp], false) : false;
+
+  if (!isNegation(justification)) {
+    return returnFalse()
+  }
+
+  if (!(
+    (isConjunction(exp) && isDisjunction(justification.inner)) ||
+    (isDisjunction(exp) && isConjunction(justification.inner))
+  )) {
+    return returnFalse();
+  }
+
+  if (
+    isNegation(justification.inner.left) &&
+    isNegation(justification.inner.right) &&
+    !isNegation(exp.left) &&
+    !isNegation(exp.right) &&
+    prettyFormula(justification.inner.left.inner) === prettyFormula(exp.left) &&
+    prettyFormula(justification.inner.right.inner) === prettyFormula(exp.right)
+  ) {
+    return true;
+  }
+
+  if (
+    !isNegation(justification.inner.left) &&
+    !isNegation(justification.inner.right) &&
+    isNegation(exp.left) &&
+    isNegation(exp.right) &&
+    prettyFormula(justification.inner.left) === prettyFormula(exp.left.inner) &&
+    prettyFormula(justification.inner.right) === prettyFormula(exp.right.inner)
+  ) {
+    return true;
+  }
+
+  return returnFalse();
+}
+
+function evalArrow(
+  exp: AST.Expression,
+  justifications: AST.Expression[],
+  tryReciprocal: boolean = true
+): boolean {
+  if (justifications.length !== 1) {
+    return false;
+  }
+
+  const [ justification ] = justifications;
+  // If this rule doesn't pass, try it's reciprocal, since the rule works both
+  // ways.
+  const returnFalse = () => tryReciprocal ? evalArrow(justification, [exp], false) : false;
+
+  const conditionalJust = isNegation(justification) ? justification.inner : justification;
+  if (!isConditional(conditionalJust)) {
+    return returnFalse();
+  }
+
+  // -A ∨ B from A → B
+  if (
+    !isNegation(justification) &&
+    !isNegation(conditionalJust.left) &&
+    !isNegation(conditionalJust.right) &&
+    isDisjunction(exp) &&
+    isNegation(exp.left) &&
+    !isNegation(exp.right) &&
+    prettyFormula(conditionalJust.left) === prettyFormula(exp.left.inner) &&
+    prettyFormula(conditionalJust.right) === prettyFormula(exp.right)
+  ) {
+    return true;
+  }
+
+  // A ∨ B from -A → B
+  if (
+    !isNegation(justification) &&
+    isNegation(conditionalJust.left) &&
+    !isNegation(conditionalJust.right) &&
+    isDisjunction(exp) &&
+    !isNegation(exp.left) &&
+    !isNegation(exp.right) &&
+    prettyFormula(conditionalJust.left.inner) === prettyFormula(exp.left) &&
+    prettyFormula(conditionalJust.right) === prettyFormula(exp.right)
+  ) {
+    return true;
+  }
+
+  // -(A & -B) from A → B
+  if (
+    !isNegation(justification) &&
+    isNegation(exp) &&
+    !isNegation(conditionalJust.left) &&
+    !isNegation(conditionalJust.right) &&
+    isConjunction(exp.inner) &&
+    !isNegation(exp.inner.left) &&
+    isNegation(exp.inner.right) &&
+    prettyFormula(conditionalJust.left) === prettyFormula(exp.inner.left) &&
+    prettyFormula(conditionalJust.right) === prettyFormula(exp.inner.right.inner)
+  ) {
+    return true;
+  }
+
+  // A & -B from -(A → B)
+  if (
+    isNegation(justification) &&
+    !isNegation(conditionalJust.left) &&
+    !isNegation(conditionalJust.right) &&
+    isConjunction(exp) &&
+    !isNegation(exp.left) &&
+    isNegation(exp.right) &&
+    prettyFormula(conditionalJust.left) === prettyFormula(exp.left) &&
+    prettyFormula(conditionalJust.right) === prettyFormula(exp.right.inner)
+  ) {
+    return true;
+  }
+
+  return returnFalse();
+}
+
+function evalContraposition(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+  if (justifications.length !== 1) {
+    return false;
+  }
+
+  const [ justification ] = justifications;
+
+  if (!isConditional(justification) || !isConditional(exp)) {
+    return false;
+  }
+
+  // -B → -A from A → B
+  if (
+    !isNegation(justification.left) &&
+    !isNegation(justification.right) &&
+    isNegation(exp.left) &&
+    isNegation(exp.right) &&
+    prettyFormula(exp.left.inner) === prettyFormula(justification.right) &&
+    prettyFormula(exp.right.inner) === prettyFormula(justification.left)
+  ) {
+    return true;
+  }
+
+  // B → A from -A → -B
+  if (
+    isNegation(justification.left) &&
+    isNegation(justification.right) &&
+    !isNegation(exp.left) &&
+    !isNegation(exp.right) &&
+    prettyFormula(justification.left.inner) === prettyFormula(exp.right) &&
+    prettyFormula(justification.right.inner) === prettyFormula(exp.left)
+  ) {
+    return true;
+  }
+
+  // -B → A from -A → B
+  if (
+    isNegation(justification.left) &&
+    !isNegation(justification.right) &&
+    isNegation(exp.left) &&
+    !isNegation(exp.right) &&
+    prettyFormula(justification.left.inner) === prettyFormula(exp.right) &&
+    prettyFormula(justification.right) === prettyFormula(exp.left.inner)
+  ) {
+    return true;
+  }
+
+  // B → -A from A → -B
+  if (
+    !isNegation(justification.left) &&
+    isNegation(justification.right) &&
+    !isNegation(exp.left) &&
+    isNegation(exp.right) &&
+    prettyFormula(justification.left) === prettyFormula(exp.right.inner) &&
+    prettyFormula(justification.right.inner) === prettyFormula(exp.left)
+  ) {
+    return true;
+  }
+
   return false;
 }
 
-function evalArrow(formula: Formula, justifications: Formula[]): boolean {
-  return false;
-}
-
-function evalContraposition(formula: Formula, justifications: Formula[]): boolean {
-  return false;
-}
-
-function isNegation(exp: AST.Expression): boolean {
+function isNegation(exp: AST.Expression): exp is AST.UnaryExpression {
   return exp instanceof AST.UnaryExpression && exp.operator.lexeme === Operator.NEGATION['libChar'];
 }
 
-function isConditional(exp: AST.Expression): boolean {
+function isConditional(exp: AST.Expression): exp is AST.BinaryExpression {
   return exp instanceof AST.BinaryExpression && exp.operator.lexeme === Operator.CONDITIONAL['libChar'];
 }
 
-function isBiconditional(exp: AST.Expression): boolean {
+function isBiconditional(exp: AST.Expression): exp is AST.BinaryExpression {
   return exp instanceof AST.BinaryExpression && exp.operator.lexeme === Operator.BICONDITIONAL['libChar'];
 }
 
-function isConjunction(exp: AST.Expression): boolean {
+function isConjunction(exp: AST.Expression): exp is AST.BinaryExpression {
   return exp instanceof AST.BinaryExpression && exp.operator.lexeme === Operator.CONJUNCTION['libChar'];
 }
 
-function isDisjunction(exp: AST.Expression): boolean {
+function isDisjunction(exp: AST.Expression): exp is AST.BinaryExpression {
   return exp instanceof AST.BinaryExpression && exp.operator.lexeme === Operator.DISJUNCTION['libChar'];
 }

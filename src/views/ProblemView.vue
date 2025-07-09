@@ -87,7 +87,7 @@ function submitLine() {
                                     <BFormSelectOption value="" disabled selected hidden>Rule</BFormSelectOption>
                                     <template v-for="rule in Rule.all" :key="rule.shorthand">
                                         <BFormSelectOption v-if="rule !== Rule.ASSUMPTION" :value="rule">
-                                            {{ rule }}
+                                            {{ rule.shorthand }}
                                         </BFormSelectOption>
                                     </template>
                                 </BFormSelect>
