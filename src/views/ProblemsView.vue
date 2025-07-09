@@ -1,28 +1,35 @@
 <script setup lang="ts">
 import { computed, inject, ref } from 'vue'
+import type { Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 import { Formula } from '../lib/logic';
+import { problemsInjectionKey, chaptersInjectionKey } from '../utils';
+import type { ProblemList, ChapterList } from '../utils'
 
 const $router = useRouter();
 const $route = useRoute();
 
-const problems = ref(Object.entries(inject('problems')));
-const chapters = inject('chapters');
+const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList));
+const chapters = inject(chaptersInjectionKey) as ChapterList;
 
-const chapter = parseInt($route.query.chapter) || null;
-if (chapter) {
-    problems.value = problems.value.filter(([ , problem ]) => problem.chapter === chapter);
+const chapter: Ref<number | null> = ref(null);
+if (typeof $route.query.chapter === 'string') {
+    chapter.value = parseInt($route.query.chapter);
+    problems.value = problems.value.filter(([ , problem ]) => problem.chapter === chapter.value);
 }
 
-const title = computed(() => chapter ? chapters[chapter] : 'All Problems');
+const title = computed(() => chapter.value ? chapters[chapter.value] : 'All Problems');
 const rows = computed(() => problems.value.length);
 const perPage = ref(30);
-const currentPage = ref($route.query.page || 1);
+const currentPage: Ref<number> = ref(1);
+if (typeof $route.query.page === 'string') {
+    currentPage.value = parseInt($route.query.page);
+}
 const pageProblems = computed(() => {
     return problems.value.slice((currentPage.value - 1) * perPage.value, currentPage.value * perPage.value);
 });
 
-function updatePage(page) {
+function updatePage(page: string | number) {
     $router.push({
         query: {
             ...$router.currentRoute.value.query,

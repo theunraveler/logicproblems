@@ -4,14 +4,17 @@ import type { Ref } from 'vue';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { Formula, Operator } from '../lib/logic';
 
-const formulaText = ref('');
-const input = useTemplateRef('input');
+const text = ref('');
+const input = useTemplateRef<HTMLInputElement>('input');
 const error = ref('');
 const validationState: Ref<boolean | undefined> = ref(undefined);
 const formula: Ref<Formula | null> = ref(null);
 
 function addOperator(operator: Operator) {
-    input.value?.focus();
+    if (!input.value) {
+        return;
+    }
+    input.value.focus();
     let toAdd = ` ${operator.toString()}`;
     if (operator.isBinary) {
         toAdd += ' ';
@@ -23,27 +26,31 @@ function validate() {
     validationState.value = undefined;
     error.value = '';
     try {
-        formula.value = new Formula(formulaText.value);
-        formulaText.value = formula.value.text;
+        formula.value = new Formula(text.value);
+        text.value = formula.value.text;
         validationState.value = true;
     } catch (err) {
-        error.value = err.message;
+        if (typeof err === 'string') {
+            error.value = err;
+        } else if (err instanceof Error) {
+            error.value = err.message;
+        }
         validationState.value = false;
     }
 }
 
 function reset() {
-    formulaText.value = '';
+    text.value = '';
     validationState.value = undefined;
     error.value = '';
     formula.value = null;
 }
 
-defineExpose({input, formula, error, validate, reset})
+defineExpose({ text, formula, error, validate, reset })
 </script>
 
 <template>
-    <BFormInput v-model="formulaText" ref="input" placeholder="Formula" :state="validationState" required />
+    <BFormInput v-model="text" ref="input" placeholder="Formula" :state="validationState" required />
     <BButtonGroup class="mt-1" aria-label="Operators">
         <BButton size="sm" variant="outline-secondary" v-for="operator in Operator.all" :key="operator.symbol" @click.stop.prevent="addOperator(operator)" :title="`Insert ${operator.label} operator (${operator})`">
             {{ operator }}

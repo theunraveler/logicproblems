@@ -27,6 +27,7 @@
   "devDependencies": {
     "@playwright/test": "^1.53.1",
     "@tsconfig/node22": "^22.0.2",
+    "@types/insert-text-at-cursor": "^0.3.2",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^24.0.10",
     "@types/number-to-words": "^1.2.3",

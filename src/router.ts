@@ -19,6 +19,7 @@ const router = createRouter({
       path: '/problems/:id',
       name: 'problem',
       component: () => import('./views/ProblemView.vue'),
+      props: true,
     },
     {
       path: '/formulae',

@@ -45,6 +45,8 @@ declare module 'vue' {
     FormulaGraph: typeof import('./src/components/FormulaGraph.vue')['default']
     FormulaInput: typeof import('./src/components/FormulaInput.vue')['default']
     FormulaInputHelp: typeof import('./src/components/FormulaInputHelp.vue')['default']
+    ProblemNav: typeof import('./src/components/ProblemNav.vue')['default']
+    ProofTable: typeof import('./src/components/ProofTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

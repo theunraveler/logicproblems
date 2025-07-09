@@ -180,7 +180,7 @@ export class Proof {
   public readonly deductions: Line[] = [];
 
   constructor(
-    assumptions: Line[] | string[],
+    assumptions: Formula[] | Line[] | string[],
     conclusion: Formula | string,
   ) {
     this.assumptions = assumptions.map((assumption) => {
