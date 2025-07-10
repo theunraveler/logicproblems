@@ -30,7 +30,7 @@ const hasUnsavedChanges = computed(() => {
     );
 })
 
-function submitLine() {
+const submitLine = () => {
     if (!formulaInput.value) {
         return;
     }
@@ -82,7 +82,13 @@ defineExpose({ proof, hasUnsavedChanges })
             </BThead>
             <BTbody class="table-group-divider">
                 <BTr v-for="(line, index) in proof.lines" :key="index">
-                    <BTd v-if="!qed"><BFormCheckbox v-model="form.justifications.value" :value="index" /></BTd>
+                    <BTd v-if="!qed">
+                        <BFormCheckbox
+                            v-model="form.justifications.value"
+                            :value="index"
+                            :data-testid="`justification-${index}`"
+                            />
+                    </BTd>
                     <BTd>{{ index + 1 }}</BTd>
                     <BTd class="text-start"><code>{{ line.formula }}</code></BTd>
                     <BTd>{{ line.justifications.map((n) => n + 1).join(', ') }}</BTd>

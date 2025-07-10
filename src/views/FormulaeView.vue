@@ -8,7 +8,7 @@ type FormulaInputType = InstanceType<typeof FormulaInput>;
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input');
 const expression: Ref<Expression | undefined> = ref(undefined);
 
-function onSubmit() {
+const onSubmit = () => {
     expression.value = undefined;
 
     if (!formulaInput.value) {

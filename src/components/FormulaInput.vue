@@ -10,7 +10,7 @@ const error = ref('');
 const validationState: Ref<boolean | undefined> = ref(undefined);
 const formula: Ref<Formula | null> = ref(null);
 
-function addOperator(operator: Operator) {
+const addOperator = (operator: Operator) => {
     if (!input.value) {
         return;
     }
@@ -22,7 +22,7 @@ function addOperator(operator: Operator) {
     insertTextAtCursor(input.value, toAdd);
 }
 
-function validate() {
+const validate = () => {
     validationState.value = undefined;
     error.value = '';
     try {
@@ -39,7 +39,7 @@ function validate() {
     }
 }
 
-function reset() {
+const reset = () => {
     text.value = '';
     validationState.value = undefined;
     error.value = '';

@@ -29,7 +29,7 @@ const pageProblems = computed(() => {
     return problems.value.slice((currentPage.value - 1) * perPage.value, currentPage.value * perPage.value);
 });
 
-function updatePage(page: string | number) {
+const updatePage = (page: string | number) => {
     $router.push({
         query: {
             ...$router.currentRoute.value.query,
@@ -43,8 +43,12 @@ function updatePage(page: string | number) {
     <h1 class="mb-4">{{ title }}</h1>
 
     <BRow>
-        <BCol cols="12" lg="9">
-            <BCard v-for="([ id, problem ]) in pageProblems" :key="id" :header="problem.title" class="mb-3">
+        <BCol cols="12" lg="9" data-testid="problems">
+            <BCard
+                v-for="([ id, problem ]) in pageProblems"
+                :key="id"
+                :header="problem.title"
+                class="mb-3">
                 <ol class="mb-0">
                     <li v-for="(assumption, index) in problem.assumptions" :key="index"><code>{{ new Formula(assumption) }}</code></li>
                 </ol>
@@ -54,7 +58,13 @@ function updatePage(page: string | number) {
                     Solve!
                 </BLink>
             </BCard>
-            <BPagination @update:model-value="updatePage" v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center" />
+            <BPagination
+                @update:model-value="updatePage"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                align="center"
+                data-testid="problem-paginator" />
         </BCol>
 
         <BCol lg="3" class="d-none d-lg-block">

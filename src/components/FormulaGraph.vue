@@ -5,11 +5,11 @@ import { Formula, Operator } from '../lib/logic';
 
 const props = defineProps(['expression']);
 
-function expressionToString(expression: AST.Expression): string {
+const expressionToString = (expression: AST.Expression): string => {
     return Formula.normalize(formulaToString(expression, true), true);
 }
 
-function operatorText(symbol: string) {
+const operatorText = (symbol: string): string => {
     const operator = Operator.findBySymbol(Formula.normalize(symbol));
     return `${operator.label} (<code>${operator.symbol}</code>)`;
 }

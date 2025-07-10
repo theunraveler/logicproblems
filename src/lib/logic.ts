@@ -18,11 +18,6 @@ export class Operator {
     private readonly _prettyLibChar: string | null = null,
     public readonly isBinary: boolean = true
   ) {
-    this.symbol = symbol;
-    this.label = label;
-    this._libChar = _libChar;
-    this._prettyLibChar = _prettyLibChar;
-    this.isBinary = isBinary;
     Operator.all.push(this);
   }
 
@@ -82,9 +77,6 @@ export class Rule {
     public readonly label: string,
     private readonly evalFunc: LineEvalFunction,
   ) {
-    this.shorthand = shorthand;
-    this.label = label;
-    this.evalFunc = evalFunc;
     Rule.all.push(this);
   }
 

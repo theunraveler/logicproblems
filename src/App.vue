@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { inject } from 'vue';
+import { chaptersInjectionKey } from './utils';
 
-const chapters = inject('chapters');
+const chapters = inject(chaptersInjectionKey);
 </script>
 
 <template>
   <header>
     <BNavbar container toggleable="lg" variant="dark" data-bs-theme="dark" class="border-bottom border-body">
-      <BNavbarBrand :to="{name: 'home'}">Logic Problems</BNavbarBrand>
+      <BNavbarBrand :to="{name: 'home'}" data-testid="link-home">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
         <BNavbarNav class="me-auto">

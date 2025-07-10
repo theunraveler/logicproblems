@@ -30,14 +30,16 @@ const next = computed(() => {
             v-if="prev"
             :to="{name: 'problem', params: {id: prev.id}}"
             class="btn btn-outline-secondary float-start"
-            :title="prev.title">
+            :title="prev.title"
+            data-testid="previous-problem-link">
             ← Previous
         </BLink>
         <BLink
             v-if="next"
             :to="{name: 'problem', params: {id: next.id}}"
             class="btn btn-outline-secondary float-end"
-            :title="next.title">
+            :title="next.title"
+            data-testid="next-problem-link">
             Next →
         </BLink>
     </BContainer>

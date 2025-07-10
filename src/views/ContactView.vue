@@ -9,7 +9,7 @@ const data = {
 };
 const result = ref('');
 
-function onSubmit() {
+const onSubmit = () => {
     const payload = {
         name: data.name.value,
         email: data.email.value,
@@ -32,13 +32,11 @@ function onSubmit() {
                 const json = await response.json();
                 console.log(response);
                 console.log(json)
+                reset();
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             })
-            .then(function() {
-                reset();
-            });
     } else {
         result.value = `Would have submitted the following data: ${JSON.stringify(payload)}`;
         reset();

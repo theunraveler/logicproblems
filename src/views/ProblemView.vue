@@ -23,7 +23,7 @@ onBeforeRouteUpdate(async () => {
 <template>
     <BRow>
         <BCol cols="12" lg="8" xl="9">
-            <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
+            <div class="d-flex justify-content-between border-bottom mb-4">
                 <h2>{{ problem.title }}</h2>
                 <h4>Conclusion: <code>{{ proofTable?.proof?.conclusion }}</code></h4>
             </div>
@@ -31,7 +31,9 @@ onBeforeRouteUpdate(async () => {
             <ProofTable
                 ref="proof-table"
                 :assumptions="problem.assumptions"
-                :conclusion="problem.conclusion" />
+                :conclusion="problem.conclusion"
+                data-testid="proof-table"
+                />
 
             <ProblemNav class="px-0 mt-4 mt-lg-5" :current="$route.params.id" />
         </BCol>
