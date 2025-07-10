@@ -58,8 +58,7 @@ defineExpose({ text, formula, error, validate, reset })
       v-for="operator in Operator.all"
       :key="operator.symbol"
       @click.stop.prevent="addOperator(operator)"
-      :title="`Insert ${operator.label} operator (${operator})`"
-    >
+      :title="`Insert ${operator.label} operator (${operator})`">
       {{ operator }}
     </BButton>
   </BButtonGroup>

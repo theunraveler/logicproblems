@@ -92,8 +92,7 @@ defineExpose({ proof, hasUnsavedChanges })
             <BFormCheckbox
               v-model="form.justifications.value"
               :value="index"
-              :data-testid="`justification-${index}`"
-            />
+              :data-testid="`justification-${index}`" />
           </BTd>
           <BTd>{{ index + 1 }}</BTd>
           <BTd class="text-start"

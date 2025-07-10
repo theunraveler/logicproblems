@@ -37,8 +37,7 @@ onBeforeRouteUpdate(async () => {
         ref="proof-table"
         :assumptions="problem.assumptions"
         :conclusion="problem.conclusion"
-        data-testid="proof-table"
-      />
+        data-testid="proof-table" />
 
       <ProblemNav class="px-0 mt-4 mt-lg-5" :current="$route.params.id" />
     </BCol>

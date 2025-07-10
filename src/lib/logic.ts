@@ -320,10 +320,7 @@ function evalOrIn(exp: AST.Expression, justifications: AST.Expression[]): boolea
     return false
   }
 
-  if (
-    !(exp instanceof AST.BinaryExpression) ||
-    exp.operator.lexeme !== Operator.DISJUNCTION['libChar']
-  ) {
+  if (!isDisjunction(exp)) {
     return false
   }
 
@@ -338,10 +335,7 @@ function evalAndOut(exp: AST.Expression, justifications: AST.Expression[]): bool
   }
 
   const just = justifications[0]
-  if (
-    !(just instanceof AST.BinaryExpression) ||
-    just.operator.lexeme !== Operator.CONJUNCTION['libChar']
-  ) {
+  if (!isConjunction(just)) {
     return false
   }
 
@@ -354,10 +348,7 @@ function evalAndIn(exp: AST.Expression, justifications: AST.Expression[]): boole
     return false
   }
 
-  if (
-    !(exp instanceof AST.BinaryExpression) ||
-    exp.operator.lexeme !== Operator.CONJUNCTION['libChar']
-  ) {
+  if (!isConjunction(exp)) {
     return false
   }
 

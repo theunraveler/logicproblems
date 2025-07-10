@@ -67,8 +67,7 @@ const updatePage = (page: string | number) => {
         :total-rows="rows"
         :per-page="perPage"
         align="center"
-        data-testid="problem-paginator"
-      />
+        data-testid="problem-paginator" />
     </BCol>
 
     <BCol lg="3" class="d-none d-lg-block">
@@ -78,8 +77,7 @@ const updatePage = (page: string | number) => {
           <BListGroupItem
             v-for="(name, key) in chapters"
             :key="key"
-            :to="{ name: 'problems', query: { chapter: key } }"
-          >
+            :to="{ name: 'problems', query: { chapter: key } }">
             {{ name }}
           </BListGroupItem>
         </BListGroup>

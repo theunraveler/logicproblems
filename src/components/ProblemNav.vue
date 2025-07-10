@@ -31,8 +31,7 @@ const next = computed(() => {
       :to="{ name: 'problem', params: { id: prev.id } }"
       class="btn btn-outline-secondary float-start"
       :title="prev.title"
-      data-testid="previous-problem-link"
-    >
+      data-testid="previous-problem-link">
       ← Previous
     </BLink>
     <BLink
@@ -40,8 +39,7 @@ const next = computed(() => {
       :to="{ name: 'problem', params: { id: next.id } }"
       class="btn btn-outline-secondary float-end"
       :title="next.title"
-      data-testid="next-problem-link"
-    >
+      data-testid="next-problem-link">
       Next →
     </BLink>
   </BContainer>

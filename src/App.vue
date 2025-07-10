@@ -12,8 +12,7 @@ const chapters = inject(chaptersInjectionKey)
       toggleable="lg"
       variant="dark"
       data-bs-theme="dark"
-      class="border-bottom border-body"
-    >
+      class="border-bottom border-body">
       <BNavbarBrand :to="{ name: 'home' }" data-testid="link-home">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
@@ -24,8 +23,7 @@ const chapters = inject(chaptersInjectionKey)
             <BDropdownItem
               v-for="(name, id) in chapters"
               :key="id"
-              :to="{ name: 'problems', query: { chapter: id } }"
-            >
+              :to="{ name: 'problems', query: { chapter: id } }">
               {{ name }}
             </BDropdownItem>
           </BNavItemDropdown>
