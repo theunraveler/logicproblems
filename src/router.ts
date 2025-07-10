@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import {nextTick} from 'vue';
+import { nextTick } from 'vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +13,7 @@ const router = createRouter({
       path: '/problems',
       name: 'problems',
       component: () => import('./views/ProblemsView.vue'),
-      meta: {title: 'Problems'},
+      meta: { title: 'Problems' },
     },
     {
       path: '/problems/:id',
@@ -25,33 +25,31 @@ const router = createRouter({
       path: '/formulae',
       name: 'formulae',
       component: () => import('./views/FormulaeView.vue'),
-      meta: {title: 'Formulae'},
+      meta: { title: 'Formulae' },
     },
     {
       path: '/contact',
       name: 'contact',
       component: () => import('./views/ContactView.vue'),
-      meta: {title: 'Contact'},
+      meta: { title: 'Contact' },
     },
     {
       path: '/terms',
       name: 'terms',
       component: () => import('./views/TermsView.vue'),
-      meta: {title: 'Terms'},
+      meta: { title: 'Terms' },
     },
   ],
   scrollBehavior() {
     // always scroll to top
-    return { top: 0 };
+    return { top: 0 }
   },
 })
 
 router.afterEach((to) => {
   nextTick(() => {
-    const title: string = to.meta.title ?
-      `${to.meta.title} | Logic Problems` :
-      'Logic Problems';
-    document.title = title;
+    const title: string = to.meta.title ? `${to.meta.title} | Logic Problems` : 'Logic Problems'
+    document.title = title
   })
 })
 

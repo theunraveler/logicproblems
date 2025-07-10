@@ -4,17 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
+    "build-only": "vite build",
     "ci": "run-s test lint type-check",
+    "dev": "vite",
+    "format": "prettier --write src/",
+    "lint": "eslint . --fix",
     "preview": "vite preview",
     "test": "run-s test:unit test:e2e",
-    "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "test:unit": "vitest run",
+    "type-check": "vue-tsc --build"
   },
   "dependencies": {
     "bootstrap": "^5.3.7",

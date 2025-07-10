@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import * as logic from '../logic';
+import * as logic from '../logic'
 
 describe('Rule', () => {
   describe('ARROW_OUT', () => {
@@ -11,14 +11,14 @@ describe('Rule', () => {
         ['C → D', ['A → B', '(A → B) → (C → D)'], true],
         ['C', ['A → B', 'A'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.ARROW_OUT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.ARROW_OUT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
 
   describe('ARROW_IN', () => {
     describe('evaluate', () => {
-      test.todo('Implement me');
+      test.todo('Implement me')
     })
   })
 
@@ -32,7 +32,7 @@ describe('Rule', () => {
         ['C → D', ['(A → B) & (C → D)'], true],
         ['C', ['A & B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.AND_OUT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.AND_OUT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -45,7 +45,7 @@ describe('Rule', () => {
         ['(A → B) & (C → D)', ['A → B', 'C → D'], true],
         ['A & C', ['A', 'B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.AND_IN, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.AND_IN, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -59,7 +59,7 @@ describe('Rule', () => {
         ['B → (A → C)', ['(A → C) ↔ B'], true],
         ['B → C', ['A ↔ B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.BICONDITIONAL_OUT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.BICONDITIONAL_OUT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -74,7 +74,7 @@ describe('Rule', () => {
         ['B ↔ A', ['A → B', 'B & C'], false],
         ['A ↔ B', ['A → B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.BICONDITIONAL_IN, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.BICONDITIONAL_IN, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -86,7 +86,7 @@ describe('Rule', () => {
         ['A ∨ B', ['A'], true],
         ['A ∨ B', ['C'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.OR_IN, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.OR_IN, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -100,7 +100,7 @@ describe('Rule', () => {
         ['C', ['A ∨ B', 'A → C', 'B → D'], false],
         ['C', ['A ∨ B', 'A → C'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.OR_OUT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.OR_OUT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -120,7 +120,7 @@ describe('Rule', () => {
   describe('SUPPOSITION', () => {
     describe('evaluate', () => {
       test('always returns true', () => {
-        expect(evaluate(logic.Rule.SUPPOSITION, 'A')).toBe(true);
+        expect(evaluate(logic.Rule.SUPPOSITION, 'A')).toBe(true)
       })
       test.todo('adds a dependency to the proof')
     })
@@ -135,7 +135,7 @@ describe('Rule', () => {
         ['A', ['A → B', '-B'], false],
         ['-A', ['D → B', '-B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.MODUS_TOLLENS, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.MODUS_TOLLENS, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -150,7 +150,7 @@ describe('Rule', () => {
         ['-B', ['A ∨ B', 'A'], false],
         ['-B', ['A ∨ B', '-A'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.DISJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.DISJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -163,7 +163,7 @@ describe('Rule', () => {
         ['B', ['-(A & B)', 'A'], false],
         ['-A', ['-(A & B)', 'C'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.CONJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.CONJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -175,7 +175,7 @@ describe('Rule', () => {
         ['A → C', ['B → C', 'A → B'], true],
         ['A → C', ['A → B', 'B → D'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.CHAIN_RULE, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.CHAIN_RULE, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -190,7 +190,7 @@ describe('Rule', () => {
         ['-(A & B)', ['A & B'], false],
         ['---(A & B)', ['A & B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.DOUBLE_NEGATION, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.DOUBLE_NEGATION, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -207,7 +207,7 @@ describe('Rule', () => {
         ['A & B', ['-(-A ∨ -B)'], true],
         ['-(-A ∨ -B)', ['A & B'], true],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.DEMORGANS_LAW, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.DEMORGANS_LAW, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -224,7 +224,7 @@ describe('Rule', () => {
         ['A & -B', ['-(A → B)'], true],
         ['-(A → B)', ['A & -B'], true],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.ARROW, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.ARROW, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -240,7 +240,7 @@ describe('Rule', () => {
         ['-B → A', ['A → -B'], false],
         ['-B → -A', ['-A → -B'], false],
       ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluate(logic.Rule.CONTRAPOSITION, formula, justifications)).toBe(shouldPass);
+        expect(evaluate(logic.Rule.CONTRAPOSITION, formula, justifications)).toBe(shouldPass)
       })
     })
   })
@@ -249,6 +249,6 @@ describe('Rule', () => {
 function evaluate(rule: logic.Rule, formula: string, justifications: string[] = []): boolean {
   return rule.evaluate(
     new logic.Formula(formula),
-    justifications.map((j) => new logic.Formula(j))
-  );
+    justifications.map((j) => new logic.Formula(j)),
+  )
 }

@@ -1,3891 +1,2396 @@
 {
-    "d3e5f749-8b67-4116-ba5b-628102d8f306": {
-        "title": "Course Orientation Test",
-        "chapter": 3,
-        "assumptions": [
-            "A → B",
-            "A"
-        ],
-        "conclusion": "B"
-    },
-    "70182d92-3db1-46c0-9f50-2d7e9e6c3b7e": {
-        "title": "Chapter Three #1",
-        "chapter": 3,
-        "assumptions": [
-            "E → R",
-            "E"
-        ],
-        "conclusion": "R"
-    },
-    "1095208a-68e1-4a15-8175-51684a5459ba": {
-        "title": "Chapter Three #2",
-        "chapter": 3,
-        "assumptions": [
-            "E→(M→R)",
-            "M",
-            "E"
-        ],
-        "conclusion": "R"
-    },
-    "30fbd298-dc13-46a1-ad5e-245706ab17ec": {
-        "title": "Chapter Three #3",
-        "chapter": 3,
-        "assumptions": [
-            "G",
-            "G → M"
-        ],
-        "conclusion": "M"
-    },
-    "fbc971b2-025e-4b57-8c80-4c4a156fdd4f": {
-        "title": "Chapter Three #4",
-        "chapter": 3,
-        "assumptions": [
-            "K → R",
-            "E → K",
-            "E"
-        ],
-        "conclusion": "R"
-    },
-    "337ca4a5-73fd-4c82-8f1e-d2942424c184": {
-        "title": "Chapter Three #5",
-        "chapter": 3,
-        "assumptions": [
-            "(M → F) → L",
-            "E → (M → F)",
-            "E"
-        ],
-        "conclusion": "L"
-    },
-    "41e991c3-f212-4efe-8138-857ff0f177cb": {
-        "title": "Chapter Three #6",
-        "chapter": 3,
-        "assumptions": [
-            "N",
-            "N → D",
-            "N → (D → F)"
-        ],
-        "conclusion": "F"
-    },
-    "547fd3b6-8015-4d01-b5e6-d1a3db8830cb": {
-        "title": "Chapter Three #7",
-        "chapter": 3,
-        "assumptions": [
-            "(H → F) → (M → R)",
-            "E → (H → F)",
-            "E",
-            "M"
-        ],
-        "conclusion": "R"
-    },
-    "a2b55fc0-8d0e-4d44-b157-9040838f611d": {
-        "title": "Chapter Three #8",
-        "chapter": 3,
-        "assumptions": [
-            "A → (B → (C → D))",
-            "A",
-            "B"
-        ],
-        "conclusion": "C → D"
-    },
-    "9b66cc38-53c2-4db9-be6d-6134366be9cb": {
-        "title": "Chapter Three #9",
-        "chapter": 3,
-        "assumptions": [
-            "-H → (W → N)",
-            "E → -H",
-            "E",
-            "W"
-        ],
-        "conclusion": "N"
-    },
-    "26fb899a-8383-419b-98c8-c7944dd180c5": {
-        "title": "Chapter Three #10",
-        "chapter": 3,
-        "assumptions": [
-            "(F → -A) → S",
-            "H → (F → -A)",
-            "H",
-            "S → (R → B)",
-            "R"
-        ],
-        "conclusion": "B"
-    },
-    "3e63d586-641b-4d93-9e08-4e90ef66b14d": {
-        "title": "Chapter Three #11",
-        "chapter": 3,
-        "assumptions": [
-            "A → (E → D)",
-            "B → E",
-            "B",
-            "A",
-            "D → -F"
-        ],
-        "conclusion": "-F"
-    },
-    "9c790848-817a-4724-a31b-72037845a7ff": {
-        "title": "Chapter Three #12",
-        "chapter": 3,
-        "assumptions": [
-            "R → M",
-            "R"
-        ],
-        "conclusion": "M"
-    },
-    "9ad7dcb4-320f-4e13-8b76-30bd8a8a4d8d": {
-        "title": "Chapter Three #13",
-        "chapter": 3,
-        "assumptions": [
-            "D",
-            "-B → C",
-            "D → -B"
-        ],
-        "conclusion": "C"
-    },
-    "b211e842-c2e4-4d5b-8f1e-8173d3395303": {
-        "title": "Chapter Three #14",
-        "chapter": 3,
-        "assumptions": [
-            "E → G",
-            "( E → G ) → ( G → F )",
-            "E"
-        ],
-        "conclusion": "F"
-    },
-    "f4a45a68-15c0-43c0-846d-d64299cd129c": {
-        "title": "Chapter Three Packet #1",
-        "chapter": 3,
-        "assumptions": [
-            "A",
-            "A→B",
-            "B→C",
-            "C→D"
-        ],
-        "conclusion": "D"
-    },
-    "86ed504b-8071-4ec0-829e-60c93636f1d8": {
-        "title": "Chapter Three Packet #2",
-        "chapter": 3,
-        "assumptions": [
-            "A→B",
-            "B→(C→D)",
-            "A",
-            "C"
-        ],
-        "conclusion": "D"
-    },
-    "d03de3b4-bbb0-43db-8448-083402abb87a": {
-        "title": "Chapter Three Packet #3",
-        "chapter": 3,
-        "assumptions": [
-            "N",
-            "N→M",
-            "M→R"
-        ],
-        "conclusion": "R"
-    },
-    "69bdabfc-80ac-4d61-ad53-b2e15bca2165": {
-        "title": "Chapter Three Packet #4",
-        "chapter": 3,
-        "assumptions": [
-            "L → M",
-            "-N",
-            "M → O",
-            "-N → L"
-        ],
-        "conclusion": "O"
-    },
-    "13367dcc-339e-42cf-a322-c0379e0a79b4": {
-        "title": "Chapter Three Packet #5",
-        "chapter": 3,
-        "assumptions": [
-            "(G → H) → (I → J)",
-            "G → H",
-            "I"
-        ],
-        "conclusion": "J"
-    },
-    "c7e6f72b-481c-451e-9670-5bbd38a974fc": {
-        "title": "Chapter Three Packet #6",
-        "chapter": 3,
-        "assumptions": [
-            "(-C → D) → E",
-            "E → -C",
-            "-C → D"
-        ],
-        "conclusion": "D"
-    },
-    "81508c7d-4d37-438d-b654-99ffd2348252": {
-        "title": "Chapter Three Packet #7",
-        "chapter": 3,
-        "assumptions": [
-            "F → G",
-            "(F → G) → (G → H)",
-            "F"
-        ],
-        "conclusion": "H"
-    },
-    "624a7ac7-8963-429a-b68f-f197fdc1c4f6": {
-        "title": "Chapter Three Packet #8",
-        "chapter": 3,
-        "assumptions": [
-            "P → (A → B)",
-            "(A → B) → (L → R)",
-            "P"
-        ],
-        "conclusion": "L→R"
-    },
-    "4dbef56d-af63-42e4-bc9d-15a2ff0b028f": {
-        "title": "Chapter Three Packet #9",
-        "chapter": 3,
-        "assumptions": [
-            "E → (N→ -P)",
-            "E",
-            "E → (-P → T)",
-            "N"
-        ],
-        "conclusion": "T"
-    },
-    "6ffd5dcb-9098-452c-871b-834c4ed3f77a": {
-        "title": "Chapter Three Packet #10",
-        "chapter": 3,
-        "assumptions": [
-            "(N  → H) → (J → F)",
-            "N → H",
-            "(J → F) → K"
-        ],
-        "conclusion": "K"
-    },
-    "ffd66d14-69ff-4eb2-b730-4758783b4bb2": {
-        "title": "Chapter Three Packet #11",
-        "chapter": 3,
-        "assumptions": [
-            "H→(J→R)",
-            "H→J",
-            "H",
-            "R→P"
-        ],
-        "conclusion": "P"
-    },
-    "76c91a7f-3b41-4cf3-9aa7-a04172ed6647": {
-        "title": "Chapter Three Packet #13",
-        "chapter": 3,
-        "assumptions": [
-            "(L→M)→N",
-            "E→D",
-            "(E→D)→(L→M)",
-            "N→R"
-        ],
-        "conclusion": "R"
-    },
-    "e9165494-4bc8-4bc4-aeb0-d5d94a87c543": {
-        "title": "Chapter Three Packet #14",
-        "chapter": 3,
-        "assumptions": [
-            "L→(J→H)",
-            "H→(P→K)",
-            "J",
-            "L"
-        ],
-        "conclusion": "P→K"
-    },
-    "9c7a57ac-fcf3-487f-a072-7c4f766c5feb": {
-        "title": "Chapter Three Packet #15",
-        "chapter": 3,
-        "assumptions": [
-            "E→(-F→W)",
-            "E",
-            "(-F→W)→(T→Q)",
-            "T"
-        ],
-        "conclusion": "Q"
-    },
-    "03873dba-e9aa-4584-b721-12e8d8db3331": {
-        "title": "Chapter Three Packet #16",
-        "chapter": 3,
-        "assumptions": [
-            "E→H",
-            "(R→P)→E",
-            "A→(R→P)",
-            "A"
-        ],
-        "conclusion": "H"
-    },
-    "a09e6b38-82ac-4a87-9ef9-2ce666f9f9d4": {
-        "title": "Chapter Three Packet #17",
-        "chapter": 3,
-        "assumptions": [
-            "(S→-E)→(J→N)",
-            "M→(S→-E)",
-            "J",
-            "M"
-        ],
-        "conclusion": "N"
-    },
-    "d82c129e-7f01-4cd2-9e47-e95c5cf93676": {
-        "title": "Chapter Three Packet #18",
-        "chapter": 3,
-        "assumptions": [
-            "R → (J → G)",
-            "R",
-            "R→J",
-            "G → M"
-        ],
-        "conclusion": "M"
-    },
-    "cfdcb95b-31ed-4cc5-a729-ac76dbaf53ca": {
-        "title": "Chapter Three Packet #19",
-        "chapter": 3,
-        "assumptions": [
-            "-P",
-            "K → (-P → -J)",
-            "D → K",
-            "D"
-        ],
-        "conclusion": "-J"
-    },
-    "ae48d451-51f7-4060-a0ed-41cc021b587c": {
-        "title": "Chapter Three Packet #20",
-        "chapter": 3,
-        "assumptions": [
-            "M → (P → B)",
-            "J → (E → M)",
-            "E",
-            "j"
-        ],
-        "conclusion": "P→B"
-    },
-    "7a995367-d2d2-4d11-b140-0ec99a4cf479": {
-        "title": "Chapter Three Packet #21",
-        "chapter": 3,
-        "assumptions": [
-            "A → ((B → C) → (-D → E))",
-            "B → C",
-            "A",
-            "-D"
-        ],
-        "conclusion": "E"
-    },
-    "19975358-456e-4adf-8cc7-56fa9e90b604": {
-        "title": "Chapter Three Sample Quiz #1, Question 2",
-        "chapter": 3,
-        "assumptions": [
-            "P→J",
-            "(P→J)→B",
-            "B→R"
-        ],
-        "conclusion": "R"
-    },
-    "63a7ff6d-7fff-4934-b202-3a30140c69a2": {
-        "title": "Chapter Three Sample Quiz #1, Question 3",
-        "chapter": 3,
-        "assumptions": [
-            "Y→(E→(W→S))",
-            "W",
-            "E",
-            "Y"
-        ],
-        "conclusion": "S"
-    },
-    "ab4a518b-a925-4434-a419-5fb42e37feea": {
-        "title": "Chapter Three Sample Quiz #2, Question 2",
-        "chapter": 3,
-        "assumptions": [
-            "H→-R",
-            "(H→-R)→(B→E)",
-            "(B→E)→P"
-        ],
-        "conclusion": "P"
-    },
-    "f8a80f04-a5a8-49df-88bb-b99d7a014b34": {
-        "title": "Chapter Three Sample Quiz #2, Question 3",
-        "chapter": 3,
-        "assumptions": [
-            "K",
-            "N→D",
-            "K→((N→D)→J)",
-            "J→A"
-        ],
-        "conclusion": "A"
-    },
-    "ccfa9561-2266-4489-bea5-9e54b723753d": {
-        "title": "Chapter Three Sample Quiz #3, Question 2",
-        "chapter": 3,
-        "assumptions": [
-            "A",
-            "A→(M→-H)",
-            "M"
-        ],
-        "conclusion": "-H"
-    },
-    "bd8dc8a6-026c-4f52-ba77-0b1bcf118c60": {
-        "title": "Chapter Three Sample Quiz #3, Question 3",
-        "chapter": 3,
-        "assumptions": [
-            "(P→G)→(K→R)",
-            "K",
-            "R→S",
-            "P→G"
-        ],
-        "conclusion": "S"
-    },
-    "7eb248df-963e-40de-99cd-464ec730262a": {
-        "title": "Chapter Three Sample Quiz #4, Question 2",
-        "chapter": 3,
-        "assumptions": [
-            "J → (-P→ M)",
-            "-P",
-            "J"
-        ],
-        "conclusion": "M"
-    },
-    "4cdcef56-9c2a-4a7e-8d0c-8b2fc8a69329": {
-        "title": "Chapter Three Sample Quiz #4, Question 3",
-        "chapter": 3,
-        "assumptions": [
-            "(N → T) → (W → H)",
-            "E → (N → T)",
-            "E → W",
-            "E"
-        ],
-        "conclusion": "H"
-    },
-    "0a9b3ac8-7877-4ffa-b1e5-3688496f966f": {
-        "title": "Chapter Four #1",
-        "chapter": 4,
-        "assumptions": [
-            "( E & G) → (A → -D)",
-            "G → E",
-            "A & (G & -L)"
-        ],
-        "conclusion": "-D & -L"
-    },
-    "3eaa8dd2-3c47-4651-9d13-c0dd9374a637": {
-        "title": "Chapter Four #2",
-        "chapter": 4,
-        "assumptions": [
-            "A ↔ K",
-            "A"
-        ],
-        "conclusion": "A & K"
-    },
-    "c8be1483-4c74-41ac-9840-1ac103bef8ba": {
-        "title": "Chapter Four #3",
-        "chapter": 4,
-        "assumptions": [
-            "A → B",
-            "B → A",
-            "E"
-        ],
-        "conclusion": "(A ↔ B) & E"
-    },
-    "b1894e52-8223-4800-b6d3-4a15b63a2231": {
-        "title": "Chapter Four #4",
-        "chapter": 4,
-        "assumptions": [
-            "(A & B) → C",
-            "A",
-            "B"
-        ],
-        "conclusion": "C"
-    },
-    "8ac7bcae-0fb3-4232-a4f2-c996f99b3fa1": {
-        "title": "Chapter Four #5",
-        "chapter": 4,
-        "assumptions": [
-            "E → R",
-            "J & E",
-            "R → -M"
-        ],
-        "conclusion": "J & -M"
-    },
-    "3425fb0a-bd2e-47fe-a7b7-e82924c019b3": {
-        "title": "Chapter Four #6",
-        "chapter": 4,
-        "assumptions": [
-            "A ↔ G",
-            "A → (L & R)",
-            "G & M",
-            "R → D"
-        ],
-        "conclusion": "D"
-    },
-    "b821d819-7531-4fdc-9389-484e5357d509": {
-        "title": "Chapter Four #7",
-        "chapter": 4,
-        "assumptions": [
-            "E & A",
-            "A ↔ P"
-        ],
-        "conclusion": "P & E"
-    },
-    "b9509a8d-0d0b-4639-9d5a-ac55f01b975f": {
-        "title": "Chapter Four #8",
-        "chapter": 4,
-        "assumptions": [
-            "-K & -L",
-            "-L → W",
-            "-K → M"
-        ],
-        "conclusion": "W & M"
-    },
-    "ca7f576b-9dc0-406a-9804-ccb8a493ef5d": {
-        "title": "Chapter Four #9",
-        "chapter": 4,
-        "assumptions": [
-            "F → (C & N)",
-            "C → (H & E)",
-            "(N & H) → K",
-            "F"
-        ],
-        "conclusion": "K"
-    },
-    "f518b0f6-6df6-4b75-9896-4fb71d7bc368": {
-        "title": "Chapter Four #10",
-        "chapter": 4,
-        "assumptions": [
-            "L→(H→S)",
-            "E→L",
-            "E&(S→H)"
-        ],
-        "conclusion": "H↔S"
-    },
-    "856924eb-61ea-4cd0-b8d6-137b74a9a036": {
-        "title": "Chapter Four #11",
-        "chapter": 4,
-        "assumptions": [
-            "(B↔D)→(H&E)",
-            "(H→R)&(B→D)",
-            "D→B"
-        ],
-        "conclusion": "R&E"
-    },
-    "00ce2d6b-6e17-4b44-adf9-f9849d1a7206": {
-        "title": "Chapter Four #12",
-        "chapter": 4,
-        "assumptions": [
-            "T→(J&H)",
-            "T↔(W&B)",
-            "B&E",
-            "W",
-            "(H&E)→C"
-        ],
-        "conclusion": "C&J"
-    },
-    "095c78e1-653d-43df-b542-f453bb999df6": {
-        "title": "Chapter Four #13",
-        "chapter": 4,
-        "assumptions": [
-            "M↔L",
-            "(L&E)→W",
-            "M",
-            "E"
-        ],
-        "conclusion": "W"
-    },
-    "5f8483d6-cffd-412d-a59d-653f37e08790": {
-        "title": "Chapter Four #14",
-        "chapter": 4,
-        "assumptions": [
-            "K&F",
-            "J↔F"
-        ],
-        "conclusion": "J&K"
-    },
-    "e5db7e0e-4cdb-4321-9775-96e694bf6702": {
-        "title": "Chapter Four #15",
-        "chapter": 4,
-        "assumptions": [
-            "A",
-            "B",
-            "C",
-            "D"
-        ],
-        "conclusion": "((A&C)&B)&D"
-    },
-    "c6ed9c37-4059-41e6-a627-fc038ce298c3": {
-        "title": "Chapter Four #16",
-        "chapter": 4,
-        "assumptions": [
-            "T&W",
-            "(P&A)↔W"
-        ],
-        "conclusion": "P&T"
-    },
-    "dc5701ca-c940-4e44-aba9-b3cdf4f211d2": {
-        "title": "Chapter Four #17",
-        "chapter": 4,
-        "assumptions": [
-            "E↔D",
-            "D→M",
-            "-K→E",
-            "-K"
-        ],
-        "conclusion": "M"
-    },
-    "b18a33dd-519d-4413-9b31-97db38cd3353": {
-        "title": "Chapter Four #18",
-        "chapter": 4,
-        "assumptions": [
-            "J↔(E&H)",
-            "E",
-            "H&F"
-        ],
-        "conclusion": "J&F"
-    },
-    "97a271b4-36c5-44c4-8791-d545df09d23b": {
-        "title": "Chapter Four #19",
-        "chapter": 4,
-        "assumptions": [
-            "-M→-Q",
-            "A&(-Q→-M)",
-            "A→-F"
-        ],
-        "conclusion": "-F&(-Q↔-M)"
-    },
-    "7d3b6f12-eaf2-40f4-a8b8-8a95d50a17ae": {
-        "title": "Chapter Four #20",
-        "chapter": 4,
-        "assumptions": [
-            "(L↔T)→G",
-            "E&(T→L)",
-            "(G→R)&(L→T)"
-        ],
-        "conclusion": "R"
-    },
-    "55784468-118f-42d4-a43f-9e4caa8700c1": {
-        "title": "Chapter Four #21",
-        "chapter": 4,
-        "assumptions": [
-            "(A&X)↔(B&O)",
-            "E→B",
-            "L→O",
-            "E&L"
-        ],
-        "conclusion": "A"
-    },
-    "55adbfd4-85e4-45bc-9637-92c9c2d1b3b7": {
-        "title": "Chapter Four #22",
-        "chapter": 4,
-        "assumptions": [
-            "K→(G&H)",
-            "L↔K",
-            "L",
-            "E"
-        ],
-        "conclusion": "G&E"
-    },
-    "2a3a5f1e-883f-4a14-a877-f32113c8fd43": {
-        "title": "Chapter Four #23",
-        "chapter": 4,
-        "assumptions": [
-            "M→Y",
-            "R↔(Y→M)",
-            "N&(T&R)"
-        ],
-        "conclusion": "Y↔M"
-    },
-    "79e86728-484e-42b2-98a5-17d267627132": {
-        "title": "Chapter Four Packet #1",
-        "chapter": 4,
-        "assumptions": [
-            "N & -Q",
-            "R & F"
-        ],
-        "conclusion": "-Q&F"
-    },
-    "dd2f55fd-c463-4eef-bdce-81c346636c07": {
-        "title": "Chapter Four Packet #2",
-        "chapter": 4,
-        "assumptions": [
-            "R ↔ B"
-        ],
-        "conclusion": "B→R"
-    },
-    "0241c9c7-e1b2-458c-bdf3-01cf08b4caed": {
-        "title": "Chapter Four Packet #3",
-        "chapter": 4,
-        "assumptions": [
-            "U",
-            "-R",
-            "(U & -R) → L"
-        ],
-        "conclusion": "L"
-    },
-    "cef9b07b-5046-457e-bcc7-0f4c959823e8": {
-        "title": "Chapter Four Packet #4",
-        "chapter": 4,
-        "assumptions": [
-            "H & J",
-            "O",
-            "O → M"
-        ],
-        "conclusion": "M&H"
-    },
-    "638f1ccb-7257-4cca-a3f8-3d9fcded8975": {
-        "title": "Chapter Four Packet #5",
-        "chapter": 4,
-        "assumptions": [
-            "A ↔ U",
-            "U → G",
-            "A"
-        ],
-        "conclusion": "G"
-    },
-    "655ee5d3-6d67-4454-b486-d8b370cbb8f3": {
-        "title": "Chapter Four Packet #6",
-        "chapter": 4,
-        "assumptions": [
-            "(H & I) → (L & M)",
-            "H & I"
-        ],
-        "conclusion": "L"
-    },
-    "deaf3a44-3a6f-4c36-8476-b9788c5d0216": {
-        "title": "Chapter Four Packet #7",
-        "chapter": 4,
-        "assumptions": [
-            "B → -R",
-            "M & (-R → B)"
-        ],
-        "conclusion": "M&(B↔-R)"
-    },
-    "3b254d5b-91c8-4a70-b46c-a0d0ef733999": {
-        "title": "Chapter Four Packet #8",
-        "chapter": 4,
-        "assumptions": [
-            "G & L",
-            "h",
-            "(H & (G & L)) → R"
-        ],
-        "conclusion": "R"
-    },
-    "40e5bc1b-8ccc-44f0-8121-15d2433695cc": {
-        "title": "Chapter Four Packet #9",
-        "chapter": 4,
-        "assumptions": [
-            "-A → (B → C)",
-            "C → B",
-            "(C ↔ B) → E",
-            "-A"
-        ],
-        "conclusion": "E"
-    },
-    "3cf2e0ff-562b-41f5-9255-9d2f94cfc951": {
-        "title": "Chapter Four Packet #10",
-        "chapter": 4,
-        "assumptions": [
-            "A → (B & C)",
-            "D → (A & E)",
-            "D"
-        ],
-        "conclusion": "E&B"
-    },
-    "4021ba02-ffc7-42d9-9479-e62b0d5b8f12": {
-        "title": "Chapter Four Packet #11",
-        "chapter": 4,
-        "assumptions": [
-            "(S & U) & Y",
-            "U ↔ -G",
-            "-G → R"
-        ],
-        "conclusion": "R&Y"
-    },
-    "86fe5212-5f79-43ea-9ef9-0c67051211bd": {
-        "title": "Chapter Four Packet #12",
-        "chapter": 4,
-        "assumptions": [
-            "(R → T) & G",
-            "T → H",
-            "R",
-            "(H → M) & (T → K)"
-        ],
-        "conclusion": "K&M"
-    },
-    "ecbd65cd-f08f-4fd9-8f53-5f7f712d61a7": {
-        "title": "Chapter Four Packet #13",
-        "chapter": 4,
-        "assumptions": [
-            "-B ↔ (D ↔ W)",
-            "-B & D"
-        ],
-        "conclusion": "W"
-    },
-    "852d7b7c-1e18-4579-b74a-7d0174ebda9c": {
-        "title": "Chapter Four Packet #14",
-        "chapter": 4,
-        "assumptions": [
-            "H & P",
-            "P → (R & S)",
-            "(R & P) → (S ↔ G)"
-        ],
-        "conclusion": "S↔G"
-    },
-    "f549a3dc-83f5-45ff-8694-0399df118847": {
-        "title": "Chapter Four Packet #15",
-        "chapter": 4,
-        "assumptions": [
-            "A → (B → C)",
-            "B & E",
-            "(C & E) → (Y → Z)",
-            "A"
-        ],
-        "conclusion": "Y→Z"
-    },
-    "d2c068ff-f41b-40ad-aefd-cbbe9f74d477": {
-        "title": "Chapter Four Packet #16",
-        "chapter": 4,
-        "assumptions": [
-            "(H ↔ G) → H",
-            "R & (H → (H ↔ G))"
-        ],
-        "conclusion": "H↔(H↔G)"
-    },
-    "21e86625-0716-400c-ade2-8bd0a2fef4be": {
-        "title": "Chapter Four Packet #17",
-        "chapter": 4,
-        "assumptions": [
-            "R & (H & (J & -v))"
-        ],
-        "conclusion": "-V&H"
-    },
-    "190ae114-21ac-4820-bd9c-fad9ff452c11": {
-        "title": "Chapter Four Packet #18",
-        "chapter": 4,
-        "assumptions": [
-            "N → ((U & G) → K)",
-            "K → (L ↔ S)",
-            "N",
-            "N → (U & G)"
-        ],
-        "conclusion": "S→L"
-    },
-    "c6939acf-f339-480a-8110-fbbd1b366235": {
-        "title": "Chapter Four Packet #19",
-        "chapter": 4,
-        "assumptions": [
-            "-Q ↔ T",
-            "J & B"
-        ],
-        "conclusion": "((-Q→T)&B)&(T→-Q)"
-    },
-    "1f530338-8e83-451a-bc7d-e8942d473a84": {
-        "title": "Chapter Four Packet #20",
-        "chapter": 4,
-        "assumptions": [
-            "M → N",
-            "O → Y",
-            "M & O",
-            "Y → (Y → O)"
-        ],
-        "conclusion": "N&(O↔Y)"
-    },
-    "49a74164-9709-4b84-894c-55fe52195a0a": {
-        "title": "Chapter Four Packet #21",
-        "chapter": 4,
-        "assumptions": [
-            "-P → (M & (N & (R & C)))",
-            "-P"
-        ],
-        "conclusion": "C"
-    },
-    "10b7480e-88fa-4f3a-97c9-32cda5d821a6": {
-        "title": "Chapter Four Packet #22",
-        "chapter": 4,
-        "assumptions": [
-            "M ↔ (S & P)",
-            "L → S",
-            "L & P"
-        ],
-        "conclusion": "M"
-    },
-    "9a4d8eb7-ce9d-4b01-84ce-d661d0b9e8d9": {
-        "title": "Chapter Four Packet #23",
-        "chapter": 4,
-        "assumptions": [
-            "B & (J → R)",
-            "R → J",
-            "(R ↔ J) → N"
-        ],
-        "conclusion": "N&B"
-    },
-    "5ea883f3-2da8-4d12-8f43-bbd9e71a3465": {
-        "title": "Chapter Four Packet #24",
-        "chapter": 4,
-        "assumptions": [
-            "G → (S ↔ D)",
-            "S & G",
-            "D → B"
-        ],
-        "conclusion": "B"
-    },
-    "88b9eca4-748b-44bf-8246-cc0d59dd607a": {
-        "title": "Chapter Four Packet #25",
-        "chapter": 4,
-        "assumptions": [
-            "(K & L) → M",
-            "(S ↔ I) → K",
-            "L & (S → I)",
-            "I → S"
-        ],
-        "conclusion": "M"
-    },
-    "df41caee-4d2d-4a99-87bd-ef5740b31552": {
-        "title": "Chapter Four Packet #26",
-        "chapter": 4,
-        "assumptions": [
-            "H ↔J",
-            "E & (J →N)",
-            "H"
-        ],
-        "conclusion": "E&N"
-    },
-    "ba60601f-9c79-4d2a-adb3-93a385022e99": {
-        "title": "Chapter Four Packet #27",
-        "chapter": 4,
-        "assumptions": [
-            "(A & B) → C",
-            "E & A",
-            "E → B"
-        ],
-        "conclusion": "C"
-    },
-    "a3630a99-b5d4-4710-aa2d-67edc1d4ebf2": {
-        "title": "Chapter Four Packet #28",
-        "chapter": 4,
-        "assumptions": [
-            "N ↔ K",
-            "K & P",
-            "N → (E & F)"
-        ],
-        "conclusion": "F&P"
-    },
-    "b185e8cb-525e-4ab8-b6d9-4bb75cb57339": {
-        "title": "Chapter Four Packet #29",
-        "chapter": 4,
-        "assumptions": [
-            "J →D",
-            "(S & -P) → (D → J)",
-            "S",
-            "-P"
-        ],
-        "conclusion": "D↔J"
-    },
-    "753233dd-75cd-48da-b3eb-f19ae8bdd107": {
-        "title": "Chapter Four Packet #30",
-        "chapter": 4,
-        "assumptions": [
-            "(C & B) → D",
-            "A & C",
-            "A →B"
-        ],
-        "conclusion": "D"
-    },
-    "76ab5be8-f254-4676-a3cc-aba3a3b5de69": {
-        "title": "Chapter Four Packet #31",
-        "chapter": 4,
-        "assumptions": [
-            "L",
-            "(P →N) → H",
-            "N ↔P",
-            "L → J"
-        ],
-        "conclusion": "H&J"
-    },
-    "80f655cf-b337-41d4-93f3-3e9ae50bbfb1": {
-        "title": "Chapter Four Packet #32",
-        "chapter": 4,
-        "assumptions": [
-            "J →(M & L)",
-            "R ↔M",
-            "E & J"
-        ],
-        "conclusion": "L&R"
-    },
-    "d913dc65-2ad6-4793-8969-efd04ccff9d6": {
-        "title": "Chapter Four Packet #33",
-        "chapter": 4,
-        "assumptions": [
-            "(A ↔ B) → G",
-            "B →A",
-            "E → (A → B)",
-            "E & H"
-        ],
-        "conclusion": "H&G"
-    },
-    "cf8bd3a2-6fd5-41f4-9cc8-d229089964f3": {
-        "title": "Chapter Four Packet #34",
-        "chapter": 4,
-        "assumptions": [
-            "K↔(F&E)",
-            "F→M",
-            "K"
-        ],
-        "conclusion": "M&E"
-    },
-    "1c3894c1-d71d-4ea5-9497-38be6e4e98e0": {
-        "title": "Chapter Four Packet #35",
-        "chapter": 4,
-        "assumptions": [
-            "R&T",
-            "R→(J→H)",
-            "M→(H→J)",
-            "T→M"
-        ],
-        "conclusion": "J↔H"
-    },
-    "51aec789-08e0-499f-b627-8a4b2d7c7e89": {
-        "title": "Chapter Four Sample Quiz #1, Question #2",
-        "chapter": 4,
-        "assumptions": [
-            "A",
-            "(A&R)→M",
-            "R",
-            "M↔T"
-        ],
-        "conclusion": "T"
-    },
-    "032acf83-973a-4e69-bbdd-110b59d60395": {
-        "title": "Chapter Four Sample Quiz #1, Question #3",
-        "chapter": 4,
-        "assumptions": [
-            "H→(-B&W)",
-            "H&S"
-        ],
-        "conclusion": "W"
-    },
-    "996c2f98-7944-45a3-9296-31e83f2e60fc": {
-        "title": "Chapter Four Sample Quiz #2, Question #2",
-        "chapter": 4,
-        "assumptions": [
-            "A→(B→C)",
-            "M↔A",
-            "M&B"
-        ],
-        "conclusion": "C"
-    },
-    "cb30c777-1158-459a-b2aa-04453feb15d3": {
-        "title": "Chapter Four Sample Quiz #2, Question #3",
-        "chapter": 4,
-        "assumptions": [
-            "(S↔E)→K",
-            "S→E",
-            "L→(E→S)",
-            "L"
-        ],
-        "conclusion": "K"
-    },
-    "4325361a-49ea-4783-8708-85e919f03de3": {
-        "title": "Chapter Four Sample Quiz #3, Question #2",
-        "chapter": 4,
-        "assumptions": [
-            "P↔H",
-            "H→R",
-            "P&-E"
-        ],
-        "conclusion": "R&-E"
-    },
-    "796fa9e0-a612-4cac-ae2c-271fde7df33f": {
-        "title": "Chapter Four Sample Quiz #3, Question #3",
-        "chapter": 4,
-        "assumptions": [
-            "M",
-            "Z→(K&F)",
-            "Z↔M"
-        ],
-        "conclusion": "F"
-    },
-    "c25e0d7c-e969-4801-bfd6-0e5adaec5253": {
-        "title": "Chapter Four Sample Quiz #4, Question #2",
-        "chapter": 4,
-        "assumptions": [
-            "-P→(U&J)",
-            "U→(N&R)",
-            "-P"
-        ],
-        "conclusion": "N&J"
-    },
-    "d5d4aa22-314e-4ca3-9b99-bbe0e7bc6185": {
-        "title": "Chapter Four Sample Quiz #4, Question #3",
-        "chapter": 4,
-        "assumptions": [
-            "(A&-B)→(R↔S)",
-            "A&G",
-            "G→-B",
-            "(S→R)→T"
-        ],
-        "conclusion": "T"
-    },
-    "d1eecc0b-6d55-4bea-a58d-197f344c0bbb": {
-        "title": "Chapter Five #1",
-        "chapter": 5,
-        "assumptions": [
-            "R"
-        ],
-        "conclusion": "R∨K"
-    },
-    "9a87191b-0fd0-44c8-a728-0f67d5c2f443": {
-        "title": "Chapter Five #2",
-        "chapter": 5,
-        "assumptions": [
-            "M&R"
-        ],
-        "conclusion": "(R∨S)&(E∨M)"
-    },
-    "470d4f37-9f5b-4e79-ba4b-d89baecc60b2": {
-        "title": "Chapter Five #3",
-        "chapter": 5,
-        "assumptions": [
-            "L→T",
-            "(T∨J)→W",
-            "L"
-        ],
-        "conclusion": "W"
-    },
-    "d4cccc8b-217c-41c2-b5b6-60205e7b62cc": {
-        "title": "Chapter Five #4",
-        "chapter": 5,
-        "assumptions": [
-            "P&G",
-            "(G∨M)→N"
-        ],
-        "conclusion": "N&P"
-    },
-    "e5284236-93c1-47ef-a725-cad0fd93fb31": {
-        "title": "Chapter Five #5",
-        "chapter": 5,
-        "assumptions": [
-            "(E∨B)→J",
-            "(F∨H)→B",
-            "F&A"
-        ],
-        "conclusion": "J&A"
-    },
-    "863bff7e-0798-46be-85f9-af6e5d8bd665": {
-        "title": "Chapter Five #6",
-        "chapter": 5,
-        "assumptions": [
-            "(J&L)↔N",
-            "N&K"
-        ],
-        "conclusion": "K&(L∨P)"
-    },
-    "ad47a9e0-eb12-445a-af2d-d0fc8df2006a": {
-        "title": "Chapter Five #7",
-        "chapter": 5,
-        "assumptions": [
-            "R"
-        ],
-        "conclusion": "G∨(M∨(E∨R))"
-    },
-    "18193721-fedd-484a-a179-4c9649351356": {
-        "title": "Chapter Five #8",
-        "chapter": 5,
-        "assumptions": [
-            "(((A∨B)∨C)∨D)→E",
-            "B"
-        ],
-        "conclusion": "E∨F"
-    },
-    "2585f545-12ea-4b0e-a041-d53080d36a91": {
-        "title": "Chapter Five #9",
-        "chapter": 5,
-        "assumptions": [
-            "(K∨T)↔E",
-            "K↔(P&H)",
-            "H&(-M→P)",
-            "-M"
-        ],
-        "conclusion": "E"
-    },
-    "19d1d4d9-7a0e-41ca-92de-191a142e1669": {
-        "title": "Chapter Five #10",
-        "chapter": 5,
-        "assumptions": [
-            "A→(-B&-C)",
-            "-B→D",
-            "(-C→E)&A"
-        ],
-        "conclusion": "(D∨F)&E"
-    },
-    "e37f860c-cff2-43f2-9d18-c21b29bd4c26": {
-        "title": "Chapter Five #11",
-        "chapter": 5,
-        "assumptions": [
-            "A→C",
-            "B→C",
-            "A∨B"
-        ],
-        "conclusion": "C"
-    },
-    "defb4e1b-1380-4804-bb44-3994ccf31e32": {
-        "title": "Chapter Five #12",
-        "chapter": 5,
-        "assumptions": [
-            "P∨(E&S)",
-            "P→-J",
-            "(E&S)→-J"
-        ],
-        "conclusion": "-J"
-    },
-    "babe5668-6816-4d05-b16c-744950880de7": {
-        "title": "Chapter Five #13",
-        "chapter": 5,
-        "assumptions": [
-            "K↔N",
-            "N∨W",
-            "W→K"
-        ],
-        "conclusion": "K"
-    },
-    "d3a8d324-9390-4974-83c8-bd7cc4fdc50d": {
-        "title": "Chapter Five #14",
-        "chapter": 5,
-        "assumptions": [
-            "L→(H→B)",
-            "L&E",
-            "E→(H∨-S)",
-            "-S→B"
-        ],
-        "conclusion": "B"
-    },
-    "982d9d09-c580-42b2-9174-10ca08d5a9c3": {
-        "title": "Chapter Five #15",
-        "chapter": 5,
-        "assumptions": [
-            "(P&B)→(S→G)",
-            "M∨(P&B)",
-            "S",
-            "M→(S→G)"
-        ],
-        "conclusion": "G"
-    },
-    "907fd946-ce68-4cee-89b6-4b11b5ec5529": {
-        "title": "Chapter Five #16",
-        "chapter": 5,
-        "assumptions": [
-            "E∨L",
-            "L→(A&B)",
-            "E→(A&B)",
-            "B→C"
-        ],
-        "conclusion": "C∨D"
-    },
-    "a0b94ebb-f4f6-4c98-b737-116ec1e367a9": {
-        "title": "Chapter Five #17",
-        "chapter": 5,
-        "assumptions": [
-            "R→(W∨(C&G))",
-            "R&-M",
-            "-M→(W→H)",
-            "(C&G)→H"
-        ],
-        "conclusion": "H"
-    },
-    "7cf36622-7c6a-465f-a664-a006bb724555": {
-        "title": "Chapter Five #18",
-        "chapter": 5,
-        "assumptions": [
-            "A→E",
-            "A∨M",
-            "M→P"
-        ],
-        "conclusion": "E∨P"
-    },
-    "68e3781f-eb06-4e62-934d-9b30bfed421c": {
-        "title": "Chapter Five #19",
-        "chapter": 5,
-        "assumptions": [
-            "(S&P)→R",
-            "M→N",
-            "M∨(S&P)"
-        ],
-        "conclusion": "R∨N"
-    },
-    "c8ec6f4a-6c32-4686-9197-d6415fee550c": {
-        "title": "Chapter Five #20",
-        "chapter": 5,
-        "assumptions": [
-            "B∨F",
-            "(W∨M)→L",
-            "B→W",
-            "F→M"
-        ],
-        "conclusion": "L"
-    },
-    "0e186fe8-a84e-4144-871e-422e3c9dc1d6": {
-        "title": "Chapter Five #21",
-        "chapter": 5,
-        "assumptions": [
-            "H∨S",
-            "J&(H→E)",
-            "S→E"
-        ],
-        "conclusion": "E∨P"
-    },
-    "62d7a13d-7f36-4751-b8ca-2676b272e7c7": {
-        "title": "Chapter Five #22",
-        "chapter": 5,
-        "assumptions": [
-            "(L&K)↔T",
-            "W→(T∨D)",
-            "W&(D→(L&K))"
-        ],
-        "conclusion": "L"
-    },
-    "e25bb065-0dff-4c4b-9609-2fb223afa43a": {
-        "title": "Chapter Five Packet #1",
-        "chapter": 5,
-        "assumptions": [
-            "A"
-        ],
-        "conclusion": "C∨(B∨A)"
-    },
-    "cc0c5221-73ba-4f9a-816f-6288de8f08fd": {
-        "title": "Chapter Five Packet #2",
-        "chapter": 5,
-        "assumptions": [
-            "(F ∨ -Q) →R",
-            "F"
-        ],
-        "conclusion": "R"
-    },
-    "cbc57d91-2b2b-4cd6-8896-51a80063824a": {
-        "title": "Chapter Five Packet #3",
-        "chapter": 5,
-        "assumptions": [
-            "H & M"
-        ],
-        "conclusion": "(M∨G)&H"
-    },
-    "0f8397b0-5155-4337-a115-9d351976e0f0": {
-        "title": "Chapter Five Packet #4",
-        "chapter": 5,
-        "assumptions": [
-            "X →R",
-            "Y → R",
-            "X ∨ Y"
-        ],
-        "conclusion": "R"
-    },
-    "c5f0c0ce-5812-426a-a49f-6ef2da8834dc": {
-        "title": "Chapter Five Packet #5",
-        "chapter": 5,
-        "assumptions": [
-            "(G & H) ∨ R",
-            "(G & H) → -T",
-            "R → -T"
-        ],
-        "conclusion": "-T∨M"
-    },
-    "a55ae899-d1f4-4a75-96e6-8164a2f7aa2a": {
-        "title": "Chapter Five Packet #6",
-        "chapter": 5,
-        "assumptions": [
-            "A → (L & G)",
-            "B → (L & G)",
-            "A ∨ B"
-        ],
-        "conclusion": "G"
-    },
-    "c1c6e962-eeab-4f3d-b58d-da0cc493908e": {
-        "title": "Chapter Five Packet #7",
-        "chapter": 5,
-        "assumptions": [
-            "K → (E ↔ N)",
-            "W → (E ↔ N)",
-            "G → (K ∨ W)",
-            "G"
-        ],
-        "conclusion": "N→E"
-    },
-    "a6951d1d-a42b-4daa-928e-686c013b21d2": {
-        "title": "Chapter Five Packet #8",
-        "chapter": 5,
-        "assumptions": [
-            "H → (J → I)",
-            "(Z →I) & H",
-            "B & (J ∨ Z)"
-        ],
-        "conclusion": "I&B"
-    },
-    "d5a8f3bf-aadf-4b06-a012-31bab151ed68": {
-        "title": "Chapter Five Packet #9",
-        "chapter": 5,
-        "assumptions": [
-            "R → H",
-            "J → H",
-            "M & (J ∨ R)"
-        ],
-        "conclusion": "H"
-    },
-    "cd8a0504-d90f-4768-9a5e-82d4b0a3a201": {
-        "title": "Chapter Five Packet #10",
-        "chapter": 5,
-        "assumptions": [
-            "A & (B → (C & H))",
-            "D → (E → (C & H))",
-            "D ↔ A",
-            "A → (B ∨ E)"
-        ],
-        "conclusion": "A&C"
-    },
-    "747e5a48-9e02-4612-a811-34d20f542ded": {
-        "title": "Chapter Five Packet #11",
-        "chapter": 5,
-        "assumptions": [
-            "Q → (-T ∨ L)",
-            "(S ∨ H) → (-T ∨ L)",
-            "Q ∨ (S ∨ H)",
-            "(-T ∨ L) ↔ N"
-        ],
-        "conclusion": "N"
-    },
-    "15c92b7c-a912-42f1-9b90-8e0e826de0cc": {
-        "title": "Chapter Five Packet #12",
-        "chapter": 5,
-        "assumptions": [
-            "A",
-            "(A ∨ Z) → B",
-            "(B ∨ Y) → C",
-            "(C ∨ X) → D"
-        ],
-        "conclusion": "D∨W"
-    },
-    "d2aac533-4e98-4d8b-bc2a-0ca433094415": {
-        "title": "Chapter Five Packet #13",
-        "chapter": 5,
-        "assumptions": [
-            "K",
-            "(K ∨ T) ↔ N"
-        ],
-        "conclusion": "N&(K∨T)"
-    },
-    "f71ff44c-3590-4e9d-84a8-69d742890487": {
-        "title": "Chapter Five Packet #14",
-        "chapter": 5,
-        "assumptions": [
-            "H & R",
-            "H → M",
-            "R → K",
-            "(K ∨ G) → N"
-        ],
-        "conclusion": "N&M"
-    },
-    "5e78c26a-da9e-42cc-93ea-bead2f51c7f2": {
-        "title": "Chapter Five Packet #15",
-        "chapter": 5,
-        "assumptions": [
-            "J↔ W",
-            "Q & (W ∨ F)",
-            "F → J"
-        ],
-        "conclusion": "J"
-    },
-    "f3e1a277-48b9-4723-a39d-2bb2d4058800": {
-        "title": "Chapter Five Packet #16",
-        "chapter": 5,
-        "assumptions": [
-            "(A & B) → (E ∨ F)",
-            "E →R",
-            "A & (F → R)",
-            "B"
-        ],
-        "conclusion": "R"
-    },
-    "4c8493fd-b21b-4ce6-a609-a127070b28bb": {
-        "title": "Chapter Five Packet #17",
-        "chapter": 5,
-        "assumptions": [
-            "H & L",
-            "H → C",
-            "(C ∨ M) → D"
-        ],
-        "conclusion": "D∨J"
-    },
-    "fff9fcd5-11d3-421a-97f4-1f86a7273730": {
-        "title": "Chapter Five Packet #18",
-        "chapter": 5,
-        "assumptions": [
-            "(S ∨ A) → (E ∨ T)",
-            "S & (E → M)",
-            "T → M"
-        ],
-        "conclusion": "M"
-    },
-    "97ad6f07-821b-4160-a288-7c375f962fd6": {
-        "title": "Chapter Five Packet #19",
-        "chapter": 5,
-        "assumptions": [
-            "J & K",
-            "(E ∨ K) → R",
-            "(R ∨ T) → L"
-        ],
-        "conclusion": "L&J"
-    },
-    "4519a4cb-2f9d-4e05-8291-bf0997f4c6e2": {
-        "title": "Chapter Five Packet #20",
-        "chapter": 5,
-        "assumptions": [
-            "(((E ∨ M) ∨ R) ∨ K) → -J",
-            "M"
-        ],
-        "conclusion": "-J"
-    },
-    "86636be0-377e-4a76-b9f4-1dbee861c568": {
-        "title": "Chapter Five Packet #21",
-        "chapter": 5,
-        "assumptions": [
-            "R → N",
-            "-H → (B ∨ R)",
-            "(B → N) & -H",
-            "N → E"
-        ],
-        "conclusion": "E"
-    },
-    "c1565efe-594d-4a46-be91-5be9a0e328a7": {
-        "title": "Chapter Five Packet #22",
-        "chapter": 5,
-        "assumptions": [
-            "(J ∨ S) → H",
-            "S & (H → N)"
-        ],
-        "conclusion": "N∨E"
-    },
-    "d35542a9-1282-422d-9d18-626e64994b57": {
-        "title": "Chapter Five Packet #23",
-        "chapter": 5,
-        "assumptions": [
-            "(G ∨ P) & W",
-            "G → (E & R)",
-            "P → (E & R)"
-        ],
-        "conclusion": "R&W"
-    },
-    "4e6bb207-2b72-42a4-b5b3-7c91993ad7e0": {
-        "title": "Chapter Five Packet #24",
-        "chapter": 5,
-        "assumptions": [
-            "(R ∨ G) → (E & S)",
-            "L → R",
-            "P & L"
-        ],
-        "conclusion": "S&P"
-    },
-    "c7154fc5-a677-4cdc-af43-75939dfe6901": {
-        "title": "Chapter Five Packet #25",
-        "chapter": 5,
-        "assumptions": [
-            "M → (E & F)",
-            "(H & K) ∨ M",
-            "(H & K) → (E & F)"
-        ],
-        "conclusion": "F"
-    },
-    "8b21b961-4430-4804-9577-7dc69febc758": {
-        "title": "Chapter Five Packet #26",
-        "chapter": 5,
-        "assumptions": [
-            "K → (N & F)",
-            "(E ∨ G) → K",
-            "G"
-        ],
-        "conclusion": "F∨P"
-    },
-    "3c008678-b919-4102-8349-5ad0362a1e72": {
-        "title": "Chapter Five Sample Quiz #1, Proof #1",
-        "chapter": 5,
-        "assumptions": [
-            "A",
-            "(P∨A)→(E&L)",
-            "E→S"
-        ],
-        "conclusion": "S&L"
-    },
-    "6240d923-1f45-4966-aee6-f3770428d4a2": {
-        "title": "Chapter Five Sample Quiz #1, Proof #2",
-        "chapter": 5,
-        "assumptions": [
-            "(M∨P)&(M→S)",
-            "P→S",
-            "S→W"
-        ],
-        "conclusion": "W"
-    },
-    "ca55ca7c-1edd-47ee-9eb5-f35058518d48": {
-        "title": "Chapter Five Sample Quiz #2, Proof #1",
-        "chapter": 5,
-        "assumptions": [
-            "M&R",
-            "(R∨K)→T",
-            "T→G"
-        ],
-        "conclusion": "G∨L"
-    },
-    "697ccb30-f563-49b3-8bd9-bc6df4676f59": {
-        "title": "Chapter Five Sample Quiz #2, Proof #2",
-        "chapter": 5,
-        "assumptions": [
-            "B∨F",
-            "W&(B→(P&R))",
-            "F→(P&R)"
-        ],
-        "conclusion": "R"
-    },
-    "64558dbb-6eca-4b12-878b-1ced08a92746": {
-        "title": "Chapter Five Sample Quiz #3, Proof #1",
-        "chapter": 5,
-        "assumptions": [
-            "S→(J&M)",
-            "R→(J&M)",
-            "(S∨R)&L",
-            "J→K"
-        ],
-        "conclusion": "K&L"
-    },
-    "7177cdf7-6a9e-49e8-a171-97afa6bafac2": {
-        "title": "Chapter Five Sample Quiz #3, Proof #2",
-        "chapter": 5,
-        "assumptions": [
-            "A",
-            "(A∨B)→C",
-            "(A∨E)→D"
-        ],
-        "conclusion": "C&D"
-    },
-    "a12654c2-6986-4885-b9b1-17e87d694645": {
-        "title": "Chapter Five Sample Quiz #4, Proof #1",
-        "chapter": 5,
-        "assumptions": [
-            "R↔G",
-            "M→(T→R)",
-            "M&N",
-            "G∨T"
-        ],
-        "conclusion": "R"
-    },
-    "834e8385-b7b0-4e55-a9ec-5674cf3db0dc": {
-        "title": "Chapter Five Sample Quiz #4, Proof #2",
-        "chapter": 5,
-        "assumptions": [
-            "(K∨S)→H",
-            "K&E",
-            "(P∨E)→B"
-        ],
-        "conclusion": "B&H"
-    },
-    "5b35cbf6-dee5-440e-b6ed-607dada1ce16": {
-        "title": "Chapter Six #1",
-        "chapter": 6,
-        "assumptions": [
-            "C→F",
-            "F→B",
-            "B→A"
-        ],
-        "conclusion": "C→A"
-    },
-    "a6ee8fc5-d0d4-4010-a100-11222da5e262": {
-        "title": "Chapter Six #2",
-        "chapter": 6,
-        "assumptions": [
-            "(B&A)→C"
-        ],
-        "conclusion": "A→(B→C)"
-    },
-    "e0032070-03eb-4674-8ddf-d1b1777b6850": {
-        "title": "Chapter Six #3",
-        "chapter": 6,
-        "assumptions": [
-            "L→-E",
-            "R→L",
-            "M→R"
-        ],
-        "conclusion": "M→-E"
-    },
-    "9017d9ad-f053-4647-b67c-9613f5493442": {
-        "title": "Chapter Six #4",
-        "chapter": 6,
-        "assumptions": [
-            "(M&N)→-K",
-            "H→(M&N)"
-        ],
-        "conclusion": "H→-K"
-    },
-    "0ad4727a-6784-4b48-81f2-554e0d711de7": {
-        "title": "Chapter Six #5",
-        "chapter": 6,
-        "assumptions": [
-            "A→(B&C)",
-            "C→D"
-        ],
-        "conclusion": "A→D"
-    },
-    "13d7f2c0-45b1-4be7-a6d9-9e59ffd21cbd": {
-        "title": "Chapter Six #6",
-        "chapter": 6,
-        "assumptions": [
-            "(J→B)→C",
-            "J→A",
-            "A→B"
-        ],
-        "conclusion": "C"
-    },
-    "9f8e4930-561a-4494-8376-61c8589a70ad": {
-        "title": "Chapter Six #7",
-        "chapter": 6,
-        "assumptions": [
-            "R→(E→M)",
-            "E"
-        ],
-        "conclusion": "R→M"
-    },
-    "5c110894-8de7-4b27-853d-3777fe04b12e": {
-        "title": "Chapter Six #8",
-        "chapter": 6,
-        "assumptions": [
-            "P→S",
-            "L→E"
-        ],
-        "conclusion": "(P&L)→(S&E)"
-    },
-    "ea18f9bc-ede3-4c70-89b5-239e305d77ef": {
-        "title": "Chapter Six #9",
-        "chapter": 6,
-        "assumptions": [
-            "G↔M",
-            "G→E"
-        ],
-        "conclusion": "M→(G&E)"
-    },
-    "3674027b-9ee1-461d-b6da-b2341e888081": {
-        "title": "Chapter Six #10",
-        "chapter": 6,
-        "assumptions": [
-            "(L∨F)→N",
-            "(N∨B)→K"
-        ],
-        "conclusion": "L→K"
-    },
-    "a3d51b88-5fdf-483f-9603-c8943c1b6045": {
-        "title": "Chapter Six #11",
-        "chapter": 6,
-        "assumptions": [
-            "A→B",
-            "B→C",
-            "C→D"
-        ],
-        "conclusion": "A→(B&(C&D))"
-    },
-    "2fbeeb75-5168-48b1-8043-fa9929e26856": {
-        "title": "Chapter Six #12",
-        "chapter": 6,
-        "assumptions": [
-            "M↔(B&E)",
-            "L→B",
-            "E"
-        ],
-        "conclusion": "L→M"
-    },
-    "0409a065-3231-4098-8b96-64a583c1806a": {
-        "title": "Chapter Six #13",
-        "chapter": 6,
-        "assumptions": [
-            "B→A",
-            "N→B",
-            "A→N"
-        ],
-        "conclusion": "B↔A"
-    },
-    "09ad53cc-ccf0-4763-9441-543b7e6669a8": {
-        "title": "Chapter Six #14",
-        "chapter": 6,
-        "assumptions": [
-            "C ∨ L",
-            "E → J",
-            "C → E",
-            "L → J"
-        ],
-        "conclusion": "J"
-    },
-    "31559cf8-c4ee-4fe0-9600-9810e044bd60": {
-        "title": "Chapter Six #15",
-        "chapter": 6,
-        "assumptions": [
-            "(E&F)→L",
-            "M→R",
-            "(R&L)→N"
-        ],
-        "conclusion": "M→((E&F)→N)"
-    },
-    "db719ac6-4c78-4326-88fa-86c649e06e48": {
-        "title": "Chapter Six #16",
-        "chapter": 6,
-        "assumptions": [
-            "T→M",
-            "E→R",
-            "R→P",
-            "T∨E"
-        ],
-        "conclusion": "M∨P"
-    },
-    "66c1cf0f-b054-495c-ae06-85fd3e934186": {
-        "title": "Chapter Six #17",
-        "chapter": 6,
-        "assumptions": [
-            "W→(M&R)",
-            "(R→N)&(E→W)"
-        ],
-        "conclusion": "(E→N)&M"
-    },
-    "d2c2b0c2-0aaa-45b0-b5ea-5751238cccde": {
-        "title": "Chapter Six #18",
-        "chapter": 6,
-        "assumptions": [
-            "Q→J",
-            "(J&L)→R"
-        ],
-        "conclusion": "(L&Q)→R"
-    },
-    "98c563d7-7750-4d45-b660-673ba0bc2ad3": {
-        "title": "Chapter Six #19",
-        "chapter": 6,
-        "assumptions": [
-            "(D∨A)→(G∨P)",
-            "(P→K)&E",
-            "G→K"
-        ],
-        "conclusion": "(A→K)&E"
-    },
-    "1d89f35f-1584-4800-96db-39f26f718fd8": {
-        "title": "Chapter Six #20",
-        "chapter": 6,
-        "assumptions": [
-            "A→B",
-            "B→C",
-            "C→D"
-        ],
-        "conclusion": "A→D"
-    },
-    "28cd0b05-40d1-4778-b7c0-1df957f6a1b2": {
-        "title": "Chapter Six Packet #1",
-        "chapter": 6,
-        "assumptions": [
-            "A→B",
-            "B→C"
-        ],
-        "conclusion": "A→C"
-    },
-    "69b6fdf5-dfdf-4e44-88c1-5486ce87070b": {
-        "title": "Chapter Six Packet #2",
-        "chapter": 6,
-        "assumptions": [
-            "L→-T"
-        ],
-        "conclusion": "L→(G∨-T)"
-    },
-    "d77ac962-db4a-40be-a95d-6bf5574bddb4": {
-        "title": "Chapter Six Packet #3",
-        "chapter": 6,
-        "assumptions": [
-            "(A∨B)→C"
-        ],
-        "conclusion": "A→C"
-    },
-    "e4a2bc46-a25b-438c-afb2-89cd7594e855": {
-        "title": "Chapter Six Packet #4",
-        "chapter": 6,
-        "assumptions": [
-            "G→C",
-            "L→C"
-        ],
-        "conclusion": "(G∨L)→C"
-    },
-    "24d761fa-c1ad-4be5-ac78-aa870928513d": {
-        "title": "Chapter Six Packet #5",
-        "chapter": 6,
-        "assumptions": [
-            "A→(B→C)"
-        ],
-        "conclusion": "(A&B)→C"
-    },
-    "071fd7a3-a694-4775-b814-c4291d8e417a": {
-        "title": "Chapter Six Packet #6",
-        "chapter": 6,
-        "assumptions": [
-            "R&(N→M)",
-            "M↔K"
-        ],
-        "conclusion": "N→K"
-    },
-    "0ccd91c3-987c-47e7-8b81-8d87fdfbdb05": {
-        "title": "Chapter Six Packet #7",
-        "chapter": 6,
-        "assumptions": [
-            "-T→K",
-            "K→V",
-            "V→R"
-        ],
-        "conclusion": "-T→(K&R)"
-    },
-    "107fa274-14a7-42cf-a9d5-d75969887e89": {
-        "title": "Chapter Six Packet #8",
-        "chapter": 6,
-        "assumptions": [
-            "A→B",
-            "B→C",
-            "C→D",
-            "D→E"
-        ],
-        "conclusion": "A→E"
-    },
-    "0bfbe380-791a-40ce-8336-279177af7adf": {
-        "title": "Chapter Six Packet #9",
-        "chapter": 6,
-        "assumptions": [
-            "B→(H&W)",
-            "K&O"
-        ],
-        "conclusion": "O&(B→H)"
-    },
-    "19603376-9106-439d-9a0d-f5cc29ddd18b": {
-        "title": "Chapter Six Packet #10",
-        "chapter": 6,
-        "assumptions": [
-            "-W→M",
-            "Z→J"
-        ],
-        "conclusion": "(-W&Z)→(M&J)"
-    },
-    "866b3272-b043-4e70-8700-2e7870678b20": {
-        "title": "Chapter Six Packet #11",
-        "chapter": 6,
-        "assumptions": [
-            "(M∨(T→L))→K",
-            "R→L",
-            "T→R"
-        ],
-        "conclusion": "K"
-    },
-    "58deccac-885d-431d-81e1-11cbc82d6868": {
-        "title": "Chapter Six Packet #12",
-        "chapter": 6,
-        "assumptions": [
-            "H∨T",
-            "H→R",
-            "T↔R",
-            "A→(M&L)"
-        ],
-        "conclusion": "A→(R&M)"
-    },
-    "1f652e8e-47e6-41b0-9a8f-28bd79fe3056": {
-        "title": "Chapter Six Packet #13",
-        "chapter": 6,
-        "assumptions": [
-            "(X&Y)→Z"
-        ],
-        "conclusion": "Y→(X→Z)"
-    },
-    "7b57da67-7e97-496c-9206-e01915285c41": {
-        "title": "Chapter Six Packet #14",
-        "chapter": 6,
-        "assumptions": [
-            "T∨G",
-            "T→A",
-            "G↔(A&Y)"
-        ],
-        "conclusion": "A"
-    },
-    "ee58a22f-270e-4bc8-ae32-68ab7ab78a5a": {
-        "title": "Chapter Six Packet #15",
-        "chapter": 6,
-        "assumptions": [
-            "N→(S→L)",
-            "S&(L→P)"
-        ],
-        "conclusion": "N→P"
-    },
-    "b5843fc3-c3cf-4cd8-ad02-487841d26210": {
-        "title": "Chapter Six Packet #16",
-        "chapter": 6,
-        "assumptions": [
-            "L→(R&E)",
-            "R→H",
-            "(L→H)→W"
-        ],
-        "conclusion": "W"
-    },
-    "f5f10be4-6a60-48bb-9d2f-dce5c2b61a59": {
-        "title": "Chapter Six Packet #17",
-        "chapter": 6,
-        "assumptions": [
-            "H↔M",
-            "H→(R&T)",
-            "N&(R→-P)"
-        ],
-        "conclusion": "(M→-P)∨K"
-    },
-    "e898b19d-8e0f-44f3-8836-8ec85defef96": {
-        "title": "Chapter Six Packet #18",
-        "chapter": 6,
-        "assumptions": [
-            "A→(B&C)",
-            "B→D",
-            "C→E"
-        ],
-        "conclusion": "A→(D&E)"
-    },
-    "641b11dc-141d-4cc4-b7bd-e0383260ed74": {
-        "title": "Chapter Six Packet #19",
-        "chapter": 6,
-        "assumptions": [
-            "M→(N&G)",
-            "N→E",
-            "(M→E)→Z"
-        ],
-        "conclusion": "Z"
-    },
-    "e4dc788c-8dbb-4b09-9edb-20206cb62c94": {
-        "title": "Chapter Six Packet #20",
-        "chapter": 6,
-        "assumptions": [
-            "(K∨P)→-S",
-            "-S→(H&R)"
-        ],
-        "conclusion": "K→R"
-    },
-    "b4d373f3-78e2-4543-b30f-59b5b64f8449": {
-        "title": "Chapter Six Packet #21",
-        "chapter": 6,
-        "assumptions": [
-            "(L→B)→J",
-            "(A&L)→B",
-            "A"
-        ],
-        "conclusion": "J"
-    },
-    "1599c305-7699-4e15-adba-8ee4a23ce514": {
-        "title": "Chapter Six Packet #22",
-        "chapter": 6,
-        "assumptions": [
-            "A →B",
-            "B →C",
-            "C →D"
-        ],
-        "conclusion": "A→D"
-    },
-    "517b9c72-fab2-4cc1-aee1-8cc2f63a65eb": {
-        "title": "Chapter Six Packet #23",
-        "chapter": 6,
-        "assumptions": [
-            "B → H",
-            "C → (P & R)"
-        ],
-        "conclusion": "(B&C)→(R&H)"
-    },
-    "7a960572-b3cd-4020-8337-cd228b9677ea": {
-        "title": "Chapter Six Packet #24",
-        "chapter": 6,
-        "assumptions": [
-            "M ↔K",
-            "K → E",
-            "(M → E) → T"
-        ],
-        "conclusion": "T"
-    },
-    "7a7140f1-cb14-48e5-a5fa-dfd57ce1b368": {
-        "title": "Chapter Six Packet #25",
-        "chapter": 6,
-        "assumptions": [
-            "M → -E",
-            "N → M",
-            "-E → (K & H)"
-        ],
-        "conclusion": "N→(K&H)"
-    },
-    "347ac81a-4923-4765-a3fa-ad8e42b7b48f": {
-        "title": "Chapter Six Packet #26",
-        "chapter": 6,
-        "assumptions": [
-            "N",
-            "L → E"
-        ],
-        "conclusion": "(N↔L)→E"
-    },
-    "28a16a9d-b14e-445a-8c15-f0c9ad6e5bf6": {
-        "title": "Chapter Six Packet #27",
-        "chapter": 6,
-        "assumptions": [
-            "S ∨ R",
-            "R → M",
-            "E → M",
-            "S → E"
-        ],
-        "conclusion": "M"
-    },
-    "67862c9c-33f7-49aa-825a-8262ccc25eff": {
-        "title": "Chapter Six Packet #28",
-        "chapter": 6,
-        "assumptions": [
-            "L →R",
-            "E → L",
-            "R → M"
-        ],
-        "conclusion": "E→M"
-    },
-    "da420160-4162-445a-9cf3-5319c2d9dffb": {
-        "title": "Chapter Six Packet #29",
-        "chapter": 6,
-        "assumptions": [
-            "(J ∨ P) → K",
-            "G"
-        ],
-        "conclusion": "J→(K&G)"
-    },
-    "53a95250-604c-4e54-b4f9-997bacf72f4a": {
-        "title": "Chapter Six Packet #30",
-        "chapter": 6,
-        "assumptions": [
-            "H ↔ N",
-            "N → B",
-            "(R & B) → W"
-        ],
-        "conclusion": "(H&R)→W"
-    },
-    "2734bb0a-4dca-4464-86e5-3a827ba0094b": {
-        "title": "Chapter Six Packet #31",
-        "chapter": 6,
-        "assumptions": [
-            "-B → F",
-            "F → E",
-            "M → -B"
-        ],
-        "conclusion": "M→E"
-    },
-    "4a6dfc4f-c8da-43ec-bff7-e9999cfc4847": {
-        "title": "Chapter Six Packet #32",
-        "chapter": 6,
-        "assumptions": [
-            "E ↔S",
-            "D → E",
-            "P"
-        ],
-        "conclusion": "(D→S)&P"
-    },
-    "1c80ae8e-7b93-4060-afc9-722f7d2828e1": {
-        "title": "Chapter Six Packet #33",
-        "chapter": 6,
-        "assumptions": [
-            "A → C",
-            "B → D"
-        ],
-        "conclusion": "(A&B)→(C&D)"
-    },
-    "171e527c-dd14-43c2-960c-82a84e64cb48": {
-        "title": "Chapter Six Packet #34",
-        "chapter": 6,
-        "assumptions": [
-            "B → C",
-            "C → D",
-            "A → B"
-        ],
-        "conclusion": "A→D"
-    },
-    "1cceafe9-2221-4fc2-8447-410bc09dd045": {
-        "title": "Chapter Six Packet #35",
-        "chapter": 6,
-        "assumptions": [
-            "G → M",
-            "R → G",
-            "M → R"
-        ],
-        "conclusion": "M↔G"
-    },
-    "b90030f8-16a6-4832-84c1-d5830fbb57b1": {
-        "title": "Chapter Six Packet #36",
-        "chapter": 6,
-        "assumptions": [
-            "E",
-            "K → (N & M)",
-            "M → B"
-        ],
-        "conclusion": "K→(B&E)"
-    },
-    "964143ae-7bcc-4afb-bf21-3273083e168f": {
-        "title": "Chapter Six Packet #37",
-        "chapter": 6,
-        "assumptions": [
-            "J → (E & N)",
-            "E → K",
-            "R → J"
-        ],
-        "conclusion": "R→K"
-    },
-    "674f5f54-111b-42dd-9b89-4f181b671a42": {
-        "title": "Chapter Six Packet #38",
-        "chapter": 6,
-        "assumptions": [
-            "(B ∨ A) → P",
-            "H → B",
-            "G → F"
-        ],
-        "conclusion": "(H&G)→(P&F)"
-    },
-    "c8a857bd-057a-4e08-8a09-3449f68d14e6": {
-        "title": "Chapter Six Packet #39",
-        "chapter": 6,
-        "assumptions": [
-            "P → R",
-            "L → P",
-            "(L → R) → M"
-        ],
-        "conclusion": "M"
-    },
-    "458da1af-8c91-41d9-8064-186e0214d4d2": {
-        "title": "Chapter Six Sample Quiz #1, Proof #1",
-        "chapter": 6,
-        "assumptions": [
-            "N→S",
-            "(S∨G)→L"
-        ],
-        "conclusion": "N→L"
-    },
-    "bdbaa9d1-46f1-4633-b060-667074172668": {
-        "title": "Chapter Six Sample Quiz #1, Proof #2",
-        "chapter": 6,
-        "assumptions": [
-            "(N&P)→Y",
-            "J→N"
-        ],
-        "conclusion": "(P&J)→Y"
-    },
-    "5b4e401e-d24a-48a8-9002-621dbeaf5e34": {
-        "title": "Chapter Six Sample Quiz #1, Proof #3",
-        "chapter": 6,
-        "assumptions": [
-            "A∨B",
-            "A→E",
-            "B→C",
-            "(C∨S)→E"
-        ],
-        "conclusion": "E"
-    },
-    "b1b11f03-e2e2-4169-89fa-9c1fe3b2f8c3": {
-        "title": "Chapter Six Sample Quiz #2, Proof #1",
-        "chapter": 6,
-        "assumptions": [
-            "(A&B)→M",
-            "A",
-            "M→H"
-        ],
-        "conclusion": "B→H"
-    },
-    "7fdaa0ee-ce98-4bd1-9fa1-9cfeefaca383": {
-        "title": "Chapter Six Sample Quiz #2, Proof #2",
-        "chapter": 6,
-        "assumptions": [
-            "(K∨T)→(G&R)",
-            "(R&M)→J"
-        ],
-        "conclusion": "(M&K)→J"
-    },
-    "9db2c683-f4aa-42a3-b149-e515a4e0cd87": {
-        "title": "Chapter Six Sample Quiz #2, Proof #3",
-        "chapter": 6,
-        "assumptions": [
-            "P→N",
-            "N→G",
-            "(N↔P)→B",
-            "G→P"
-        ],
-        "conclusion": "B"
-    },
-    "dae92a08-60e1-4bf1-b2a8-297e2896aef7": {
-        "title": "Chapter Six Sample Quiz #3, Proof #1",
-        "chapter": 6,
-        "assumptions": [
-            "(A∨B)→H",
-            "E→A"
-        ],
-        "conclusion": "E→H"
-    },
-    "85a719c3-1ab4-469b-bb2a-03d8b7a97ce7": {
-        "title": "Chapter Six Sample Quiz #3, Proof #2",
-        "chapter": 6,
-        "assumptions": [
-            "G→(L&B)",
-            "(B&R)→N"
-        ],
-        "conclusion": "(R&G)→N"
-    },
-    "82fb4174-9b55-43a6-bf52-9bf4d6ec44fc": {
-        "title": "Chapter Six Sample Quiz #3, Proof #3",
-        "chapter": 6,
-        "assumptions": [
-            "(A&B)→R",
-            "R→T",
-            "(A→T)→C",
-            "B"
-        ],
-        "conclusion": "C"
-    },
-    "f4e3735f-6e34-4dbe-9a73-8a2d7fc7a1b9": {
-        "title": "Chapter Six Sample Quiz #4, Proof #1",
-        "chapter": 6,
-        "assumptions": [
-            "M ∨ N",
-            "N → K",
-            "M → J",
-            "J → K"
-        ],
-        "conclusion": "K"
-    },
-    "d2a24758-683f-4943-94c1-758a4deb4cb9": {
-        "title": "Chapter Six Sample Quiz #4, Proof #2",
-        "chapter": 6,
-        "assumptions": [
-            "(P ∨ J) → Y"
-        ],
-        "conclusion": "P→(Y∨R)"
-    },
-    "62aa0edd-d3e9-40aa-aac3-f75f5ff5892c": {
-        "title": "Chapter Six Sample Quiz #4, Proof #3",
-        "chapter": 6,
-        "assumptions": [
-            "A → K",
-            "B → (S & T)"
-        ],
-        "conclusion": "(A&B)→(K&T)"
-    },
-    "fd513d02-0782-4f5c-818c-20bf2d1afbbf": {
-        "title": "Chapter Seven #1",
-        "chapter": 7,
-        "assumptions": [
-            "Z → M",
-            "-M"
-        ],
-        "conclusion": "-Z"
-    },
-    "8ee5de13-5929-4ce4-be9d-fcbe650aa5a7": {
-        "title": "Chapter Seven #2",
-        "chapter": 7,
-        "assumptions": [
-            "-W → -S",
-            "S"
-        ],
-        "conclusion": "W"
-    },
-    "174eb547-0198-4a6c-9e95-e38e9e732b4f": {
-        "title": "Chapter Seven #3",
-        "chapter": 7,
-        "assumptions": [
-            "A→C",
-            "B→-C"
-        ],
-        "conclusion": "-(A&B)"
-    },
-    "c80dee98-5ce9-412d-92c9-4644830d900f": {
-        "title": "Chapter Seven #4",
-        "chapter": 7,
-        "assumptions": [
-            "E→-H",
-            "M→R",
-            "R→H",
-            "M"
-        ],
-        "conclusion": "-E"
-    },
-    "943fb58b-b572-46a5-9ad2-da46dd568503": {
-        "title": "Chapter Seven #5",
-        "chapter": 7,
-        "assumptions": [
-            "K&-M",
-            "N→M"
-        ],
-        "conclusion": "-(K→N)"
-    },
-    "2ba69074-06ba-484f-a428-f19503d6aaef": {
-        "title": "Chapter Seven #6",
-        "chapter": 7,
-        "assumptions": [
-            "-J→-F",
-            "E&F"
-        ],
-        "conclusion": "J&E"
-    },
-    "f3870bef-9cfd-4a18-828a-cca3b8ca273e": {
-        "title": "Chapter Seven #9",
-        "chapter": 7,
-        "assumptions": [
-            "B&(E→-M)",
-            "(-D→E)&M"
-        ],
-        "conclusion": "D&B"
-    },
-    "20704397-bce7-4531-94a0-42b1308f7cb2": {
-        "title": "Chapter Seven #10",
-        "chapter": 7,
-        "assumptions": [
-            "C→B",
-            "(A→C)&(-A→-E)",
-            "E"
-        ],
-        "conclusion": "B"
-    },
-    "9b480692-9c60-43dc-bcb9-7211dc56ba0a": {
-        "title": "Chapter Seven #11",
-        "chapter": 7,
-        "assumptions": [
-            "M→H",
-            "K→H",
-            "-H"
-        ],
-        "conclusion": "-(M∨K)"
-    },
-    "afe485f6-1378-4770-b088-719309805bff": {
-        "title": "Chapter Seven #12",
-        "chapter": 7,
-        "assumptions": [
-            "C∨D",
-            "E→F",
-            "-F&G",
-            "C→E"
-        ],
-        "conclusion": "-(D→F)&G"
-    },
-    "d297bb62-b1f2-4823-8cea-4ff9ce38e3c7": {
-        "title": "Chapter Seven #13",
-        "chapter": 7,
-        "assumptions": [
-            "(H∨A)→(P&K)",
-            "(-H&E)→C",
-            "E&-C"
-        ],
-        "conclusion": "K"
-    },
-    "0f0eeb5b-173b-45e8-aa9a-cc720ffeed9a": {
-        "title": "Chapter Seven #14",
-        "chapter": 7,
-        "assumptions": [
-            "-(Z&M)",
-            "B→Z",
-            "W→M"
-        ],
-        "conclusion": "-(W&B)"
-    },
-    "db089543-c0d4-4adc-ae29-601b42aafe34": {
-        "title": "Chapter Seven #15",
-        "chapter": 7,
-        "assumptions": [
-            "L→H",
-            "U→(M→L)",
-            "-(M→H)"
-        ],
-        "conclusion": "-U"
-    },
-    "352bd3dd-5756-465b-8c65-95545d4ee04f": {
-        "title": "Chapter Seven #16",
-        "chapter": 7,
-        "assumptions": [
-            "B→C",
-            "A→-D"
-        ],
-        "conclusion": "-((A&B)&(C→D))"
-    },
-    "0b89e9d2-8d5f-45d6-b9a7-cbd82cf86e6d": {
-        "title": "Chapter Seven #17",
-        "chapter": 7,
-        "assumptions": [
-            "P→Q"
-        ],
-        "conclusion": "-Q→-P"
-    },
-    "2aba958e-2765-4c11-838b-dd7b91611a70": {
-        "title": "Chapter Seven Packet #1",
-        "chapter": 7,
-        "assumptions": [
-            "-A→B",
-            "-B"
-        ],
-        "conclusion": "A"
-    },
-    "8303ca75-3ccb-4cab-ac3e-93f3f7bcc016": {
-        "title": "Chapter Seven Packet #2",
-        "chapter": 7,
-        "assumptions": [
-            "-(H∨R)→-M",
-            "M"
-        ],
-        "conclusion": "H∨R"
-    },
-    "882c460c-8c31-473a-bd83-470f25a17108": {
-        "title": "Chapter Seven Packet #3",
-        "chapter": 7,
-        "assumptions": [
-            "K→B",
-            "-(K&B)"
-        ],
-        "conclusion": "-K"
-    },
-    "967bfa31-19c9-4bbf-80c2-6d357d7a5854": {
-        "title": "Chapter Seven Packet #4",
-        "chapter": 7,
-        "assumptions": [
-            "-R→-P"
-        ],
-        "conclusion": "P→R"
-    },
-    "f7ed1202-8c5e-44de-b13d-775da148ef44": {
-        "title": "Chapter Seven Packet #5",
-        "chapter": 7,
-        "assumptions": [
-            "U",
-            "U→E",
-            "--Q→-E"
-        ],
-        "conclusion": "-Q"
-    },
-    "0e7a04e9-6f86-4485-aa88-30422f105c52": {
-        "title": "Chapter Seven Packet #6",
-        "chapter": 7,
-        "assumptions": [
-            "L→T",
-            "-T"
-        ],
-        "conclusion": "-L"
-    },
-    "7e9ed39b-6543-4ffc-a5a7-4d5f517071a5": {
-        "title": "Chapter Seven Packet #7",
-        "chapter": 7,
-        "assumptions": [
-            "-(I∨L)"
-        ],
-        "conclusion": "-(I&L)"
-    },
-    "fa215e9b-c0ae-47e9-8f64-a67e235308cd": {
-        "title": "Chapter Seven Packet #8",
-        "chapter": 7,
-        "assumptions": [
-            "A→B",
-            "-(A&B)"
-        ],
-        "conclusion": "M∨-A"
-    },
-    "bb91b64e-5ff8-434b-a96d-5cfdfb16bcbe": {
-        "title": "Chapter Seven Packet #9",
-        "chapter": 7,
-        "assumptions": [
-            "C",
-            "C→(J∨A)",
-            "J→-S",
-            "A→-S",
-            "-M→S"
-        ],
-        "conclusion": "M"
-    },
-    "f37304b3-ca78-4fe0-b048-5e519cc079ed": {
-        "title": "Chapter Seven Packet #10",
-        "chapter": 7,
-        "assumptions": [
-            "P → E",
-            "-G → -(E & R)",
-            "P & R"
-        ],
-        "conclusion": "G"
-    },
-    "3a50375c-43d2-4803-8fa8-8f47bd17636c": {
-        "title": "Chapter Seven Packet #11",
-        "chapter": 7,
-        "assumptions": [
-            "K → (P & -F)",
-            "-E → F"
-        ],
-        "conclusion": "-(K&-E)"
-    },
-    "5c00209c-c7b7-4b16-b003-da7670ba0baf": {
-        "title": "Chapter Seven Packet #12",
-        "chapter": 7,
-        "assumptions": [
-            "-R → M",
-            "-P → B",
-            "B → -M"
-        ],
-        "conclusion": "-(-P&-R)"
-    },
-    "57cfee04-aec1-42d2-af7b-ceed3afb9a36": {
-        "title": "Chapter Seven Packet #13",
-        "chapter": 7,
-        "assumptions": [
-            "(S & -K) ↔ R",
-            "E & T",
-            "(E → S) & -R"
-        ],
-        "conclusion": "K"
-    },
-    "3eecf1de-cbd5-4664-84b0-f55bbcc4635d": {
-        "title": "Chapter Seven Packet #14",
-        "chapter": 7,
-        "assumptions": [
-            "T → R",
-            "H → R",
-            "-R"
-        ],
-        "conclusion": "-(T∨H)"
-    },
-    "39af126e-09a0-471c-a181-003823b98634": {
-        "title": "Chapter Seven Packet #15",
-        "chapter": 7,
-        "assumptions": [
-            "E & R",
-            "L → F",
-            "(-L & R) → -E"
-        ],
-        "conclusion": "F"
-    },
-    "75f278d7-14e4-444e-b215-26228d7f8f9c": {
-        "title": "Chapter Seven Packet #16",
-        "chapter": 7,
-        "assumptions": [
-            "L → R",
-            "-(R ∨ B)",
-            "P →L"
-        ],
-        "conclusion": "-P"
-    },
-    "52dd3e43-8886-4ba0-8f79-765b097da0fc": {
-        "title": "Chapter Seven Packet #18",
-        "chapter": 7,
-        "assumptions": [
-            "T",
-            "T → (-E & M)",
-            "H → E"
-        ],
-        "conclusion": "-H"
-    },
-    "b48dd38a-e231-48ca-ae96-1d4c2459c194": {
-        "title": "Chapter Seven Packet #19",
-        "chapter": 7,
-        "assumptions": [
-            "G → R",
-            "-R & L"
-        ],
-        "conclusion": "-(L→G)"
-    },
-    "2a29032c-71ef-4379-a319-5b54b9dc803f": {
-        "title": "Chapter Seven Packet #20",
-        "chapter": 7,
-        "assumptions": [
-            "P → -E",
-            "N → E"
-        ],
-        "conclusion": "-(N&P)"
-    },
-    "01a201e1-2f6f-4d9b-aa3e-7d0eefa1a33f": {
-        "title": "Chapter Seven Packet #21",
-        "chapter": 7,
-        "assumptions": [
-            "-R",
-            "-K → B",
-            "B → R"
-        ],
-        "conclusion": "K∨F"
-    },
-    "fa2a1bb7-9ecc-419e-9c57-ee5ca491eb43": {
-        "title": "Chapter Seven Packet #22",
-        "chapter": 7,
-        "assumptions": [
-            "G ↔M",
-            "G → P",
-            "-P"
-        ],
-        "conclusion": "-M"
-    },
-    "0638366b-1804-491e-b8ac-66afdb1ef964": {
-        "title": "Chapter Seven Packet #23",
-        "chapter": 7,
-        "assumptions": [
-            "-(E & S)",
-            "-K → E",
-            "E → S"
-        ],
-        "conclusion": "K"
-    },
-    "1d639a19-b8bc-41c3-b686-be64485b81d6": {
-        "title": "Chapter Seven Packet (Word Problem) #1",
-        "chapter": 7,
-        "assumptions": [
-            "P→D",
-            "-D"
-        ],
-        "conclusion": "-P"
-    },
-    "cd400a12-897d-4e3f-8f74-c54801edb1a0": {
-        "title": "Chapter Seven Packet (Word Problem) #2",
-        "chapter": 7,
-        "assumptions": [
-            "-S→H"
-        ],
-        "conclusion": "-H→S"
-    },
-    "8f0db6e4-e8aa-4b37-99aa-8c612d1db6a7": {
-        "title": "Chapter Seven Packet (Word Problem) #3",
-        "chapter": 7,
-        "assumptions": [
-            "R",
-            "R→B",
-            "--M→-B"
-        ],
-        "conclusion": "-M"
-    },
-    "b9608ad4-f28b-4089-90bf-0fa3bcde10ab": {
-        "title": "Chapter Seven Packet (Word Problem) #4",
-        "chapter": 7,
-        "assumptions": [
-            "T",
-            "S→-T",
-            "-S→M"
-        ],
-        "conclusion": "M"
-    },
-    "6a3890c7-a808-4ba2-bf01-cfac54d22dd5": {
-        "title": "Chapter Seven Packet (Word Problem) #5",
-        "chapter": 7,
-        "assumptions": [
-            "F→(S↔H)",
-            "F&-H"
-        ],
-        "conclusion": "-S"
-    },
-    "d69ebc47-1d1c-43ec-bcfa-4bae3108705e": {
-        "title": "Chapter Seven Packet (Word Problem) #6",
-        "chapter": 7,
-        "assumptions": [
-            "-(J∨M)"
-        ],
-        "conclusion": "-(J&M)"
-    },
-    "622b9c31-d0d3-4dd9-91fc-eba997174308": {
-        "title": "Chapter Seven Packet (Word Problem) #7",
-        "chapter": 7,
-        "assumptions": [
-            "-S→-T",
-            "S→A"
-        ],
-        "conclusion": "T→A"
-    },
-    "d7632d3e-f0f6-4aae-ae7b-037681c503ed": {
-        "title": "Chapter Seven Sample Quiz #1, Question 2",
-        "chapter": 7,
-        "assumptions": [
-            "A",
-            "A → -P",
-            "- - L → P"
-        ],
-        "conclusion": "-L"
-    },
-    "698930bb-5e25-4bef-ab6f-6b56a729b39f": {
-        "title": "Chapter Seven Sample Quiz #1, Question 3",
-        "chapter": 7,
-        "assumptions": [
-            "R → (B & -G)",
-            "J → (B ↔ G)"
-        ],
-        "conclusion": "-(J&R)"
-    },
-    "720adfd4-1476-4237-a0cc-ca262f7a11fe": {
-        "title": "Chapter Seven Sample Quiz #2, Question 2",
-        "chapter": 7,
-        "assumptions": [
-            "-H → F",
-            "H → L",
-            "-F"
-        ],
-        "conclusion": "L"
-    },
-    "aa1d8472-4695-4c49-93db-f87166ca3082": {
-        "title": "Chapter Seven Sample Quiz #2, Question 3",
-        "chapter": 7,
-        "assumptions": [
-            "M → (-B & K)",
-            "M"
-        ],
-        "conclusion": "-(K→B)"
-    },
-    "ac7ae9cd-aade-412a-a115-feb88a5b76eb": {
-        "title": "Chapter Seven Sample Quiz #3, Question 2",
-        "chapter": 7,
-        "assumptions": [
-            "-S → (C & -P)",
-            "C → P"
-        ],
-        "conclusion": "S"
-    },
-    "f23cb861-5a11-43b3-b1b8-990c9ead043d": {
-        "title": "Chapter Seven Sample Quiz #3, Question 3",
-        "chapter": 7,
-        "assumptions": [
-            "J → S",
-            "R → S",
-            "S → -E",
-            "E"
-        ],
-        "conclusion": "-(J∨R)"
-    },
-    "f98cac6e-f311-493f-b2b7-2104dc40f94f": {
-        "title": "Chapter Seven Sample Quiz #4, Question 2",
-        "chapter": 7,
-        "assumptions": [
-            "H → (A & R)",
-            "-(A ∨ C)"
-        ],
-        "conclusion": "-H"
-    },
-    "b420b66d-fe1b-4f25-8279-90b652484d26": {
-        "title": "Chapter Seven Sample Quiz #4, Question 3",
-        "chapter": 7,
-        "assumptions": [
-            "-T → -G"
-        ],
-        "conclusion": "-(-T&G)"
-    },
-    "faa37c35-aac4-486a-bd7e-349b35fc793a": {
-        "title": "Chapter Eight #1",
-        "chapter": 8,
-        "assumptions": [
-            "K",
-            "K→--U"
-        ],
-        "conclusion": "U"
-    },
-    "e92ced4d-f4cc-49d0-ace4-344494c87591": {
-        "title": "Chapter Eight #2",
-        "chapter": 8,
-        "assumptions": [
-            "-(R → M)",
-            "(R & E) → -T",
-            "E"
-        ],
-        "conclusion": "-(T ∨ M)"
-    },
-    "0240e8f3-c2e1-4536-97e1-32c5c885b982": {
-        "title": "Chapter Eight #3",
-        "chapter": 8,
-        "assumptions": [
-            "E → R",
-            "M → -R",
-            "-E → --L"
-        ],
-        "conclusion": "-L ∨ --M"
-    },
-    "c97183fa-1fb3-44b6-9bf1-f93855da2b1d": {
-        "title": "Chapter Eight #4",
-        "chapter": 8,
-        "assumptions": [
-            "B→C",
-            "--A∨B"
-        ],
-        "conclusion": "-A→C"
-    },
-    "ea1087f8-d1e6-42b6-89da-edb5d4798c9c": {
-        "title": "Chapter Eight #5",
-        "chapter": 8,
-        "assumptions": [
-            "A→C",
-            "B→-C"
-        ],
-        "conclusion": "-(A&B)"
-    },
-    "d20a9f01-26b2-41d1-af8a-de1d38a523f3": {
-        "title": "Chapter Eight #6",
-        "chapter": 8,
-        "assumptions": [
-            "L→-T"
-        ],
-        "conclusion": "L→(G∨-T)"
-    },
-    "46bbbda4-92b2-4e93-a973-461fc97e6149": {
-        "title": "Chapter Eight #7",
-        "chapter": 8,
-        "assumptions": [
-            "P→Q"
-        ],
-        "conclusion": "-Q→-P"
-    },
-    "a894b454-3561-4ee0-9648-9bbea4648188": {
-        "title": "Chapter Eight Packet #1",
-        "chapter": 8,
-        "assumptions": [
-            "A→B",
-            "-B"
-        ],
-        "conclusion": "-A"
-    },
-    "a3e29941-47f6-4688-9a63-67ed4e605bb8": {
-        "title": "Chapter Eight Packet #2",
-        "chapter": 8,
-        "assumptions": [
-            "A∨B",
-            "-A"
-        ],
-        "conclusion": "B"
-    },
-    "6f501022-09f2-4b88-8633-0f6caf4155bf": {
-        "title": "Chapter Eight Packet #3",
-        "chapter": 8,
-        "assumptions": [
-            "I&-M"
-        ],
-        "conclusion": "-(I→M)"
-    },
-    "3fe5d6d5-8aa9-4727-9666-21df93ee0e8d": {
-        "title": "Chapter Eight Packet #4",
-        "chapter": 8,
-        "assumptions": [
-            "---P"
-        ],
-        "conclusion": "-P"
-    },
-    "b43fc85c-3bd1-4238-b117-5ca0f5db4252": {
-        "title": "Chapter Eight Packet #5",
-        "chapter": 8,
-        "assumptions": [
-            "-S∨-P",
-            "--S"
-        ],
-        "conclusion": "-P"
-    },
-    "adbc33e8-43c6-40d9-9cc8-cb0a64bb90fc": {
-        "title": "Chapter Eight Packet #6",
-        "chapter": 8,
-        "assumptions": [
-            "-B→R",
-            "-R"
-        ],
-        "conclusion": "--B"
-    },
-    "0bdc7912-2e04-4847-8f60-ad92a52b7969": {
-        "title": "Chapter Eight Packet #7",
-        "chapter": 8,
-        "assumptions": [
-            "E",
-            "-(E & M)"
-        ],
-        "conclusion": "-M"
-    },
-    "436d6dce-873e-4bf7-ae0c-97baeeabfaf7": {
-        "title": "Chapter Eight Packet #8",
-        "chapter": 8,
-        "assumptions": [
-            "--M"
-        ],
-        "conclusion": "M"
-    },
-    "ddda5e8b-09d7-4bbf-9ef2-cce83a4848a1": {
-        "title": "Chapter Eight Packet #10",
-        "chapter": 8,
-        "assumptions": [
-            "A"
-        ],
-        "conclusion": "--A"
-    },
-    "5da796bd-550b-4281-8b14-3fc7704d34b3": {
-        "title": "Chapter Eight Packet #11",
-        "chapter": 8,
-        "assumptions": [
-            "(M&P)∨(Q&S)",
-            "-(M&P)"
-        ],
-        "conclusion": "Q&S"
-    },
-    "35396f89-b700-42ce-84f5-9b2c520f306d": {
-        "title": "Chapter Eight Packet #12",
-        "chapter": 8,
-        "assumptions": [
-            "-(-B & -R)"
-        ],
-        "conclusion": "B∨R"
-    },
-    "c7b41be1-9b66-44fe-8b70-0550b90a70c3": {
-        "title": "Chapter Eight Packet #13",
-        "chapter": 8,
-        "assumptions": [
-            "-K"
-        ],
-        "conclusion": "---K"
-    },
-    "4cdf130b-9649-4029-9adb-cd3ebb9540d3": {
-        "title": "Chapter Eight Packet #14",
-        "chapter": 8,
-        "assumptions": [
-            "-(A&B)"
-        ],
-        "conclusion": "-A∨-B"
-    },
-    "5a84b093-1363-4389-8db4-e02efb88f92d": {
-        "title": "Chapter Eight Packet #15",
-        "chapter": 8,
-        "assumptions": [
-            "B→T"
-        ],
-        "conclusion": "-B∨T"
-    },
-    "c624e6a8-46bf-4ce9-ac89-fc4ca2591890": {
-        "title": "Chapter Eight Packet #16",
-        "chapter": 8,
-        "assumptions": [
-            "-((A & B) & C)",
-            "C"
-        ],
-        "conclusion": "-(A&B)"
-    },
-    "61fe6514-7299-4663-8b82-1e23ba041fed": {
-        "title": "Chapter Eight Packet #17",
-        "chapter": 8,
-        "assumptions": [
-            "L∨-T",
-            "-L"
-        ],
-        "conclusion": "-T"
-    },
-    "03fc38b8-bafc-401c-9210-bface70c2763": {
-        "title": "Chapter Eight Packet #18",
-        "chapter": 8,
-        "assumptions": [
-            "-A∨-B"
-        ],
-        "conclusion": "-(A&B)"
-    },
-    "6c311ba9-03d7-44ed-9334-5b48a21b6df1": {
-        "title": "Chapter Eight Packet #19",
-        "chapter": 8,
-        "assumptions": [
-            "- - M → -Q"
-        ],
-        "conclusion": "Q→-M"
-    },
-    "5cf4de04-605f-47ab-855e-06ae81bde121": {
-        "title": "Chapter Eight Packet #20",
-        "chapter": 8,
-        "assumptions": [
-            "G∨M",
-            "-G"
-        ],
-        "conclusion": "M"
-    },
-    "fb8dd885-0931-45d6-92c9-7113d6c43bc7": {
-        "title": "Chapter Eight Packet #21",
-        "chapter": 8,
-        "assumptions": [
-            "A→B",
-            "B→C"
-        ],
-        "conclusion": "A→C"
-    },
-    "62ddc5f8-971e-41cb-95b2-4a7d82822301": {
-        "title": "Chapter Eight Packet #22",
-        "chapter": 8,
-        "assumptions": [
-            "-H",
-            "J→H"
-        ],
-        "conclusion": "-J"
-    },
-    "2b3a360d-d9db-4b38-8a94-2852b49dfd60": {
-        "title": "Chapter Eight Packet #23",
-        "chapter": 8,
-        "assumptions": [
-            "-(-M → K)"
-        ],
-        "conclusion": "-M&-K"
-    },
-    "e45a30c9-e3eb-4e67-966b-074618f24ca1": {
-        "title": "Chapter Eight Packet #24",
-        "chapter": 8,
-        "assumptions": [
-            "-(F∨G)"
-        ],
-        "conclusion": "-F&-G"
-    },
-    "c3dab2ec-2d8a-4c2a-a011-01a804ce9899": {
-        "title": "Chapter Eight Packet #25",
-        "chapter": 8,
-        "assumptions": [
-            "--N→G"
-        ],
-        "conclusion": "-N∨G"
-    },
-    "943c067c-e141-42bd-bb1d-087ca2ead71b": {
-        "title": "Chapter Eight Packet #26",
-        "chapter": 8,
-        "assumptions": [
-            "A→(R&G)",
-            "-(R&G)"
-        ],
-        "conclusion": "-A"
-    },
-    "fa4ea6de-b217-401d-888f-9c8aa4539397": {
-        "title": "Chapter Eight Packet #27",
-        "chapter": 8,
-        "assumptions": [
-            "-M→-(P&L)",
-            "--(P&L)"
-        ],
-        "conclusion": "--M"
-    },
-    "32aa484a-c83c-4786-a141-db5765f6b684": {
-        "title": "Chapter Eight Packet MLQ #1",
-        "chapter": 8,
-        "assumptions": [
-            "-R∨J",
-            "-J",
-            "A→R"
-        ],
-        "conclusion": "-A"
-    },
-    "fadba880-edc4-46c9-87fe-3cc780acfe17": {
-        "title": "Chapter Eight Packet MLQ #2",
-        "chapter": 8,
-        "assumptions": [
-            "A→B",
-            "B→C",
-            "C→D"
-        ],
-        "conclusion": "A→D"
-    },
-    "364d7231-9d36-4a42-83a6-8897673c5934": {
-        "title": "Chapter Eight Packet MLQ #3",
-        "chapter": 8,
-        "assumptions": [
-            "-M→S",
-            "-S"
-        ],
-        "conclusion": "M"
-    },
-    "8ab4bfcc-b9e0-4340-83a6-de7b8ba8d632": {
-        "title": "Chapter Eight Packet MLQ #4",
-        "chapter": 8,
-        "assumptions": [
-            "B→Q",
-            "-Q"
-        ],
-        "conclusion": "---B"
-    },
-    "4f2a8054-b29f-403c-94b6-78e360eccb90": {
-        "title": "Chapter Eight Packet MLQ #5",
-        "chapter": 8,
-        "assumptions": [
-            "K→L",
-            "L→E",
-            "E→(W∨M)"
-        ],
-        "conclusion": "K→(W∨M)"
-    },
-    "f72d48d7-1e60-4ebe-9cea-6b3e95569a81": {
-        "title": "Chapter Eight Packet MLQ #6",
-        "chapter": 8,
-        "assumptions": [
-            "-P",
-            "H→P",
-            "M→H"
-        ],
-        "conclusion": "-M"
-    },
-    "c4068abc-6e04-4375-9d82-3daa1426b1b1": {
-        "title": "Chapter Eight Packet MLQ #7",
-        "chapter": 8,
-        "assumptions": [
-            "-(A&B)",
-            "Q→A",
-            "Q"
-        ],
-        "conclusion": "-B"
-    },
-    "677df2a2-3a2b-42b6-8f1a-dcaf6dce547f": {
-        "title": "Chapter Eight Packet MLQ #8",
-        "chapter": 8,
-        "assumptions": [
-            "M∨(-L→S)",
-            "-M",
-            "-S"
-        ],
-        "conclusion": "--L"
-    },
-    "f556a42b-627b-4082-9f48-06d6fb633ac2": {
-        "title": "Chapter Eight Packet MLQ #9",
-        "chapter": 8,
-        "assumptions": [
-            "H→-Q",
-            "--Q",
-            "S∨H"
-        ],
-        "conclusion": "S"
-    },
-    "8bc8563c-59cc-4c3b-9fed-9119634d4d25": {
-        "title": "Chapter Eight Packet MLQ #10",
-        "chapter": 8,
-        "assumptions": [
-            "-M→-S",
-            "--M→K",
-            "--S"
-        ],
-        "conclusion": "K"
-    },
-    "5f44dbe0-5bd5-46bf-8beb-a78f2dbc5ebc": {
-        "title": "Chapter Eight Packet MLQ #11",
-        "chapter": 8,
-        "assumptions": [
-            "-R→-Z",
-            "-Z→S",
-            "-S"
-        ],
-        "conclusion": "--R"
-    },
-    "124909d7-b6f4-4010-83d7-7967d9a7f088": {
-        "title": "Chapter Eight Packet MLQ #12",
-        "chapter": 8,
-        "assumptions": [
-            "M→R",
-            "R→T",
-            "-T",
-            "M∨S"
-        ],
-        "conclusion": "S"
-    },
-    "15f06da4-f5ad-4858-b95b-534329fd3ad2": {
-        "title": "Chapter Eight Packet MLQ #13",
-        "chapter": 8,
-        "assumptions": [
-            "-(-A&-B)",
-            "A→B",
-            "B→C",
-            "-C"
-        ],
-        "conclusion": "--B"
-    },
-    "49293a24-1048-435e-9428-4365e2e66613": {
-        "title": "Chapter Eight Packet MLQ #14",
-        "chapter": 8,
-        "assumptions": [
-            "-(B&H)",
-            "-B→L",
-            "-J",
-            "L→J"
-        ],
-        "conclusion": "-H"
-    },
-    "f35d8d35-4249-48a7-bc78-f5ff906bbf7c": {
-        "title": "Chapter Eight Packet MLQ #15",
-        "chapter": 8,
-        "assumptions": [
-            "H→(A∨P)",
-            "-A&-P"
-        ],
-        "conclusion": "-H"
-    },
-    "01b3fa69-1277-48a7-a207-6a02f6ed90ef": {
-        "title": "Chapter Eight Packet MLQ #16",
-        "chapter": 8,
-        "assumptions": [
-            "-(R∨S)→M",
-            "M→(N&O)",
-            "-(N&O)"
-        ],
-        "conclusion": "-(-R&-S)"
-    },
-    "9dc1ba00-c475-4be9-afa8-0836281483e1": {
-        "title": "Chapter Eight Packet MLQ #17",
-        "chapter": 8,
-        "assumptions": [
-            "-(-E∨-G)",
-            "E→F"
-        ],
-        "conclusion": "F"
-    },
-    "e0bdec92-be67-4a59-9a20-b49cebcb807f": {
-        "title": "Chapter Eight Packet MLQ #19",
-        "chapter": 8,
-        "assumptions": [
-            "A↔N",
-            "A→R"
-        ],
-        "conclusion": "-R→-N"
-    },
-    "0af077f0-2cd4-43d4-be4d-41155895adc9": {
-        "title": "Chapter Eight Packet MLQ #20",
-        "chapter": 8,
-        "assumptions": [
-            "M",
-            "M→(K→T)"
-        ],
-        "conclusion": "-T→-K"
-    },
-    "950da6fd-945f-4c16-bb3b-4f48bff747c9": {
-        "title": "Chapter Eight Packet MLQ #21",
-        "chapter": 8,
-        "assumptions": [
-            "-K∨M",
-            "K&(M→L)"
-        ],
-        "conclusion": "L"
-    },
-    "2280c91f-ad90-4bdf-869a-a78c835e6aa0": {
-        "title": "Chapter Eight Packet MLQ #22",
-        "chapter": 8,
-        "assumptions": [
-            "(A→B)&(-A→C)"
-        ],
-        "conclusion": "B∨C"
-    },
-    "14fdf46c-d3a9-4243-828a-4a1d9005395a": {
-        "title": "Chapter Eight Packet MLQ #23",
-        "chapter": 8,
-        "assumptions": [
-            "A",
-            "(A&B)→C",
-            "-C",
-            "-B→(D&E)"
-        ],
-        "conclusion": "-B&(D&E)"
-    },
-    "cc310895-822e-44db-9d33-ce62d030211d": {
-        "title": "Chapter Eight Packet MLQ #24",
-        "chapter": 8,
-        "assumptions": [
-            "H∨M",
-            "H→K",
-            "-K",
-            "M→L"
-        ],
-        "conclusion": "L"
-    },
-    "73c1ca45-097f-4011-ac8f-c31711b543f1": {
-        "title": "Chapter Eight Packet MLQ #25",
-        "chapter": 8,
-        "assumptions": [
-            "E→(G→U)",
-            "G&-U"
-        ],
-        "conclusion": "-E"
-    },
-    "c96e54f6-28c5-4b72-8281-705254879ba9": {
-        "title": "Chapter Eight Packet MLQ #26",
-        "chapter": 8,
-        "assumptions": [
-            "-M→N",
-            "K→-M",
-            "N→-R",
-            "--R"
-        ],
-        "conclusion": "-K"
-    },
-    "6d8a234e-18c1-45ab-9270-be5207dd22fb": {
-        "title": "Chapter Eight Packet MLQ #27",
-        "chapter": 8,
-        "assumptions": [
-            "--O",
-            "O→A",
-            "A→K",
-            "-(W&K)"
-        ],
-        "conclusion": "-W"
-    },
-    "37bc497e-ded8-466d-90bf-16571929af23": {
-        "title": "Chapter Eight Packet MLQ #28",
-        "chapter": 8,
-        "assumptions": [
-            "R→F",
-            "-R→E",
-            "(F∨E)→P"
-        ],
-        "conclusion": "P"
-    },
-    "2abe9d7d-9da7-415c-b2e9-0d8ee85edc0a": {
-        "title": "Chapter Eight Packet MLQ #29",
-        "chapter": 8,
-        "assumptions": [
-            "(W&M)→-J",
-            "-J→-P",
-            "P&M"
-        ],
-        "conclusion": "-(W&M)"
-    },
-    "125ad3d7-2546-4a1f-b985-c31356f97f38": {
-        "title": "Chapter Eight Packet MLQ #30",
-        "chapter": 8,
-        "assumptions": [
-            "-((A&-B)&C)",
-            "C"
-        ],
-        "conclusion": "-A∨B"
-    },
-    "40607526-1f98-402e-aacc-00b5508779ec": {
-        "title": "Chapter Eight Packet MLQ #31",
-        "chapter": 8,
-        "assumptions": [
-            "O→-P",
-            "P",
-            "-O→(T∨R)",
-            "R→-L",
-            "L"
-        ],
-        "conclusion": "T"
-    },
-    "ee1a2dbb-7442-495a-a367-1f853d908961": {
-        "title": "Chapter Eight Packet MLQ #32",
-        "chapter": 8,
-        "assumptions": [
-            "-W",
-            "-(R ∨ -S) ∨ W"
-        ],
-        "conclusion": "S"
-    },
-    "9a27797c-c4a9-4a25-b9cd-1a58f9af7372": {
-        "title": "Chapter Eight Packet MLQ #33",
-        "chapter": 8,
-        "assumptions": [
-            "(H → E) → -P",
-            "P"
-        ],
-        "conclusion": "H&-E"
-    },
-    "c51f452a-ad06-4381-982d-6a6dc7448529": {
-        "title": "Chapter Eight Packet MLQ #34",
-        "chapter": 8,
-        "assumptions": [
-            "(L & -H) → -G",
-            "M → G",
-            "M & -H"
-        ],
-        "conclusion": "-L"
-    },
-    "8fe7816d-f87f-40c1-90d7-08fbda4b088d": {
-        "title": "Chapter Eight Packet MLQ #35",
-        "chapter": 8,
-        "assumptions": [
-            "E → (W ∨ B)",
-            "L → E",
-            "-B & L"
-        ],
-        "conclusion": "W"
-    },
-    "e4426208-79ae-489c-8b2a-11796500e8c8": {
-        "title": "Chapter Eight Packet MLQ #36",
-        "chapter": 8,
-        "assumptions": [
-            "E → R",
-            "-(G → R)",
-            "-(J & -E)"
-        ],
-        "conclusion": "-J"
-    },
-    "07b840bc-7e2c-4635-8f46-3fb5c8bf6e58": {
-        "title": "Chapter Eight Packet MLQ #37",
-        "chapter": 8,
-        "assumptions": [
-            "-(F & P) → D",
-            "-E",
-            "D → E"
-        ],
-        "conclusion": "F"
-    },
-    "41659103-0882-4b2b-ac26-9aff9244dd95": {
-        "title": "Chapter Eight Packet MLQ #38",
-        "chapter": 8,
-        "assumptions": [
-            "-(A & B) →C",
-            "C → D",
-            "-D"
-        ],
-        "conclusion": "A"
-    },
-    "4b40507d-75c8-42b9-85e7-f45907545df0": {
-        "title": "Chapter Eight Packet MLQ #39",
-        "chapter": 8,
-        "assumptions": [
-            "- - J",
-            "J → H",
-            "-(H & M)"
-        ],
-        "conclusion": "-M"
-    },
-    "42ab9aeb-a71a-4785-900d-4ccb7e4cfa34": {
-        "title": "Chapter Eight Packet MLQ #40",
-        "chapter": 8,
-        "assumptions": [
-            "N ↔ L",
-            "R → P",
-            "-N ∨ R"
-        ],
-        "conclusion": "-P→-L"
-    },
-    "81422605-11c9-46b3-a9de-c3dec32e36cc": {
-        "title": "Chapter Eight Packet MLQ #41",
-        "chapter": 8,
-        "assumptions": [
-            "A → -B",
-            "-A → C"
-        ],
-        "conclusion": "B→C"
-    },
-    "bdbf3686-1304-4cb1-bdde-854f766d0afc": {
-        "title": "Chapter Eight Packet MLQ #42",
-        "chapter": 8,
-        "assumptions": [
-            "R",
-            "E → S",
-            "-R ∨ E"
-        ],
-        "conclusion": "S"
-    },
-    "23a06521-9224-4092-b0f6-9609cef76349": {
-        "title": "Chapter Eight Packet MLQ #43",
-        "chapter": 8,
-        "assumptions": [
-            "(K & G) ∨ R",
-            "L → R",
-            "-R"
-        ],
-        "conclusion": "K&-L"
-    },
-    "eb8f82e0-34d2-4403-ad24-19b2514b2506": {
-        "title": "Chapter Eight Packet MLQ #44",
-        "chapter": 8,
-        "assumptions": [
-            "- - - H",
-            "E → H"
-        ],
-        "conclusion": "-E"
-    },
-    "63245c8e-fec5-4cdc-962e-d0e650a1b5af": {
-        "title": "Chapter Eight Packet MLQ #45",
-        "chapter": 8,
-        "assumptions": [
-            "-(M & G)",
-            "J ∨ M",
-            "G"
-        ],
-        "conclusion": "J"
-    },
-    "8d74e513-1533-45a3-b47e-e71bf112d89a": {
-        "title": "Chapter Eight Packet MLQ #46",
-        "chapter": 8,
-        "assumptions": [
-            "A → M",
-            "B → A",
-            "E →B"
-        ],
-        "conclusion": "-M→-E"
-    },
-    "06c52742-5c88-4dcd-bd80-8d50ee840f64": {
-        "title": "Chapter Eight Packet MLQ #47",
-        "chapter": 8,
-        "assumptions": [
-            "- - G",
-            "-(M & -R)",
-            "R → -G"
-        ],
-        "conclusion": "-M"
-    },
-    "ce310d19-dd9b-4fe9-883c-1614fb2f810d": {
-        "title": "Chapter Eight Packet MLQ #49",
-        "chapter": 8,
-        "assumptions": [
-            "H → -P",
-            "L → P",
-            "L ∨ G"
-        ],
-        "conclusion": "H→G"
-    },
-    "345a6fac-bbcb-489c-a49b-7d6806a7abaa": {
-        "title": "Chapter Eight Packet MLQ #49",
-        "chapter": 8,
-        "assumptions": [
-            "-E",
-            "-J → P",
-            "E ∨ (N & -P)"
-        ],
-        "conclusion": "J&N"
-    },
-    "88200f32-c1da-475f-9065-be22b675c4f1": {
-        "title": "Chapter Eight Packet MLQ #50",
-        "chapter": 8,
-        "assumptions": [
-            "-(E & H)",
-            "M → H",
-            "E"
-        ],
-        "conclusion": "-M"
-    },
-    "29c35ad5-7e31-4bae-be1d-53866d0ad2b3": {
-        "title": "Chapter Eight Packet MLQ #51",
-        "chapter": 8,
-        "assumptions": [
-            "A → J",
-            "-P → -J"
-        ],
-        "conclusion": "-P→-A"
-    },
-    "684768e0-1fd5-4da3-87d0-d763c2b34f9c": {
-        "title": "Chapter Eight Packet MLQ #52",
-        "chapter": 8,
-        "assumptions": [
-            "-(-S & -E)",
-            "-E"
-        ],
-        "conclusion": "S"
-    },
-    "01393270-5315-4cf6-81fb-0833449ad9a8": {
-        "title": "Chapter Eight Packet MLQ #53",
-        "chapter": 8,
-        "assumptions": [
-            "A → R",
-            "E → A",
-            "-R"
-        ],
-        "conclusion": "-E"
-    },
-    "a7591bd6-d776-4b0e-9610-673787b7c916": {
-        "title": "Chapter Eight Packet MLQ #54",
-        "chapter": 8,
-        "assumptions": [
-            "- - P",
-            "-(P & T)",
-            "T ∨ F"
-        ],
-        "conclusion": "F"
-    },
-    "514e0a83-c29c-48df-b0ad-114f1655a55e": {
-        "title": "Chapter Eight Packet MLQ #55",
-        "chapter": 8,
-        "assumptions": [
-            "-(M → C)",
-            "M→ P"
-        ],
-        "conclusion": "P&-C"
-    },
-    "6c75042d-ef6e-4276-b405-2f668c3cdb8c": {
-        "title": "Chapter Eight Packet MLQ #56",
-        "chapter": 8,
-        "assumptions": [
-            "B ∨ T",
-            "-(T & G)",
-            "G"
-        ],
-        "conclusion": "B"
-    },
-    "922a2b83-0fb5-4d0b-b912-517a94287bee": {
-        "title": "Chapter Eight Packet MLQ #57",
-        "chapter": 8,
-        "assumptions": [
-            "-(-A & -J)",
-            "A → R",
-            "-J"
-        ],
-        "conclusion": "R"
-    },
-    "abb5775c-de54-406d-9820-af0f1084ed97": {
-        "title": "Chapter Eight Packet MLQ #58",
-        "chapter": 8,
-        "assumptions": [
-            "-J → -P",
-            "J → M"
-        ],
-        "conclusion": "P→M"
-    },
-    "6982ac46-7505-436b-85f1-b513efcbd53d": {
-        "title": "Chapter Eight Packet MLQ #59",
-        "chapter": 8,
-        "assumptions": [
-            "-((R & B) & M)",
-            "- - M & R"
-        ],
-        "conclusion": "-B"
-    },
-    "69b4d937-5c96-4e3e-84e0-7a6c1e5d3fd2": {
-        "title": "Chapter Eight Packet MLQ #60",
-        "chapter": 8,
-        "assumptions": [
-            "-(H & S) ∨T",
-            "-G → -T",
-            "-G ∨ R",
-            "H & -R"
-        ],
-        "conclusion": "-S"
-    },
-    "9731c026-e216-438f-a941-134184e6f1db": {
-        "title": "Chapter Eight Packet MLQ #61",
-        "chapter": 8,
-        "assumptions": [
-            "E → (W → B)",
-            "W & F",
-            "-(F & B)"
-        ],
-        "conclusion": "-E"
-    },
-    "5de4c384-dcf2-4d53-810e-58b8f9cf976c": {
-        "title": "Chapter Eight Sample Quiz #1, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "-H & -T",
-            "P → (H ∨ T)"
-        ],
-        "conclusion": "-P"
-    },
-    "6e697738-4966-4032-b0c0-86fc182b1035": {
-        "title": "Chapter Eight Sample Quiz #1, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "-(K & -S)",
-            "- - - S",
-            "H → K"
-        ],
-        "conclusion": "-H"
-    },
-    "559ac0bd-6d75-4879-be0a-29916432579f": {
-        "title": "Chapter Eight Sample Quiz #1, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "-C → -B",
-            "A → B"
-        ],
-        "conclusion": "A→C"
-    },
-    "5f77ee07-ec63-459d-96b6-cee8cf79b21a": {
-        "title": "Chapter Eight Sample Quiz #2, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "B → C",
-            "A → B"
-        ],
-        "conclusion": "-A∨C"
-    },
-    "201c0c81-868a-4423-8129-e13cf3d2037a": {
-        "title": "Chapter Eight Sample Quiz #2, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "G → -P",
-            "P",
-            "-G → K"
-        ],
-        "conclusion": "K"
-    },
-    "c5b86ffa-7aaa-4a1b-8c2b-af0ee40e7b44": {
-        "title": "Chapter Eight Sample Quiz #2, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "-(R & -F)",
-            "-F",
-            "R ∨ M"
-        ],
-        "conclusion": "M"
-    },
-    "ed62a082-1a6a-44b0-83b8-ff2b39f95f2d": {
-        "title": "Chapter Eight Sample Quiz #3, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "A → -B",
-            "B",
-            "A ∨ C"
-        ],
-        "conclusion": "C"
-    },
-    "e372a2a9-6070-4386-988e-942e690c359e": {
-        "title": "Chapter Eight Sample Quiz #3, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "-E ∨ Q",
-            "Q → W"
-        ],
-        "conclusion": "E→W"
-    },
-    "93c5381b-991d-4820-b665-b1d55b9699ec": {
-        "title": "Chapter Eight Sample Quiz #3, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "H → G",
-            "-P → -G",
-            "- - H"
-        ],
-        "conclusion": "P"
-    },
-    "bcb5703d-abb5-4968-bf61-b3479d5d9a0c": {
-        "title": "Chapter Eight Sample Quiz #4, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "-(A & -B)",
-            "-C → -B"
-        ],
-        "conclusion": "A→C"
-    },
-    "e8896411-c38f-4339-863c-cf16f80b1602": {
-        "title": "Chapter Eight Sample Quiz #4, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "-(G & R) ∨ -T",
-            "T",
-            "G"
-        ],
-        "conclusion": "-R"
-    },
-    "787304d1-cc00-49d3-ac5c-4f0a724c1077": {
-        "title": "Chapter Eight Sample Quiz #4, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "-(E ∨ S) → P",
-            "-P & (S → H)"
-        ],
-        "conclusion": "-E→H"
-    },
-    "730305ba-1f68-4f60-b11a-ab093e2da4cb": {
-        "title": "Chapter Eight Sample Quiz #5, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "- - E ∨ R",
-            "R → (N ∨ S)"
-        ],
-        "conclusion": "-E→(N∨S)"
-    },
-    "bf84714c-5ecd-43a9-b2b1-918e7ddb00ef": {
-        "title": "Chapter Eight Sample Quiz #5, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "-(-(E ∨ T) & H)",
-            "- - H",
-            "-E"
-        ],
-        "conclusion": "T"
-    },
-    "b88ee45b-26c5-42a6-8d84-472248f788a8": {
-        "title": "Chapter Eight Sample Quiz #5, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "(J → R) & (-J → -Y)"
-        ],
-        "conclusion": "R∨-Y"
-    },
-    "99e45878-ac10-4993-98ba-f07b62708795": {
-        "title": "Chapter Eight Sample Quiz #6, Question 1",
-        "chapter": 8,
-        "assumptions": [
-            "-(M & F) ∨ P",
-            "M",
-            "- - - P"
-        ],
-        "conclusion": "-F"
-    },
-    "3db936dd-2b2b-4222-b5f4-44ca777c9ca9": {
-        "title": "Chapter Eight Sample Quiz #6, Question 2",
-        "chapter": 8,
-        "assumptions": [
-            "(A → B) & (-C → -B)"
-        ],
-        "conclusion": "-A∨C"
-    },
-    "eef8e47e-4240-459a-aeac-e3da792c505a": {
-        "title": "Chapter Eight Sample Quiz #6, Question 3",
-        "chapter": 8,
-        "assumptions": [
-            "-(-E ∨ -G)",
-            "K → -G"
-        ],
-        "conclusion": "-K"
-    }
+  "d3e5f749-8b67-4116-ba5b-628102d8f306": {
+    "title": "Course Orientation Test",
+    "chapter": 3,
+    "assumptions": ["A → B", "A"],
+    "conclusion": "B"
+  },
+  "70182d92-3db1-46c0-9f50-2d7e9e6c3b7e": {
+    "title": "Chapter Three #1",
+    "chapter": 3,
+    "assumptions": ["E → R", "E"],
+    "conclusion": "R"
+  },
+  "1095208a-68e1-4a15-8175-51684a5459ba": {
+    "title": "Chapter Three #2",
+    "chapter": 3,
+    "assumptions": ["E→(M→R)", "M", "E"],
+    "conclusion": "R"
+  },
+  "30fbd298-dc13-46a1-ad5e-245706ab17ec": {
+    "title": "Chapter Three #3",
+    "chapter": 3,
+    "assumptions": ["G", "G → M"],
+    "conclusion": "M"
+  },
+  "fbc971b2-025e-4b57-8c80-4c4a156fdd4f": {
+    "title": "Chapter Three #4",
+    "chapter": 3,
+    "assumptions": ["K → R", "E → K", "E"],
+    "conclusion": "R"
+  },
+  "337ca4a5-73fd-4c82-8f1e-d2942424c184": {
+    "title": "Chapter Three #5",
+    "chapter": 3,
+    "assumptions": ["(M → F) → L", "E → (M → F)", "E"],
+    "conclusion": "L"
+  },
+  "41e991c3-f212-4efe-8138-857ff0f177cb": {
+    "title": "Chapter Three #6",
+    "chapter": 3,
+    "assumptions": ["N", "N → D", "N → (D → F)"],
+    "conclusion": "F"
+  },
+  "547fd3b6-8015-4d01-b5e6-d1a3db8830cb": {
+    "title": "Chapter Three #7",
+    "chapter": 3,
+    "assumptions": ["(H → F) → (M → R)", "E → (H → F)", "E", "M"],
+    "conclusion": "R"
+  },
+  "a2b55fc0-8d0e-4d44-b157-9040838f611d": {
+    "title": "Chapter Three #8",
+    "chapter": 3,
+    "assumptions": ["A → (B → (C → D))", "A", "B"],
+    "conclusion": "C → D"
+  },
+  "9b66cc38-53c2-4db9-be6d-6134366be9cb": {
+    "title": "Chapter Three #9",
+    "chapter": 3,
+    "assumptions": ["-H → (W → N)", "E → -H", "E", "W"],
+    "conclusion": "N"
+  },
+  "26fb899a-8383-419b-98c8-c7944dd180c5": {
+    "title": "Chapter Three #10",
+    "chapter": 3,
+    "assumptions": ["(F → -A) → S", "H → (F → -A)", "H", "S → (R → B)", "R"],
+    "conclusion": "B"
+  },
+  "3e63d586-641b-4d93-9e08-4e90ef66b14d": {
+    "title": "Chapter Three #11",
+    "chapter": 3,
+    "assumptions": ["A → (E → D)", "B → E", "B", "A", "D → -F"],
+    "conclusion": "-F"
+  },
+  "9c790848-817a-4724-a31b-72037845a7ff": {
+    "title": "Chapter Three #12",
+    "chapter": 3,
+    "assumptions": ["R → M", "R"],
+    "conclusion": "M"
+  },
+  "9ad7dcb4-320f-4e13-8b76-30bd8a8a4d8d": {
+    "title": "Chapter Three #13",
+    "chapter": 3,
+    "assumptions": ["D", "-B → C", "D → -B"],
+    "conclusion": "C"
+  },
+  "b211e842-c2e4-4d5b-8f1e-8173d3395303": {
+    "title": "Chapter Three #14",
+    "chapter": 3,
+    "assumptions": ["E → G", "( E → G ) → ( G → F )", "E"],
+    "conclusion": "F"
+  },
+  "f4a45a68-15c0-43c0-846d-d64299cd129c": {
+    "title": "Chapter Three Packet #1",
+    "chapter": 3,
+    "assumptions": ["A", "A→B", "B→C", "C→D"],
+    "conclusion": "D"
+  },
+  "86ed504b-8071-4ec0-829e-60c93636f1d8": {
+    "title": "Chapter Three Packet #2",
+    "chapter": 3,
+    "assumptions": ["A→B", "B→(C→D)", "A", "C"],
+    "conclusion": "D"
+  },
+  "d03de3b4-bbb0-43db-8448-083402abb87a": {
+    "title": "Chapter Three Packet #3",
+    "chapter": 3,
+    "assumptions": ["N", "N→M", "M→R"],
+    "conclusion": "R"
+  },
+  "69bdabfc-80ac-4d61-ad53-b2e15bca2165": {
+    "title": "Chapter Three Packet #4",
+    "chapter": 3,
+    "assumptions": ["L → M", "-N", "M → O", "-N → L"],
+    "conclusion": "O"
+  },
+  "13367dcc-339e-42cf-a322-c0379e0a79b4": {
+    "title": "Chapter Three Packet #5",
+    "chapter": 3,
+    "assumptions": ["(G → H) → (I → J)", "G → H", "I"],
+    "conclusion": "J"
+  },
+  "c7e6f72b-481c-451e-9670-5bbd38a974fc": {
+    "title": "Chapter Three Packet #6",
+    "chapter": 3,
+    "assumptions": ["(-C → D) → E", "E → -C", "-C → D"],
+    "conclusion": "D"
+  },
+  "81508c7d-4d37-438d-b654-99ffd2348252": {
+    "title": "Chapter Three Packet #7",
+    "chapter": 3,
+    "assumptions": ["F → G", "(F → G) → (G → H)", "F"],
+    "conclusion": "H"
+  },
+  "624a7ac7-8963-429a-b68f-f197fdc1c4f6": {
+    "title": "Chapter Three Packet #8",
+    "chapter": 3,
+    "assumptions": ["P → (A → B)", "(A → B) → (L → R)", "P"],
+    "conclusion": "L→R"
+  },
+  "4dbef56d-af63-42e4-bc9d-15a2ff0b028f": {
+    "title": "Chapter Three Packet #9",
+    "chapter": 3,
+    "assumptions": ["E → (N→ -P)", "E", "E → (-P → T)", "N"],
+    "conclusion": "T"
+  },
+  "6ffd5dcb-9098-452c-871b-834c4ed3f77a": {
+    "title": "Chapter Three Packet #10",
+    "chapter": 3,
+    "assumptions": ["(N  → H) → (J → F)", "N → H", "(J → F) → K"],
+    "conclusion": "K"
+  },
+  "ffd66d14-69ff-4eb2-b730-4758783b4bb2": {
+    "title": "Chapter Three Packet #11",
+    "chapter": 3,
+    "assumptions": ["H→(J→R)", "H→J", "H", "R→P"],
+    "conclusion": "P"
+  },
+  "76c91a7f-3b41-4cf3-9aa7-a04172ed6647": {
+    "title": "Chapter Three Packet #13",
+    "chapter": 3,
+    "assumptions": ["(L→M)→N", "E→D", "(E→D)→(L→M)", "N→R"],
+    "conclusion": "R"
+  },
+  "e9165494-4bc8-4bc4-aeb0-d5d94a87c543": {
+    "title": "Chapter Three Packet #14",
+    "chapter": 3,
+    "assumptions": ["L→(J→H)", "H→(P→K)", "J", "L"],
+    "conclusion": "P→K"
+  },
+  "9c7a57ac-fcf3-487f-a072-7c4f766c5feb": {
+    "title": "Chapter Three Packet #15",
+    "chapter": 3,
+    "assumptions": ["E→(-F→W)", "E", "(-F→W)→(T→Q)", "T"],
+    "conclusion": "Q"
+  },
+  "03873dba-e9aa-4584-b721-12e8d8db3331": {
+    "title": "Chapter Three Packet #16",
+    "chapter": 3,
+    "assumptions": ["E→H", "(R→P)→E", "A→(R→P)", "A"],
+    "conclusion": "H"
+  },
+  "a09e6b38-82ac-4a87-9ef9-2ce666f9f9d4": {
+    "title": "Chapter Three Packet #17",
+    "chapter": 3,
+    "assumptions": ["(S→-E)→(J→N)", "M→(S→-E)", "J", "M"],
+    "conclusion": "N"
+  },
+  "d82c129e-7f01-4cd2-9e47-e95c5cf93676": {
+    "title": "Chapter Three Packet #18",
+    "chapter": 3,
+    "assumptions": ["R → (J → G)", "R", "R→J", "G → M"],
+    "conclusion": "M"
+  },
+  "cfdcb95b-31ed-4cc5-a729-ac76dbaf53ca": {
+    "title": "Chapter Three Packet #19",
+    "chapter": 3,
+    "assumptions": ["-P", "K → (-P → -J)", "D → K", "D"],
+    "conclusion": "-J"
+  },
+  "ae48d451-51f7-4060-a0ed-41cc021b587c": {
+    "title": "Chapter Three Packet #20",
+    "chapter": 3,
+    "assumptions": ["M → (P → B)", "J → (E → M)", "E", "j"],
+    "conclusion": "P→B"
+  },
+  "7a995367-d2d2-4d11-b140-0ec99a4cf479": {
+    "title": "Chapter Three Packet #21",
+    "chapter": 3,
+    "assumptions": ["A → ((B → C) → (-D → E))", "B → C", "A", "-D"],
+    "conclusion": "E"
+  },
+  "19975358-456e-4adf-8cc7-56fa9e90b604": {
+    "title": "Chapter Three Sample Quiz #1, Question 2",
+    "chapter": 3,
+    "assumptions": ["P→J", "(P→J)→B", "B→R"],
+    "conclusion": "R"
+  },
+  "63a7ff6d-7fff-4934-b202-3a30140c69a2": {
+    "title": "Chapter Three Sample Quiz #1, Question 3",
+    "chapter": 3,
+    "assumptions": ["Y→(E→(W→S))", "W", "E", "Y"],
+    "conclusion": "S"
+  },
+  "ab4a518b-a925-4434-a419-5fb42e37feea": {
+    "title": "Chapter Three Sample Quiz #2, Question 2",
+    "chapter": 3,
+    "assumptions": ["H→-R", "(H→-R)→(B→E)", "(B→E)→P"],
+    "conclusion": "P"
+  },
+  "f8a80f04-a5a8-49df-88bb-b99d7a014b34": {
+    "title": "Chapter Three Sample Quiz #2, Question 3",
+    "chapter": 3,
+    "assumptions": ["K", "N→D", "K→((N→D)→J)", "J→A"],
+    "conclusion": "A"
+  },
+  "ccfa9561-2266-4489-bea5-9e54b723753d": {
+    "title": "Chapter Three Sample Quiz #3, Question 2",
+    "chapter": 3,
+    "assumptions": ["A", "A→(M→-H)", "M"],
+    "conclusion": "-H"
+  },
+  "bd8dc8a6-026c-4f52-ba77-0b1bcf118c60": {
+    "title": "Chapter Three Sample Quiz #3, Question 3",
+    "chapter": 3,
+    "assumptions": ["(P→G)→(K→R)", "K", "R→S", "P→G"],
+    "conclusion": "S"
+  },
+  "7eb248df-963e-40de-99cd-464ec730262a": {
+    "title": "Chapter Three Sample Quiz #4, Question 2",
+    "chapter": 3,
+    "assumptions": ["J → (-P→ M)", "-P", "J"],
+    "conclusion": "M"
+  },
+  "4cdcef56-9c2a-4a7e-8d0c-8b2fc8a69329": {
+    "title": "Chapter Three Sample Quiz #4, Question 3",
+    "chapter": 3,
+    "assumptions": ["(N → T) → (W → H)", "E → (N → T)", "E → W", "E"],
+    "conclusion": "H"
+  },
+  "0a9b3ac8-7877-4ffa-b1e5-3688496f966f": {
+    "title": "Chapter Four #1",
+    "chapter": 4,
+    "assumptions": ["( E & G) → (A → -D)", "G → E", "A & (G & -L)"],
+    "conclusion": "-D & -L"
+  },
+  "3eaa8dd2-3c47-4651-9d13-c0dd9374a637": {
+    "title": "Chapter Four #2",
+    "chapter": 4,
+    "assumptions": ["A ↔ K", "A"],
+    "conclusion": "A & K"
+  },
+  "c8be1483-4c74-41ac-9840-1ac103bef8ba": {
+    "title": "Chapter Four #3",
+    "chapter": 4,
+    "assumptions": ["A → B", "B → A", "E"],
+    "conclusion": "(A ↔ B) & E"
+  },
+  "b1894e52-8223-4800-b6d3-4a15b63a2231": {
+    "title": "Chapter Four #4",
+    "chapter": 4,
+    "assumptions": ["(A & B) → C", "A", "B"],
+    "conclusion": "C"
+  },
+  "8ac7bcae-0fb3-4232-a4f2-c996f99b3fa1": {
+    "title": "Chapter Four #5",
+    "chapter": 4,
+    "assumptions": ["E → R", "J & E", "R → -M"],
+    "conclusion": "J & -M"
+  },
+  "3425fb0a-bd2e-47fe-a7b7-e82924c019b3": {
+    "title": "Chapter Four #6",
+    "chapter": 4,
+    "assumptions": ["A ↔ G", "A → (L & R)", "G & M", "R → D"],
+    "conclusion": "D"
+  },
+  "b821d819-7531-4fdc-9389-484e5357d509": {
+    "title": "Chapter Four #7",
+    "chapter": 4,
+    "assumptions": ["E & A", "A ↔ P"],
+    "conclusion": "P & E"
+  },
+  "b9509a8d-0d0b-4639-9d5a-ac55f01b975f": {
+    "title": "Chapter Four #8",
+    "chapter": 4,
+    "assumptions": ["-K & -L", "-L → W", "-K → M"],
+    "conclusion": "W & M"
+  },
+  "ca7f576b-9dc0-406a-9804-ccb8a493ef5d": {
+    "title": "Chapter Four #9",
+    "chapter": 4,
+    "assumptions": ["F → (C & N)", "C → (H & E)", "(N & H) → K", "F"],
+    "conclusion": "K"
+  },
+  "f518b0f6-6df6-4b75-9896-4fb71d7bc368": {
+    "title": "Chapter Four #10",
+    "chapter": 4,
+    "assumptions": ["L→(H→S)", "E→L", "E&(S→H)"],
+    "conclusion": "H↔S"
+  },
+  "856924eb-61ea-4cd0-b8d6-137b74a9a036": {
+    "title": "Chapter Four #11",
+    "chapter": 4,
+    "assumptions": ["(B↔D)→(H&E)", "(H→R)&(B→D)", "D→B"],
+    "conclusion": "R&E"
+  },
+  "00ce2d6b-6e17-4b44-adf9-f9849d1a7206": {
+    "title": "Chapter Four #12",
+    "chapter": 4,
+    "assumptions": ["T→(J&H)", "T↔(W&B)", "B&E", "W", "(H&E)→C"],
+    "conclusion": "C&J"
+  },
+  "095c78e1-653d-43df-b542-f453bb999df6": {
+    "title": "Chapter Four #13",
+    "chapter": 4,
+    "assumptions": ["M↔L", "(L&E)→W", "M", "E"],
+    "conclusion": "W"
+  },
+  "5f8483d6-cffd-412d-a59d-653f37e08790": {
+    "title": "Chapter Four #14",
+    "chapter": 4,
+    "assumptions": ["K&F", "J↔F"],
+    "conclusion": "J&K"
+  },
+  "e5db7e0e-4cdb-4321-9775-96e694bf6702": {
+    "title": "Chapter Four #15",
+    "chapter": 4,
+    "assumptions": ["A", "B", "C", "D"],
+    "conclusion": "((A&C)&B)&D"
+  },
+  "c6ed9c37-4059-41e6-a627-fc038ce298c3": {
+    "title": "Chapter Four #16",
+    "chapter": 4,
+    "assumptions": ["T&W", "(P&A)↔W"],
+    "conclusion": "P&T"
+  },
+  "dc5701ca-c940-4e44-aba9-b3cdf4f211d2": {
+    "title": "Chapter Four #17",
+    "chapter": 4,
+    "assumptions": ["E↔D", "D→M", "-K→E", "-K"],
+    "conclusion": "M"
+  },
+  "b18a33dd-519d-4413-9b31-97db38cd3353": {
+    "title": "Chapter Four #18",
+    "chapter": 4,
+    "assumptions": ["J↔(E&H)", "E", "H&F"],
+    "conclusion": "J&F"
+  },
+  "97a271b4-36c5-44c4-8791-d545df09d23b": {
+    "title": "Chapter Four #19",
+    "chapter": 4,
+    "assumptions": ["-M→-Q", "A&(-Q→-M)", "A→-F"],
+    "conclusion": "-F&(-Q↔-M)"
+  },
+  "7d3b6f12-eaf2-40f4-a8b8-8a95d50a17ae": {
+    "title": "Chapter Four #20",
+    "chapter": 4,
+    "assumptions": ["(L↔T)→G", "E&(T→L)", "(G→R)&(L→T)"],
+    "conclusion": "R"
+  },
+  "55784468-118f-42d4-a43f-9e4caa8700c1": {
+    "title": "Chapter Four #21",
+    "chapter": 4,
+    "assumptions": ["(A&X)↔(B&O)", "E→B", "L→O", "E&L"],
+    "conclusion": "A"
+  },
+  "55adbfd4-85e4-45bc-9637-92c9c2d1b3b7": {
+    "title": "Chapter Four #22",
+    "chapter": 4,
+    "assumptions": ["K→(G&H)", "L↔K", "L", "E"],
+    "conclusion": "G&E"
+  },
+  "2a3a5f1e-883f-4a14-a877-f32113c8fd43": {
+    "title": "Chapter Four #23",
+    "chapter": 4,
+    "assumptions": ["M→Y", "R↔(Y→M)", "N&(T&R)"],
+    "conclusion": "Y↔M"
+  },
+  "79e86728-484e-42b2-98a5-17d267627132": {
+    "title": "Chapter Four Packet #1",
+    "chapter": 4,
+    "assumptions": ["N & -Q", "R & F"],
+    "conclusion": "-Q&F"
+  },
+  "dd2f55fd-c463-4eef-bdce-81c346636c07": {
+    "title": "Chapter Four Packet #2",
+    "chapter": 4,
+    "assumptions": ["R ↔ B"],
+    "conclusion": "B→R"
+  },
+  "0241c9c7-e1b2-458c-bdf3-01cf08b4caed": {
+    "title": "Chapter Four Packet #3",
+    "chapter": 4,
+    "assumptions": ["U", "-R", "(U & -R) → L"],
+    "conclusion": "L"
+  },
+  "cef9b07b-5046-457e-bcc7-0f4c959823e8": {
+    "title": "Chapter Four Packet #4",
+    "chapter": 4,
+    "assumptions": ["H & J", "O", "O → M"],
+    "conclusion": "M&H"
+  },
+  "638f1ccb-7257-4cca-a3f8-3d9fcded8975": {
+    "title": "Chapter Four Packet #5",
+    "chapter": 4,
+    "assumptions": ["A ↔ U", "U → G", "A"],
+    "conclusion": "G"
+  },
+  "655ee5d3-6d67-4454-b486-d8b370cbb8f3": {
+    "title": "Chapter Four Packet #6",
+    "chapter": 4,
+    "assumptions": ["(H & I) → (L & M)", "H & I"],
+    "conclusion": "L"
+  },
+  "deaf3a44-3a6f-4c36-8476-b9788c5d0216": {
+    "title": "Chapter Four Packet #7",
+    "chapter": 4,
+    "assumptions": ["B → -R", "M & (-R → B)"],
+    "conclusion": "M&(B↔-R)"
+  },
+  "3b254d5b-91c8-4a70-b46c-a0d0ef733999": {
+    "title": "Chapter Four Packet #8",
+    "chapter": 4,
+    "assumptions": ["G & L", "h", "(H & (G & L)) → R"],
+    "conclusion": "R"
+  },
+  "40e5bc1b-8ccc-44f0-8121-15d2433695cc": {
+    "title": "Chapter Four Packet #9",
+    "chapter": 4,
+    "assumptions": ["-A → (B → C)", "C → B", "(C ↔ B) → E", "-A"],
+    "conclusion": "E"
+  },
+  "3cf2e0ff-562b-41f5-9255-9d2f94cfc951": {
+    "title": "Chapter Four Packet #10",
+    "chapter": 4,
+    "assumptions": ["A → (B & C)", "D → (A & E)", "D"],
+    "conclusion": "E&B"
+  },
+  "4021ba02-ffc7-42d9-9479-e62b0d5b8f12": {
+    "title": "Chapter Four Packet #11",
+    "chapter": 4,
+    "assumptions": ["(S & U) & Y", "U ↔ -G", "-G → R"],
+    "conclusion": "R&Y"
+  },
+  "86fe5212-5f79-43ea-9ef9-0c67051211bd": {
+    "title": "Chapter Four Packet #12",
+    "chapter": 4,
+    "assumptions": ["(R → T) & G", "T → H", "R", "(H → M) & (T → K)"],
+    "conclusion": "K&M"
+  },
+  "ecbd65cd-f08f-4fd9-8f53-5f7f712d61a7": {
+    "title": "Chapter Four Packet #13",
+    "chapter": 4,
+    "assumptions": ["-B ↔ (D ↔ W)", "-B & D"],
+    "conclusion": "W"
+  },
+  "852d7b7c-1e18-4579-b74a-7d0174ebda9c": {
+    "title": "Chapter Four Packet #14",
+    "chapter": 4,
+    "assumptions": ["H & P", "P → (R & S)", "(R & P) → (S ↔ G)"],
+    "conclusion": "S↔G"
+  },
+  "f549a3dc-83f5-45ff-8694-0399df118847": {
+    "title": "Chapter Four Packet #15",
+    "chapter": 4,
+    "assumptions": ["A → (B → C)", "B & E", "(C & E) → (Y → Z)", "A"],
+    "conclusion": "Y→Z"
+  },
+  "d2c068ff-f41b-40ad-aefd-cbbe9f74d477": {
+    "title": "Chapter Four Packet #16",
+    "chapter": 4,
+    "assumptions": ["(H ↔ G) → H", "R & (H → (H ↔ G))"],
+    "conclusion": "H↔(H↔G)"
+  },
+  "21e86625-0716-400c-ade2-8bd0a2fef4be": {
+    "title": "Chapter Four Packet #17",
+    "chapter": 4,
+    "assumptions": ["R & (H & (J & -v))"],
+    "conclusion": "-V&H"
+  },
+  "190ae114-21ac-4820-bd9c-fad9ff452c11": {
+    "title": "Chapter Four Packet #18",
+    "chapter": 4,
+    "assumptions": ["N → ((U & G) → K)", "K → (L ↔ S)", "N", "N → (U & G)"],
+    "conclusion": "S→L"
+  },
+  "c6939acf-f339-480a-8110-fbbd1b366235": {
+    "title": "Chapter Four Packet #19",
+    "chapter": 4,
+    "assumptions": ["-Q ↔ T", "J & B"],
+    "conclusion": "((-Q→T)&B)&(T→-Q)"
+  },
+  "1f530338-8e83-451a-bc7d-e8942d473a84": {
+    "title": "Chapter Four Packet #20",
+    "chapter": 4,
+    "assumptions": ["M → N", "O → Y", "M & O", "Y → (Y → O)"],
+    "conclusion": "N&(O↔Y)"
+  },
+  "49a74164-9709-4b84-894c-55fe52195a0a": {
+    "title": "Chapter Four Packet #21",
+    "chapter": 4,
+    "assumptions": ["-P → (M & (N & (R & C)))", "-P"],
+    "conclusion": "C"
+  },
+  "10b7480e-88fa-4f3a-97c9-32cda5d821a6": {
+    "title": "Chapter Four Packet #22",
+    "chapter": 4,
+    "assumptions": ["M ↔ (S & P)", "L → S", "L & P"],
+    "conclusion": "M"
+  },
+  "9a4d8eb7-ce9d-4b01-84ce-d661d0b9e8d9": {
+    "title": "Chapter Four Packet #23",
+    "chapter": 4,
+    "assumptions": ["B & (J → R)", "R → J", "(R ↔ J) → N"],
+    "conclusion": "N&B"
+  },
+  "5ea883f3-2da8-4d12-8f43-bbd9e71a3465": {
+    "title": "Chapter Four Packet #24",
+    "chapter": 4,
+    "assumptions": ["G → (S ↔ D)", "S & G", "D → B"],
+    "conclusion": "B"
+  },
+  "88b9eca4-748b-44bf-8246-cc0d59dd607a": {
+    "title": "Chapter Four Packet #25",
+    "chapter": 4,
+    "assumptions": ["(K & L) → M", "(S ↔ I) → K", "L & (S → I)", "I → S"],
+    "conclusion": "M"
+  },
+  "df41caee-4d2d-4a99-87bd-ef5740b31552": {
+    "title": "Chapter Four Packet #26",
+    "chapter": 4,
+    "assumptions": ["H ↔J", "E & (J →N)", "H"],
+    "conclusion": "E&N"
+  },
+  "ba60601f-9c79-4d2a-adb3-93a385022e99": {
+    "title": "Chapter Four Packet #27",
+    "chapter": 4,
+    "assumptions": ["(A & B) → C", "E & A", "E → B"],
+    "conclusion": "C"
+  },
+  "a3630a99-b5d4-4710-aa2d-67edc1d4ebf2": {
+    "title": "Chapter Four Packet #28",
+    "chapter": 4,
+    "assumptions": ["N ↔ K", "K & P", "N → (E & F)"],
+    "conclusion": "F&P"
+  },
+  "b185e8cb-525e-4ab8-b6d9-4bb75cb57339": {
+    "title": "Chapter Four Packet #29",
+    "chapter": 4,
+    "assumptions": ["J →D", "(S & -P) → (D → J)", "S", "-P"],
+    "conclusion": "D↔J"
+  },
+  "753233dd-75cd-48da-b3eb-f19ae8bdd107": {
+    "title": "Chapter Four Packet #30",
+    "chapter": 4,
+    "assumptions": ["(C & B) → D", "A & C", "A →B"],
+    "conclusion": "D"
+  },
+  "76ab5be8-f254-4676-a3cc-aba3a3b5de69": {
+    "title": "Chapter Four Packet #31",
+    "chapter": 4,
+    "assumptions": ["L", "(P →N) → H", "N ↔P", "L → J"],
+    "conclusion": "H&J"
+  },
+  "80f655cf-b337-41d4-93f3-3e9ae50bbfb1": {
+    "title": "Chapter Four Packet #32",
+    "chapter": 4,
+    "assumptions": ["J →(M & L)", "R ↔M", "E & J"],
+    "conclusion": "L&R"
+  },
+  "d913dc65-2ad6-4793-8969-efd04ccff9d6": {
+    "title": "Chapter Four Packet #33",
+    "chapter": 4,
+    "assumptions": ["(A ↔ B) → G", "B →A", "E → (A → B)", "E & H"],
+    "conclusion": "H&G"
+  },
+  "cf8bd3a2-6fd5-41f4-9cc8-d229089964f3": {
+    "title": "Chapter Four Packet #34",
+    "chapter": 4,
+    "assumptions": ["K↔(F&E)", "F→M", "K"],
+    "conclusion": "M&E"
+  },
+  "1c3894c1-d71d-4ea5-9497-38be6e4e98e0": {
+    "title": "Chapter Four Packet #35",
+    "chapter": 4,
+    "assumptions": ["R&T", "R→(J→H)", "M→(H→J)", "T→M"],
+    "conclusion": "J↔H"
+  },
+  "51aec789-08e0-499f-b627-8a4b2d7c7e89": {
+    "title": "Chapter Four Sample Quiz #1, Question #2",
+    "chapter": 4,
+    "assumptions": ["A", "(A&R)→M", "R", "M↔T"],
+    "conclusion": "T"
+  },
+  "032acf83-973a-4e69-bbdd-110b59d60395": {
+    "title": "Chapter Four Sample Quiz #1, Question #3",
+    "chapter": 4,
+    "assumptions": ["H→(-B&W)", "H&S"],
+    "conclusion": "W"
+  },
+  "996c2f98-7944-45a3-9296-31e83f2e60fc": {
+    "title": "Chapter Four Sample Quiz #2, Question #2",
+    "chapter": 4,
+    "assumptions": ["A→(B→C)", "M↔A", "M&B"],
+    "conclusion": "C"
+  },
+  "cb30c777-1158-459a-b2aa-04453feb15d3": {
+    "title": "Chapter Four Sample Quiz #2, Question #3",
+    "chapter": 4,
+    "assumptions": ["(S↔E)→K", "S→E", "L→(E→S)", "L"],
+    "conclusion": "K"
+  },
+  "4325361a-49ea-4783-8708-85e919f03de3": {
+    "title": "Chapter Four Sample Quiz #3, Question #2",
+    "chapter": 4,
+    "assumptions": ["P↔H", "H→R", "P&-E"],
+    "conclusion": "R&-E"
+  },
+  "796fa9e0-a612-4cac-ae2c-271fde7df33f": {
+    "title": "Chapter Four Sample Quiz #3, Question #3",
+    "chapter": 4,
+    "assumptions": ["M", "Z→(K&F)", "Z↔M"],
+    "conclusion": "F"
+  },
+  "c25e0d7c-e969-4801-bfd6-0e5adaec5253": {
+    "title": "Chapter Four Sample Quiz #4, Question #2",
+    "chapter": 4,
+    "assumptions": ["-P→(U&J)", "U→(N&R)", "-P"],
+    "conclusion": "N&J"
+  },
+  "d5d4aa22-314e-4ca3-9b99-bbe0e7bc6185": {
+    "title": "Chapter Four Sample Quiz #4, Question #3",
+    "chapter": 4,
+    "assumptions": ["(A&-B)→(R↔S)", "A&G", "G→-B", "(S→R)→T"],
+    "conclusion": "T"
+  },
+  "d1eecc0b-6d55-4bea-a58d-197f344c0bbb": {
+    "title": "Chapter Five #1",
+    "chapter": 5,
+    "assumptions": ["R"],
+    "conclusion": "R∨K"
+  },
+  "9a87191b-0fd0-44c8-a728-0f67d5c2f443": {
+    "title": "Chapter Five #2",
+    "chapter": 5,
+    "assumptions": ["M&R"],
+    "conclusion": "(R∨S)&(E∨M)"
+  },
+  "470d4f37-9f5b-4e79-ba4b-d89baecc60b2": {
+    "title": "Chapter Five #3",
+    "chapter": 5,
+    "assumptions": ["L→T", "(T∨J)→W", "L"],
+    "conclusion": "W"
+  },
+  "d4cccc8b-217c-41c2-b5b6-60205e7b62cc": {
+    "title": "Chapter Five #4",
+    "chapter": 5,
+    "assumptions": ["P&G", "(G∨M)→N"],
+    "conclusion": "N&P"
+  },
+  "e5284236-93c1-47ef-a725-cad0fd93fb31": {
+    "title": "Chapter Five #5",
+    "chapter": 5,
+    "assumptions": ["(E∨B)→J", "(F∨H)→B", "F&A"],
+    "conclusion": "J&A"
+  },
+  "863bff7e-0798-46be-85f9-af6e5d8bd665": {
+    "title": "Chapter Five #6",
+    "chapter": 5,
+    "assumptions": ["(J&L)↔N", "N&K"],
+    "conclusion": "K&(L∨P)"
+  },
+  "ad47a9e0-eb12-445a-af2d-d0fc8df2006a": {
+    "title": "Chapter Five #7",
+    "chapter": 5,
+    "assumptions": ["R"],
+    "conclusion": "G∨(M∨(E∨R))"
+  },
+  "18193721-fedd-484a-a179-4c9649351356": {
+    "title": "Chapter Five #8",
+    "chapter": 5,
+    "assumptions": ["(((A∨B)∨C)∨D)→E", "B"],
+    "conclusion": "E∨F"
+  },
+  "2585f545-12ea-4b0e-a041-d53080d36a91": {
+    "title": "Chapter Five #9",
+    "chapter": 5,
+    "assumptions": ["(K∨T)↔E", "K↔(P&H)", "H&(-M→P)", "-M"],
+    "conclusion": "E"
+  },
+  "19d1d4d9-7a0e-41ca-92de-191a142e1669": {
+    "title": "Chapter Five #10",
+    "chapter": 5,
+    "assumptions": ["A→(-B&-C)", "-B→D", "(-C→E)&A"],
+    "conclusion": "(D∨F)&E"
+  },
+  "e37f860c-cff2-43f2-9d18-c21b29bd4c26": {
+    "title": "Chapter Five #11",
+    "chapter": 5,
+    "assumptions": ["A→C", "B→C", "A∨B"],
+    "conclusion": "C"
+  },
+  "defb4e1b-1380-4804-bb44-3994ccf31e32": {
+    "title": "Chapter Five #12",
+    "chapter": 5,
+    "assumptions": ["P∨(E&S)", "P→-J", "(E&S)→-J"],
+    "conclusion": "-J"
+  },
+  "babe5668-6816-4d05-b16c-744950880de7": {
+    "title": "Chapter Five #13",
+    "chapter": 5,
+    "assumptions": ["K↔N", "N∨W", "W→K"],
+    "conclusion": "K"
+  },
+  "d3a8d324-9390-4974-83c8-bd7cc4fdc50d": {
+    "title": "Chapter Five #14",
+    "chapter": 5,
+    "assumptions": ["L→(H→B)", "L&E", "E→(H∨-S)", "-S→B"],
+    "conclusion": "B"
+  },
+  "982d9d09-c580-42b2-9174-10ca08d5a9c3": {
+    "title": "Chapter Five #15",
+    "chapter": 5,
+    "assumptions": ["(P&B)→(S→G)", "M∨(P&B)", "S", "M→(S→G)"],
+    "conclusion": "G"
+  },
+  "907fd946-ce68-4cee-89b6-4b11b5ec5529": {
+    "title": "Chapter Five #16",
+    "chapter": 5,
+    "assumptions": ["E∨L", "L→(A&B)", "E→(A&B)", "B→C"],
+    "conclusion": "C∨D"
+  },
+  "a0b94ebb-f4f6-4c98-b737-116ec1e367a9": {
+    "title": "Chapter Five #17",
+    "chapter": 5,
+    "assumptions": ["R→(W∨(C&G))", "R&-M", "-M→(W→H)", "(C&G)→H"],
+    "conclusion": "H"
+  },
+  "7cf36622-7c6a-465f-a664-a006bb724555": {
+    "title": "Chapter Five #18",
+    "chapter": 5,
+    "assumptions": ["A→E", "A∨M", "M→P"],
+    "conclusion": "E∨P"
+  },
+  "68e3781f-eb06-4e62-934d-9b30bfed421c": {
+    "title": "Chapter Five #19",
+    "chapter": 5,
+    "assumptions": ["(S&P)→R", "M→N", "M∨(S&P)"],
+    "conclusion": "R∨N"
+  },
+  "c8ec6f4a-6c32-4686-9197-d6415fee550c": {
+    "title": "Chapter Five #20",
+    "chapter": 5,
+    "assumptions": ["B∨F", "(W∨M)→L", "B→W", "F→M"],
+    "conclusion": "L"
+  },
+  "0e186fe8-a84e-4144-871e-422e3c9dc1d6": {
+    "title": "Chapter Five #21",
+    "chapter": 5,
+    "assumptions": ["H∨S", "J&(H→E)", "S→E"],
+    "conclusion": "E∨P"
+  },
+  "62d7a13d-7f36-4751-b8ca-2676b272e7c7": {
+    "title": "Chapter Five #22",
+    "chapter": 5,
+    "assumptions": ["(L&K)↔T", "W→(T∨D)", "W&(D→(L&K))"],
+    "conclusion": "L"
+  },
+  "e25bb065-0dff-4c4b-9609-2fb223afa43a": {
+    "title": "Chapter Five Packet #1",
+    "chapter": 5,
+    "assumptions": ["A"],
+    "conclusion": "C∨(B∨A)"
+  },
+  "cc0c5221-73ba-4f9a-816f-6288de8f08fd": {
+    "title": "Chapter Five Packet #2",
+    "chapter": 5,
+    "assumptions": ["(F ∨ -Q) →R", "F"],
+    "conclusion": "R"
+  },
+  "cbc57d91-2b2b-4cd6-8896-51a80063824a": {
+    "title": "Chapter Five Packet #3",
+    "chapter": 5,
+    "assumptions": ["H & M"],
+    "conclusion": "(M∨G)&H"
+  },
+  "0f8397b0-5155-4337-a115-9d351976e0f0": {
+    "title": "Chapter Five Packet #4",
+    "chapter": 5,
+    "assumptions": ["X →R", "Y → R", "X ∨ Y"],
+    "conclusion": "R"
+  },
+  "c5f0c0ce-5812-426a-a49f-6ef2da8834dc": {
+    "title": "Chapter Five Packet #5",
+    "chapter": 5,
+    "assumptions": ["(G & H) ∨ R", "(G & H) → -T", "R → -T"],
+    "conclusion": "-T∨M"
+  },
+  "a55ae899-d1f4-4a75-96e6-8164a2f7aa2a": {
+    "title": "Chapter Five Packet #6",
+    "chapter": 5,
+    "assumptions": ["A → (L & G)", "B → (L & G)", "A ∨ B"],
+    "conclusion": "G"
+  },
+  "c1c6e962-eeab-4f3d-b58d-da0cc493908e": {
+    "title": "Chapter Five Packet #7",
+    "chapter": 5,
+    "assumptions": ["K → (E ↔ N)", "W → (E ↔ N)", "G → (K ∨ W)", "G"],
+    "conclusion": "N→E"
+  },
+  "a6951d1d-a42b-4daa-928e-686c013b21d2": {
+    "title": "Chapter Five Packet #8",
+    "chapter": 5,
+    "assumptions": ["H → (J → I)", "(Z →I) & H", "B & (J ∨ Z)"],
+    "conclusion": "I&B"
+  },
+  "d5a8f3bf-aadf-4b06-a012-31bab151ed68": {
+    "title": "Chapter Five Packet #9",
+    "chapter": 5,
+    "assumptions": ["R → H", "J → H", "M & (J ∨ R)"],
+    "conclusion": "H"
+  },
+  "cd8a0504-d90f-4768-9a5e-82d4b0a3a201": {
+    "title": "Chapter Five Packet #10",
+    "chapter": 5,
+    "assumptions": ["A & (B → (C & H))", "D → (E → (C & H))", "D ↔ A", "A → (B ∨ E)"],
+    "conclusion": "A&C"
+  },
+  "747e5a48-9e02-4612-a811-34d20f542ded": {
+    "title": "Chapter Five Packet #11",
+    "chapter": 5,
+    "assumptions": ["Q → (-T ∨ L)", "(S ∨ H) → (-T ∨ L)", "Q ∨ (S ∨ H)", "(-T ∨ L) ↔ N"],
+    "conclusion": "N"
+  },
+  "15c92b7c-a912-42f1-9b90-8e0e826de0cc": {
+    "title": "Chapter Five Packet #12",
+    "chapter": 5,
+    "assumptions": ["A", "(A ∨ Z) → B", "(B ∨ Y) → C", "(C ∨ X) → D"],
+    "conclusion": "D∨W"
+  },
+  "d2aac533-4e98-4d8b-bc2a-0ca433094415": {
+    "title": "Chapter Five Packet #13",
+    "chapter": 5,
+    "assumptions": ["K", "(K ∨ T) ↔ N"],
+    "conclusion": "N&(K∨T)"
+  },
+  "f71ff44c-3590-4e9d-84a8-69d742890487": {
+    "title": "Chapter Five Packet #14",
+    "chapter": 5,
+    "assumptions": ["H & R", "H → M", "R → K", "(K ∨ G) → N"],
+    "conclusion": "N&M"
+  },
+  "5e78c26a-da9e-42cc-93ea-bead2f51c7f2": {
+    "title": "Chapter Five Packet #15",
+    "chapter": 5,
+    "assumptions": ["J↔ W", "Q & (W ∨ F)", "F → J"],
+    "conclusion": "J"
+  },
+  "f3e1a277-48b9-4723-a39d-2bb2d4058800": {
+    "title": "Chapter Five Packet #16",
+    "chapter": 5,
+    "assumptions": ["(A & B) → (E ∨ F)", "E →R", "A & (F → R)", "B"],
+    "conclusion": "R"
+  },
+  "4c8493fd-b21b-4ce6-a609-a127070b28bb": {
+    "title": "Chapter Five Packet #17",
+    "chapter": 5,
+    "assumptions": ["H & L", "H → C", "(C ∨ M) → D"],
+    "conclusion": "D∨J"
+  },
+  "fff9fcd5-11d3-421a-97f4-1f86a7273730": {
+    "title": "Chapter Five Packet #18",
+    "chapter": 5,
+    "assumptions": ["(S ∨ A) → (E ∨ T)", "S & (E → M)", "T → M"],
+    "conclusion": "M"
+  },
+  "97ad6f07-821b-4160-a288-7c375f962fd6": {
+    "title": "Chapter Five Packet #19",
+    "chapter": 5,
+    "assumptions": ["J & K", "(E ∨ K) → R", "(R ∨ T) → L"],
+    "conclusion": "L&J"
+  },
+  "4519a4cb-2f9d-4e05-8291-bf0997f4c6e2": {
+    "title": "Chapter Five Packet #20",
+    "chapter": 5,
+    "assumptions": ["(((E ∨ M) ∨ R) ∨ K) → -J", "M"],
+    "conclusion": "-J"
+  },
+  "86636be0-377e-4a76-b9f4-1dbee861c568": {
+    "title": "Chapter Five Packet #21",
+    "chapter": 5,
+    "assumptions": ["R → N", "-H → (B ∨ R)", "(B → N) & -H", "N → E"],
+    "conclusion": "E"
+  },
+  "c1565efe-594d-4a46-be91-5be9a0e328a7": {
+    "title": "Chapter Five Packet #22",
+    "chapter": 5,
+    "assumptions": ["(J ∨ S) → H", "S & (H → N)"],
+    "conclusion": "N∨E"
+  },
+  "d35542a9-1282-422d-9d18-626e64994b57": {
+    "title": "Chapter Five Packet #23",
+    "chapter": 5,
+    "assumptions": ["(G ∨ P) & W", "G → (E & R)", "P → (E & R)"],
+    "conclusion": "R&W"
+  },
+  "4e6bb207-2b72-42a4-b5b3-7c91993ad7e0": {
+    "title": "Chapter Five Packet #24",
+    "chapter": 5,
+    "assumptions": ["(R ∨ G) → (E & S)", "L → R", "P & L"],
+    "conclusion": "S&P"
+  },
+  "c7154fc5-a677-4cdc-af43-75939dfe6901": {
+    "title": "Chapter Five Packet #25",
+    "chapter": 5,
+    "assumptions": ["M → (E & F)", "(H & K) ∨ M", "(H & K) → (E & F)"],
+    "conclusion": "F"
+  },
+  "8b21b961-4430-4804-9577-7dc69febc758": {
+    "title": "Chapter Five Packet #26",
+    "chapter": 5,
+    "assumptions": ["K → (N & F)", "(E ∨ G) → K", "G"],
+    "conclusion": "F∨P"
+  },
+  "3c008678-b919-4102-8349-5ad0362a1e72": {
+    "title": "Chapter Five Sample Quiz #1, Proof #1",
+    "chapter": 5,
+    "assumptions": ["A", "(P∨A)→(E&L)", "E→S"],
+    "conclusion": "S&L"
+  },
+  "6240d923-1f45-4966-aee6-f3770428d4a2": {
+    "title": "Chapter Five Sample Quiz #1, Proof #2",
+    "chapter": 5,
+    "assumptions": ["(M∨P)&(M→S)", "P→S", "S→W"],
+    "conclusion": "W"
+  },
+  "ca55ca7c-1edd-47ee-9eb5-f35058518d48": {
+    "title": "Chapter Five Sample Quiz #2, Proof #1",
+    "chapter": 5,
+    "assumptions": ["M&R", "(R∨K)→T", "T→G"],
+    "conclusion": "G∨L"
+  },
+  "697ccb30-f563-49b3-8bd9-bc6df4676f59": {
+    "title": "Chapter Five Sample Quiz #2, Proof #2",
+    "chapter": 5,
+    "assumptions": ["B∨F", "W&(B→(P&R))", "F→(P&R)"],
+    "conclusion": "R"
+  },
+  "64558dbb-6eca-4b12-878b-1ced08a92746": {
+    "title": "Chapter Five Sample Quiz #3, Proof #1",
+    "chapter": 5,
+    "assumptions": ["S→(J&M)", "R→(J&M)", "(S∨R)&L", "J→K"],
+    "conclusion": "K&L"
+  },
+  "7177cdf7-6a9e-49e8-a171-97afa6bafac2": {
+    "title": "Chapter Five Sample Quiz #3, Proof #2",
+    "chapter": 5,
+    "assumptions": ["A", "(A∨B)→C", "(A∨E)→D"],
+    "conclusion": "C&D"
+  },
+  "a12654c2-6986-4885-b9b1-17e87d694645": {
+    "title": "Chapter Five Sample Quiz #4, Proof #1",
+    "chapter": 5,
+    "assumptions": ["R↔G", "M→(T→R)", "M&N", "G∨T"],
+    "conclusion": "R"
+  },
+  "834e8385-b7b0-4e55-a9ec-5674cf3db0dc": {
+    "title": "Chapter Five Sample Quiz #4, Proof #2",
+    "chapter": 5,
+    "assumptions": ["(K∨S)→H", "K&E", "(P∨E)→B"],
+    "conclusion": "B&H"
+  },
+  "5b35cbf6-dee5-440e-b6ed-607dada1ce16": {
+    "title": "Chapter Six #1",
+    "chapter": 6,
+    "assumptions": ["C→F", "F→B", "B→A"],
+    "conclusion": "C→A"
+  },
+  "a6ee8fc5-d0d4-4010-a100-11222da5e262": {
+    "title": "Chapter Six #2",
+    "chapter": 6,
+    "assumptions": ["(B&A)→C"],
+    "conclusion": "A→(B→C)"
+  },
+  "e0032070-03eb-4674-8ddf-d1b1777b6850": {
+    "title": "Chapter Six #3",
+    "chapter": 6,
+    "assumptions": ["L→-E", "R→L", "M→R"],
+    "conclusion": "M→-E"
+  },
+  "9017d9ad-f053-4647-b67c-9613f5493442": {
+    "title": "Chapter Six #4",
+    "chapter": 6,
+    "assumptions": ["(M&N)→-K", "H→(M&N)"],
+    "conclusion": "H→-K"
+  },
+  "0ad4727a-6784-4b48-81f2-554e0d711de7": {
+    "title": "Chapter Six #5",
+    "chapter": 6,
+    "assumptions": ["A→(B&C)", "C→D"],
+    "conclusion": "A→D"
+  },
+  "13d7f2c0-45b1-4be7-a6d9-9e59ffd21cbd": {
+    "title": "Chapter Six #6",
+    "chapter": 6,
+    "assumptions": ["(J→B)→C", "J→A", "A→B"],
+    "conclusion": "C"
+  },
+  "9f8e4930-561a-4494-8376-61c8589a70ad": {
+    "title": "Chapter Six #7",
+    "chapter": 6,
+    "assumptions": ["R→(E→M)", "E"],
+    "conclusion": "R→M"
+  },
+  "5c110894-8de7-4b27-853d-3777fe04b12e": {
+    "title": "Chapter Six #8",
+    "chapter": 6,
+    "assumptions": ["P→S", "L→E"],
+    "conclusion": "(P&L)→(S&E)"
+  },
+  "ea18f9bc-ede3-4c70-89b5-239e305d77ef": {
+    "title": "Chapter Six #9",
+    "chapter": 6,
+    "assumptions": ["G↔M", "G→E"],
+    "conclusion": "M→(G&E)"
+  },
+  "3674027b-9ee1-461d-b6da-b2341e888081": {
+    "title": "Chapter Six #10",
+    "chapter": 6,
+    "assumptions": ["(L∨F)→N", "(N∨B)→K"],
+    "conclusion": "L→K"
+  },
+  "a3d51b88-5fdf-483f-9603-c8943c1b6045": {
+    "title": "Chapter Six #11",
+    "chapter": 6,
+    "assumptions": ["A→B", "B→C", "C→D"],
+    "conclusion": "A→(B&(C&D))"
+  },
+  "2fbeeb75-5168-48b1-8043-fa9929e26856": {
+    "title": "Chapter Six #12",
+    "chapter": 6,
+    "assumptions": ["M↔(B&E)", "L→B", "E"],
+    "conclusion": "L→M"
+  },
+  "0409a065-3231-4098-8b96-64a583c1806a": {
+    "title": "Chapter Six #13",
+    "chapter": 6,
+    "assumptions": ["B→A", "N→B", "A→N"],
+    "conclusion": "B↔A"
+  },
+  "09ad53cc-ccf0-4763-9441-543b7e6669a8": {
+    "title": "Chapter Six #14",
+    "chapter": 6,
+    "assumptions": ["C ∨ L", "E → J", "C → E", "L → J"],
+    "conclusion": "J"
+  },
+  "31559cf8-c4ee-4fe0-9600-9810e044bd60": {
+    "title": "Chapter Six #15",
+    "chapter": 6,
+    "assumptions": ["(E&F)→L", "M→R", "(R&L)→N"],
+    "conclusion": "M→((E&F)→N)"
+  },
+  "db719ac6-4c78-4326-88fa-86c649e06e48": {
+    "title": "Chapter Six #16",
+    "chapter": 6,
+    "assumptions": ["T→M", "E→R", "R→P", "T∨E"],
+    "conclusion": "M∨P"
+  },
+  "66c1cf0f-b054-495c-ae06-85fd3e934186": {
+    "title": "Chapter Six #17",
+    "chapter": 6,
+    "assumptions": ["W→(M&R)", "(R→N)&(E→W)"],
+    "conclusion": "(E→N)&M"
+  },
+  "d2c2b0c2-0aaa-45b0-b5ea-5751238cccde": {
+    "title": "Chapter Six #18",
+    "chapter": 6,
+    "assumptions": ["Q→J", "(J&L)→R"],
+    "conclusion": "(L&Q)→R"
+  },
+  "98c563d7-7750-4d45-b660-673ba0bc2ad3": {
+    "title": "Chapter Six #19",
+    "chapter": 6,
+    "assumptions": ["(D∨A)→(G∨P)", "(P→K)&E", "G→K"],
+    "conclusion": "(A→K)&E"
+  },
+  "1d89f35f-1584-4800-96db-39f26f718fd8": {
+    "title": "Chapter Six #20",
+    "chapter": 6,
+    "assumptions": ["A→B", "B→C", "C→D"],
+    "conclusion": "A→D"
+  },
+  "28cd0b05-40d1-4778-b7c0-1df957f6a1b2": {
+    "title": "Chapter Six Packet #1",
+    "chapter": 6,
+    "assumptions": ["A→B", "B→C"],
+    "conclusion": "A→C"
+  },
+  "69b6fdf5-dfdf-4e44-88c1-5486ce87070b": {
+    "title": "Chapter Six Packet #2",
+    "chapter": 6,
+    "assumptions": ["L→-T"],
+    "conclusion": "L→(G∨-T)"
+  },
+  "d77ac962-db4a-40be-a95d-6bf5574bddb4": {
+    "title": "Chapter Six Packet #3",
+    "chapter": 6,
+    "assumptions": ["(A∨B)→C"],
+    "conclusion": "A→C"
+  },
+  "e4a2bc46-a25b-438c-afb2-89cd7594e855": {
+    "title": "Chapter Six Packet #4",
+    "chapter": 6,
+    "assumptions": ["G→C", "L→C"],
+    "conclusion": "(G∨L)→C"
+  },
+  "24d761fa-c1ad-4be5-ac78-aa870928513d": {
+    "title": "Chapter Six Packet #5",
+    "chapter": 6,
+    "assumptions": ["A→(B→C)"],
+    "conclusion": "(A&B)→C"
+  },
+  "071fd7a3-a694-4775-b814-c4291d8e417a": {
+    "title": "Chapter Six Packet #6",
+    "chapter": 6,
+    "assumptions": ["R&(N→M)", "M↔K"],
+    "conclusion": "N→K"
+  },
+  "0ccd91c3-987c-47e7-8b81-8d87fdfbdb05": {
+    "title": "Chapter Six Packet #7",
+    "chapter": 6,
+    "assumptions": ["-T→K", "K→V", "V→R"],
+    "conclusion": "-T→(K&R)"
+  },
+  "107fa274-14a7-42cf-a9d5-d75969887e89": {
+    "title": "Chapter Six Packet #8",
+    "chapter": 6,
+    "assumptions": ["A→B", "B→C", "C→D", "D→E"],
+    "conclusion": "A→E"
+  },
+  "0bfbe380-791a-40ce-8336-279177af7adf": {
+    "title": "Chapter Six Packet #9",
+    "chapter": 6,
+    "assumptions": ["B→(H&W)", "K&O"],
+    "conclusion": "O&(B→H)"
+  },
+  "19603376-9106-439d-9a0d-f5cc29ddd18b": {
+    "title": "Chapter Six Packet #10",
+    "chapter": 6,
+    "assumptions": ["-W→M", "Z→J"],
+    "conclusion": "(-W&Z)→(M&J)"
+  },
+  "866b3272-b043-4e70-8700-2e7870678b20": {
+    "title": "Chapter Six Packet #11",
+    "chapter": 6,
+    "assumptions": ["(M∨(T→L))→K", "R→L", "T→R"],
+    "conclusion": "K"
+  },
+  "58deccac-885d-431d-81e1-11cbc82d6868": {
+    "title": "Chapter Six Packet #12",
+    "chapter": 6,
+    "assumptions": ["H∨T", "H→R", "T↔R", "A→(M&L)"],
+    "conclusion": "A→(R&M)"
+  },
+  "1f652e8e-47e6-41b0-9a8f-28bd79fe3056": {
+    "title": "Chapter Six Packet #13",
+    "chapter": 6,
+    "assumptions": ["(X&Y)→Z"],
+    "conclusion": "Y→(X→Z)"
+  },
+  "7b57da67-7e97-496c-9206-e01915285c41": {
+    "title": "Chapter Six Packet #14",
+    "chapter": 6,
+    "assumptions": ["T∨G", "T→A", "G↔(A&Y)"],
+    "conclusion": "A"
+  },
+  "ee58a22f-270e-4bc8-ae32-68ab7ab78a5a": {
+    "title": "Chapter Six Packet #15",
+    "chapter": 6,
+    "assumptions": ["N→(S→L)", "S&(L→P)"],
+    "conclusion": "N→P"
+  },
+  "b5843fc3-c3cf-4cd8-ad02-487841d26210": {
+    "title": "Chapter Six Packet #16",
+    "chapter": 6,
+    "assumptions": ["L→(R&E)", "R→H", "(L→H)→W"],
+    "conclusion": "W"
+  },
+  "f5f10be4-6a60-48bb-9d2f-dce5c2b61a59": {
+    "title": "Chapter Six Packet #17",
+    "chapter": 6,
+    "assumptions": ["H↔M", "H→(R&T)", "N&(R→-P)"],
+    "conclusion": "(M→-P)∨K"
+  },
+  "e898b19d-8e0f-44f3-8836-8ec85defef96": {
+    "title": "Chapter Six Packet #18",
+    "chapter": 6,
+    "assumptions": ["A→(B&C)", "B→D", "C→E"],
+    "conclusion": "A→(D&E)"
+  },
+  "641b11dc-141d-4cc4-b7bd-e0383260ed74": {
+    "title": "Chapter Six Packet #19",
+    "chapter": 6,
+    "assumptions": ["M→(N&G)", "N→E", "(M→E)→Z"],
+    "conclusion": "Z"
+  },
+  "e4dc788c-8dbb-4b09-9edb-20206cb62c94": {
+    "title": "Chapter Six Packet #20",
+    "chapter": 6,
+    "assumptions": ["(K∨P)→-S", "-S→(H&R)"],
+    "conclusion": "K→R"
+  },
+  "b4d373f3-78e2-4543-b30f-59b5b64f8449": {
+    "title": "Chapter Six Packet #21",
+    "chapter": 6,
+    "assumptions": ["(L→B)→J", "(A&L)→B", "A"],
+    "conclusion": "J"
+  },
+  "1599c305-7699-4e15-adba-8ee4a23ce514": {
+    "title": "Chapter Six Packet #22",
+    "chapter": 6,
+    "assumptions": ["A →B", "B →C", "C →D"],
+    "conclusion": "A→D"
+  },
+  "517b9c72-fab2-4cc1-aee1-8cc2f63a65eb": {
+    "title": "Chapter Six Packet #23",
+    "chapter": 6,
+    "assumptions": ["B → H", "C → (P & R)"],
+    "conclusion": "(B&C)→(R&H)"
+  },
+  "7a960572-b3cd-4020-8337-cd228b9677ea": {
+    "title": "Chapter Six Packet #24",
+    "chapter": 6,
+    "assumptions": ["M ↔K", "K → E", "(M → E) → T"],
+    "conclusion": "T"
+  },
+  "7a7140f1-cb14-48e5-a5fa-dfd57ce1b368": {
+    "title": "Chapter Six Packet #25",
+    "chapter": 6,
+    "assumptions": ["M → -E", "N → M", "-E → (K & H)"],
+    "conclusion": "N→(K&H)"
+  },
+  "347ac81a-4923-4765-a3fa-ad8e42b7b48f": {
+    "title": "Chapter Six Packet #26",
+    "chapter": 6,
+    "assumptions": ["N", "L → E"],
+    "conclusion": "(N↔L)→E"
+  },
+  "28a16a9d-b14e-445a-8c15-f0c9ad6e5bf6": {
+    "title": "Chapter Six Packet #27",
+    "chapter": 6,
+    "assumptions": ["S ∨ R", "R → M", "E → M", "S → E"],
+    "conclusion": "M"
+  },
+  "67862c9c-33f7-49aa-825a-8262ccc25eff": {
+    "title": "Chapter Six Packet #28",
+    "chapter": 6,
+    "assumptions": ["L →R", "E → L", "R → M"],
+    "conclusion": "E→M"
+  },
+  "da420160-4162-445a-9cf3-5319c2d9dffb": {
+    "title": "Chapter Six Packet #29",
+    "chapter": 6,
+    "assumptions": ["(J ∨ P) → K", "G"],
+    "conclusion": "J→(K&G)"
+  },
+  "53a95250-604c-4e54-b4f9-997bacf72f4a": {
+    "title": "Chapter Six Packet #30",
+    "chapter": 6,
+    "assumptions": ["H ↔ N", "N → B", "(R & B) → W"],
+    "conclusion": "(H&R)→W"
+  },
+  "2734bb0a-4dca-4464-86e5-3a827ba0094b": {
+    "title": "Chapter Six Packet #31",
+    "chapter": 6,
+    "assumptions": ["-B → F", "F → E", "M → -B"],
+    "conclusion": "M→E"
+  },
+  "4a6dfc4f-c8da-43ec-bff7-e9999cfc4847": {
+    "title": "Chapter Six Packet #32",
+    "chapter": 6,
+    "assumptions": ["E ↔S", "D → E", "P"],
+    "conclusion": "(D→S)&P"
+  },
+  "1c80ae8e-7b93-4060-afc9-722f7d2828e1": {
+    "title": "Chapter Six Packet #33",
+    "chapter": 6,
+    "assumptions": ["A → C", "B → D"],
+    "conclusion": "(A&B)→(C&D)"
+  },
+  "171e527c-dd14-43c2-960c-82a84e64cb48": {
+    "title": "Chapter Six Packet #34",
+    "chapter": 6,
+    "assumptions": ["B → C", "C → D", "A → B"],
+    "conclusion": "A→D"
+  },
+  "1cceafe9-2221-4fc2-8447-410bc09dd045": {
+    "title": "Chapter Six Packet #35",
+    "chapter": 6,
+    "assumptions": ["G → M", "R → G", "M → R"],
+    "conclusion": "M↔G"
+  },
+  "b90030f8-16a6-4832-84c1-d5830fbb57b1": {
+    "title": "Chapter Six Packet #36",
+    "chapter": 6,
+    "assumptions": ["E", "K → (N & M)", "M → B"],
+    "conclusion": "K→(B&E)"
+  },
+  "964143ae-7bcc-4afb-bf21-3273083e168f": {
+    "title": "Chapter Six Packet #37",
+    "chapter": 6,
+    "assumptions": ["J → (E & N)", "E → K", "R → J"],
+    "conclusion": "R→K"
+  },
+  "674f5f54-111b-42dd-9b89-4f181b671a42": {
+    "title": "Chapter Six Packet #38",
+    "chapter": 6,
+    "assumptions": ["(B ∨ A) → P", "H → B", "G → F"],
+    "conclusion": "(H&G)→(P&F)"
+  },
+  "c8a857bd-057a-4e08-8a09-3449f68d14e6": {
+    "title": "Chapter Six Packet #39",
+    "chapter": 6,
+    "assumptions": ["P → R", "L → P", "(L → R) → M"],
+    "conclusion": "M"
+  },
+  "458da1af-8c91-41d9-8064-186e0214d4d2": {
+    "title": "Chapter Six Sample Quiz #1, Proof #1",
+    "chapter": 6,
+    "assumptions": ["N→S", "(S∨G)→L"],
+    "conclusion": "N→L"
+  },
+  "bdbaa9d1-46f1-4633-b060-667074172668": {
+    "title": "Chapter Six Sample Quiz #1, Proof #2",
+    "chapter": 6,
+    "assumptions": ["(N&P)→Y", "J→N"],
+    "conclusion": "(P&J)→Y"
+  },
+  "5b4e401e-d24a-48a8-9002-621dbeaf5e34": {
+    "title": "Chapter Six Sample Quiz #1, Proof #3",
+    "chapter": 6,
+    "assumptions": ["A∨B", "A→E", "B→C", "(C∨S)→E"],
+    "conclusion": "E"
+  },
+  "b1b11f03-e2e2-4169-89fa-9c1fe3b2f8c3": {
+    "title": "Chapter Six Sample Quiz #2, Proof #1",
+    "chapter": 6,
+    "assumptions": ["(A&B)→M", "A", "M→H"],
+    "conclusion": "B→H"
+  },
+  "7fdaa0ee-ce98-4bd1-9fa1-9cfeefaca383": {
+    "title": "Chapter Six Sample Quiz #2, Proof #2",
+    "chapter": 6,
+    "assumptions": ["(K∨T)→(G&R)", "(R&M)→J"],
+    "conclusion": "(M&K)→J"
+  },
+  "9db2c683-f4aa-42a3-b149-e515a4e0cd87": {
+    "title": "Chapter Six Sample Quiz #2, Proof #3",
+    "chapter": 6,
+    "assumptions": ["P→N", "N→G", "(N↔P)→B", "G→P"],
+    "conclusion": "B"
+  },
+  "dae92a08-60e1-4bf1-b2a8-297e2896aef7": {
+    "title": "Chapter Six Sample Quiz #3, Proof #1",
+    "chapter": 6,
+    "assumptions": ["(A∨B)→H", "E→A"],
+    "conclusion": "E→H"
+  },
+  "85a719c3-1ab4-469b-bb2a-03d8b7a97ce7": {
+    "title": "Chapter Six Sample Quiz #3, Proof #2",
+    "chapter": 6,
+    "assumptions": ["G→(L&B)", "(B&R)→N"],
+    "conclusion": "(R&G)→N"
+  },
+  "82fb4174-9b55-43a6-bf52-9bf4d6ec44fc": {
+    "title": "Chapter Six Sample Quiz #3, Proof #3",
+    "chapter": 6,
+    "assumptions": ["(A&B)→R", "R→T", "(A→T)→C", "B"],
+    "conclusion": "C"
+  },
+  "f4e3735f-6e34-4dbe-9a73-8a2d7fc7a1b9": {
+    "title": "Chapter Six Sample Quiz #4, Proof #1",
+    "chapter": 6,
+    "assumptions": ["M ∨ N", "N → K", "M → J", "J → K"],
+    "conclusion": "K"
+  },
+  "d2a24758-683f-4943-94c1-758a4deb4cb9": {
+    "title": "Chapter Six Sample Quiz #4, Proof #2",
+    "chapter": 6,
+    "assumptions": ["(P ∨ J) → Y"],
+    "conclusion": "P→(Y∨R)"
+  },
+  "62aa0edd-d3e9-40aa-aac3-f75f5ff5892c": {
+    "title": "Chapter Six Sample Quiz #4, Proof #3",
+    "chapter": 6,
+    "assumptions": ["A → K", "B → (S & T)"],
+    "conclusion": "(A&B)→(K&T)"
+  },
+  "fd513d02-0782-4f5c-818c-20bf2d1afbbf": {
+    "title": "Chapter Seven #1",
+    "chapter": 7,
+    "assumptions": ["Z → M", "-M"],
+    "conclusion": "-Z"
+  },
+  "8ee5de13-5929-4ce4-be9d-fcbe650aa5a7": {
+    "title": "Chapter Seven #2",
+    "chapter": 7,
+    "assumptions": ["-W → -S", "S"],
+    "conclusion": "W"
+  },
+  "174eb547-0198-4a6c-9e95-e38e9e732b4f": {
+    "title": "Chapter Seven #3",
+    "chapter": 7,
+    "assumptions": ["A→C", "B→-C"],
+    "conclusion": "-(A&B)"
+  },
+  "c80dee98-5ce9-412d-92c9-4644830d900f": {
+    "title": "Chapter Seven #4",
+    "chapter": 7,
+    "assumptions": ["E→-H", "M→R", "R→H", "M"],
+    "conclusion": "-E"
+  },
+  "943fb58b-b572-46a5-9ad2-da46dd568503": {
+    "title": "Chapter Seven #5",
+    "chapter": 7,
+    "assumptions": ["K&-M", "N→M"],
+    "conclusion": "-(K→N)"
+  },
+  "2ba69074-06ba-484f-a428-f19503d6aaef": {
+    "title": "Chapter Seven #6",
+    "chapter": 7,
+    "assumptions": ["-J→-F", "E&F"],
+    "conclusion": "J&E"
+  },
+  "f3870bef-9cfd-4a18-828a-cca3b8ca273e": {
+    "title": "Chapter Seven #9",
+    "chapter": 7,
+    "assumptions": ["B&(E→-M)", "(-D→E)&M"],
+    "conclusion": "D&B"
+  },
+  "20704397-bce7-4531-94a0-42b1308f7cb2": {
+    "title": "Chapter Seven #10",
+    "chapter": 7,
+    "assumptions": ["C→B", "(A→C)&(-A→-E)", "E"],
+    "conclusion": "B"
+  },
+  "9b480692-9c60-43dc-bcb9-7211dc56ba0a": {
+    "title": "Chapter Seven #11",
+    "chapter": 7,
+    "assumptions": ["M→H", "K→H", "-H"],
+    "conclusion": "-(M∨K)"
+  },
+  "afe485f6-1378-4770-b088-719309805bff": {
+    "title": "Chapter Seven #12",
+    "chapter": 7,
+    "assumptions": ["C∨D", "E→F", "-F&G", "C→E"],
+    "conclusion": "-(D→F)&G"
+  },
+  "d297bb62-b1f2-4823-8cea-4ff9ce38e3c7": {
+    "title": "Chapter Seven #13",
+    "chapter": 7,
+    "assumptions": ["(H∨A)→(P&K)", "(-H&E)→C", "E&-C"],
+    "conclusion": "K"
+  },
+  "0f0eeb5b-173b-45e8-aa9a-cc720ffeed9a": {
+    "title": "Chapter Seven #14",
+    "chapter": 7,
+    "assumptions": ["-(Z&M)", "B→Z", "W→M"],
+    "conclusion": "-(W&B)"
+  },
+  "db089543-c0d4-4adc-ae29-601b42aafe34": {
+    "title": "Chapter Seven #15",
+    "chapter": 7,
+    "assumptions": ["L→H", "U→(M→L)", "-(M→H)"],
+    "conclusion": "-U"
+  },
+  "352bd3dd-5756-465b-8c65-95545d4ee04f": {
+    "title": "Chapter Seven #16",
+    "chapter": 7,
+    "assumptions": ["B→C", "A→-D"],
+    "conclusion": "-((A&B)&(C→D))"
+  },
+  "0b89e9d2-8d5f-45d6-b9a7-cbd82cf86e6d": {
+    "title": "Chapter Seven #17",
+    "chapter": 7,
+    "assumptions": ["P→Q"],
+    "conclusion": "-Q→-P"
+  },
+  "2aba958e-2765-4c11-838b-dd7b91611a70": {
+    "title": "Chapter Seven Packet #1",
+    "chapter": 7,
+    "assumptions": ["-A→B", "-B"],
+    "conclusion": "A"
+  },
+  "8303ca75-3ccb-4cab-ac3e-93f3f7bcc016": {
+    "title": "Chapter Seven Packet #2",
+    "chapter": 7,
+    "assumptions": ["-(H∨R)→-M", "M"],
+    "conclusion": "H∨R"
+  },
+  "882c460c-8c31-473a-bd83-470f25a17108": {
+    "title": "Chapter Seven Packet #3",
+    "chapter": 7,
+    "assumptions": ["K→B", "-(K&B)"],
+    "conclusion": "-K"
+  },
+  "967bfa31-19c9-4bbf-80c2-6d357d7a5854": {
+    "title": "Chapter Seven Packet #4",
+    "chapter": 7,
+    "assumptions": ["-R→-P"],
+    "conclusion": "P→R"
+  },
+  "f7ed1202-8c5e-44de-b13d-775da148ef44": {
+    "title": "Chapter Seven Packet #5",
+    "chapter": 7,
+    "assumptions": ["U", "U→E", "--Q→-E"],
+    "conclusion": "-Q"
+  },
+  "0e7a04e9-6f86-4485-aa88-30422f105c52": {
+    "title": "Chapter Seven Packet #6",
+    "chapter": 7,
+    "assumptions": ["L→T", "-T"],
+    "conclusion": "-L"
+  },
+  "7e9ed39b-6543-4ffc-a5a7-4d5f517071a5": {
+    "title": "Chapter Seven Packet #7",
+    "chapter": 7,
+    "assumptions": ["-(I∨L)"],
+    "conclusion": "-(I&L)"
+  },
+  "fa215e9b-c0ae-47e9-8f64-a67e235308cd": {
+    "title": "Chapter Seven Packet #8",
+    "chapter": 7,
+    "assumptions": ["A→B", "-(A&B)"],
+    "conclusion": "M∨-A"
+  },
+  "bb91b64e-5ff8-434b-a96d-5cfdfb16bcbe": {
+    "title": "Chapter Seven Packet #9",
+    "chapter": 7,
+    "assumptions": ["C", "C→(J∨A)", "J→-S", "A→-S", "-M→S"],
+    "conclusion": "M"
+  },
+  "f37304b3-ca78-4fe0-b048-5e519cc079ed": {
+    "title": "Chapter Seven Packet #10",
+    "chapter": 7,
+    "assumptions": ["P → E", "-G → -(E & R)", "P & R"],
+    "conclusion": "G"
+  },
+  "3a50375c-43d2-4803-8fa8-8f47bd17636c": {
+    "title": "Chapter Seven Packet #11",
+    "chapter": 7,
+    "assumptions": ["K → (P & -F)", "-E → F"],
+    "conclusion": "-(K&-E)"
+  },
+  "5c00209c-c7b7-4b16-b003-da7670ba0baf": {
+    "title": "Chapter Seven Packet #12",
+    "chapter": 7,
+    "assumptions": ["-R → M", "-P → B", "B → -M"],
+    "conclusion": "-(-P&-R)"
+  },
+  "57cfee04-aec1-42d2-af7b-ceed3afb9a36": {
+    "title": "Chapter Seven Packet #13",
+    "chapter": 7,
+    "assumptions": ["(S & -K) ↔ R", "E & T", "(E → S) & -R"],
+    "conclusion": "K"
+  },
+  "3eecf1de-cbd5-4664-84b0-f55bbcc4635d": {
+    "title": "Chapter Seven Packet #14",
+    "chapter": 7,
+    "assumptions": ["T → R", "H → R", "-R"],
+    "conclusion": "-(T∨H)"
+  },
+  "39af126e-09a0-471c-a181-003823b98634": {
+    "title": "Chapter Seven Packet #15",
+    "chapter": 7,
+    "assumptions": ["E & R", "L → F", "(-L & R) → -E"],
+    "conclusion": "F"
+  },
+  "75f278d7-14e4-444e-b215-26228d7f8f9c": {
+    "title": "Chapter Seven Packet #16",
+    "chapter": 7,
+    "assumptions": ["L → R", "-(R ∨ B)", "P →L"],
+    "conclusion": "-P"
+  },
+  "52dd3e43-8886-4ba0-8f79-765b097da0fc": {
+    "title": "Chapter Seven Packet #18",
+    "chapter": 7,
+    "assumptions": ["T", "T → (-E & M)", "H → E"],
+    "conclusion": "-H"
+  },
+  "b48dd38a-e231-48ca-ae96-1d4c2459c194": {
+    "title": "Chapter Seven Packet #19",
+    "chapter": 7,
+    "assumptions": ["G → R", "-R & L"],
+    "conclusion": "-(L→G)"
+  },
+  "2a29032c-71ef-4379-a319-5b54b9dc803f": {
+    "title": "Chapter Seven Packet #20",
+    "chapter": 7,
+    "assumptions": ["P → -E", "N → E"],
+    "conclusion": "-(N&P)"
+  },
+  "01a201e1-2f6f-4d9b-aa3e-7d0eefa1a33f": {
+    "title": "Chapter Seven Packet #21",
+    "chapter": 7,
+    "assumptions": ["-R", "-K → B", "B → R"],
+    "conclusion": "K∨F"
+  },
+  "fa2a1bb7-9ecc-419e-9c57-ee5ca491eb43": {
+    "title": "Chapter Seven Packet #22",
+    "chapter": 7,
+    "assumptions": ["G ↔M", "G → P", "-P"],
+    "conclusion": "-M"
+  },
+  "0638366b-1804-491e-b8ac-66afdb1ef964": {
+    "title": "Chapter Seven Packet #23",
+    "chapter": 7,
+    "assumptions": ["-(E & S)", "-K → E", "E → S"],
+    "conclusion": "K"
+  },
+  "1d639a19-b8bc-41c3-b686-be64485b81d6": {
+    "title": "Chapter Seven Packet (Word Problem) #1",
+    "chapter": 7,
+    "assumptions": ["P→D", "-D"],
+    "conclusion": "-P"
+  },
+  "cd400a12-897d-4e3f-8f74-c54801edb1a0": {
+    "title": "Chapter Seven Packet (Word Problem) #2",
+    "chapter": 7,
+    "assumptions": ["-S→H"],
+    "conclusion": "-H→S"
+  },
+  "8f0db6e4-e8aa-4b37-99aa-8c612d1db6a7": {
+    "title": "Chapter Seven Packet (Word Problem) #3",
+    "chapter": 7,
+    "assumptions": ["R", "R→B", "--M→-B"],
+    "conclusion": "-M"
+  },
+  "b9608ad4-f28b-4089-90bf-0fa3bcde10ab": {
+    "title": "Chapter Seven Packet (Word Problem) #4",
+    "chapter": 7,
+    "assumptions": ["T", "S→-T", "-S→M"],
+    "conclusion": "M"
+  },
+  "6a3890c7-a808-4ba2-bf01-cfac54d22dd5": {
+    "title": "Chapter Seven Packet (Word Problem) #5",
+    "chapter": 7,
+    "assumptions": ["F→(S↔H)", "F&-H"],
+    "conclusion": "-S"
+  },
+  "d69ebc47-1d1c-43ec-bcfa-4bae3108705e": {
+    "title": "Chapter Seven Packet (Word Problem) #6",
+    "chapter": 7,
+    "assumptions": ["-(J∨M)"],
+    "conclusion": "-(J&M)"
+  },
+  "622b9c31-d0d3-4dd9-91fc-eba997174308": {
+    "title": "Chapter Seven Packet (Word Problem) #7",
+    "chapter": 7,
+    "assumptions": ["-S→-T", "S→A"],
+    "conclusion": "T→A"
+  },
+  "d7632d3e-f0f6-4aae-ae7b-037681c503ed": {
+    "title": "Chapter Seven Sample Quiz #1, Question 2",
+    "chapter": 7,
+    "assumptions": ["A", "A → -P", "- - L → P"],
+    "conclusion": "-L"
+  },
+  "698930bb-5e25-4bef-ab6f-6b56a729b39f": {
+    "title": "Chapter Seven Sample Quiz #1, Question 3",
+    "chapter": 7,
+    "assumptions": ["R → (B & -G)", "J → (B ↔ G)"],
+    "conclusion": "-(J&R)"
+  },
+  "720adfd4-1476-4237-a0cc-ca262f7a11fe": {
+    "title": "Chapter Seven Sample Quiz #2, Question 2",
+    "chapter": 7,
+    "assumptions": ["-H → F", "H → L", "-F"],
+    "conclusion": "L"
+  },
+  "aa1d8472-4695-4c49-93db-f87166ca3082": {
+    "title": "Chapter Seven Sample Quiz #2, Question 3",
+    "chapter": 7,
+    "assumptions": ["M → (-B & K)", "M"],
+    "conclusion": "-(K→B)"
+  },
+  "ac7ae9cd-aade-412a-a115-feb88a5b76eb": {
+    "title": "Chapter Seven Sample Quiz #3, Question 2",
+    "chapter": 7,
+    "assumptions": ["-S → (C & -P)", "C → P"],
+    "conclusion": "S"
+  },
+  "f23cb861-5a11-43b3-b1b8-990c9ead043d": {
+    "title": "Chapter Seven Sample Quiz #3, Question 3",
+    "chapter": 7,
+    "assumptions": ["J → S", "R → S", "S → -E", "E"],
+    "conclusion": "-(J∨R)"
+  },
+  "f98cac6e-f311-493f-b2b7-2104dc40f94f": {
+    "title": "Chapter Seven Sample Quiz #4, Question 2",
+    "chapter": 7,
+    "assumptions": ["H → (A & R)", "-(A ∨ C)"],
+    "conclusion": "-H"
+  },
+  "b420b66d-fe1b-4f25-8279-90b652484d26": {
+    "title": "Chapter Seven Sample Quiz #4, Question 3",
+    "chapter": 7,
+    "assumptions": ["-T → -G"],
+    "conclusion": "-(-T&G)"
+  },
+  "faa37c35-aac4-486a-bd7e-349b35fc793a": {
+    "title": "Chapter Eight #1",
+    "chapter": 8,
+    "assumptions": ["K", "K→--U"],
+    "conclusion": "U"
+  },
+  "e92ced4d-f4cc-49d0-ace4-344494c87591": {
+    "title": "Chapter Eight #2",
+    "chapter": 8,
+    "assumptions": ["-(R → M)", "(R & E) → -T", "E"],
+    "conclusion": "-(T ∨ M)"
+  },
+  "0240e8f3-c2e1-4536-97e1-32c5c885b982": {
+    "title": "Chapter Eight #3",
+    "chapter": 8,
+    "assumptions": ["E → R", "M → -R", "-E → --L"],
+    "conclusion": "-L ∨ --M"
+  },
+  "c97183fa-1fb3-44b6-9bf1-f93855da2b1d": {
+    "title": "Chapter Eight #4",
+    "chapter": 8,
+    "assumptions": ["B→C", "--A∨B"],
+    "conclusion": "-A→C"
+  },
+  "ea1087f8-d1e6-42b6-89da-edb5d4798c9c": {
+    "title": "Chapter Eight #5",
+    "chapter": 8,
+    "assumptions": ["A→C", "B→-C"],
+    "conclusion": "-(A&B)"
+  },
+  "d20a9f01-26b2-41d1-af8a-de1d38a523f3": {
+    "title": "Chapter Eight #6",
+    "chapter": 8,
+    "assumptions": ["L→-T"],
+    "conclusion": "L→(G∨-T)"
+  },
+  "46bbbda4-92b2-4e93-a973-461fc97e6149": {
+    "title": "Chapter Eight #7",
+    "chapter": 8,
+    "assumptions": ["P→Q"],
+    "conclusion": "-Q→-P"
+  },
+  "a894b454-3561-4ee0-9648-9bbea4648188": {
+    "title": "Chapter Eight Packet #1",
+    "chapter": 8,
+    "assumptions": ["A→B", "-B"],
+    "conclusion": "-A"
+  },
+  "a3e29941-47f6-4688-9a63-67ed4e605bb8": {
+    "title": "Chapter Eight Packet #2",
+    "chapter": 8,
+    "assumptions": ["A∨B", "-A"],
+    "conclusion": "B"
+  },
+  "6f501022-09f2-4b88-8633-0f6caf4155bf": {
+    "title": "Chapter Eight Packet #3",
+    "chapter": 8,
+    "assumptions": ["I&-M"],
+    "conclusion": "-(I→M)"
+  },
+  "3fe5d6d5-8aa9-4727-9666-21df93ee0e8d": {
+    "title": "Chapter Eight Packet #4",
+    "chapter": 8,
+    "assumptions": ["---P"],
+    "conclusion": "-P"
+  },
+  "b43fc85c-3bd1-4238-b117-5ca0f5db4252": {
+    "title": "Chapter Eight Packet #5",
+    "chapter": 8,
+    "assumptions": ["-S∨-P", "--S"],
+    "conclusion": "-P"
+  },
+  "adbc33e8-43c6-40d9-9cc8-cb0a64bb90fc": {
+    "title": "Chapter Eight Packet #6",
+    "chapter": 8,
+    "assumptions": ["-B→R", "-R"],
+    "conclusion": "--B"
+  },
+  "0bdc7912-2e04-4847-8f60-ad92a52b7969": {
+    "title": "Chapter Eight Packet #7",
+    "chapter": 8,
+    "assumptions": ["E", "-(E & M)"],
+    "conclusion": "-M"
+  },
+  "436d6dce-873e-4bf7-ae0c-97baeeabfaf7": {
+    "title": "Chapter Eight Packet #8",
+    "chapter": 8,
+    "assumptions": ["--M"],
+    "conclusion": "M"
+  },
+  "ddda5e8b-09d7-4bbf-9ef2-cce83a4848a1": {
+    "title": "Chapter Eight Packet #10",
+    "chapter": 8,
+    "assumptions": ["A"],
+    "conclusion": "--A"
+  },
+  "5da796bd-550b-4281-8b14-3fc7704d34b3": {
+    "title": "Chapter Eight Packet #11",
+    "chapter": 8,
+    "assumptions": ["(M&P)∨(Q&S)", "-(M&P)"],
+    "conclusion": "Q&S"
+  },
+  "35396f89-b700-42ce-84f5-9b2c520f306d": {
+    "title": "Chapter Eight Packet #12",
+    "chapter": 8,
+    "assumptions": ["-(-B & -R)"],
+    "conclusion": "B∨R"
+  },
+  "c7b41be1-9b66-44fe-8b70-0550b90a70c3": {
+    "title": "Chapter Eight Packet #13",
+    "chapter": 8,
+    "assumptions": ["-K"],
+    "conclusion": "---K"
+  },
+  "4cdf130b-9649-4029-9adb-cd3ebb9540d3": {
+    "title": "Chapter Eight Packet #14",
+    "chapter": 8,
+    "assumptions": ["-(A&B)"],
+    "conclusion": "-A∨-B"
+  },
+  "5a84b093-1363-4389-8db4-e02efb88f92d": {
+    "title": "Chapter Eight Packet #15",
+    "chapter": 8,
+    "assumptions": ["B→T"],
+    "conclusion": "-B∨T"
+  },
+  "c624e6a8-46bf-4ce9-ac89-fc4ca2591890": {
+    "title": "Chapter Eight Packet #16",
+    "chapter": 8,
+    "assumptions": ["-((A & B) & C)", "C"],
+    "conclusion": "-(A&B)"
+  },
+  "61fe6514-7299-4663-8b82-1e23ba041fed": {
+    "title": "Chapter Eight Packet #17",
+    "chapter": 8,
+    "assumptions": ["L∨-T", "-L"],
+    "conclusion": "-T"
+  },
+  "03fc38b8-bafc-401c-9210-bface70c2763": {
+    "title": "Chapter Eight Packet #18",
+    "chapter": 8,
+    "assumptions": ["-A∨-B"],
+    "conclusion": "-(A&B)"
+  },
+  "6c311ba9-03d7-44ed-9334-5b48a21b6df1": {
+    "title": "Chapter Eight Packet #19",
+    "chapter": 8,
+    "assumptions": ["- - M → -Q"],
+    "conclusion": "Q→-M"
+  },
+  "5cf4de04-605f-47ab-855e-06ae81bde121": {
+    "title": "Chapter Eight Packet #20",
+    "chapter": 8,
+    "assumptions": ["G∨M", "-G"],
+    "conclusion": "M"
+  },
+  "fb8dd885-0931-45d6-92c9-7113d6c43bc7": {
+    "title": "Chapter Eight Packet #21",
+    "chapter": 8,
+    "assumptions": ["A→B", "B→C"],
+    "conclusion": "A→C"
+  },
+  "62ddc5f8-971e-41cb-95b2-4a7d82822301": {
+    "title": "Chapter Eight Packet #22",
+    "chapter": 8,
+    "assumptions": ["-H", "J→H"],
+    "conclusion": "-J"
+  },
+  "2b3a360d-d9db-4b38-8a94-2852b49dfd60": {
+    "title": "Chapter Eight Packet #23",
+    "chapter": 8,
+    "assumptions": ["-(-M → K)"],
+    "conclusion": "-M&-K"
+  },
+  "e45a30c9-e3eb-4e67-966b-074618f24ca1": {
+    "title": "Chapter Eight Packet #24",
+    "chapter": 8,
+    "assumptions": ["-(F∨G)"],
+    "conclusion": "-F&-G"
+  },
+  "c3dab2ec-2d8a-4c2a-a011-01a804ce9899": {
+    "title": "Chapter Eight Packet #25",
+    "chapter": 8,
+    "assumptions": ["--N→G"],
+    "conclusion": "-N∨G"
+  },
+  "943c067c-e141-42bd-bb1d-087ca2ead71b": {
+    "title": "Chapter Eight Packet #26",
+    "chapter": 8,
+    "assumptions": ["A→(R&G)", "-(R&G)"],
+    "conclusion": "-A"
+  },
+  "fa4ea6de-b217-401d-888f-9c8aa4539397": {
+    "title": "Chapter Eight Packet #27",
+    "chapter": 8,
+    "assumptions": ["-M→-(P&L)", "--(P&L)"],
+    "conclusion": "--M"
+  },
+  "32aa484a-c83c-4786-a141-db5765f6b684": {
+    "title": "Chapter Eight Packet MLQ #1",
+    "chapter": 8,
+    "assumptions": ["-R∨J", "-J", "A→R"],
+    "conclusion": "-A"
+  },
+  "fadba880-edc4-46c9-87fe-3cc780acfe17": {
+    "title": "Chapter Eight Packet MLQ #2",
+    "chapter": 8,
+    "assumptions": ["A→B", "B→C", "C→D"],
+    "conclusion": "A→D"
+  },
+  "364d7231-9d36-4a42-83a6-8897673c5934": {
+    "title": "Chapter Eight Packet MLQ #3",
+    "chapter": 8,
+    "assumptions": ["-M→S", "-S"],
+    "conclusion": "M"
+  },
+  "8ab4bfcc-b9e0-4340-83a6-de7b8ba8d632": {
+    "title": "Chapter Eight Packet MLQ #4",
+    "chapter": 8,
+    "assumptions": ["B→Q", "-Q"],
+    "conclusion": "---B"
+  },
+  "4f2a8054-b29f-403c-94b6-78e360eccb90": {
+    "title": "Chapter Eight Packet MLQ #5",
+    "chapter": 8,
+    "assumptions": ["K→L", "L→E", "E→(W∨M)"],
+    "conclusion": "K→(W∨M)"
+  },
+  "f72d48d7-1e60-4ebe-9cea-6b3e95569a81": {
+    "title": "Chapter Eight Packet MLQ #6",
+    "chapter": 8,
+    "assumptions": ["-P", "H→P", "M→H"],
+    "conclusion": "-M"
+  },
+  "c4068abc-6e04-4375-9d82-3daa1426b1b1": {
+    "title": "Chapter Eight Packet MLQ #7",
+    "chapter": 8,
+    "assumptions": ["-(A&B)", "Q→A", "Q"],
+    "conclusion": "-B"
+  },
+  "677df2a2-3a2b-42b6-8f1a-dcaf6dce547f": {
+    "title": "Chapter Eight Packet MLQ #8",
+    "chapter": 8,
+    "assumptions": ["M∨(-L→S)", "-M", "-S"],
+    "conclusion": "--L"
+  },
+  "f556a42b-627b-4082-9f48-06d6fb633ac2": {
+    "title": "Chapter Eight Packet MLQ #9",
+    "chapter": 8,
+    "assumptions": ["H→-Q", "--Q", "S∨H"],
+    "conclusion": "S"
+  },
+  "8bc8563c-59cc-4c3b-9fed-9119634d4d25": {
+    "title": "Chapter Eight Packet MLQ #10",
+    "chapter": 8,
+    "assumptions": ["-M→-S", "--M→K", "--S"],
+    "conclusion": "K"
+  },
+  "5f44dbe0-5bd5-46bf-8beb-a78f2dbc5ebc": {
+    "title": "Chapter Eight Packet MLQ #11",
+    "chapter": 8,
+    "assumptions": ["-R→-Z", "-Z→S", "-S"],
+    "conclusion": "--R"
+  },
+  "124909d7-b6f4-4010-83d7-7967d9a7f088": {
+    "title": "Chapter Eight Packet MLQ #12",
+    "chapter": 8,
+    "assumptions": ["M→R", "R→T", "-T", "M∨S"],
+    "conclusion": "S"
+  },
+  "15f06da4-f5ad-4858-b95b-534329fd3ad2": {
+    "title": "Chapter Eight Packet MLQ #13",
+    "chapter": 8,
+    "assumptions": ["-(-A&-B)", "A→B", "B→C", "-C"],
+    "conclusion": "--B"
+  },
+  "49293a24-1048-435e-9428-4365e2e66613": {
+    "title": "Chapter Eight Packet MLQ #14",
+    "chapter": 8,
+    "assumptions": ["-(B&H)", "-B→L", "-J", "L→J"],
+    "conclusion": "-H"
+  },
+  "f35d8d35-4249-48a7-bc78-f5ff906bbf7c": {
+    "title": "Chapter Eight Packet MLQ #15",
+    "chapter": 8,
+    "assumptions": ["H→(A∨P)", "-A&-P"],
+    "conclusion": "-H"
+  },
+  "01b3fa69-1277-48a7-a207-6a02f6ed90ef": {
+    "title": "Chapter Eight Packet MLQ #16",
+    "chapter": 8,
+    "assumptions": ["-(R∨S)→M", "M→(N&O)", "-(N&O)"],
+    "conclusion": "-(-R&-S)"
+  },
+  "9dc1ba00-c475-4be9-afa8-0836281483e1": {
+    "title": "Chapter Eight Packet MLQ #17",
+    "chapter": 8,
+    "assumptions": ["-(-E∨-G)", "E→F"],
+    "conclusion": "F"
+  },
+  "e0bdec92-be67-4a59-9a20-b49cebcb807f": {
+    "title": "Chapter Eight Packet MLQ #19",
+    "chapter": 8,
+    "assumptions": ["A↔N", "A→R"],
+    "conclusion": "-R→-N"
+  },
+  "0af077f0-2cd4-43d4-be4d-41155895adc9": {
+    "title": "Chapter Eight Packet MLQ #20",
+    "chapter": 8,
+    "assumptions": ["M", "M→(K→T)"],
+    "conclusion": "-T→-K"
+  },
+  "950da6fd-945f-4c16-bb3b-4f48bff747c9": {
+    "title": "Chapter Eight Packet MLQ #21",
+    "chapter": 8,
+    "assumptions": ["-K∨M", "K&(M→L)"],
+    "conclusion": "L"
+  },
+  "2280c91f-ad90-4bdf-869a-a78c835e6aa0": {
+    "title": "Chapter Eight Packet MLQ #22",
+    "chapter": 8,
+    "assumptions": ["(A→B)&(-A→C)"],
+    "conclusion": "B∨C"
+  },
+  "14fdf46c-d3a9-4243-828a-4a1d9005395a": {
+    "title": "Chapter Eight Packet MLQ #23",
+    "chapter": 8,
+    "assumptions": ["A", "(A&B)→C", "-C", "-B→(D&E)"],
+    "conclusion": "-B&(D&E)"
+  },
+  "cc310895-822e-44db-9d33-ce62d030211d": {
+    "title": "Chapter Eight Packet MLQ #24",
+    "chapter": 8,
+    "assumptions": ["H∨M", "H→K", "-K", "M→L"],
+    "conclusion": "L"
+  },
+  "73c1ca45-097f-4011-ac8f-c31711b543f1": {
+    "title": "Chapter Eight Packet MLQ #25",
+    "chapter": 8,
+    "assumptions": ["E→(G→U)", "G&-U"],
+    "conclusion": "-E"
+  },
+  "c96e54f6-28c5-4b72-8281-705254879ba9": {
+    "title": "Chapter Eight Packet MLQ #26",
+    "chapter": 8,
+    "assumptions": ["-M→N", "K→-M", "N→-R", "--R"],
+    "conclusion": "-K"
+  },
+  "6d8a234e-18c1-45ab-9270-be5207dd22fb": {
+    "title": "Chapter Eight Packet MLQ #27",
+    "chapter": 8,
+    "assumptions": ["--O", "O→A", "A→K", "-(W&K)"],
+    "conclusion": "-W"
+  },
+  "37bc497e-ded8-466d-90bf-16571929af23": {
+    "title": "Chapter Eight Packet MLQ #28",
+    "chapter": 8,
+    "assumptions": ["R→F", "-R→E", "(F∨E)→P"],
+    "conclusion": "P"
+  },
+  "2abe9d7d-9da7-415c-b2e9-0d8ee85edc0a": {
+    "title": "Chapter Eight Packet MLQ #29",
+    "chapter": 8,
+    "assumptions": ["(W&M)→-J", "-J→-P", "P&M"],
+    "conclusion": "-(W&M)"
+  },
+  "125ad3d7-2546-4a1f-b985-c31356f97f38": {
+    "title": "Chapter Eight Packet MLQ #30",
+    "chapter": 8,
+    "assumptions": ["-((A&-B)&C)", "C"],
+    "conclusion": "-A∨B"
+  },
+  "40607526-1f98-402e-aacc-00b5508779ec": {
+    "title": "Chapter Eight Packet MLQ #31",
+    "chapter": 8,
+    "assumptions": ["O→-P", "P", "-O→(T∨R)", "R→-L", "L"],
+    "conclusion": "T"
+  },
+  "ee1a2dbb-7442-495a-a367-1f853d908961": {
+    "title": "Chapter Eight Packet MLQ #32",
+    "chapter": 8,
+    "assumptions": ["-W", "-(R ∨ -S) ∨ W"],
+    "conclusion": "S"
+  },
+  "9a27797c-c4a9-4a25-b9cd-1a58f9af7372": {
+    "title": "Chapter Eight Packet MLQ #33",
+    "chapter": 8,
+    "assumptions": ["(H → E) → -P", "P"],
+    "conclusion": "H&-E"
+  },
+  "c51f452a-ad06-4381-982d-6a6dc7448529": {
+    "title": "Chapter Eight Packet MLQ #34",
+    "chapter": 8,
+    "assumptions": ["(L & -H) → -G", "M → G", "M & -H"],
+    "conclusion": "-L"
+  },
+  "8fe7816d-f87f-40c1-90d7-08fbda4b088d": {
+    "title": "Chapter Eight Packet MLQ #35",
+    "chapter": 8,
+    "assumptions": ["E → (W ∨ B)", "L → E", "-B & L"],
+    "conclusion": "W"
+  },
+  "e4426208-79ae-489c-8b2a-11796500e8c8": {
+    "title": "Chapter Eight Packet MLQ #36",
+    "chapter": 8,
+    "assumptions": ["E → R", "-(G → R)", "-(J & -E)"],
+    "conclusion": "-J"
+  },
+  "07b840bc-7e2c-4635-8f46-3fb5c8bf6e58": {
+    "title": "Chapter Eight Packet MLQ #37",
+    "chapter": 8,
+    "assumptions": ["-(F & P) → D", "-E", "D → E"],
+    "conclusion": "F"
+  },
+  "41659103-0882-4b2b-ac26-9aff9244dd95": {
+    "title": "Chapter Eight Packet MLQ #38",
+    "chapter": 8,
+    "assumptions": ["-(A & B) →C", "C → D", "-D"],
+    "conclusion": "A"
+  },
+  "4b40507d-75c8-42b9-85e7-f45907545df0": {
+    "title": "Chapter Eight Packet MLQ #39",
+    "chapter": 8,
+    "assumptions": ["- - J", "J → H", "-(H & M)"],
+    "conclusion": "-M"
+  },
+  "42ab9aeb-a71a-4785-900d-4ccb7e4cfa34": {
+    "title": "Chapter Eight Packet MLQ #40",
+    "chapter": 8,
+    "assumptions": ["N ↔ L", "R → P", "-N ∨ R"],
+    "conclusion": "-P→-L"
+  },
+  "81422605-11c9-46b3-a9de-c3dec32e36cc": {
+    "title": "Chapter Eight Packet MLQ #41",
+    "chapter": 8,
+    "assumptions": ["A → -B", "-A → C"],
+    "conclusion": "B→C"
+  },
+  "bdbf3686-1304-4cb1-bdde-854f766d0afc": {
+    "title": "Chapter Eight Packet MLQ #42",
+    "chapter": 8,
+    "assumptions": ["R", "E → S", "-R ∨ E"],
+    "conclusion": "S"
+  },
+  "23a06521-9224-4092-b0f6-9609cef76349": {
+    "title": "Chapter Eight Packet MLQ #43",
+    "chapter": 8,
+    "assumptions": ["(K & G) ∨ R", "L → R", "-R"],
+    "conclusion": "K&-L"
+  },
+  "eb8f82e0-34d2-4403-ad24-19b2514b2506": {
+    "title": "Chapter Eight Packet MLQ #44",
+    "chapter": 8,
+    "assumptions": ["- - - H", "E → H"],
+    "conclusion": "-E"
+  },
+  "63245c8e-fec5-4cdc-962e-d0e650a1b5af": {
+    "title": "Chapter Eight Packet MLQ #45",
+    "chapter": 8,
+    "assumptions": ["-(M & G)", "J ∨ M", "G"],
+    "conclusion": "J"
+  },
+  "8d74e513-1533-45a3-b47e-e71bf112d89a": {
+    "title": "Chapter Eight Packet MLQ #46",
+    "chapter": 8,
+    "assumptions": ["A → M", "B → A", "E →B"],
+    "conclusion": "-M→-E"
+  },
+  "06c52742-5c88-4dcd-bd80-8d50ee840f64": {
+    "title": "Chapter Eight Packet MLQ #47",
+    "chapter": 8,
+    "assumptions": ["- - G", "-(M & -R)", "R → -G"],
+    "conclusion": "-M"
+  },
+  "ce310d19-dd9b-4fe9-883c-1614fb2f810d": {
+    "title": "Chapter Eight Packet MLQ #49",
+    "chapter": 8,
+    "assumptions": ["H → -P", "L → P", "L ∨ G"],
+    "conclusion": "H→G"
+  },
+  "345a6fac-bbcb-489c-a49b-7d6806a7abaa": {
+    "title": "Chapter Eight Packet MLQ #49",
+    "chapter": 8,
+    "assumptions": ["-E", "-J → P", "E ∨ (N & -P)"],
+    "conclusion": "J&N"
+  },
+  "88200f32-c1da-475f-9065-be22b675c4f1": {
+    "title": "Chapter Eight Packet MLQ #50",
+    "chapter": 8,
+    "assumptions": ["-(E & H)", "M → H", "E"],
+    "conclusion": "-M"
+  },
+  "29c35ad5-7e31-4bae-be1d-53866d0ad2b3": {
+    "title": "Chapter Eight Packet MLQ #51",
+    "chapter": 8,
+    "assumptions": ["A → J", "-P → -J"],
+    "conclusion": "-P→-A"
+  },
+  "684768e0-1fd5-4da3-87d0-d763c2b34f9c": {
+    "title": "Chapter Eight Packet MLQ #52",
+    "chapter": 8,
+    "assumptions": ["-(-S & -E)", "-E"],
+    "conclusion": "S"
+  },
+  "01393270-5315-4cf6-81fb-0833449ad9a8": {
+    "title": "Chapter Eight Packet MLQ #53",
+    "chapter": 8,
+    "assumptions": ["A → R", "E → A", "-R"],
+    "conclusion": "-E"
+  },
+  "a7591bd6-d776-4b0e-9610-673787b7c916": {
+    "title": "Chapter Eight Packet MLQ #54",
+    "chapter": 8,
+    "assumptions": ["- - P", "-(P & T)", "T ∨ F"],
+    "conclusion": "F"
+  },
+  "514e0a83-c29c-48df-b0ad-114f1655a55e": {
+    "title": "Chapter Eight Packet MLQ #55",
+    "chapter": 8,
+    "assumptions": ["-(M → C)", "M→ P"],
+    "conclusion": "P&-C"
+  },
+  "6c75042d-ef6e-4276-b405-2f668c3cdb8c": {
+    "title": "Chapter Eight Packet MLQ #56",
+    "chapter": 8,
+    "assumptions": ["B ∨ T", "-(T & G)", "G"],
+    "conclusion": "B"
+  },
+  "922a2b83-0fb5-4d0b-b912-517a94287bee": {
+    "title": "Chapter Eight Packet MLQ #57",
+    "chapter": 8,
+    "assumptions": ["-(-A & -J)", "A → R", "-J"],
+    "conclusion": "R"
+  },
+  "abb5775c-de54-406d-9820-af0f1084ed97": {
+    "title": "Chapter Eight Packet MLQ #58",
+    "chapter": 8,
+    "assumptions": ["-J → -P", "J → M"],
+    "conclusion": "P→M"
+  },
+  "6982ac46-7505-436b-85f1-b513efcbd53d": {
+    "title": "Chapter Eight Packet MLQ #59",
+    "chapter": 8,
+    "assumptions": ["-((R & B) & M)", "- - M & R"],
+    "conclusion": "-B"
+  },
+  "69b4d937-5c96-4e3e-84e0-7a6c1e5d3fd2": {
+    "title": "Chapter Eight Packet MLQ #60",
+    "chapter": 8,
+    "assumptions": ["-(H & S) ∨T", "-G → -T", "-G ∨ R", "H & -R"],
+    "conclusion": "-S"
+  },
+  "9731c026-e216-438f-a941-134184e6f1db": {
+    "title": "Chapter Eight Packet MLQ #61",
+    "chapter": 8,
+    "assumptions": ["E → (W → B)", "W & F", "-(F & B)"],
+    "conclusion": "-E"
+  },
+  "5de4c384-dcf2-4d53-810e-58b8f9cf976c": {
+    "title": "Chapter Eight Sample Quiz #1, Question 1",
+    "chapter": 8,
+    "assumptions": ["-H & -T", "P → (H ∨ T)"],
+    "conclusion": "-P"
+  },
+  "6e697738-4966-4032-b0c0-86fc182b1035": {
+    "title": "Chapter Eight Sample Quiz #1, Question 2",
+    "chapter": 8,
+    "assumptions": ["-(K & -S)", "- - - S", "H → K"],
+    "conclusion": "-H"
+  },
+  "559ac0bd-6d75-4879-be0a-29916432579f": {
+    "title": "Chapter Eight Sample Quiz #1, Question 3",
+    "chapter": 8,
+    "assumptions": ["-C → -B", "A → B"],
+    "conclusion": "A→C"
+  },
+  "5f77ee07-ec63-459d-96b6-cee8cf79b21a": {
+    "title": "Chapter Eight Sample Quiz #2, Question 1",
+    "chapter": 8,
+    "assumptions": ["B → C", "A → B"],
+    "conclusion": "-A∨C"
+  },
+  "201c0c81-868a-4423-8129-e13cf3d2037a": {
+    "title": "Chapter Eight Sample Quiz #2, Question 2",
+    "chapter": 8,
+    "assumptions": ["G → -P", "P", "-G → K"],
+    "conclusion": "K"
+  },
+  "c5b86ffa-7aaa-4a1b-8c2b-af0ee40e7b44": {
+    "title": "Chapter Eight Sample Quiz #2, Question 3",
+    "chapter": 8,
+    "assumptions": ["-(R & -F)", "-F", "R ∨ M"],
+    "conclusion": "M"
+  },
+  "ed62a082-1a6a-44b0-83b8-ff2b39f95f2d": {
+    "title": "Chapter Eight Sample Quiz #3, Question 1",
+    "chapter": 8,
+    "assumptions": ["A → -B", "B", "A ∨ C"],
+    "conclusion": "C"
+  },
+  "e372a2a9-6070-4386-988e-942e690c359e": {
+    "title": "Chapter Eight Sample Quiz #3, Question 2",
+    "chapter": 8,
+    "assumptions": ["-E ∨ Q", "Q → W"],
+    "conclusion": "E→W"
+  },
+  "93c5381b-991d-4820-b665-b1d55b9699ec": {
+    "title": "Chapter Eight Sample Quiz #3, Question 3",
+    "chapter": 8,
+    "assumptions": ["H → G", "-P → -G", "- - H"],
+    "conclusion": "P"
+  },
+  "bcb5703d-abb5-4968-bf61-b3479d5d9a0c": {
+    "title": "Chapter Eight Sample Quiz #4, Question 1",
+    "chapter": 8,
+    "assumptions": ["-(A & -B)", "-C → -B"],
+    "conclusion": "A→C"
+  },
+  "e8896411-c38f-4339-863c-cf16f80b1602": {
+    "title": "Chapter Eight Sample Quiz #4, Question 2",
+    "chapter": 8,
+    "assumptions": ["-(G & R) ∨ -T", "T", "G"],
+    "conclusion": "-R"
+  },
+  "787304d1-cc00-49d3-ac5c-4f0a724c1077": {
+    "title": "Chapter Eight Sample Quiz #4, Question 3",
+    "chapter": 8,
+    "assumptions": ["-(E ∨ S) → P", "-P & (S → H)"],
+    "conclusion": "-E→H"
+  },
+  "730305ba-1f68-4f60-b11a-ab093e2da4cb": {
+    "title": "Chapter Eight Sample Quiz #5, Question 1",
+    "chapter": 8,
+    "assumptions": ["- - E ∨ R", "R → (N ∨ S)"],
+    "conclusion": "-E→(N∨S)"
+  },
+  "bf84714c-5ecd-43a9-b2b1-918e7ddb00ef": {
+    "title": "Chapter Eight Sample Quiz #5, Question 2",
+    "chapter": 8,
+    "assumptions": ["-(-(E ∨ T) & H)", "- - H", "-E"],
+    "conclusion": "T"
+  },
+  "b88ee45b-26c5-42a6-8d84-472248f788a8": {
+    "title": "Chapter Eight Sample Quiz #5, Question 3",
+    "chapter": 8,
+    "assumptions": ["(J → R) & (-J → -Y)"],
+    "conclusion": "R∨-Y"
+  },
+  "99e45878-ac10-4993-98ba-f07b62708795": {
+    "title": "Chapter Eight Sample Quiz #6, Question 1",
+    "chapter": 8,
+    "assumptions": ["-(M & F) ∨ P", "M", "- - - P"],
+    "conclusion": "-F"
+  },
+  "3db936dd-2b2b-4222-b5f4-44ca777c9ca9": {
+    "title": "Chapter Eight Sample Quiz #6, Question 2",
+    "chapter": 8,
+    "assumptions": ["(A → B) & (-C → -B)"],
+    "conclusion": "-A∨C"
+  },
+  "eef8e47e-4240-459a-aeac-e3da792c505a": {
+    "title": "Chapter Eight Sample Quiz #6, Question 3",
+    "chapter": 8,
+    "assumptions": ["-(-E ∨ -G)", "K → -G"],
+    "conclusion": "-K"
+  }
 }
