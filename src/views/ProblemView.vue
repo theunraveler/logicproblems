@@ -42,7 +42,7 @@ onBeforeRouteUpdate(async () => {
       <ProblemNav class="px-0 mt-4 mt-lg-5" :current="$route.params.id" />
     </BCol>
 
-    <BCol cols="12" lg="4" xl="3" class="bg-light border p-4 mt-4 mt-lg-0">
+    <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <FormulaInputHelp />
     </BCol>
   </BRow>

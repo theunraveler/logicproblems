@@ -36,7 +36,7 @@ const onSubmit = () => {
     <hr class="mb-4" />
     <FormulaGraph :expression="expression" />
   </div>
-  <div v-else class="text-bg-light border p-4">
+  <div v-else>
     <FormulaInputHelp />
   </div>
 </template>

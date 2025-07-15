@@ -47,19 +47,21 @@ const updatePage = (page: string | number) => {
 
   <BRow>
     <BCol cols="12" lg="9" data-testid="problems">
-      <BCard v-for="[id, problem] in pageProblems" :key="id" :header="problem.title" class="mb-3">
-        <ol class="mb-0">
-          <li v-for="(assumption, index) in problem.assumptions" :key="index">
-            <code>{{ new Formula(assumption) }}</code>
-          </li>
-        </ol>
-        <hr class="m-0" />
-        <div>
-          Conclusion: <code>{{ new Formula(problem.conclusion) }}</code>
-        </div>
-        <BLink :to="{ name: 'problem', params: { id: id } }" class="btn btn-primary mt-3">
-          Solve!
-        </BLink>
+      <BCard v-for="[id, problem] in pageProblems" :key="id" class="mb-4" no-body>
+        <BCardHeader class="d-flex justify-content-between align-items-center">
+          <span>{{ problem.title }}</span>
+          <span>Conclusion: <code>{{ new Formula(problem.conclusion) }}</code></span>
+        </BCardHeader>
+        <BListGroup flush numbered>
+          <BListGroupItem v-for="(assumption, index) in problem.assumptions" :key="index">
+            <code class="ms-3">{{ new Formula(assumption) }}</code>
+          </BListGroupItem>
+        </BListGroup>
+        <BCardBody>
+          <BLink :to="{ name: 'problem', params: { id: id } }" class="btn btn-primary mt-3 stretched-link">
+            Solve!
+          </BLink>
+        </BCardBody>
       </BCard>
       <BPagination
         @update:model-value="updatePage"
