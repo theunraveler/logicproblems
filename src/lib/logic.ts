@@ -46,7 +46,7 @@ export class Operator {
 }
 
 type LineEvalFunction = {
-  (exp: AST.Expression, justifications: AST.Expression[]): boolean
+  (exp: AST.Expression, justifications: Line[], proof: Proof): boolean
 }
 
 export class Rule {
@@ -54,16 +54,16 @@ export class Rule {
 
   static readonly ASSUMPTION = new Rule('A', 'Assumption', () => true)
   static readonly ARROW_OUT = new Rule('→ O', 'Arrow Out', evalArrowOut)
-  static readonly ARROW_IN = new Rule('→ I', 'Arrow In', evalArrowIn)
+  static readonly ARROW_IN = new Rule('→ I', 'Arrow In', evalArrowIn, true)
   static readonly BICONDITIONAL_OUT = new Rule('↔ O', 'Biconditional Out', evalBiconditionalOut)
   static readonly BICONDITIONAL_IN = new Rule('↔ I', 'Biconditional In', evalBiconditionalIn)
-  static readonly OR_OUT = new Rule('∨ O', 'Or Out', evalOrOut)
-  static readonly OR_IN = new Rule('∨ I', 'Or In', evalOrIn)
-  static readonly AND_OUT = new Rule('& O', 'And Out', evalAndOut)
-  static readonly AND_IN = new Rule('& I', 'And In', evalAndIn)
-  static readonly NEGATION_OUT = new Rule('- O', 'Negation Out', evalNegationOut)
-  static readonly NEGATION_IN = new Rule('- I', 'Negation In', evalNegationIn)
-  static readonly SUPPOSITION = new Rule('S', 'Supposition', evalSupposition)
+  static readonly OR_OUT = new Rule('∨ O', 'Wedge Out', evalOrOut)
+  static readonly OR_IN = new Rule('∨ I', 'Wedge In', evalOrIn)
+  static readonly AND_OUT = new Rule('& O', 'Ampersand/And Out', evalAndOut)
+  static readonly AND_IN = new Rule('& I', 'Ampersand/And In', evalAndIn)
+  static readonly NEGATION_OUT = new Rule('- O', 'Dash Out', evalNegationOut, true)
+  static readonly NEGATION_IN = new Rule('- I', 'Dash In', evalNegationIn, true)
+  static readonly SUPPOSITION = new Rule('S', 'Supposition', () => true)
   static readonly MODUS_TOLLENS = new Rule('MT', 'Modus Tollens', evalModusTollens)
   static readonly DISJUNCTIVE_ARGUMENT = new Rule(
     'DA',
@@ -85,18 +85,16 @@ export class Rule {
     public readonly shorthand: string,
     public readonly label: string,
     private readonly evalFunc: LineEvalFunction,
+    public readonly clearsSupposition: boolean = false,
   ) {
     Rule.all.push(this)
   }
 
-  evaluate(formula: Formula, justifications: Formula[]): boolean {
-    return this.evalFunc(
-      formula.ast,
-      justifications.map((e) => e.ast),
-    )
+  evaluate(formula: Formula, justifications: Line[], proof: Proof): boolean {
+    return this.evalFunc(formula.ast, justifications, proof)
   }
 
-  toString() {
+  toString(): string {
     return this.shorthand
   }
 
@@ -164,12 +162,31 @@ export class Formula {
 export class Line {
   public readonly formula: Formula
   public readonly rule: Rule
-  public readonly justifications: number[]
 
-  constructor(formula: Formula | string, rule: Rule | string, justifications: number[] = []) {
+  constructor(
+    public readonly index: number,
+    formula: Formula | string,
+    rule: Rule | string,
+    public readonly justifications: number[] = [],
+  ) {
     this.formula = formula instanceof Formula ? formula : new Formula(formula)
     this.rule = rule instanceof Rule ? rule : Rule.findByShorthand(rule)
-    this.justifications = justifications.sort()
+    this.justifications = justifications.toSorted()
+  }
+
+  dependencies(proof: Proof): number[] {
+    if (this.justifications.length <= 0) {
+      return [this.index]
+    }
+    const lines = proof.lines
+    const deps = [...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof)))].toSorted()
+    return this.rule.clearsSupposition
+      ? deps.filter((l) => lines[l].rule !== Rule.SUPPOSITION)
+      : deps
+  }
+
+  toString(): string {
+    return `${this.formula} [${this.justifications}][${this.rule}]`
   }
 }
 
@@ -179,8 +196,8 @@ export class Proof {
   public readonly deductions: Line[] = []
 
   constructor(assumptions: Formula[] | Line[] | string[], conclusion: Formula | string) {
-    this.assumptions = assumptions.map((assumption) => {
-      return assumption instanceof Line ? assumption : new Line(assumption, Rule.ASSUMPTION)
+    this.assumptions = assumptions.map((assumption, index) => {
+      return assumption instanceof Line ? assumption : new Line(index, assumption, Rule.ASSUMPTION)
     })
     this.conclusion = conclusion instanceof Formula ? conclusion : new Formula(conclusion)
   }
@@ -192,25 +209,34 @@ export class Proof {
     return this.assumptions.concat(this.deductions)
   }
 
-  addDeduction(deduction: Line) {
+  addDeduction(formula: string | Formula, rule: Rule | string, justifications: number[] = []) {
     const lines = this.lines
-    const isValid = deduction.rule.evaluate(
-      deduction.formula,
-      deduction.justifications.map((index) => lines[index].formula),
-    )
-
-    if (!isValid) {
-      throw new Error('Invalid deduction')
+    const deduction = new Line(lines.length, formula, rule, justifications)
+    if (
+      !deduction.rule.evaluate(
+        deduction.formula,
+        deduction.justifications.map((index) => lines[index]),
+        this,
+      )
+    ) {
+      throw new Error(`Invalid deduction: ${deduction}`)
     }
-
     this.deductions.push(deduction)
-    return this
   }
 
   qed(): boolean {
-    return (
-      this.conclusion.valueOf() === this.deductions[this.deductions.length - 1]?.formula?.valueOf()
-    )
+    if (this.deductions.length <= 0) {
+      return false
+    }
+
+    const lastLine = this.deductions[this.deductions.length - 1]
+    if (this.conclusion.valueOf() !== lastLine.formula.valueOf()) {
+      return false
+    }
+
+    const lines = this.lines
+    const lastLineDependencies = lastLine.dependencies(this).map((i) => lines[i])
+    return !lastLineDependencies.some((l) => l.rule === Rule.SUPPOSITION)
   }
 }
 
@@ -218,12 +244,13 @@ export class Proof {
  * Rule evaluation functions
  ***************************/
 
-function evalArrowOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalArrowOut(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
 
-  const orderedJust = [justifications, justifications.toReversed()].find(([a, b]) => {
+  const justExps = justifications.map((j) => j.formula.ast)
+  const orderedJust = [justExps, justExps.toReversed()].find(([a, b]) => {
     return a instanceof AST.BinaryExpression && prettyFormula(a.left) === prettyFormula(b)
   })
   if (!orderedJust) {
@@ -235,16 +262,41 @@ function evalArrowOut(exp: AST.Expression, justifications: AST.Expression[]): bo
   return isConditional(mainJust) && prettyFormula(mainJust.right) === prettyFormula(exp)
 }
 
-function evalArrowIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
-  return false
+function evalArrowIn(exp: AST.Expression, justifications: Line[], proof: Proof): boolean {
+  if (justifications.length !== 2) {
+    return false
+  }
+
+  if (!isConditional(exp)) {
+    return false
+  }
+
+  const suppositionIndex = justifications.findIndex((j) => j.rule === Rule.SUPPOSITION)
+  if (suppositionIndex === -1) {
+    return false
+  }
+
+  const supposition = justifications[suppositionIndex]
+  const consequent = justifications[suppositionIndex ? 0 : 1]
+  const dependencies = consequent.dependencies(proof)
+
+  if (!dependencies.includes(supposition.index)) {
+    return false
+  }
+
+  return (
+    prettyFormula(exp.left) === prettyFormula(supposition.formula.ast) &&
+    prettyFormula(exp.right) === prettyFormula(consequent.formula.ast)
+  )
 }
 
-function evalBiconditionalOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalBiconditionalOut(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const just = justifications[0]
+  const justExps = justifications.map((j) => j.formula.ast)
+  const just = justExps[0]
   if (!isBiconditional(just)) {
     return false
   }
@@ -263,7 +315,7 @@ function evalBiconditionalOut(exp: AST.Expression, justifications: AST.Expressio
   )
 }
 
-function evalBiconditionalIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalBiconditionalIn(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
@@ -272,11 +324,12 @@ function evalBiconditionalIn(exp: AST.Expression, justifications: AST.Expression
     return false
   }
 
-  if (!justifications.every((e) => isConditional(e))) {
+  const justExps = justifications.map((j) => j.formula.ast)
+  if (!justExps.every((e) => isConditional(e))) {
     return false
   }
 
-  const justExpsStr = justifications.map((e) => prettyFormula(e))
+  const justExpsStr = justExps.map((e) => prettyFormula(e))
   const expLeft = prettyFormula(exp.left)
   const expRight = prettyFormula(exp.right)
 
@@ -286,36 +339,37 @@ function evalBiconditionalIn(exp: AST.Expression, justifications: AST.Expression
   )
 }
 
-function evalOrOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalOrOut(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 3) {
     return false
   }
 
-  const orJustIndex = justifications.findIndex((e) => isDisjunction(e))
+  const justExps = justifications.map((j) => j.formula.ast)
+  const orJustIndex = justExps.findIndex((e) => isDisjunction(e))
   if (orJustIndex === -1) {
     return false
   }
-  const [orJust] = justifications.splice(orJustIndex, 1)
+  const [orJust] = justExps.splice(orJustIndex, 1)
   if (!isDisjunction(orJust)) {
     return false
   }
 
-  if (!justifications.every((e) => isConditional(e))) {
+  if (!justExps.every((e) => isConditional(e))) {
     return false
   }
 
   const expStr = prettyFormula(exp)
 
-  if (!justifications.every((e) => prettyFormula(e.right) === expStr)) {
+  if (!justExps.every((e) => prettyFormula(e.right) === expStr)) {
     return false
   }
 
   const orJustParts = [orJust.left, orJust.right].map((p) => prettyFormula(p)).sort()
-  const justExpLefts = justifications.map((e) => prettyFormula(e.left)).sort()
+  const justExpLefts = justExps.map((e) => prettyFormula(e.left)).sort()
   return orJustParts.every((val, index) => val === justExpLefts[index])
 }
 
-function evalOrIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalOrIn(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 1) {
     return false
   }
@@ -324,17 +378,17 @@ function evalOrIn(exp: AST.Expression, justifications: AST.Expression[]): boolea
     return false
   }
 
-  const justExp = prettyFormula(justifications[0])
+  const justExp = prettyFormula(justifications[0].formula.ast)
 
   return prettyFormula(exp.left) === justExp || prettyFormula(exp.right) === justExp
 }
 
-function evalAndOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalAndOut(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const just = justifications[0]
+  const just = justifications[0].formula.ast
   if (!isConjunction(just)) {
     return false
   }
@@ -343,7 +397,7 @@ function evalAndOut(exp: AST.Expression, justifications: AST.Expression[]): bool
   return prettyFormula(just.left) === expStr || prettyFormula(just.right) === expStr
 }
 
-function evalAndIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalAndIn(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
@@ -354,24 +408,48 @@ function evalAndIn(exp: AST.Expression, justifications: AST.Expression[]): boole
 
   const expLeft = prettyFormula(exp.left)
   const expRight = prettyFormula(exp.right)
-  const justExps = justifications.map((j) => prettyFormula(j))
+  const justExps = justifications.map((j) => prettyFormula(j.formula.ast))
 
   return justExps.includes(expLeft) && justExps.includes(expRight)
 }
 
-function evalNegationOut(exp: AST.Expression, justifications: AST.Expression[]): boolean {
-  return false
+function evalNegationOut(exp: AST.Expression, justifications: Line[]): boolean {
+  if (justifications.length !== 2) {
+    return false
+  }
+
+  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
+    return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
+  })
+  if (!orderedJusts) {
+    return false
+  }
+
+  const suppositionExp = orderedJusts[0].formula.ast
+  return isNegation(suppositionExp) && prettyFormula(suppositionExp.inner) === prettyFormula(exp)
 }
 
-function evalNegationIn(exp: AST.Expression, justifications: AST.Expression[]): boolean {
-  return false
+function evalNegationIn(exp: AST.Expression, justifications: Line[]): boolean {
+  if (justifications.length !== 2) {
+    return false
+  }
+
+  if (!isNegation(exp)) {
+    return false
+  }
+
+  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
+    return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
+  })
+  if (!orderedJusts) {
+    return false
+  }
+
+  const suppositionExp = orderedJusts[0].formula.ast
+  return prettyFormula(exp.inner) === prettyFormula(suppositionExp)
 }
 
-function evalSupposition(exp: AST.Expression, justifications: AST.Expression[]): boolean {
-  return true
-}
-
-function evalModusTollens(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalModusTollens(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
@@ -381,13 +459,14 @@ function evalModusTollens(exp: AST.Expression, justifications: AST.Expression[])
   }
 
   const expInner = prettyFormula(exp.inner)
-  const negationJustIndex = justifications.findIndex((e) => isNegation(e))
+  const justExps = justifications.map((j) => j.formula.ast)
+  const negationJustIndex = justExps.findIndex((e) => isNegation(e))
   if (negationJustIndex === -1) {
     return false
   }
 
-  const negationJust = justifications[negationJustIndex]
-  const conditionalJust = justifications[negationJustIndex ? 0 : 1]
+  const negationJust = justExps[negationJustIndex]
+  const conditionalJust = justExps[negationJustIndex ? 0 : 1]
 
   return (
     isNegation(negationJust) &&
@@ -397,12 +476,13 @@ function evalModusTollens(exp: AST.Expression, justifications: AST.Expression[])
   )
 }
 
-function evalDisjunctiveArgument(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalDisjunctiveArgument(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
 
-  const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
+  const justExps = justifications.map((j) => j.formula.ast)
+  const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
     if (!isNegation(b)) {
       return false
     }
@@ -422,7 +502,7 @@ function evalDisjunctiveArgument(exp: AST.Expression, justifications: AST.Expres
   )
 }
 
-function evalConjunctiveArgument(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalConjunctiveArgument(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
@@ -431,7 +511,8 @@ function evalConjunctiveArgument(exp: AST.Expression, justifications: AST.Expres
     return false
   }
 
-  const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
+  const justExps = justifications.map((j) => j.formula.ast)
+  const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
     const bStr = prettyFormula(b)
     return (
       isNegation(a) &&
@@ -453,7 +534,7 @@ function evalConjunctiveArgument(exp: AST.Expression, justifications: AST.Expres
   )
 }
 
-function evalChainRule(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalChainRule(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 2) {
     return false
   }
@@ -462,18 +543,19 @@ function evalChainRule(exp: AST.Expression, justifications: AST.Expression[]): b
     return false
   }
 
-  if (!justifications.every((e) => isConditional(e))) {
+  const justExps = justifications.map((j) => j.formula.ast)
+  if (!justExps.every((e) => isConditional(e))) {
     return false
   }
 
   const expLeft = prettyFormula(exp.left)
-  const firstJustIndex = justifications.findIndex((e) => prettyFormula(e.left) === expLeft)
+  const firstJustIndex = justExps.findIndex((e) => prettyFormula(e.left) === expLeft)
   if (firstJustIndex === -1) {
     return false
   }
   const expRight = prettyFormula(exp.right)
-  const firstJust = justifications[firstJustIndex]
-  const secondJust = justifications[firstJustIndex ? 0 : 1]
+  const firstJust = justExps[firstJustIndex]
+  const secondJust = justExps[firstJustIndex ? 0 : 1]
   const firstJustLeft = prettyFormula(firstJust.left)
   const firstJustRight = prettyFormula(firstJust.right)
   const secondJustLeft = prettyFormula(secondJust.left)
@@ -484,12 +566,12 @@ function evalChainRule(exp: AST.Expression, justifications: AST.Expression[]): b
   )
 }
 
-function evalDoubleNegation(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalDoubleNegation(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const [justification] = justifications
+  const justification = justifications[0].formula.ast
   const expStr = prettyFormula(exp)
   const justExp = prettyFormula(justification)
   const doubleNegation = Operator.NEGATION['libChar'].repeat(2)
@@ -499,17 +581,26 @@ function evalDoubleNegation(exp: AST.Expression, justifications: AST.Expression[
 
 function evalDemorgansLaw(
   exp: AST.Expression,
-  justifications: AST.Expression[],
+  justifications: Line[],
+  proof: Proof,
   tryReciprocal: boolean = true,
 ): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const [justification] = justifications
+  const justification = justifications[0].formula.ast
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
-  const returnFalse = () => (tryReciprocal ? evalDemorgansLaw(justification, [exp], false) : false)
+  const returnFalse = () =>
+    tryReciprocal
+      ? evalDemorgansLaw(
+          justification,
+          [new Line(0, prettyFormula(exp), Rule.ASSUMPTION)],
+          proof,
+          false,
+        )
+      : false
 
   if (!isNegation(justification)) {
     return returnFalse()
@@ -551,17 +642,21 @@ function evalDemorgansLaw(
 
 function evalArrow(
   exp: AST.Expression,
-  justifications: AST.Expression[],
+  justifications: Line[],
+  proof: Proof,
   tryReciprocal: boolean = true,
 ): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const [justification] = justifications
+  const justification = justifications[0].formula.ast
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
-  const returnFalse = () => (tryReciprocal ? evalArrow(justification, [exp], false) : false)
+  const returnFalse = () =>
+    tryReciprocal
+      ? evalArrow(justification, [new Line(0, prettyFormula(exp), Rule.ASSUMPTION)], proof, false)
+      : false
 
   const conditionalJust = isNegation(justification) ? justification.inner : justification
   if (!isConditional(conditionalJust)) {
@@ -628,12 +723,12 @@ function evalArrow(
   return returnFalse()
 }
 
-function evalContraposition(exp: AST.Expression, justifications: AST.Expression[]): boolean {
+function evalContraposition(exp: AST.Expression, justifications: Line[]): boolean {
   if (justifications.length !== 1) {
     return false
   }
 
-  const [justification] = justifications
+  const justification = justifications[0].formula.ast
 
   if (!isConditional(justification) || !isConditional(exp)) {
     return false
@@ -716,4 +811,12 @@ function isDisjunction(exp: AST.Expression): exp is AST.BinaryExpression {
   return (
     exp instanceof AST.BinaryExpression && exp.operator.lexeme === Operator.DISJUNCTION['libChar']
   )
+}
+
+function isContradiction(exp: AST.Expression): exp is AST.BinaryExpression {
+  if (!isConjunction(exp)) {
+    return false
+  }
+  const pairs = [[exp.left, exp.right], [exp.right, exp.left]]
+  return !!pairs.find(([ a, b ]) => isNegation(a) && prettyFormula(a.inner) === prettyFormula(b))
 }

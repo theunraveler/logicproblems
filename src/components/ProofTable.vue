@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, useTemplateRef } from 'vue'
+import { computed, reactive, ref, toRaw, useTemplateRef } from 'vue'
 import FormulaInput from '../components/FormulaInput.vue'
 import { Formula, Line, Proof, Rule } from '../lib/logic'
 
@@ -13,6 +13,9 @@ interface Props {
 const { assumptions = [], conclusion } = defineProps<Props>()
 
 const proof = reactive(new Proof(assumptions, conclusion))
+const showDependencies = computed(() => {
+  return proof.lines.some((line) => toRaw(line.rule) === Rule.SUPPOSITION)
+})
 const qed = computed(() => proof.qed())
 const form = {
   rule: ref(''),
@@ -46,14 +49,12 @@ const submitLine = () => {
     return
   }
 
-  const line = new Line(
-    formulaInput.value.formula,
-    form.rule.value,
-    form.justifications.value.map((n) => parseInt(n)),
-  )
-
   try {
-    proof.addDeduction(line)
+    proof.addDeduction(
+      formulaInput.value.formula,
+      form.rule.value,
+      form.justifications.value.map((n) => parseInt(n)),
+    )
   } catch (err) {
     if (typeof err === 'string') {
       error.value = err
@@ -76,38 +77,51 @@ defineExpose({ proof, hasUnsavedChanges })
 
 <template>
   <BForm @submit.prevent="submitLine">
-    <BTableSimple hover class="text-center">
+    <BTableSimple class="text-center">
       <BThead>
         <BTr>
-          <BTh v-if="!qed">J</BTh>
-          <BTh>L</BTh>
+          <BTh v-if="!qed"><abbr title="Select justification lines">J</abbr></BTh>
+          <BTh v-if="showDependencies"><abbr title="Depenency lines">D</abbr></BTh>
+          <BTh><abbr title="Line number">L</abbr></BTh>
           <BTh class="text-start">Formula</BTh>
           <BTh>Lines</BTh>
           <BTh>Rule</BTh>
         </BTr>
       </BThead>
       <BTbody class="table-group-divider">
-        <BTr v-for="(line, index) in proof.lines" :key="index">
+        <BTr
+          v-for="(line, index) in proof.lines"
+          :key="index"
+          :variant="form.justifications.value.includes(index) ? 'active' : null">
           <BTd v-if="!qed">
             <BFormCheckbox
               v-model="form.justifications.value"
               :value="index"
               :data-testid="`justification-${index}`" />
           </BTd>
-          <BTd>{{ index + 1 }}</BTd>
-          <BTd class="text-start"
-            ><code>{{ line.formula }}</code></BTd
-          >
+          <BTd v-if="showDependencies">
+            {{
+              line
+                .dependencies(proof)
+                .map((n) => n + 1)
+                .join(', ')
+            }}
+          </BTd>
+          <BTd>{{ line.index + 1 }}</BTd>
+          <BTd class="text-start">
+            <code>{{ line.formula }}</code>
+          </BTd>
           <BTd>{{ line.justifications.map((n) => n + 1).join(', ') }}</BTd>
-          <BTd
-            ><abbr :title="line.rule.label">{{ line.rule }}</abbr></BTd
-          >
+          <BTd>
+            <abbr :title="line.rule.label">{{ line.rule }}</abbr>
+          </BTd>
         </BTr>
         <BTr v-if="qed" class="table-group-divider">
           <BTd colspan="5" variant="success"> 🎉 Q.E.D. </BTd>
         </BTr>
         <BTr v-else class="table-group-divider" :variant="error ? 'danger' : null">
           <BTd><span v-if="error" :title="error">❌</span></BTd>
+          <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
             <FormulaInput ref="formula-input" />
