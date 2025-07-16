@@ -26,7 +26,7 @@ onBeforeRouteUpdate(async () => {
 <template>
   <BRow>
     <BCol cols="12" lg="8" xl="9">
-      <div class="d-flex justify-content-between border-bottom mb-4">
+      <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
         <h2>{{ problem.title }}</h2>
         <h4>
           Conclusion: <code>{{ proofTable?.proof?.conclusion }}</code>

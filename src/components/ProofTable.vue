@@ -115,10 +115,12 @@ defineExpose({ proof, hasUnsavedChanges })
           </BTd>
         </BTr>
         <BTr v-if="qed" class="table-group-divider">
-          <BTd colspan="5" variant="success"> 🎉 Q.E.D. </BTd>
+          <BTd :colspan="showDependencies ? 5 : 4" variant="success">
+            <IBiRocketTakeoff /> Q.E.D.
+          </BTd>
         </BTr>
         <BTr v-else class="table-group-divider" :variant="error ? 'danger' : null">
-          <BTd><span v-if="error" :title="error">❌</span></BTd>
+          <BTd><IBiXOctagonFill v-if="error" :title="error" class="text-danger" /></BTd>
           <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
