@@ -18,7 +18,7 @@ const operatorText = (symbol: string): string => {
 <template>
   <BRow>
     <BCol>
-      <BCard class="text-bg-light text-center" v-if="props.expression">
+      <BCard class="text-center" v-if="props.expression">
         <div>
           <span class="fw-bold">Formula: </span>
           <code>{{ expressionToString(props.expression) }}</code>
