@@ -179,7 +179,9 @@ export class Line {
       return [this.index]
     }
     const lines = proof.lines
-    const deps = [...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof)))].toSorted()
+    const deps = [
+      ...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof))),
+    ].toSorted()
     return this.rule.clearsSupposition
       ? deps.filter((l) => lines[l].rule !== Rule.SUPPOSITION)
       : deps
@@ -418,7 +420,7 @@ function evalNegationOut(exp: AST.Expression, justifications: Line[]): boolean {
     return false
   }
 
-  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
+  const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
     return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
   })
   if (!orderedJusts) {
@@ -438,7 +440,7 @@ function evalNegationIn(exp: AST.Expression, justifications: Line[]): boolean {
     return false
   }
 
-  const orderedJusts = [justifications, justifications.toReversed()].find(([ a, b ]) => {
+  const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
     return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
   })
   if (!orderedJusts) {
@@ -817,6 +819,9 @@ function isContradiction(exp: AST.Expression): exp is AST.BinaryExpression {
   if (!isConjunction(exp)) {
     return false
   }
-  const pairs = [[exp.left, exp.right], [exp.right, exp.left]]
-  return !!pairs.find(([ a, b ]) => isNegation(a) && prettyFormula(a.inner) === prettyFormula(b))
+  const pairs = [
+    [exp.left, exp.right],
+    [exp.right, exp.left],
+  ]
+  return !!pairs.find(([a, b]) => isNegation(a) && prettyFormula(a.inner) === prettyFormula(b))
 }

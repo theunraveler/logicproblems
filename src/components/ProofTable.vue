@@ -40,7 +40,7 @@ const hasUnsavedChanges = computed(() => {
 })
 
 const submitLine = () => {
-  if (!formulaInput.value) {
+  if (!formulaInput.value || !form.rule.value) {
     return
   }
 
@@ -64,12 +64,10 @@ const submitLine = () => {
     return
   }
 
-  if (!qed.value) {
-    formulaInput.value.reset()
-    form.rule.value = ''
-    form.justifications.value = []
-    error.value = ''
-  }
+  formulaInput.value.reset()
+  form.rule.value = ''
+  form.justifications.value = []
+  error.value = ''
 }
 
 defineExpose({ proof, hasUnsavedChanges })
@@ -92,7 +90,7 @@ defineExpose({ proof, hasUnsavedChanges })
         <BTr
           v-for="(line, index) in proof.lines"
           :key="index"
-          :variant="form.justifications.value.includes(index) ? 'active' : null">
+          :class="{ 'table-active': form.justifications.value.includes(index) }">
           <BTd v-if="!qed">
             <BFormCheckbox
               v-model="form.justifications.value"

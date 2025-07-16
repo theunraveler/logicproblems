@@ -7,7 +7,7 @@ test('visits the problems page', async ({ page }) => {
 
 test('shows all problems', async ({ page }) => {
   await page.goto('/problems')
-  await expect(page.getByTestId('problems').locator('.card:first-of-type .card-header')).toHaveText(
+  await expect(page.getByTestId('problems').locator('.card:first-of-type .card-header span:first-of-type')).toHaveText(
     'Course Orientation Test',
   )
 })
@@ -20,7 +20,7 @@ test.describe('filtering by chapter', () => {
   test('shows only problems in the specified chapter', async ({ page }) => {
     await page.goto('/problems?chapter=4')
     await expect(
-      page.getByTestId('problems').locator('.card:first-of-type .card-header'),
+      page.getByTestId('problems').locator('.card:first-of-type .card-header span:first-of-type'),
     ).toHaveText('Chapter Four #1')
   })
 })
@@ -28,7 +28,7 @@ test.describe('filtering by chapter', () => {
 test('paginates correctly', async ({ page }) => {
   await page.goto('/problems')
   await page.getByTestId('problem-paginator').getByText('2').click()
-  await expect(page.getByTestId('problems').locator('.card:first-of-type .card-header')).toHaveText(
+  await expect(page.getByTestId('problems').locator('.card:first-of-type .card-header span:first-of-type')).toHaveText(
     'Chapter Three Packet #17',
   )
 })

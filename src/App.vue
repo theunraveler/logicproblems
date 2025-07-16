@@ -3,17 +3,15 @@ import { inject } from 'vue'
 import { useColorMode } from 'bootstrap-vue-next'
 import IBiSun from '~icons/bi/sun'
 import IBiMoon from '~icons/bi/moon'
-import IBiCircleHalf from '~icons/bi/circle-half'
 import { chaptersInjectionKey } from './utils'
 
 const chapters = inject(chaptersInjectionKey)
 
 const modes = [
-  ['auto', IBiCircleHalf, 'Auto'],
-  ['light', IBiSun, 'Light'],
-  ['dark', IBiMoon, 'Dark'],
+  { name: 'light', icon: IBiSun, label: 'Light' },
+  { name: 'dark', icon: IBiMoon, label: 'Dark' },
 ]
-const mode = useColorMode({emitAuto: true})
+const colorMode = useColorMode()
 </script>
 
 <template>
@@ -45,14 +43,18 @@ const mode = useColorMode({emitAuto: true})
           <BNavItem :to="{ name: 'terms' }">Terms</BNavItem>
           <BNavItemDropdown>
             <template #button-content>
-              <template v-for="[ name, icon ] in modes" :key="name">
-                <Component :is="icon" v-if="mode === name" />
+              <template v-for="m in modes" :key="m.name">
+                <Component :is="m.icon" v-if="colorMode === m.name" />
               </template>
             </template>
-            <BDropdownItem v-for="[ name, icon, label ] in modes" :key="name" @click="mode = name" link-class="d-flex align-items-center">
-              <Component :is="icon" class="me-2" />
-              <span class="flex-grow-1">{{ label }}</span>
-              <IBiCheck2 v-if="mode === name" class="flex-shrink-1" />
+            <BDropdownItem
+              v-for="m in modes"
+              :key="m.name"
+              @click="colorMode = m.name"
+              link-class="d-flex align-items-center">
+              <Component :is="m.icon" class="me-2" />
+              <span class="flex-grow-1">{{ m.label }}</span>
+              <IBiCheck2 v-if="colorMode === m.name" class="flex-shrink-1" />
             </BDropdownItem>
           </BNavItemDropdown>
         </BNavbarNav>
