@@ -27,6 +27,7 @@ const justifications = computed(() =>
     .map((n) => n + 1)
     .join(', '),
 )
+const submitting = ref(false)
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
 const hasUnsavedChanges = computed(() => {
@@ -40,12 +41,16 @@ const hasUnsavedChanges = computed(() => {
 })
 
 const submitLine = () => {
+  submitting.value = true
+
   if (!formulaInput.value || !form.rule.value) {
+    submitting.value = false
     return
   }
 
   formulaInput.value.validate()
   if (formulaInput.value.error || !formulaInput.value.formula) {
+    submitting.value = false
     return
   }
 
@@ -61,6 +66,7 @@ const submitLine = () => {
     } else if (err instanceof Error) {
       error.value = err.message
     }
+    submitting.value = false
     return
   }
 
@@ -68,6 +74,7 @@ const submitLine = () => {
   form.rule.value = ''
   form.justifications.value = []
   error.value = ''
+  submitting.value = false
 }
 
 defineExpose({ proof, hasUnsavedChanges })
@@ -142,7 +149,10 @@ defineExpose({ proof, hasUnsavedChanges })
     </BTableSimple>
 
     <div v-if="!qed" class="d-grid gap-2 mt-2">
-      <BButton type="submit" variant="primary">Submit Line</BButton>
+      <BButton variant="primary" type="submit" :disabled="submitting">
+        <span v-if="submitting"><BSpinner small /> Submitting...</span>
+        <span v-else>Submit Line</span>
+      </BButton>
     </div>
   </BForm>
 </template>
