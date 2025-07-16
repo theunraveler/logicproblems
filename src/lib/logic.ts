@@ -94,6 +94,10 @@ export class Rule {
     return this.evalFunc(formula.ast, justifications, proof)
   }
 
+  valueOf(): string {
+    return this.shorthand
+  }
+
   toString(): string {
     return this.shorthand
   }
@@ -238,7 +242,7 @@ export class Proof {
 
     const lines = this.lines
     const lastLineDependencies = lastLine.dependencies(this).map((i) => lines[i])
-    return !lastLineDependencies.some((l) => l.rule === Rule.SUPPOSITION)
+    return !lastLineDependencies.some((l) => l.rule.valueOf() === Rule.SUPPOSITION.valueOf())
   }
 }
 
