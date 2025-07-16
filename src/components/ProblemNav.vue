@@ -32,7 +32,7 @@ const next = computed(() => {
       class="btn btn-outline-secondary float-start"
       :title="prev.title"
       data-testid="previous-problem-link">
-      ← Previous
+      <IBiArrowLeftShort />Previous
     </BLink>
     <BLink
       v-if="next"
@@ -40,7 +40,7 @@ const next = computed(() => {
       class="btn btn-outline-secondary float-end"
       :title="next.title"
       data-testid="next-problem-link">
-      Next →
+      Next<IBiArrowRightShort />
     </BLink>
   </BContainer>
 </template>

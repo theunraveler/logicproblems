@@ -51,6 +51,8 @@ declare module 'vue' {
     FormulaGraph: typeof import('./src/components/FormulaGraph.vue')['default']
     FormulaInput: typeof import('./src/components/FormulaInput.vue')['default']
     FormulaInputHelp: typeof import('./src/components/FormulaInputHelp.vue')['default']
+    IBiArrowLeftShort: typeof import('~icons/bi/arrow-left-short')['default']
+    IBiArrowRightShort: typeof import('~icons/bi/arrow-right-short')['default']
     IBiRocketTakeoff: typeof import('~icons/bi/rocket-takeoff')['default']
     IBiXOctagonFill: typeof import('~icons/bi/x-octagon-fill')['default']
     ProblemNav: typeof import('./src/components/ProblemNav.vue')['default']
