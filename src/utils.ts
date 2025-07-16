@@ -1,5 +1,9 @@
 import type { InjectionKey } from 'vue'
 
+export const problems: ProblemList = (
+  await import('./data/problems.json', { assert: { type: 'json' } })
+).default
+
 export type ProblemList = {
   [key: string]: Problem
 }

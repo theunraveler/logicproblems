@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { computed, inject, useTemplateRef } from 'vue'
+import { useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { problemsInjectionKey } from '../utils'
-import type { ProblemList } from '../utils'
 import ProofTable from '../components/ProofTable.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
 
-const props = defineProps(['id'])
-
-const problems = inject(problemsInjectionKey) as ProblemList
-const problem = computed(() => problems[props.id])
+defineProps(['id', 'problem'])
 const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
 onBeforeRouteUpdate(async () => {
@@ -28,9 +23,7 @@ onBeforeRouteUpdate(async () => {
     <BCol cols="12" lg="8" xl="9">
       <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
         <h2>{{ problem.title }}</h2>
-        <h4>
-          Conclusion: {{ proofTable?.proof?.conclusion }}
-        </h4>
+        <h4>Conclusion: {{ proofTable?.proof?.conclusion }}</h4>
       </div>
 
       <ProofTable
@@ -39,7 +32,7 @@ onBeforeRouteUpdate(async () => {
         :conclusion="problem.conclusion"
         data-testid="proof-table" />
 
-      <ProblemNav class="px-0 mt-4 mt-lg-5" :current="$route.params.id" />
+      <ProblemNav class="px-0 mt-4 mt-lg-5" :current="id" />
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
