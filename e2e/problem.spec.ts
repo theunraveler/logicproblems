@@ -11,7 +11,7 @@ test.describe('solving a proof', () => {
 
       const qedCell = proofTable.locator('tbody tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
-      await expect(qedCell).toHaveText(' 🎉 Q.E.D. ')
+      await expect(qedCell).toHaveText(' Q.E.D. ')
     })
   })
 
