@@ -113,9 +113,7 @@ defineExpose({ proof, hasUnsavedChanges })
             }}
           </BTd>
           <BTd>{{ line.index + 1 }}</BTd>
-          <BTd class="text-start">
-            <code>{{ line.formula }}</code>
-          </BTd>
+          <BTd class="text-start">{{ line.formula }}</BTd>
           <BTd>{{ line.justifications.map((n) => n + 1).join(', ') }}</BTd>
           <BTd>
             <abbr :title="line.rule.label">{{ line.rule }}</abbr>

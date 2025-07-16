@@ -29,7 +29,7 @@ onBeforeRouteUpdate(async () => {
       <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
         <h2>{{ problem.title }}</h2>
         <h4>
-          Conclusion: <code>{{ proofTable?.proof?.conclusion }}</code>
+          Conclusion: {{ proofTable?.proof?.conclusion }}
         </h4>
       </div>
 

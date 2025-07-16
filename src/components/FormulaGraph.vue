@@ -11,7 +11,7 @@ const expressionToString = (expression: AST.Expression): string => {
 
 const operatorText = (symbol: string): string => {
   const operator = Operator.findBySymbol(Formula.normalize(symbol))
-  return `${operator.label} (<code>${operator.symbol}</code>)`
+  return `${operator.label} (${operator.symbol})`
 }
 </script>
 
@@ -21,7 +21,7 @@ const operatorText = (symbol: string): string => {
       <BCard class="text-center" v-if="props.expression">
         <div>
           <span class="fw-bold">Formula: </span>
-          <code>{{ expressionToString(props.expression) }}</code>
+          {{ expressionToString(props.expression) }}
         </div>
         <div v-if="props.expression?.operator" class="text-capitalize">
           <span class="fw-bold">Operator: </span>

@@ -51,12 +51,12 @@ const updatePage = (page: string | number) => {
         <BCardHeader class="d-flex justify-content-between align-items-center">
           <span>{{ problem.title }}</span>
           <span>
-            Conclusion: <code>{{ new Formula(problem.conclusion) }}</code>
+            Conclusion: {{ new Formula(problem.conclusion) }}
           </span>
         </BCardHeader>
         <BListGroup flush numbered>
           <BListGroupItem v-for="(assumption, index) in problem.assumptions" :key="index">
-            <code class="ms-3">{{ new Formula(assumption) }}</code>
+            <span class="ms-3">{{ new Formula(assumption) }}</span>
           </BListGroupItem>
         </BListGroup>
         <BCardBody>
