@@ -41,6 +41,7 @@ declare module 'vue' {
     BNavItemDropdown: typeof import('bootstrap-vue-next/components/BNav')['BNavItemDropdown']
     BPagination: typeof import('bootstrap-vue-next/components/BPagination')['BPagination']
     BRow: typeof import('bootstrap-vue-next/components/BContainer')['BRow']
+    BSpinner: typeof import('bootstrap-vue-next/components/BSpinner')['BSpinner']
     BTableSimple: typeof import('bootstrap-vue-next/components/BTable')['BTableSimple']
     BTbody: typeof import('bootstrap-vue-next/components/BTable')['BTbody']
     BTd: typeof import('bootstrap-vue-next/components/BTable')['BTd']

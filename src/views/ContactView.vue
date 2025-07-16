@@ -7,9 +7,15 @@ const form = {
   message: ref(''),
   botcheck: ref(false),
 }
-const result = ref('')
+const submitting = ref(false)
+const hasError = ref(false)
+const alertText = ref('')
 
-const onSubmit = () => {
+const onSubmit = async () => {
+  alertText.value = ''
+  hasError.value = false
+  submitting.value = true
+
   const payload = Object.assign(
     {},
     Object.fromEntries(
@@ -25,7 +31,7 @@ const onSubmit = () => {
   )
 
   if (import.meta.env.DEV) {
-    result.value = `Would have submitted the following data: ${JSON.stringify(payload)}`
+    alertText.value = `Would have submitted the following data: ${JSON.stringify(payload)}`
     reset()
     return
   }
@@ -41,9 +47,14 @@ const onSubmit = () => {
     .then(async (response) => {
       const json = await response.json()
       if (response.ok && json.success) {
-        result.value = "Thanks for contacting us. We'll get back to you shortly."
+        alertText.value = "Thanks for contacting us. We'll get back to you shortly."
       }
       reset()
+    })
+    .catch(async (error) => {
+      alertText.value = `Error: ${error instanceof Error ? error.message : error}`
+      hasError.value = true
+      submitting.value = false
     })
 }
 
@@ -52,14 +63,15 @@ function reset() {
   form.email.value = ''
   form.message.value = ''
   form.botcheck.value = false
+  submitting.value = false
 }
 </script>
 
 <template>
   <h1>Contact Us</h1>
 
-  <BAlert :model-value="result.length !== 0" variant="success">
-    {{ result }}
+  <BAlert :model-value="!!alertText" :variant="hasError ? 'danger' : 'success'">
+    {{ alertText }}
   </BAlert>
 
   <BForm @submit.prevent="onSubmit">
@@ -75,6 +87,9 @@ function reset() {
     <BFormCheckbox v-model="form.botcheck.value" class="d-none">
       Leave this checkbox unchecked
     </BFormCheckbox>
-    <BButton variant="primary" type="submit">Send</BButton>
+    <BButton variant="primary" type="submit" :disabled="submitting">
+      <span v-if="submitting"><BSpinner small /> Sending...</span>
+      <span v-else>Send</span>
+    </BButton>
   </BForm>
 </template>
