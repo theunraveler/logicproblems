@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import { computed, reactive, ref, toRaw, useTemplateRef } from 'vue'
+import { computed, ref, toRaw, useTemplateRef } from 'vue'
 import FormulaInput from '../components/FormulaInput.vue'
-import { Formula, Line, Proof, Rule } from '../lib/logic'
+import { Proof, Rule } from '../lib/logic'
 
 type FormulaInputType = InstanceType<typeof FormulaInput>
 
-interface Props {
-  assumptions?: Formula[] | Line[] | string[]
-  conclusion: Formula | string
-}
+const { proof } = defineProps<{ proof: Proof }>()
+const emit = defineEmits(['qed'])
 
-const { assumptions = [], conclusion } = defineProps<Props>()
-
-const proof = reactive(new Proof(assumptions, conclusion))
 const showDependencies = computed(() => {
   return proof.lines.some((line) => toRaw(line.rule) === Rule.SUPPOSITION)
 })
@@ -30,6 +25,7 @@ const justifications = computed(() =>
 const submitting = ref(false)
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
+
 const hasUnsavedChanges = computed(() => {
   return (
     !qed.value &&
@@ -75,9 +71,13 @@ const submitLine = () => {
   form.justifications.value = []
   error.value = ''
   submitting.value = false
+
+  if (qed.value) {
+    emit('qed', proof)
+  }
 }
 
-defineExpose({ proof, hasUnsavedChanges })
+defineExpose({ hasUnsavedChanges })
 </script>
 
 <template>
