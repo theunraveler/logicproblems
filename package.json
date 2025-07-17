@@ -36,7 +36,6 @@
     "@types/node": "^24.0.10",
     "@types/number-to-words": "^1.2.3",
     "@vitejs/plugin-vue": "^6.0.0",
-    "@vitejs/plugin-vue-jsx": "^5.0.0",
     "@vitest/eslint-plugin": "^1.2.7",
     "@vue/compiler-sfc": "^3.5.17",
     "@vue/eslint-config-prettier": "^10.2.0",
