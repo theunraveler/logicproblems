@@ -33,15 +33,15 @@ const operatorText = (symbol: string): string => {
 
   <BRow class="mt-3">
     <BCol v-if="props.expression?.left">
-      <div class="arrow left mb-3 text-end me-5 fs-3">⇙</div>
+      <div class="mb-3 text-end me-5 fs-4"><IBiArrowDownLeft /></div>
       <FormulaGraph :expression="props.expression.left" />
     </BCol>
     <BCol v-if="props.expression?.right">
-      <div class="arrow right mb-3 text-start ms-5 fs-3">⇘</div>
+      <div class="mb-3 text-start ms-5 fs-4"><IBiArrowDownRight /></div>
       <FormulaGraph :expression="props.expression.right" />
     </BCol>
     <BCol v-if="props.expression?.inner">
-      <div class="arrow mb-3 text-center fs-3">⇓</div>
+      <div class="mb-3 text-center fs-4"><IBiArrowDown /></div>
       <FormulaGraph :expression="props.expression.inner" />
     </BCol>
   </BRow>
