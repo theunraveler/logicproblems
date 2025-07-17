@@ -114,7 +114,7 @@ onBeforeRouteUpdate(confirmDiscard)
             >
           </BListGroupItem>
         </BListGroup>
-        <BCardBody v-else>You have not solved this proof yet.</BCardBody>
+        <BCardBody v-else>You have not solved this problem yet.</BCardBody>
       </BCard>
 
       <FormulaInputHelp />
