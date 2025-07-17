@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
+import { computed, inject, reactive, ref, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
-import { humanizeDuration, humanizeTimestamp } from '../utils'
+import { chaptersInjectionKey, humanizeDuration, humanizeTimestamp } from '../utils'
 import type { SolutionList } from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProofTable from '../components/ProofTable.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
+
+const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
@@ -73,6 +75,15 @@ onBeforeRouteUpdate(confirmDiscard)
 </script>
 
 <template>
+  <BBreadcrumb>
+    <BBreadcrumbItem :to="{name: 'home'}">Home</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{name: 'problems'}">Problems</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{name: 'problems', query: {chapter: problem.chapter}}">
+      {{ chapters[problem.chapter] }}
+    </BBreadcrumbItem>
+    <BBreadcrumbItem active>{{ problem.title }}</BBreadcrumbItem>
+  </BBreadcrumb>
+
   <BRow>
     <BCol cols="12" lg="8" xl="9">
       <div class="d-flex justify-content-between align-items-center border-bottom mb-4">

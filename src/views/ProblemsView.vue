@@ -20,7 +20,7 @@ if (props.chapter) {
   problems.value = problems.value.filter(([, problem]) => problem.chapter === props.chapter)
 }
 
-const title = computed(() => (props.chapter ? chapters[props.chapter] : 'All Problems'))
+const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
 const rows = computed(() => problems.value.length)
 const perPage = ref(30)
 const pageProblems = computed(() => {
@@ -38,6 +38,12 @@ const updatePage = (page: string | number) => {
 </script>
 
 <template>
+  <BBreadcrumb>
+    <BBreadcrumbItem :to="{name: 'home'}">Home</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{name: 'problems'}" :active="!props.chapter">Problems</BBreadcrumbItem>
+    <BBreadcrumbItem v-if="props.chapter" active>{{ chapters[props.chapter] }}</BBreadcrumbItem>
+  </BBreadcrumb>
+
   <h1 class="mb-4">{{ title }}</h1>
 
   <BRow>

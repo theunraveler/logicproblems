@@ -9,6 +9,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BAlert: typeof import('bootstrap-vue-next/components/BAlert')['BAlert']
+    BBreadcrumb: typeof import('bootstrap-vue-next/components/BBreadcrumb')['BBreadcrumb']
+    BBreadcrumbItem: typeof import('bootstrap-vue-next/components/BBreadcrumb')['BBreadcrumbItem']
     BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
     BButtonGroup: typeof import('bootstrap-vue-next/components/BButton')['BButtonGroup']
     BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
