@@ -190,8 +190,12 @@ describe('Rule', () => {
     })
 
     describe('SUPPOSITION', () => {
-      test('always returns true', () => {
+      test('allows any formula', () => {
         expect(evaluateSimple(Rule.SUPPOSITION, 'A')).toBe(true)
+      })
+
+      test('fails when there are justification lines', () => {
+        expect(evaluateSimple(Rule.SUPPOSITION, 'A', ['B'])).toBe(false)
       })
     })
 

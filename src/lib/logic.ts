@@ -63,7 +63,7 @@ export class Rule {
   static readonly AND_IN = new Rule('& I', 'Ampersand/And In', evalAndIn)
   static readonly NEGATION_OUT = new Rule('- O', 'Dash Out', evalNegationOut, true)
   static readonly NEGATION_IN = new Rule('- I', 'Dash In', evalNegationIn, true)
-  static readonly SUPPOSITION = new Rule('S', 'Supposition', () => true)
+  static readonly SUPPOSITION = new Rule('S', 'Supposition', evalSupposition)
   static readonly MODUS_TOLLENS = new Rule('MT', 'Modus Tollens', evalModusTollens)
   static readonly DISJUNCTIVE_ARGUMENT = new Rule(
     'DA',
@@ -453,6 +453,10 @@ function evalNegationIn(exp: AST.Expression, justifications: Line[]): boolean {
 
   const suppositionExp = orderedJusts[0].formula.ast
   return prettyFormula(exp.inner) === prettyFormula(suppositionExp)
+}
+
+function evalSupposition(exp: AST.Expression, justifications: Line[]): boolean {
+  return justifications.length === 0
 }
 
 function evalModusTollens(exp: AST.Expression, justifications: Line[]): boolean {
