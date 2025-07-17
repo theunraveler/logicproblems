@@ -9,7 +9,7 @@
     "build-only": "vite build",
     "ci": "run-s test lint type-check",
     "dev": "vite",
-    "format": "prettier --write e2e/ src/",
+    "format": "prettier --write e2e/ src/ vite.config.ts vitest.config.ts eslint.config.ts playwright.config.ts",
     "lint": "eslint . --fix",
     "preview": "vite preview",
     "test": "run-s test:unit test:e2e",

@@ -76,12 +76,16 @@ const githubUrl = import.meta.env.GITHUB_URL
 
   <footer class="border-top py-3 mt-auto">
     <BContainer class="d-flex flex-wrap justify-content-end align-items-center">
-      <ul class="nav col-12 col-md-4 justify-content-end align-items-center list-unstyled d-flex text-body-secondary">
+      <ul
+        class="nav col-12 col-md-4 justify-content-end align-items-center list-unstyled d-flex text-body-secondary">
         <li class="ms-3">
           <a target="_new" class="text-body-secondary" :href="githubUrl"><IBiGithub /></a>
         </li>
         <li class="ms-3">
-          <a target="_new" class="text-body-secondary" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <a
+            target="_new"
+            class="text-body-secondary"
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
             <IFa6BrandsCreativeCommons />
             <IFa6BrandsCreativeCommonsBy />
             <IFa6BrandsCreativeCommonsNc />
