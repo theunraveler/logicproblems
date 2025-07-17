@@ -230,6 +230,10 @@ export class Proof {
     this.deductions.push(deduction)
   }
 
+  clear() {
+    this.deductions.length = 0
+  }
+
   qed(): boolean {
     if (this.deductions.length <= 0) {
       return false
