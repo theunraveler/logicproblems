@@ -1,34 +1,30 @@
 <script setup lang="ts">
 import { computed, inject, ref } from 'vue'
-import type { Ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { Formula } from '../lib/logic'
 import { problemsInjectionKey, chaptersInjectionKey } from '../utils'
 import type { ProblemList, ChapterList } from '../utils'
 
 const $router = useRouter()
-const $route = useRoute()
 
+const props = defineProps({
+  page: { type: Number, default: 1 },
+  chapter: { type: Number },
+})
 const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList))
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
-const chapter: Ref<number | null> = ref(null)
-if (typeof $route.query.chapter === 'string') {
-  chapter.value = parseInt($route.query.chapter)
-  problems.value = problems.value.filter(([, problem]) => problem.chapter === chapter.value)
+if (props.chapter) {
+  problems.value = problems.value.filter(([, problem]) => problem.chapter === props.chapter)
 }
 
-const title = computed(() => (chapter.value ? chapters[chapter.value] : 'All Problems'))
+const title = computed(() => (props.chapter ? chapters[props.chapter] : 'All Problems'))
 const rows = computed(() => problems.value.length)
 const perPage = ref(30)
-const currentPage: Ref<number> = ref(1)
-if (typeof $route.query.page === 'string') {
-  currentPage.value = parseInt($route.query.page)
-}
 const pageProblems = computed(() => {
   return problems.value.slice(
-    (currentPage.value - 1) * perPage.value,
-    currentPage.value * perPage.value,
+    (props.page - 1) * perPage.value,
+    props.page * perPage.value,
   )
 })
 
@@ -67,7 +63,7 @@ const updatePage = (page: string | number) => {
       </BCard>
       <BPagination
         @update:model-value="updatePage"
-        v-model="currentPage"
+        :model-value="props.page"
         :total-rows="rows"
         :per-page="perPage"
         align="center"

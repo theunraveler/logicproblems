@@ -14,6 +14,10 @@ const router = createRouter({
       path: '/problems',
       name: 'problems',
       component: () => import('./views/ProblemsView.vue'),
+      props: (route) => ({
+        page: route.query.page ? parseInt(route.query.page.toString()) : 1,
+        chapter: route.query.chapter ? parseInt(route.query.chapter.toString()) : null,
+      }),
       meta: { title: 'Problems' },
     },
     {
