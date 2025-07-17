@@ -3,7 +3,7 @@ import { computed, inject, reactive, ref, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import { chaptersInjectionKey, humanizeDuration, humanizeTimestamp } from '../utils'
-import type { SolutionList } from '../utils'
+import type { ChapterList, SolutionList } from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProofTable from '../components/ProofTable.vue'
 
