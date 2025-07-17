@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { useColorMode } from 'bootstrap-vue-next'
+import { useColorMode } from '@vueuse/core'
 import IBiSun from '~icons/bi/sun'
 import IBiMoon from '~icons/bi/moon'
 import IBiCircleHalf from '~icons/bi/circle-half'
@@ -8,12 +8,17 @@ import { chaptersInjectionKey } from './utils'
 
 const chapters = inject(chaptersInjectionKey)
 
-const modes = [
-  { name: 'auto', icon: IBiCircleHalf, label: 'System default' },
-  { name: 'light', icon: IBiSun, label: 'Light' },
-  { name: 'dark', icon: IBiMoon, label: 'Dark' },
-]
-const colorMode = useColorMode({ emitAuto: true, persist: true })
+const modes = {
+  auto: { icon: IBiCircleHalf, label: 'System default' },
+  light: { icon: IBiSun, label: 'Light' },
+  dark: { icon: IBiMoon, label: 'Dark' },
+}
+const { store: colorMode } = useColorMode({
+  selector: 'body',
+  attribute: 'data-bs-theme',
+  storageKey: 'color-theme',
+})
+
 const githubUrl = import.meta.env.GITHUB_URL
 </script>
 
@@ -45,18 +50,16 @@ const githubUrl = import.meta.env.GITHUB_URL
           <BNavItem :to="{ name: 'contact' }">Contact</BNavItem>
           <BNavItemDropdown style="z-index: 2000">
             <template #button-content>
-              <template v-for="m in modes" :key="m.name">
-                <Component :is="m.icon" v-if="colorMode === m.name" />
-              </template>
+              <Component :is="modes[colorMode].icon" />
             </template>
             <BDropdownItem
-              v-for="m in modes"
-              :key="m.name"
-              @click="colorMode = m.name"
+              v-for="(m, name) in modes"
+              :key="name"
+              @click="colorMode = name"
               :link-class="{
                 'd-flex': true,
                 'align-items-center': true,
-                active: colorMode === m.name,
+                active: colorMode === name,
               }">
               <Component :is="m.icon" class="me-2" />
               <span class="flex-grow-1">{{ m.label }}</span>
