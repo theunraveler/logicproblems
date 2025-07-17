@@ -1,4 +1,5 @@
 import type { InjectionKey } from 'vue'
+import _humanizeDuration from 'humanize-duration'
 
 export const problems: ProblemList = (
   await import('./data/problems.json', { assert: { type: 'json' } })
@@ -29,5 +30,13 @@ export type SolutionList = {
 
 export interface Solution {
   t: number
+  d: number
   l: [string, string, number[]][]
+}
+
+export const humanizeDuration = (d: number): string => _humanizeDuration(d, { round: true })
+
+export const humanizeTimestamp = (ts: number): string => {
+  const date = new Date(ts)
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
 }

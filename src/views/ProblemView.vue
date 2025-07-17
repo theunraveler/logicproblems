@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, reactive, ref, useTemplateRef } from 'vue'
+import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
+import { humanizeDuration, humanizeTimestamp } from '../utils'
 import type { SolutionList } from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProofTable from '../components/ProofTable.vue'
@@ -15,15 +16,26 @@ const proofTable = useTemplateRef<ProofTableType>('proof-table')
 const allSolutions = useStorage(`solutions`, {} as SolutionList)
 const solutions = computed(() => allSolutions.value[props.id] || [])
 const solution = ref<number>()
-const showModal = ref(false)
+const solvedIn = ref(0)
+let startedAt
+
+watch(
+  props,
+  async () => {
+    startedAt = Date.now()
+  },
+  { immediate: true },
+)
 
 const qed = (proof: Proof) => {
   if (!(props.id in allSolutions.value)) {
     allSolutions.value[props.id] = []
   }
 
+  const now = Date.now()
   allSolutions.value[props.id].unshift({
-    t: Date.now(),
+    t: now,
+    d: now - startedAt,
     l: proof.deductions.map((l: Line) => {
       return [
         l.formula.toString().replaceAll(' ', ''),
@@ -33,7 +45,7 @@ const qed = (proof: Proof) => {
     }),
   })
   solution.value = 0
-  showModal.value = true
+  solvedIn.value = now - startedAt
 }
 
 const confirmDiscard = async () => {
@@ -77,8 +89,11 @@ onBeforeRouteUpdate(confirmDiscard)
           <BListGroupItem
             v-for="(s, index) in solutions"
             :key="index"
-            :class="{ 'd-flex': true, active: index === solution }">
-            <span class="flex-grow-1">{{ new Date(s.t).toLocaleString() }}</span>
+            :class="['d-flex align-items-center', { active: index === solution }]">
+            <span class="flex-grow-1">
+              {{ humanizeTimestamp(s.t) }}
+              <small class="d-block text-muted">Solved in {{ humanizeDuration(s.d) }}</small>
+            </span>
             <a
               v-if="index !== solution"
               href="#"
@@ -95,7 +110,7 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
   </BRow>
 
-  <BModal :show="showModal" title="Q.E.D." ok-only ok-title="Close">
-    Congrats, you solved the problem!
+  <BModal :show="solvedIn" title="Q.E.D." ok-only ok-title="Close">
+    Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
   </BModal>
 </template>
