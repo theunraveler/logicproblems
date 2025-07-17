@@ -20,6 +20,7 @@ const { store: colorMode } = useColorMode({
 })
 
 const githubUrl = import.meta.env.GITHUB_URL
+const commitSha = import.meta.env.GIT_COMMIT_SHA
 </script>
 
 <template>
@@ -89,7 +90,8 @@ const githubUrl = import.meta.env.GITHUB_URL
           by Maran Wolston
         </li>
         <li>
-          <a target="_new" class="text-body-secondary" :href="githubUrl"><IBiGithub /></a>
+          <a target="_new" class="text-body-secondary me-1" :href="githubUrl"><IBiGithub /></a>
+          <a target="_new" class="text-body-secondary text-decoration-none" :href="`${githubUrl}/commits/${commitSha}`">{{ commitSha }}</a>
         </li>
       </ul>
     </BContainer>

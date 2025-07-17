@@ -6,7 +6,12 @@ import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
 import { BootstrapVueNextResolver } from 'bootstrap-vue-next'
 import IconsResolve from 'unplugin-icons/resolver'
+import childProcess from 'child_process'
 import packageInfo from './package.json'
+
+const commit = process.env.WORKERS_CI_COMMIT_SHA
+  ? process.env.WORKERS_CI_COMMIT_SHA
+  : childProcess.execSync('git rev-parse --short HEAD').toString().trim()
 
 export default defineConfig({
   plugins: [
@@ -33,7 +38,7 @@ export default defineConfig({
     },
   },
   define: {
-    ['import.meta.env.VERSION']: JSON.stringify(packageInfo.version),
+    ['import.meta.env.GIT_COMMIT_SHA']: JSON.stringify(commit),
     ['import.meta.env.GITHUB_URL']: JSON.stringify(packageInfo.homepage),
   },
 })
