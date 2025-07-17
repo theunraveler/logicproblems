@@ -6,6 +6,7 @@ import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
 import { BootstrapVueNextResolver } from 'bootstrap-vue-next'
 import IconsResolve from 'unplugin-icons/resolver'
+import packageInfo from './package.json'
 
 export default defineConfig({
   plugins: [
@@ -35,5 +36,9 @@ export default defineConfig({
           ],
         },
      },
+  },
+  define: {
+    ['import.meta.env.VERSION']: JSON.stringify(packageInfo.version),
+    ['import.meta.env.GITHUB_URL']: JSON.stringify(packageInfo.homepage),
   },
 })

@@ -38,12 +38,6 @@ const router = createRouter({
       meta: { title: 'Contact' },
     },
     {
-      path: '/terms',
-      name: 'terms',
-      component: () => import('./views/TermsView.vue'),
-      meta: { title: 'Terms' },
-    },
-    {
       path: '/:catchAll(.*)*',
       name: 'notFound',
       component: () => import('./views/NotFoundView.vue'),

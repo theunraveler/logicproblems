@@ -2,6 +2,7 @@
   "name": "logicproblems",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://github.com/theunraveler/logicproblems",
   "type": "module",
   "scripts": {
     "build": "run-p type-check \"build-only {@}\" --",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
     "@iconify-json/bi": "^1.2.4",
+    "@iconify-json/fa6-brands": "^1.2.5",
     "@playwright/test": "^1.53.1",
     "@tsconfig/node22": "^22.0.2",
     "@types/insert-text-at-cursor": "^0.3.2",
