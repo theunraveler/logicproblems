@@ -17,7 +17,7 @@ const allSolutions = useStorage(`solutions`, {} as SolutionList)
 const solutions = computed(() => allSolutions.value[props.id] || [])
 const solution = ref<number>()
 const solvedIn = ref(0)
-let startedAt
+let startedAt: number
 
 watch(
   props,
@@ -110,7 +110,7 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
   </BRow>
 
-  <BModal :show="solvedIn" title="Q.E.D." ok-only ok-title="Close">
+  <BModal :show="!!solvedIn" title="Q.E.D." ok-only ok-title="Close">
     Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
   </BModal>
 </template>
