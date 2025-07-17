@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import { Formula } from '../lib/logic'
 import { problemsInjectionKey, chaptersInjectionKey } from '../utils'
-import type { ProblemList, ChapterList } from '../utils'
+import type { ProblemList, ChapterList, SolutionList } from '../utils'
 
 const $router = useRouter()
 
@@ -14,7 +14,7 @@ const props = defineProps({
 })
 const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList))
 const chapters = inject(chaptersInjectionKey) as ChapterList
-const solutions = useStorage(`solutions`, {})
+const solutions = useStorage(`solutions`, {} as SolutionList)
 
 if (props.chapter) {
   problems.value = problems.value.filter(([, problem]) => problem.chapter === props.chapter)
@@ -24,10 +24,7 @@ const title = computed(() => (props.chapter ? chapters[props.chapter] : 'All Pro
 const rows = computed(() => problems.value.length)
 const perPage = ref(30)
 const pageProblems = computed(() => {
-  return problems.value.slice(
-    (props.page - 1) * perPage.value,
-    props.page * perPage.value,
-  )
+  return problems.value.slice((props.page - 1) * perPage.value, props.page * perPage.value)
 })
 
 const updatePage = (page: string | number) => {
@@ -50,7 +47,7 @@ const updatePage = (page: string | number) => {
           <span>{{ problem.title }}</span>
           <span v-if="id in solutions" class="text-success">
             <IBiCheckCircleFill class="me-1" />
-            <small>Solved {{ (new Date(solutions[id][0].t)).toLocaleDateString() }}</small>
+            <small>Solved {{ new Date(solutions[id][0].t).toLocaleDateString() }}</small>
           </span>
         </BCardHeader>
         <BListGroup flush numbered>

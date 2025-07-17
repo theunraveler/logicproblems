@@ -76,8 +76,7 @@ const githubUrl = import.meta.env.GITHUB_URL
 
   <footer class="border-top py-3 mt-auto">
     <BContainer class="d-flex flex-wrap justify-content-end align-items-center">
-      <ul
-        class="nav list-unstyled text-body-secondary">
+      <ul class="nav list-unstyled text-body-secondary">
         <li class="me-3">
           <a
             target="_new"

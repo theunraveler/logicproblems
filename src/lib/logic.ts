@@ -84,7 +84,7 @@ export class Rule {
   constructor(
     public readonly shorthand: string,
     public readonly label: string,
-    private readonly evalFunc: LineEvalFunction,
+    public readonly evalFunc: LineEvalFunction,
     public readonly clearsSupposition: boolean = false,
   ) {
     Rule.all.push(this)
@@ -103,7 +103,8 @@ export class Rule {
   }
 
   public static findByShorthand(shorthand: string): Rule {
-    const found = Rule.all.find((rule) => rule.shorthand === shorthand)
+    const trimmedShorthand = shorthand.replaceAll(' ', '')
+    const found = Rule.all.find((rule) => rule.shorthand.replaceAll(' ', '') === trimmedShorthand)
     if (!found) {
       throw new Error('Rule not found')
     }

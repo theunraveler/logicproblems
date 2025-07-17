@@ -14,7 +14,7 @@ const showDependencies = computed(() => {
 const qed = computed(() => proof.qed())
 const form = {
   rule: ref(''),
-  justifications: ref([]),
+  justifications: ref<string[]>([]),
 }
 const justifications = computed(() =>
   form.justifications.value
@@ -97,7 +97,7 @@ defineExpose({ hasUnsavedChanges })
         <BTr
           v-for="(line, index) in proof.lines"
           :key="index"
-          :class="{ 'table-active': form.justifications.value.includes(index) }">
+          :class="{ 'table-active': form.justifications.value.includes(index.toString()) }">
           <BTd v-if="!qed">
             <BFormCheckbox
               v-model="form.justifications.value"

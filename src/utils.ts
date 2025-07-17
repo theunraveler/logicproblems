@@ -22,3 +22,12 @@ export type ChapterList = {
 }
 
 export const chaptersInjectionKey = Symbol() as InjectionKey<ChapterList>
+
+export type SolutionList = {
+  [key: string]: Solution[]
+}
+
+export interface Solution {
+  t: number
+  l: [string, string, number[]][]
+}

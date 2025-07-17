@@ -2,7 +2,9 @@
 import { computed, reactive, ref, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
-import { Proof } from '../lib/logic'
+import type { SolutionList } from '../utils'
+import { Proof, Line } from '../lib/logic'
+import ProofTable from '../components/ProofTable.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
 
@@ -10,20 +12,24 @@ const props = defineProps(['id', 'problem'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
 const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
-const allSolutions = useStorage(`solutions`, {})
+const allSolutions = useStorage(`solutions`, {} as SolutionList)
 const solutions = computed(() => allSolutions.value[props.id] || [])
-const solution = ref(null)
+const solution = ref<number>()
 const showModal = ref(false)
 
-const qed = (proof) => {
+const qed = (proof: Proof) => {
   if (!(props.id in allSolutions.value)) {
     allSolutions.value[props.id] = []
   }
 
   allSolutions.value[props.id].unshift({
     t: Date.now(),
-    l: proof.deductions.map((l) => {
-      return [l.formula.toString(), l.rule.toString(), l.justifications]
+    l: proof.deductions.map((l: Line) => {
+      return [
+        l.formula.toString().replaceAll(' ', ''),
+        l.rule.toString().replaceAll(' ', ''),
+        l.justifications,
+      ]
     }),
   })
   solution.value = 0
@@ -39,7 +45,7 @@ const confirmDiscard = async () => {
   )
 }
 
-const viewSolution = async (index) => {
+const viewSolution = async (index: number) => {
   if (!(await confirmDiscard())) {
     return
   }
@@ -68,9 +74,18 @@ onBeforeRouteUpdate(confirmDiscard)
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <BCard class="mb-3" header="Solutions" no-body>
         <BListGroup flush v-if="solutions.length">
-          <BListGroupItem v-for="(s, index) in solutions" :key="index" :class="{ 'd-flex': true, active: index === solution}">
+          <BListGroupItem
+            v-for="(s, index) in solutions"
+            :key="index"
+            :class="{ 'd-flex': true, active: index === solution }">
             <span class="flex-grow-1">{{ new Date(s.t).toLocaleString() }}</span>
-            <a v-if="index !== solution" href="#" @click.prevent="viewSolution(index)" class="stretched-link">View</a>
+            <a
+              v-if="index !== solution"
+              href="#"
+              @click.prevent="viewSolution(index)"
+              class="stretched-link"
+              >View</a
+            >
           </BListGroupItem>
         </BListGroup>
         <BCardBody v-else>You have not solved this proof yet.</BCardBody>
