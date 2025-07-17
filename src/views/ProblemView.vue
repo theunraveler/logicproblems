@@ -51,13 +51,6 @@ const viewSolution = async (index) => {
   })
 }
 
-const clearSolutions = () => {
-  if (!window.confirm('Are you sure?')) {
-    return
-  }
-  delete allSolutions.value[props.id]
-}
-
 onBeforeRouteUpdate(confirmDiscard)
 </script>
 
@@ -73,13 +66,7 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
-      <BCard class="mb-3" no-body header-class="d-flex justify-content-between">
-        <template #header>
-          <span>Solutions</span>
-          <a href="#" @click.prevent="clearSolutions" v-if="solutions.length" class="text-danger">
-            <IBiTrash />
-          </a>
-        </template>
+      <BCard class="mb-3" header="Solutions" no-body>
         <BListGroup flush v-if="solutions.length">
           <BListGroupItem v-for="(s, index) in solutions" :key="index" :class="{ 'd-flex': true, active: index === solution}">
             <span class="flex-grow-1">{{ new Date(s.t).toLocaleString() }}</span>
