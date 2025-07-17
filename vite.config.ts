@@ -9,9 +9,7 @@ import IconsResolve from 'unplugin-icons/resolver'
 import childProcess from 'child_process'
 import packageInfo from './package.json'
 
-const commit = process.env.WORKERS_CI_COMMIT_SHA
-  ? process.env.WORKERS_CI_COMMIT_SHA
-  : childProcess.execSync('git rev-parse --short HEAD').toString().trim()
+const commit = childProcess.execSync('git rev-parse --short HEAD').toString().trim()
 
 export default defineConfig({
   plugins: [
