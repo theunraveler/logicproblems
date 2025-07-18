@@ -39,8 +39,8 @@ const updatePage = (page: string | number) => {
 
 <template>
   <BBreadcrumb>
-    <BBreadcrumbItem :to="{name: 'home'}">Home</BBreadcrumbItem>
-    <BBreadcrumbItem :to="{name: 'problems'}" :active="!props.chapter">Problems</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{ name: 'home' }">Home</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{ name: 'problems' }" :active="!props.chapter">Problems</BBreadcrumbItem>
     <BBreadcrumbItem v-if="props.chapter" active>{{ chapters[props.chapter] }}</BBreadcrumbItem>
   </BBreadcrumb>
 

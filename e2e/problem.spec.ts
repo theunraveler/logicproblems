@@ -168,9 +168,7 @@ const ensureLine = async (
   await test.step(`Ensure proof line ${expectedIndex}`, async () => {
     const cols = proofTable.locator('tbody tr').nth(expectedIndex).getByRole('cell')
     if (dependencies && dependencies.length > 0) {
-      await expect(cols.nth(startingColumn)).toHaveText(
-        dependencies.map((i) => i + 1).join(', ')
-      )
+      await expect(cols.nth(startingColumn)).toHaveText(dependencies.map((i) => i + 1).join(', '))
     }
     await expect(cols.nth(startingColumn + 1)).toHaveText(`${expectedIndex + 1}`)
     await expect(cols.nth(startingColumn + 2)).toHaveText(formula)
@@ -192,7 +190,15 @@ const enterAndEnsureLine = async (
 ) => {
   await test.step(`Enter and ensure proof line ${expectedIndex}`, async () => {
     await enterLine(proofTable, formula, rule, justifications)
-    await ensureLine(proofTable, formula, rule, justifications, expectedIndex, dependencies, completesProof)
+    await ensureLine(
+      proofTable,
+      formula,
+      rule,
+      justifications,
+      expectedIndex,
+      dependencies,
+      completesProof,
+    )
   })
 }
 

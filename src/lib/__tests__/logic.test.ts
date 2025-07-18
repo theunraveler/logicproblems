@@ -314,6 +314,10 @@ describe('Rule', () => {
       expect(Rule.findByShorthand('& O')).toBe(Rule.AND_OUT)
     })
 
+    test('disregards spaces', () => {
+      expect(Rule.findByShorthand('&O')).toBe(Rule.AND_OUT)
+    })
+
     test('throws an error when the Rule is not found', () => {
       expect(() => Rule.findByShorthand('NONE')).toThrowError(/^Rule not found$/)
     })
@@ -371,6 +375,12 @@ describe('Proof', () => {
       expect(proof.lines[2].formula.text).toEqual('B')
       expect(proof.lines[2].rule).toBe(Rule.ARROW_OUT)
       expect(proof.lines[2].justifications).toEqual([0, 1])
+    })
+
+    test('returns the new line', () => {
+      const proof = new Proof(['A → B', 'A'], 'B')
+      const line = proof.addDeduction('B', Rule.ARROW_OUT, [0, 1])
+      expect(line).toBeInstanceOf(Line)
     })
 
     test('throw for invalid lines', () => {

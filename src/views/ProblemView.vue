@@ -76,9 +76,9 @@ onBeforeRouteUpdate(confirmDiscard)
 
 <template>
   <BBreadcrumb>
-    <BBreadcrumbItem :to="{name: 'home'}">Home</BBreadcrumbItem>
-    <BBreadcrumbItem :to="{name: 'problems'}">Problems</BBreadcrumbItem>
-    <BBreadcrumbItem :to="{name: 'problems', query: {chapter: problem.chapter}}">
+    <BBreadcrumbItem :to="{ name: 'home' }">Home</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{ name: 'problems' }">Problems</BBreadcrumbItem>
+    <BBreadcrumbItem :to="{ name: 'problems', query: { chapter: problem.chapter } }">
       {{ chapters[problem.chapter] }}
     </BBreadcrumbItem>
     <BBreadcrumbItem active>{{ problem.title }}</BBreadcrumbItem>

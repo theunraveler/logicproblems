@@ -136,7 +136,7 @@ defineExpose({ hasUnsavedChanges })
             <BFormSelect v-model="form.rule.value" required>
               <BFormSelectOption value="" disabled selected hidden>Rule</BFormSelectOption>
               <template v-for="rule in Rule.all" :key="rule.shorthand">
-                <BFormSelectOption v-if="rule !== Rule.ASSUMPTION" :value="rule">
+                <BFormSelectOption v-if="rule !== Rule.ASSUMPTION" :value="rule.shorthand">
                   {{ rule.shorthand }}
                 </BFormSelectOption>
               </template>

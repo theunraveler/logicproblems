@@ -220,7 +220,11 @@ export class Proof {
     return this.assumptions.concat(this.deductions)
   }
 
-  addDeduction(formula: string | Formula, rule: Rule | string, justifications: number[] = []) {
+  addDeduction(
+    formula: string | Formula,
+    rule: Rule | string,
+    justifications: number[] = [],
+  ): Line {
     const lines = this.lines
     const deduction = new Line(lines.length, formula, rule, justifications)
     if (
@@ -233,6 +237,7 @@ export class Proof {
       throw new Error(`Invalid deduction: ${deduction}`)
     }
     this.deductions.push(deduction)
+    return deduction
   }
 
   clear() {
@@ -251,7 +256,7 @@ export class Proof {
 
     const lines = this.lines
     const lastLineDependencies = lastLine.dependencies(this).map((i) => lines[i])
-    return !lastLineDependencies.some((l) => l.rule.valueOf() === Rule.SUPPOSITION.valueOf())
+    return lastLineDependencies.every((l) => l.rule.valueOf() === Rule.ASSUMPTION.valueOf())
   }
 }
 
@@ -286,7 +291,9 @@ function evalArrowIn(exp: AST.Expression, justifications: Line[], proof: Proof):
     return false
   }
 
-  const suppositionIndex = justifications.findIndex((j) => j.rule.valueOf() === Rule.SUPPOSITION.valueOf())
+  const suppositionIndex = justifications.findIndex(
+    (j) => j.rule.valueOf() === Rule.SUPPOSITION.valueOf(),
+  )
   if (suppositionIndex === -1) {
     return false
   }

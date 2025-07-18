@@ -91,7 +91,12 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
         </li>
         <li>
           <a target="_new" class="text-body-secondary me-1" :href="githubUrl"><IBiGithub /></a>
-          <a target="_new" class="text-body-secondary text-decoration-none" :href="`${githubUrl}/commit/${commitSha}`">{{ commitSha }}</a>
+          <a
+            target="_new"
+            class="text-body-secondary text-decoration-none"
+            :href="`${githubUrl}/commit/${commitSha}`">
+            {{ commitSha }}
+          </a>
         </li>
       </ul>
     </BContainer>
