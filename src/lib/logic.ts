@@ -188,7 +188,11 @@ export class Line {
       ...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof))),
     ].toSorted()
     return this.rule.clearsSupposition
-      ? deps.filter((l) => lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf())
+      ? deps.filter(
+          (l) =>
+            !this.justifications.includes(l) ||
+            lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf(),
+        )
       : deps
   }
 

@@ -320,6 +320,49 @@ describe('Rule', () => {
   })
 })
 
+describe('Line', () => {
+  describe('#dependencies', () => {
+    test('lines with no justifications are their own dependencies', () => {
+      const proof = new Proof(['A', 'B'], 'C')
+      expect(proof.lines[0].dependencies(proof)).toEqual([0])
+      expect(proof.lines[1].dependencies(proof)).toEqual([1])
+    })
+
+    test('includes dependencies of justifications', () => {
+      const proof = new Proof(['A & B', 'B → C'], 'C')
+      expect(proof.addDeduction('B', Rule.AND_OUT, [0]).dependencies(proof)).toEqual([0])
+      expect(proof.addDeduction('C', Rule.ARROW_OUT, [1, 2]).dependencies(proof)).toEqual([0, 1])
+    })
+
+    test('resolves supposition dependencies', () => {
+      const proof = new Proof(['C → F', 'F → B', 'B → A'], 'C → A')
+      expect(proof.addDeduction('C', Rule.SUPPOSITION).dependencies(proof)).toEqual([3])
+      expect(proof.addDeduction('F', Rule.ARROW_OUT, [0, 3]).dependencies(proof)).toEqual([0, 3])
+      expect(proof.addDeduction('B', Rule.ARROW_OUT, [1, 4]).dependencies(proof)).toEqual([0, 1, 3])
+      expect(proof.addDeduction('A', Rule.ARROW_OUT, [2, 5]).dependencies(proof)).toEqual([
+        0, 1, 2, 3,
+      ])
+      expect(proof.addDeduction('C → A', Rule.ARROW_IN, [3, 6]).dependencies(proof)).toEqual([
+        0, 1, 2,
+      ])
+      expect(proof.qed()).toBe(true)
+    })
+
+    test('resolves supposition dependencies (multiple)', () => {
+      const proof = new Proof(['(B & A) → C'], 'A → (B → C)')
+      expect(proof.addDeduction('A', Rule.SUPPOSITION).dependencies(proof)).toEqual([1])
+      expect(proof.addDeduction('B', Rule.SUPPOSITION).dependencies(proof)).toEqual([2])
+      expect(proof.addDeduction('B & A', Rule.AND_IN, [1, 2]).dependencies(proof)).toEqual([1, 2])
+      expect(proof.addDeduction('C', Rule.ARROW_OUT, [0, 3]).dependencies(proof)).toEqual([0, 1, 2])
+      expect(proof.addDeduction('B → C', Rule.ARROW_IN, [2, 4]).dependencies(proof)).toEqual([0, 1])
+      expect(proof.addDeduction('A → (B → C)', Rule.ARROW_IN, [1, 5]).dependencies(proof)).toEqual([
+        0,
+      ])
+      expect(proof.qed()).toBe(true)
+    })
+  })
+})
+
 describe('Proof', () => {
   describe('#addDeduction', () => {
     test('adds the line to the proof', () => {
