@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { computed, ref, toRaw, useTemplateRef, watch } from 'vue'
+import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
+import { useModal } from 'bootstrap-vue-next'
 import FormulaInput from '../components/FormulaInput.vue'
-import { Proof, Rule } from '../lib/logic'
+import { Proof, Rule, InvalidDeductionError } from '../lib/logic'
 
 type FormulaInputType = InstanceType<typeof FormulaInput>
 
 const { proof } = defineProps<{ proof: Proof }>()
 const emit = defineEmits(['qed', 'clear'])
+
+const id = useId()
 
 const showDependencies = computed(() => {
   return proof.lines.some((line) => toRaw(line.rule) === Rule.SUPPOSITION)
@@ -25,6 +28,7 @@ const justifications = computed(() =>
 const submitting = ref(false)
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
+const { show: showModal } = useModal(`error-modal-${id}`)
 
 let startedAt: number
 const solvedIn = ref<number>()
@@ -70,10 +74,11 @@ const submitLine = () => {
       form.justifications.value.map((n) => parseInt(n)),
     )
   } catch (err) {
-    if (typeof err === 'string') {
-      error.value = err
-    } else if (err instanceof Error) {
+    if (err instanceof InvalidDeductionError) {
       error.value = err.message
+      showModal()
+    } else {
+      throw error
     }
     submitting.value = false
     return
@@ -144,14 +149,14 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
           </BTd>
         </BTr>
       </BTbody>
-      <BTfoot class="table-group-divider">
+      <BTfoot class="table-group-divider align-top">
         <BTr v-if="qed">
           <BTd :colspan="showDependencies ? 5 : 4" variant="success">
             <IBiRocketTakeoff /> Q.E.D.
           </BTd>
         </BTr>
-        <BTr v-else class="table-group-divider" :variant="error ? 'danger' : null">
-          <BTd><IBiXOctagonFill v-if="error" :title="error" class="text-danger" /></BTd>
+        <BTr v-else :variant="error ? 'danger' : null">
+          <BTd><IBiXCircleFill v-if="error" :title="error" class="text-danger" /></BTd>
           <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
@@ -186,5 +191,9 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
         </BButton>
       </template>
     </div>
+
+    <BModal :id="`error-modal-${id}`" title="Invalid Deduction" ok-only ok-title="Close">
+      {{ error }}
+    </BModal>
   </BForm>
 </template>

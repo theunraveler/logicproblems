@@ -61,7 +61,7 @@ declare module 'vue' {
     IBiGithub: typeof import('~icons/bi/github')['default']
     IBiQuestionCircle: typeof import('~icons/bi/question-circle')['default']
     IBiRocketTakeoff: typeof import('~icons/bi/rocket-takeoff')['default']
-    IBiXOctagonFill: typeof import('~icons/bi/x-octagon-fill')['default']
+    IBiXCircleFill: typeof import('~icons/bi/x-circle-fill')['default']
     IFa6BrandsCreativeCommons: typeof import('~icons/fa6-brands/creative-commons')['default']
     IFa6BrandsCreativeCommonsBy: typeof import('~icons/fa6-brands/creative-commons-by')['default']
     IFa6BrandsCreativeCommonsSa: typeof import('~icons/fa6-brands/creative-commons-sa')['default']
@@ -70,6 +70,5 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SolutionList: typeof import('./src/components/SolutionList.vue')['default']
-    SolutionsList: typeof import('./src/components/SolutionsList.vue')['default']
   }
 }

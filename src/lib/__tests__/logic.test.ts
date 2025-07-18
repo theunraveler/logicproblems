@@ -4,11 +4,11 @@ import { Formula, Line, Proof, Rule } from '../logic'
 describe('Rule', () => {
   describe('#evaluate', () => {
     testCasesFor(Rule.ARROW_OUT, [
-      ['B', ['A → B', 'A'], true],
-      ['C → D', ['A → (C → D)', 'A'], true],
-      ['C → D', ['(A → B) → (C → D)', 'A → B'], true],
-      ['C → D', ['A → B', '(A → B) → (C → D)'], true],
-      ['C', ['A → B', 'A'], false],
+      ['B', ['A → B', 'A']],
+      ['C → D', ['A → (C → D)', 'A']],
+      ['C → D', ['(A → B) → (C → D)', 'A → B']],
+      ['C → D', ['A → B', '(A → B) → (C → D)']],
+      ['C', ['A → B', 'A'], /must be the consequent of the first justification/],
     ])
 
     // eslint-disable-next-line vitest/valid-title
@@ -23,67 +23,91 @@ describe('Rule', () => {
       })
 
       test('fails without exactly 2 justifications', () => {
-        expect(evaluateSimple(Rule.ARROW_IN, 'C', ['A'])).toBe(false)
+        expect(() => evaluateSimple(Rule.ARROW_IN, 'C', ['A'])).toThrowError(
+          /requires 2 justifications/,
+        )
       })
 
       test('fails if none of the justifications is a supposition', () => {
-        expect(evaluateSimple(Rule.ARROW_IN, 'C', ['A', 'B'])).toBe(false)
+        expect(() => evaluateSimple(Rule.ARROW_IN, 'C', ['A', 'B'])).toThrowError(
+          /must contain an arrow operator/,
+        )
       })
 
       test('fails if the deduction is not derived from the supposition', () => {
         const proof = new Proof(['A', 'A → B', 'B → C'], 'A → C')
         proof.addDeduction('B', Rule.SUPPOSITION)
         expect(() => proof.addDeduction('A → C', Rule.ARROW_IN, [1, 2])).toThrowError(
-          /^Invalid deduction/,
+          /one of the justifications must be a supposition/i,
         )
       })
     })
 
     testCasesFor(Rule.AND_OUT, [
-      ['A', ['A & B'], true],
-      ['B', ['A & B'], true],
-      ['C → D', ['A & (C → D)'], true],
-      ['A → B', ['(A → B) & (C → D)'], true],
-      ['C → D', ['(A → B) & (C → D)'], true],
-      ['C', ['A & B'], false],
+      ['A', ['A & B']],
+      ['B', ['A & B']],
+      ['C → D', ['A & (C → D)']],
+      ['A → B', ['(A → B) & (C → D)']],
+      ['C → D', ['(A → B) & (C → D)']],
+      ['C', ['A & B'], /must be either the antecedent or consequent of the justification/],
     ])
 
     testCasesFor(Rule.AND_IN, [
-      ['A & B', ['A', 'B'], true],
-      ['B & A', ['A', 'B'], true],
-      ['(A → B) & (C → D)', ['A → B', 'C → D'], true],
-      ['A & C', ['A', 'B'], false],
+      ['A & B', ['A', 'B']],
+      ['B & A', ['A', 'B']],
+      ['(A → B) & (C → D)', ['A → B', 'C → D']],
+      ['A & C', ['A', 'B'], /consequent must be one of the justifications/],
     ])
 
     testCasesFor(Rule.BICONDITIONAL_OUT, [
-      ['A → B', ['A ↔ B'], true],
-      ['B → A', ['A ↔ B'], true],
-      ['(A → C) → B', ['(A → C) ↔ B'], true],
-      ['B → (A → C)', ['(A → C) ↔ B'], true],
-      ['B → C', ['A ↔ B'], false],
+      ['A → B', ['A ↔ B']],
+      ['B → A', ['A ↔ B']],
+      ['(A → C) → B', ['(A → C) ↔ B']],
+      ['B → (A → C)', ['(A → C) ↔ B']],
+      [
+        'B → C',
+        ['A ↔ B'],
+        /formula must have have the same antecedent and consequent as the justification/i,
+      ],
     ])
 
     testCasesFor(Rule.BICONDITIONAL_IN, [
-      ['A ↔ B', ['A → B', 'B → A'], true],
-      ['B ↔ A', ['A → B', 'B → A'], true],
-      ['(A → B) ↔ (C → D)', ['(A → B) → (C → D)', '(C → D) → (A → B)'], true],
-      ['B ↔ A', ['A → B', 'A → C'], false],
-      ['B ↔ A', ['A → B', 'B & C'], false],
-      ['A ↔ B', ['A → B'], false],
+      ['A ↔ B', ['A → B', 'B → A']],
+      ['B ↔ A', ['A → B', 'B → A']],
+      ['(A → B) ↔ (C → D)', ['(A → B) → (C → D)', '(C → D) → (A → B)']],
+      [
+        'B ↔ A',
+        ['A → B', 'A → C'],
+        /antecedent and consequent must be the antecedent and consequent of one justification/i,
+      ],
+      ['B ↔ A', ['A → B', 'B & C'], /justifications must both contain arrow operators/i],
+      ['A ↔ B', ['A → B'], /requires 2 justifications/],
     ])
 
     testCasesFor(Rule.OR_IN, [
-      ['A ∨ B', ['B'], true],
-      ['A ∨ B', ['A'], true],
-      ['A ∨ B', ['C'], false],
+      ['A ∨ B', ['B']],
+      ['A ∨ B', ['A']],
+      [
+        'A ∨ B',
+        ['C'],
+        /justification must appear as either the antecedent or consequent of the formula/i,
+      ],
     ])
 
     testCasesFor(Rule.OR_OUT, [
-      ['C', ['A ∨ B', 'A → C', 'B → C'], true],
-      ['C', ['A → C', 'A ∨ B', 'B → C'], true],
-      ['D', ['A ∨ B', 'A → C', 'B → C'], false],
-      ['C', ['A ∨ B', 'A → C', 'B → D'], false],
-      ['C', ['A ∨ B', 'A → C'], false],
+      ['C', ['A ∨ B', 'A → C', 'B → C']],
+      ['C', ['A → C', 'A ∨ B', 'B → C']],
+      [
+        'D',
+        ['A ∨ B', 'A → C', 'B → C'],
+        /both conditional justifications must contain the formula as their consequent/i,
+      ],
+      [
+        'C',
+        ['A ∨ B', 'A → C', 'B → D'],
+        /both conditional justifications must contain the formula as their consequent/i,
+      ],
+      ['C', ['A ∨ B', 'A → C'], /requires 3 justifications/],
     ])
 
     // eslint-disable-next-line vitest/valid-title
@@ -93,8 +117,7 @@ describe('Rule', () => {
         proof.addDeduction('-A', Rule.SUPPOSITION)
         proof.addDeduction('B', Rule.ARROW_OUT, [0, 2])
         proof.addDeduction('B & -B', Rule.AND_IN, [1, 3])
-        proof.addDeduction('A', Rule.NEGATION_OUT, [2, 4])
-        expect(true).toBe(true) // We only get here if the previous line didn't error.
+        expect(() => proof.addDeduction('A', Rule.NEGATION_OUT, [2, 4])).not.toThrowError()
       })
 
       test('fails when the derived line is not the negation of the supposition', () => {
@@ -102,25 +125,29 @@ describe('Rule', () => {
         proof.addDeduction('-A', Rule.SUPPOSITION)
         proof.addDeduction('B', Rule.ARROW_OUT, [0, 2])
         proof.addDeduction('B & -B', Rule.AND_IN, [1, 3])
-        expect(() => proof.addDeduction('C', Rule.NEGATION_OUT, [1, 2])).toThrowError(
-          /^Invalid deduction/,
+        expect(() => proof.addDeduction('C', Rule.NEGATION_OUT, [2, 4])).toThrowError(
+          /formula must be the negation of the supposition justification/i,
         )
       })
 
       test('fails without exactly 2 justifications', () => {
-        expect(evaluateSimple(Rule.NEGATION_OUT, 'C', ['A'])).toBe(false)
+        expect(() => evaluateSimple(Rule.NEGATION_OUT, 'C', ['A'])).toThrowError(
+          /requires 2 justifications/,
+        )
       })
 
       test('fails if none of the justifications is a supposition', () => {
-        expect(evaluateSimple(Rule.NEGATION_OUT, 'C', ['A', 'B'])).toBe(false)
+        expect(() => evaluateSimple(Rule.NEGATION_OUT, 'C', ['A', 'B'])).toThrowError(
+          /justifications must include a supposition and a contradiction/i,
+        )
       })
 
       test('fails if the contradiction is not derived from the supposition', () => {
         const proof = new Proof(['A', '-A'], 'B')
         proof.addDeduction('-B', Rule.SUPPOSITION)
         proof.addDeduction('A & -A', Rule.AND_IN, [0, 1])
-        expect(() => proof.addDeduction('B', Rule.NEGATION_OUT, [1, 2])).toThrowError(
-          /^Invalid deduction/,
+        expect(() => proof.addDeduction('B', Rule.NEGATION_OUT, [2, 3])).toThrowError(
+          /contradiction must contain the supposition as a dependency/i,
         )
       })
     })
@@ -132,8 +159,7 @@ describe('Rule', () => {
         proof.addDeduction('A', Rule.SUPPOSITION)
         proof.addDeduction('-B', Rule.ARROW_OUT, [0, 2])
         proof.addDeduction('B & -B', Rule.AND_IN, [1, 3])
-        proof.addDeduction('-A', Rule.NEGATION_IN, [2, 4])
-        expect(true).toBe(true) // We only get here if the previous line didn't error.
+        expect(() => proof.addDeduction('-A', Rule.NEGATION_IN, [2, 4])).not.toThrowError()
       })
 
       test('fails when the derived line is not the negation of the supposition', () => {
@@ -142,24 +168,28 @@ describe('Rule', () => {
         proof.addDeduction('-B', Rule.ARROW_OUT, [0, 2])
         proof.addDeduction('B & -B', Rule.AND_IN, [1, 3])
         expect(() => proof.addDeduction('-C', Rule.NEGATION_IN, [2, 4])).toThrowError(
-          /^Invalid deduction/,
+          /formula must be the negation of the supposition/i,
         )
       })
 
       test('fails without exactly 2 justifications', () => {
-        expect(evaluateSimple(Rule.NEGATION_IN, 'C', ['A'])).toBe(false)
+        expect(() => evaluateSimple(Rule.NEGATION_IN, 'C', ['A'])).toThrowError(
+          /requires 2 justifications/,
+        )
       })
 
       test('fails if none of the justifications is a supposition', () => {
-        expect(evaluateSimple(Rule.NEGATION_IN, 'C', ['A', 'B'])).toBe(false)
+        expect(() => evaluateSimple(Rule.NEGATION_IN, '-C', ['A', 'B'])).toThrowError(
+          /justifications must include a supposition and a contradiction/i,
+        )
       })
 
       test('fails if the contradiction is not derived from the supposition', () => {
         const proof = new Proof(['A', '-A'], '-B')
         proof.addDeduction('B', Rule.SUPPOSITION)
         proof.addDeduction('A & -A', Rule.AND_IN, [0, 1])
-        expect(() => proof.addDeduction('-B', Rule.NEGATION_IN, [1, 2])).toThrowError(
-          /^Invalid deduction/,
+        expect(() => proof.addDeduction('-B', Rule.NEGATION_IN, [2, 3])).toThrowError(
+          /contradiction must contain the supposition as a dependency/i,
         )
       })
     })
@@ -167,102 +197,133 @@ describe('Rule', () => {
     // eslint-disable-next-line vitest/valid-title
     describe(Rule.SUPPOSITION.label, () => {
       test('allows any formula', () => {
-        expect(evaluateSimple(Rule.SUPPOSITION, 'A')).toBe(true)
+        expect(() => evaluateSimple(Rule.SUPPOSITION, 'A')).not.toThrowError()
       })
 
       test('fails when there are justification lines', () => {
-        expect(evaluateSimple(Rule.SUPPOSITION, 'A', ['B'])).toBe(false)
+        expect(() => evaluateSimple(Rule.SUPPOSITION, 'A', ['B'])).toThrowError(
+          /rule requires 0 justifications/i,
+        )
       })
     })
 
     testCasesFor(Rule.MODUS_TOLLENS, [
-      ['-A', ['A → B', '-B'], true],
-      ['-A', ['-B', 'A → B'], true],
-      ['-(A & B)', ['-(C & D)', '(A & B) → (C & D)'], true],
-      ['A', ['A → B', '-B'], false],
-      ['-A', ['D → B', '-B'], false],
+      ['-A', ['A → B', '-B']],
+      ['-A', ['-B', 'A → B']],
+      ['-(A & B)', ['-(C & D)', '(A & B) → (C & D)']],
+      ['A', ['A → B', '-B'], /formula must contain a dash operator/i],
+      [
+        '-A',
+        ['D → B', '-B'],
+        /conditional justification must contain the negated formula as its antecedent/i,
+      ],
     ])
 
     testCasesFor(Rule.DISJUNCTIVE_ARGUMENT, [
-      ['B', ['A ∨ B', '-A'], true],
-      ['A', ['A ∨ B', '-B'], true],
-      ['A & B', ['(A & B) ∨ (C & D)', '-(C & D)'], true],
-      ['C', ['A ∨ B', '-A'], false],
-      ['-B', ['A ∨ B', 'A'], false],
-      ['-B', ['A ∨ B', '-A'], false],
+      ['B', ['A ∨ B', '-A']],
+      ['A', ['A ∨ B', '-B']],
+      ['A & B', ['(A & B) ∨ (C & D)', '-(C & D)']],
+      [
+        'C',
+        ['A ∨ B', '-A'],
+        /formula must be either the antecedent or consequent of the disjunction justification/i,
+      ],
+      [
+        '-B',
+        ['A ∨ B', 'A'],
+        /disjunction must contain the negated negation as either its antecedent or consequent/i,
+      ],
+      [
+        '-B',
+        ['A ∨ B', '-A'],
+        /formula must be either the antecedent or consequent of the disjunction justification/i,
+      ],
     ])
 
     testCasesFor(Rule.CONJUNCTIVE_ARGUMENT, [
-      ['-B', ['-(A & B)', 'A'], true],
-      ['-A', ['-(A & B)', 'B'], true],
-      ['B', ['-(A & B)', 'A'], false],
-      ['-A', ['-(A & B)', 'C'], false],
+      ['-B', ['-(A & B)', 'A']],
+      ['-A', ['-(A & B)', 'B']],
+      ['B', ['-(A & B)', 'A'], /formula must contain a dash operator/i],
+      [
+        '-A',
+        ['-(A & B)', 'C'],
+        /contains the second justification as either its antecedent or consequent/i,
+      ],
     ])
 
     testCasesFor(Rule.CHAIN_RULE, [
-      ['A → C', ['A → B', 'B → C'], true],
-      ['A → C', ['B → C', 'A → B'], true],
-      ['A → C', ['A → B', 'B → D'], false],
+      ['A → C', ['A → B', 'B → C']],
+      ['A → C', ['B → C', 'A → B']],
+      ['A → C', ['A → B', 'B → D'], /consequent of the formula must be the consequent of the second justification/i],
+      ['N → C', ['A → B', 'B → C'], /formula must be the antecedent of one of the justifications/i],
     ])
 
     testCasesFor(Rule.DOUBLE_NEGATION, [
-      ['--A', ['A'], true],
-      ['A', ['--A'], true],
-      ['A & B', ['--(A & B)'], true],
-      ['--(A & B)', ['A & B'], true],
-      ['-(A & B)', ['A & B'], false],
-      ['---(A & B)', ['A & B'], false],
+      ['--A', ['A']],
+      ['A', ['--A']],
+      ['A & B', ['--(A & B)']],
+      ['--(A & B)', ['A & B']],
+      ['-(A & B)', ['A & B'], /formula or justification must contain 2 dash operators/i],
+      ['---(A & B)', ['A & B'], /formula or justification must contain 2 dash operators/i],
     ])
 
     testCasesFor(Rule.DEMORGANS_LAW, [
-      ['-A ∨ -B', ['-(A & B)'], true],
-      ['-(A & B)', ['-A ∨ -B'], true],
-      ['-A & -B', ['-(A ∨ B)'], true],
-      ['-(A ∨ B)', ['-A & -B'], true],
-      ['A ∨ B', ['-(-A & -B)'], true],
-      ['-(-A & -B)', ['A ∨ B'], true],
-      ['A & B', ['-(-A ∨ -B)'], true],
-      ['-(-A ∨ -B)', ['A & B'], true],
+      ['-A ∨ -B', ['-(A & B)']],
+      ['-(A & B)', ['-A ∨ -B']],
+      ['-A & -B', ['-(A ∨ B)']],
+      ['-(A ∨ B)', ['-A & -B']],
+      ['A ∨ B', ['-(-A & -B)']],
+      ['-(-A & -B)', ['A ∨ B']],
+      ['A & B', ['-(-A ∨ -B)']],
+      ['-(-A ∨ -B)', ['A & B']],
     ])
 
     testCasesFor(Rule.ARROW, [
-      ['-A ∨ B', ['A → B'], true],
-      ['A → B', ['-A ∨ B'], true],
-      ['A ∨ B', ['-A → B'], true],
-      ['-A → B', ['A ∨ B'], true],
-      ['-(A & -B)', ['A → B'], true],
-      ['A → B', ['-(A & -B)'], true],
-      ['A & -B', ['-(A → B)'], true],
-      ['-(A → B)', ['A & -B'], true],
+      ['-A ∨ B', ['A → B']],
+      ['A → B', ['-A ∨ B']],
+      ['A ∨ B', ['-A → B']],
+      ['-A → B', ['A ∨ B']],
+      ['-(A & -B)', ['A → B']],
+      ['A → B', ['-(A & -B)']],
+      ['A & -B', ['-(A → B)']],
+      ['-(A → B)', ['A & -B']],
     ])
 
     testCasesFor(Rule.CONTRAPOSITION, [
-      ['-B → -A', ['A → B'], true],
-      ['B → A', ['-A → -B'], true],
-      ['-B → A', ['-A → B'], true],
-      ['B → -A', ['A → -B'], true],
-      ['B → -A', ['-A → B'], false],
-      ['-B → A', ['A → -B'], false],
-      ['-B → -A', ['-A → -B'], false],
+      ['-B → -A', ['A → B']],
+      ['B → A', ['-A → -B']],
+      ['-B → A', ['-A → B']],
+      ['B → -A', ['A → -B']],
+      ['B → -A', ['-A → B'], /invalid deduction/i],
+      ['-B → A', ['A → -B'], /invalid deduction/i],
+      ['-B → -A', ['-A → -B'], /invalid deduction/i],
     ])
   })
 
-  const testCasesFor = (rule: Rule, cases: [string, string[], boolean][]) => {
+  const testCasesFor = (
+    rule: Rule,
+    cases: ([string, string[]] | [string, string[], string | RegExp])[],
+  ) => {
     // eslint-disable-next-line vitest/valid-title
     describe(rule.label, () => {
       test.each(cases)(
         '%s from %s: %s',
-        (formula: string, justifications: string[], shouldPass: boolean) => {
-          expect(evaluateSimple(rule, formula, justifications)).toBe(shouldPass)
+        (formula: string, justifications: string[], error: string | RegExp | null = null) => {
+          const caller = () => evaluateSimple(rule, formula, justifications)
+          if (error) {
+            expect(caller).toThrowError(error)
+          } else {
+            expect(caller()).toBeUndefined()
+          }
         },
       )
     })
   }
 
-  const evaluateSimple = (rule: Rule, formula: string, justifications: string[] = []): boolean => {
+  const evaluateSimple = (rule: Rule, formula: string, justifications: string[] = []) => {
     const assumptions = justifications.map((j, i) => new Line(i, j, 'A'))
     const proof = new Proof(assumptions, 'Z')
-    return rule.evaluate(new Formula(formula), assumptions, proof)
+    rule.evaluate(new Formula(formula), assumptions, proof)
   }
 
   describe('.findByShorthand', () => {
@@ -341,9 +402,7 @@ describe('Proof', () => {
 
     test('throw for invalid lines', () => {
       const proof = new Proof(['A → B', 'A'], 'B')
-      expect(() => proof.addDeduction('C', Rule.ARROW_OUT, [0, 1])).toThrowError(
-        /^Invalid deduction/,
-      )
+      expect(() => proof.addDeduction('C', Rule.ARROW_OUT, [0, 1])).toThrowError()
     })
   })
 
