@@ -3,19 +3,16 @@ import { Formula, Line, Proof, Rule } from '../logic'
 
 describe('Rule', () => {
   describe('#evaluate', () => {
-    describe('ARROW_OUT', () => {
-      test.each([
-        ['B', ['A → B', 'A'], true],
-        ['C → D', ['A → (C → D)', 'A'], true],
-        ['C → D', ['(A → B) → (C → D)', 'A → B'], true],
-        ['C → D', ['A → B', '(A → B) → (C → D)'], true],
-        ['C', ['A → B', 'A'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.ARROW_OUT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.ARROW_OUT, [
+      ['B', ['A → B', 'A'], true],
+      ['C → D', ['A → (C → D)', 'A'], true],
+      ['C → D', ['(A → B) → (C → D)', 'A → B'], true],
+      ['C → D', ['A → B', '(A → B) → (C → D)'], true],
+      ['C', ['A → B', 'A'], false],
+    ])
 
-    describe('ARROW_IN', () => {
+    // eslint-disable-next-line vitest/valid-title
+    describe(Rule.ARROW_IN.label, () => {
       test('evaluates with a supposition and a deduction that derives from the supposition', () => {
         const proof = new Proof(['A → B', 'B → C'], 'A → C')
         proof.addDeduction('A', Rule.SUPPOSITION)
@@ -42,78 +39,55 @@ describe('Rule', () => {
       })
     })
 
-    describe('AND_OUT', () => {
-      test.each([
-        ['A', ['A & B'], true],
-        ['B', ['A & B'], true],
-        ['C → D', ['A & (C → D)'], true],
-        ['A → B', ['(A → B) & (C → D)'], true],
-        ['C → D', ['(A → B) & (C → D)'], true],
-        ['C', ['A & B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.AND_OUT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.AND_OUT, [
+      ['A', ['A & B'], true],
+      ['B', ['A & B'], true],
+      ['C → D', ['A & (C → D)'], true],
+      ['A → B', ['(A → B) & (C → D)'], true],
+      ['C → D', ['(A → B) & (C → D)'], true],
+      ['C', ['A & B'], false],
+    ])
 
-    describe('AND_IN', () => {
-      test.each([
-        ['A & B', ['A', 'B'], true],
-        ['B & A', ['A', 'B'], true],
-        ['(A → B) & (C → D)', ['A → B', 'C → D'], true],
-        ['A & C', ['A', 'B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.AND_IN, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.AND_IN, [
+      ['A & B', ['A', 'B'], true],
+      ['B & A', ['A', 'B'], true],
+      ['(A → B) & (C → D)', ['A → B', 'C → D'], true],
+      ['A & C', ['A', 'B'], false],
+    ])
 
-    describe('BICONDITIONAL_OUT', () => {
-      test.each([
-        ['A → B', ['A ↔ B'], true],
-        ['B → A', ['A ↔ B'], true],
-        ['(A → C) → B', ['(A → C) ↔ B'], true],
-        ['B → (A → C)', ['(A → C) ↔ B'], true],
-        ['B → C', ['A ↔ B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.BICONDITIONAL_OUT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.BICONDITIONAL_OUT, [
+      ['A → B', ['A ↔ B'], true],
+      ['B → A', ['A ↔ B'], true],
+      ['(A → C) → B', ['(A → C) ↔ B'], true],
+      ['B → (A → C)', ['(A → C) ↔ B'], true],
+      ['B → C', ['A ↔ B'], false],
+    ])
 
-    describe('BICONDITIONAL_IN', () => {
-      test.each([
-        ['A ↔ B', ['A → B', 'B → A'], true],
-        ['B ↔ A', ['A → B', 'B → A'], true],
-        ['(A → B) ↔ (C → D)', ['(A → B) → (C → D)', '(C → D) → (A → B)'], true],
-        ['B ↔ A', ['A → B', 'A → C'], false],
-        ['B ↔ A', ['A → B', 'B & C'], false],
-        ['A ↔ B', ['A → B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.BICONDITIONAL_IN, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.BICONDITIONAL_IN, [
+      ['A ↔ B', ['A → B', 'B → A'], true],
+      ['B ↔ A', ['A → B', 'B → A'], true],
+      ['(A → B) ↔ (C → D)', ['(A → B) → (C → D)', '(C → D) → (A → B)'], true],
+      ['B ↔ A', ['A → B', 'A → C'], false],
+      ['B ↔ A', ['A → B', 'B & C'], false],
+      ['A ↔ B', ['A → B'], false],
+    ])
 
-    describe('OR_IN', () => {
-      test.each([
-        ['A ∨ B', ['B'], true],
-        ['A ∨ B', ['A'], true],
-        ['A ∨ B', ['C'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.OR_IN, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.OR_IN, [
+      ['A ∨ B', ['B'], true],
+      ['A ∨ B', ['A'], true],
+      ['A ∨ B', ['C'], false],
+    ])
 
-    describe('OR_OUT', () => {
-      test.each([
-        ['C', ['A ∨ B', 'A → C', 'B → C'], true],
-        ['C', ['A → C', 'A ∨ B', 'B → C'], true],
-        ['D', ['A ∨ B', 'A → C', 'B → C'], false],
-        ['C', ['A ∨ B', 'A → C', 'B → D'], false],
-        ['C', ['A ∨ B', 'A → C'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.OR_OUT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.OR_OUT, [
+      ['C', ['A ∨ B', 'A → C', 'B → C'], true],
+      ['C', ['A → C', 'A ∨ B', 'B → C'], true],
+      ['D', ['A ∨ B', 'A → C', 'B → C'], false],
+      ['C', ['A ∨ B', 'A → C', 'B → D'], false],
+      ['C', ['A ∨ B', 'A → C'], false],
+    ])
 
-    describe('NEGATION_OUT', () => {
+    // eslint-disable-next-line vitest/valid-title
+    describe(Rule.NEGATION_OUT.label, () => {
       test('evaluates with a supposition and a contradiction that derives from it', () => {
         const proof = new Proof(['-A → B', '-B'], 'A')
         proof.addDeduction('-A', Rule.SUPPOSITION)
@@ -151,7 +125,8 @@ describe('Rule', () => {
       })
     })
 
-    describe('NEGATION_IN', () => {
+    // eslint-disable-next-line vitest/valid-title
+    describe(Rule.NEGATION_IN.label, () => {
       test('evaluates with a supposition and a contradiction that derives from it', () => {
         const proof = new Proof(['A → -B', 'B'], '-A')
         proof.addDeduction('A', Rule.SUPPOSITION)
@@ -189,7 +164,8 @@ describe('Rule', () => {
       })
     })
 
-    describe('SUPPOSITION', () => {
+    // eslint-disable-next-line vitest/valid-title
+    describe(Rule.SUPPOSITION.label, () => {
       test('allows any formula', () => {
         expect(evaluateSimple(Rule.SUPPOSITION, 'A')).toBe(true)
       })
@@ -199,109 +175,89 @@ describe('Rule', () => {
       })
     })
 
-    describe('MODUS_TOLLENS', () => {
-      test.each([
-        ['-A', ['A → B', '-B'], true],
-        ['-A', ['-B', 'A → B'], true],
-        ['-(A & B)', ['-(C & D)', '(A & B) → (C & D)'], true],
-        ['A', ['A → B', '-B'], false],
-        ['-A', ['D → B', '-B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.MODUS_TOLLENS, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.MODUS_TOLLENS, [
+      ['-A', ['A → B', '-B'], true],
+      ['-A', ['-B', 'A → B'], true],
+      ['-(A & B)', ['-(C & D)', '(A & B) → (C & D)'], true],
+      ['A', ['A → B', '-B'], false],
+      ['-A', ['D → B', '-B'], false],
+    ])
 
-    describe('DISJUNCTIVE_ARGUMENT', () => {
-      test.each([
-        ['B', ['A ∨ B', '-A'], true],
-        ['A', ['A ∨ B', '-B'], true],
-        ['A & B', ['(A & B) ∨ (C & D)', '-(C & D)'], true],
-        ['C', ['A ∨ B', '-A'], false],
-        ['-B', ['A ∨ B', 'A'], false],
-        ['-B', ['A ∨ B', '-A'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.DISJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.DISJUNCTIVE_ARGUMENT, [
+      ['B', ['A ∨ B', '-A'], true],
+      ['A', ['A ∨ B', '-B'], true],
+      ['A & B', ['(A & B) ∨ (C & D)', '-(C & D)'], true],
+      ['C', ['A ∨ B', '-A'], false],
+      ['-B', ['A ∨ B', 'A'], false],
+      ['-B', ['A ∨ B', '-A'], false],
+    ])
 
-    describe('CONJUNCTIVE_ARGUMENT', () => {
-      test.each([
-        ['-B', ['-(A & B)', 'A'], true],
-        ['-A', ['-(A & B)', 'B'], true],
-        ['B', ['-(A & B)', 'A'], false],
-        ['-A', ['-(A & B)', 'C'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.CONJUNCTIVE_ARGUMENT, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.CONJUNCTIVE_ARGUMENT, [
+      ['-B', ['-(A & B)', 'A'], true],
+      ['-A', ['-(A & B)', 'B'], true],
+      ['B', ['-(A & B)', 'A'], false],
+      ['-A', ['-(A & B)', 'C'], false],
+    ])
 
-    describe('CHAIN_RULE', () => {
-      test.each([
-        ['A → C', ['A → B', 'B → C'], true],
-        ['A → C', ['B → C', 'A → B'], true],
-        ['A → C', ['A → B', 'B → D'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.CHAIN_RULE, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.CHAIN_RULE, [
+      ['A → C', ['A → B', 'B → C'], true],
+      ['A → C', ['B → C', 'A → B'], true],
+      ['A → C', ['A → B', 'B → D'], false],
+    ])
 
-    describe('DOUBLE_NEGATION', () => {
-      test.each([
-        ['--A', ['A'], true],
-        ['A', ['--A'], true],
-        ['A & B', ['--(A & B)'], true],
-        ['--(A & B)', ['A & B'], true],
-        ['-(A & B)', ['A & B'], false],
-        ['---(A & B)', ['A & B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.DOUBLE_NEGATION, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.DOUBLE_NEGATION, [
+      ['--A', ['A'], true],
+      ['A', ['--A'], true],
+      ['A & B', ['--(A & B)'], true],
+      ['--(A & B)', ['A & B'], true],
+      ['-(A & B)', ['A & B'], false],
+      ['---(A & B)', ['A & B'], false],
+    ])
 
-    describe('DEMORGANS_LAW', () => {
-      test.each([
-        ['-A ∨ -B', ['-(A & B)'], true],
-        ['-(A & B)', ['-A ∨ -B'], true],
-        ['-A & -B', ['-(A ∨ B)'], true],
-        ['-(A ∨ B)', ['-A & -B'], true],
-        ['A ∨ B', ['-(-A & -B)'], true],
-        ['-(-A & -B)', ['A ∨ B'], true],
-        ['A & B', ['-(-A ∨ -B)'], true],
-        ['-(-A ∨ -B)', ['A & B'], true],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.DEMORGANS_LAW, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.DEMORGANS_LAW, [
+      ['-A ∨ -B', ['-(A & B)'], true],
+      ['-(A & B)', ['-A ∨ -B'], true],
+      ['-A & -B', ['-(A ∨ B)'], true],
+      ['-(A ∨ B)', ['-A & -B'], true],
+      ['A ∨ B', ['-(-A & -B)'], true],
+      ['-(-A & -B)', ['A ∨ B'], true],
+      ['A & B', ['-(-A ∨ -B)'], true],
+      ['-(-A ∨ -B)', ['A & B'], true],
+    ])
 
-    describe('ARROW', () => {
-      test.each([
-        ['-A ∨ B', ['A → B'], true],
-        ['A → B', ['-A ∨ B'], true],
-        ['A ∨ B', ['-A → B'], true],
-        ['-A → B', ['A ∨ B'], true],
-        ['-(A & -B)', ['A → B'], true],
-        ['A → B', ['-(A & -B)'], true],
-        ['A & -B', ['-(A → B)'], true],
-        ['-(A → B)', ['A & -B'], true],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.ARROW, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.ARROW, [
+      ['-A ∨ B', ['A → B'], true],
+      ['A → B', ['-A ∨ B'], true],
+      ['A ∨ B', ['-A → B'], true],
+      ['-A → B', ['A ∨ B'], true],
+      ['-(A & -B)', ['A → B'], true],
+      ['A → B', ['-(A & -B)'], true],
+      ['A & -B', ['-(A → B)'], true],
+      ['-(A → B)', ['A & -B'], true],
+    ])
 
-    describe('CONTRAPOSITION', () => {
-      test.each([
-        ['-B → -A', ['A → B'], true],
-        ['B → A', ['-A → -B'], true],
-        ['-B → A', ['-A → B'], true],
-        ['B → -A', ['A → -B'], true],
-        ['B → -A', ['-A → B'], false],
-        ['-B → A', ['A → -B'], false],
-        ['-B → -A', ['-A → -B'], false],
-      ])('%s from %s: %s', (formula: string, justifications: string[], shouldPass: boolean) => {
-        expect(evaluateSimple(Rule.CONTRAPOSITION, formula, justifications)).toBe(shouldPass)
-      })
-    })
+    testCasesFor(Rule.CONTRAPOSITION, [
+      ['-B → -A', ['A → B'], true],
+      ['B → A', ['-A → -B'], true],
+      ['-B → A', ['-A → B'], true],
+      ['B → -A', ['A → -B'], true],
+      ['B → -A', ['-A → B'], false],
+      ['-B → A', ['A → -B'], false],
+      ['-B → -A', ['-A → -B'], false],
+    ])
   })
+
+  const testCasesFor = (rule: Rule, cases: [string, string[], boolean][]) => {
+    // eslint-disable-next-line vitest/valid-title
+    describe(rule.label, () => {
+      test.each(cases)(
+        '%s from %s: %s',
+        (formula: string, justifications: string[], shouldPass: boolean) => {
+          expect(evaluateSimple(rule, formula, justifications)).toBe(shouldPass)
+        },
+      )
+    })
+  }
 
   const evaluateSimple = (rule: Rule, formula: string, justifications: string[] = []): boolean => {
     const assumptions = justifications.map((j, i) => new Line(i, j, 'A'))
