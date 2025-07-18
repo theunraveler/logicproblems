@@ -5,11 +5,11 @@ import { toString as prettyFormula } from 'propositional/lib/transform/toString'
 export class Operator {
   static all: Operator[] = []
 
-  static readonly CONDITIONAL = new Operator('→', 'conditional', '=>', '⇒')
-  static readonly BICONDITIONAL = new Operator('↔', 'bi-conditional', '<=>', '⇔')
-  static readonly DISJUNCTION = new Operator('∨', 'disjunction', '|')
-  static readonly CONJUNCTION = new Operator('&', 'conjunction', null, '∧')
-  static readonly NEGATION = new Operator('-', 'negation', '!', '¬', false)
+  static readonly CONDITIONAL = new Operator('→', 'arrow', '=>', '⇒')
+  static readonly BICONDITIONAL = new Operator('↔', 'double arrow', '<=>', '⇔')
+  static readonly DISJUNCTION = new Operator('∨', 'wedge', '|')
+  static readonly CONJUNCTION = new Operator('&', 'ampersand', null, '∧')
+  static readonly NEGATION = new Operator('-', 'dash', '!', '¬', false)
 
   constructor(
     public readonly symbol: string,
