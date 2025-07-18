@@ -71,7 +71,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
     </BNavbar>
   </header>
 
-  <BContainer tag="main" class="mt-3">
+  <BContainer tag="main" class="my-3">
     <RouterView :key="$route.fullPath" />
   </BContainer>
 
