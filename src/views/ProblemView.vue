@@ -95,7 +95,15 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
-      <BCard class="mb-3" header="Solutions" no-body data-testid="solutions">
+      <BCard
+        class="mb-3"
+        no-body
+        header-class="d-flex justify-content-between align-items-center"
+        data-testid="solutions">
+        <template #header>
+          Solutions
+          <small v-if="solutions.length" class="text-success"><IBiCheckCircleFill /> Solved</small>
+        </template>
         <BListGroup flush v-if="solutions.length">
           <BListGroupItem
             v-for="(s, index) in solutions"
@@ -109,7 +117,7 @@ onBeforeRouteUpdate(confirmDiscard)
               v-if="index !== solution"
               href="#"
               @click.prevent="viewSolution(index)"
-              class="stretched-link">
+              class="stretched-link ms-3">
               View
             </a>
           </BListGroupItem>
