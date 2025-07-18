@@ -22,6 +22,8 @@ const next = computed(() => {
   const id = _problemKeys.value[_problemIndex.value + 1]
   return { id, title: _problems[id].title }
 })
+
+defineExpose({ prev, next })
 </script>
 
 <template>

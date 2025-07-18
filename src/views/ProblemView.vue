@@ -2,18 +2,25 @@
 import { computed, inject, reactive, ref, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
+import { useModal } from 'bootstrap-vue-next'
 import { chaptersInjectionKey, humanizeDuration, humanizeTimestamp } from '../utils'
 import type { ChapterList, SolutionList } from '../utils'
 import { Proof, Line } from '../lib/logic'
+import ProblemNav from '../components/ProblemNav.vue'
 import ProofTable from '../components/ProofTable.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
+type ProblemNavType = InstanceType<typeof ProblemNav>
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
 const proofTable = useTemplateRef<ProofTableType>('proof-table')
+
+const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
+
+const { hide: hideModal } = useModal('qed-modal')
 
 const allSolutions = useStorage(`solutions`, {} as SolutionList)
 const solutions = computed(() => allSolutions.value[props.id] || [])
@@ -91,7 +98,7 @@ onBeforeRouteUpdate(confirmDiscard)
         <h4>Conclusion: {{ proof.conclusion }}</h4>
       </div>
       <ProofTable ref="proof-table" :proof="proof" @qed="qed" data-testid="proof-table" />
-      <ProblemNav class="px-0 mt-4 mt-lg-5" :current="id" />
+      <ProblemNav ref="problem-nav" class="px-0 mt-4 mt-lg-5" :current="id" />
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
@@ -129,7 +136,15 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
   </BRow>
 
-  <BModal :show="!!solvedIn" title="Q.E.D." ok-only ok-title="Close">
+  <BModal :show="!!solvedIn" title="Q.E.D." id="qed-modal">
     Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
+    <template #footer>
+      <BButton variant="outline-secondary" @click.stop.prevent="hideModal()">
+        Close
+      </BButton>
+      <BLink v-if="problemNav?.next" class="btn btn-primary" :to="{ name: 'problem', params: {id: problemNav.next.id} }">
+        Next Problem<IBiArrowRightShort />
+      </BLink>
+    </template>
   </BModal>
 </template>
