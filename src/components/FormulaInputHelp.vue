@@ -5,7 +5,6 @@ import { Operator } from '../lib/logic'
 <template>
   <BCard header="What symbols can I use?">
     <BCardText>
-      <p>The following is a list of characters that can be used:</p>
       <ul>
         <li>Any alphabetical character from <code>A</code> to <code>Z</code></li>
         <li v-for="operator in Operator.all" :key="operator.symbol">

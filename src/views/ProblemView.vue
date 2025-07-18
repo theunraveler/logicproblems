@@ -109,9 +109,9 @@ onBeforeRouteUpdate(confirmDiscard)
               v-if="index !== solution"
               href="#"
               @click.prevent="viewSolution(index)"
-              class="stretched-link"
-              >View</a
-            >
+              class="stretched-link">
+              View
+            </a>
           </BListGroupItem>
         </BListGroup>
         <BCardBody v-else>You have not solved this problem yet.</BCardBody>
