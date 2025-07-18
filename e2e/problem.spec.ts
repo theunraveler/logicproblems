@@ -14,6 +14,17 @@ test.describe('solving a proof', () => {
       await expect(qedCell).toHaveText(' Q.E.D. ')
     })
 
+    test('adds an entry to the solutions list', async ({ page }) => {
+      await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+      const proofTable = getProofTable(page)
+
+      await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
+      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+
+      const solutions = page.getByTestId('solutions').locator('.list-group-item')
+      await expect(solutions).toHaveCount(1)
+    })
+
     test('handles suppositions', async ({ page }) => {
       await page.goto('/problems/5b35cbf6-dee5-440e-b6ed-607dada1ce16')
       const proofTable = getProofTable(page)
@@ -40,6 +51,35 @@ test.describe('solving a proof', () => {
       const formRow = proofTable.locator('tbody tr').last()
       await expect(formRow).toContainClass('table-danger')
     })
+  })
+})
+
+test.describe('showing previous solutions', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+    const proofTable = getProofTable(page)
+    await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
+    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+
+    await page.reload()
+    await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
+    await enterAndEnsureLine(proofTable, 'A', 'S', [], 4, [4])
+    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 5, [0, 1, 2], true)
+  })
+
+  test('shows the proof when clicked', async ({ page }) => {
+    await page.reload()
+    const proofTable = getProofTable(page)
+
+    page.getByTestId('solutions').locator('.list-group-item').last().click()
+    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, null, true)
+    await ensureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+
+    page.getByTestId('solutions').locator('.list-group-item').first().click()
+    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, [0, 2], true)
+    await ensureLine(proofTable, 'A', 'S', [], 4, [4], true)
+    await ensureLine(proofTable, 'R', '→ O', [1, 3], 5, [0, 1, 2], true)
+    expect(true).toBe(true)
   })
 })
 

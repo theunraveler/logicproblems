@@ -95,7 +95,7 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
-      <BCard class="mb-3" header="Solutions" no-body>
+      <BCard class="mb-3" header="Solutions" no-body data-testid="solutions">
         <BListGroup flush v-if="solutions.length">
           <BListGroupItem
             v-for="(s, index) in solutions"
