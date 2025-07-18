@@ -188,7 +188,7 @@ export class Line {
       ...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof))),
     ].toSorted()
     return this.rule.clearsSupposition
-      ? deps.filter((l) => lines[l].rule !== Rule.SUPPOSITION)
+      ? deps.filter((l) => lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf())
       : deps
   }
 
@@ -282,7 +282,7 @@ function evalArrowIn(exp: AST.Expression, justifications: Line[], proof: Proof):
     return false
   }
 
-  const suppositionIndex = justifications.findIndex((j) => j.rule === Rule.SUPPOSITION)
+  const suppositionIndex = justifications.findIndex((j) => j.rule.valueOf() === Rule.SUPPOSITION.valueOf())
   if (suppositionIndex === -1) {
     return false
   }
@@ -430,7 +430,7 @@ function evalNegationOut(exp: AST.Expression, justifications: Line[]): boolean {
   }
 
   const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
-    return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
+    return a.rule.valueOf() === Rule.SUPPOSITION.valueOf() && isContradiction(b.formula.ast)
   })
   if (!orderedJusts) {
     return false
@@ -450,7 +450,7 @@ function evalNegationIn(exp: AST.Expression, justifications: Line[]): boolean {
   }
 
   const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
-    return a.rule === Rule.SUPPOSITION && isContradiction(b.formula.ast)
+    return a.rule.valueOf() === Rule.SUPPOSITION.valueOf() && isContradiction(b.formula.ast)
   })
   if (!orderedJusts) {
     return false
