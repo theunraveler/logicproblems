@@ -84,15 +84,10 @@ test.describe('showing previous solutions', () => {
 })
 
 test.describe('navigating away', () => {
-  test.describe('proof has not been started', () => {
-    test.beforeEach('Open the URL', async ({ page }) => {
-      await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
-    })
-
-    test('does not alert', async ({ page }) => {
-      await page.getByTestId('next-problem-link').click()
-      await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
-    })
+  test('does not alert if proof has not been started', async ({ page }) => {
+    await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
+    await page.getByTestId('next-problem-link').click()
+    await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
   })
 
   test.describe('proof has been started but not completed', () => {
@@ -114,18 +109,16 @@ test.describe('navigating away', () => {
     })
   })
 
-  test.describe('proof has been completed', () => {
-    test.beforeEach('Complete the proof', async ({ page }) => {
+  test('does not alert if proof has been completed', async ({ page }) => {
+    await test.step('Complete the proof', async () => {
       await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
       const proofTable = getProofTable(page)
       await enterAndEnsureLine(proofTable, 'B', '→ O', [0, 1], 2, null, true)
-      await page.getByRole('dialog').getByText('Close').click()
+      await page.getByRole('dialog').locator('[aria-label="Close"]').click()
     })
 
-    test('does not alert', async ({ page }) => {
-      await page.getByTestId('next-problem-link').click()
-      await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
-    })
+    await page.getByTestId('next-problem-link').click()
+    await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
   })
 })
 

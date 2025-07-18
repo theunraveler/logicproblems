@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, reactive, ref, useTemplateRef, watch } from 'vue'
+import { computed, inject, reactive, ref, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import { useModal } from 'bootstrap-vue-next'
@@ -20,31 +20,24 @@ const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
 const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
 
-const { hide: hideModal } = useModal('qed-modal')
+const { hide: hideModal, show: showModal } = useModal('qed-modal')
 
 const allSolutions = useStorage(`solutions`, {} as SolutionList)
 const solutions = computed(() => allSolutions.value[props.id] || [])
 const solution = ref<number>()
-const solvedIn = ref(0)
-let startedAt: number
-
-watch(
-  props,
-  async () => {
-    startedAt = Date.now()
-  },
-  { immediate: true },
-)
 
 const qed = (proof: Proof) => {
+  if (!proofTable?.value?.solvedIn) {
+    return
+  }
+
   if (!(props.id in allSolutions.value)) {
     allSolutions.value[props.id] = []
   }
 
-  const now = Date.now()
   allSolutions.value[props.id].unshift({
-    t: now,
-    d: now - startedAt,
+    t: Date.now(),
+    d: proofTable.value.solvedIn,
     l: proof.deductions.map((l: Line) => {
       return [
         l.formula.toString().replaceAll(' ', ''),
@@ -54,7 +47,7 @@ const qed = (proof: Proof) => {
     }),
   })
   solution.value = 0
-  solvedIn.value = now - startedAt
+  showModal()
 }
 
 const confirmDiscard = async () => {
@@ -78,6 +71,11 @@ const viewSolution = async (index: number) => {
   })
 }
 
+const clear = () => {
+  solution.value = undefined
+  hideModal()
+}
+
 onBeforeRouteUpdate(confirmDiscard)
 </script>
 
@@ -97,7 +95,12 @@ onBeforeRouteUpdate(confirmDiscard)
         <h2>{{ problem.title }}</h2>
         <h4>Conclusion: {{ proof.conclusion }}</h4>
       </div>
-      <ProofTable ref="proof-table" :proof="proof" @qed="qed" data-testid="proof-table" />
+      <ProofTable
+        ref="proof-table"
+        :proof="proof"
+        @qed="qed"
+        @clear="clear"
+        data-testid="proof-table" />
       <ProblemNav ref="problem-nav" class="px-0 mt-4 mt-lg-5" :current="id" />
     </BCol>
 
@@ -136,13 +139,16 @@ onBeforeRouteUpdate(confirmDiscard)
     </BCol>
   </BRow>
 
-  <BModal :show="!!solvedIn" title="Q.E.D." id="qed-modal">
-    Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
+  <BModal title="Q.E.D." id="qed-modal">
+    <template v-if="proofTable?.solvedIn">
+      Congrats, you solved the problem in {{ humanizeDuration(proofTable.solvedIn) }}!
+    </template>
     <template #footer>
-      <BButton variant="outline-secondary" @click.stop.prevent="hideModal()">
-        Close
-      </BButton>
-      <BLink v-if="problemNav?.next" class="btn btn-primary" :to="{ name: 'problem', params: {id: problemNav.next.id} }">
+      <BButton variant="outline-secondary" @click="proofTable?.clear()">Solve Again</BButton>
+      <BLink
+        v-if="problemNav?.next"
+        class="btn btn-primary"
+        :to="{ name: 'problem', params: { id: problemNav.next.id } }">
         Next Problem<IBiArrowRightShort />
       </BLink>
     </template>

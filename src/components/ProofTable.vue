@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, toRaw, useTemplateRef } from 'vue'
+import { computed, ref, toRaw, useTemplateRef, watch } from 'vue'
 import FormulaInput from '../components/FormulaInput.vue'
 import { Proof, Rule } from '../lib/logic'
 
 type FormulaInputType = InstanceType<typeof FormulaInput>
 
 const { proof } = defineProps<{ proof: Proof }>()
-const emit = defineEmits(['qed'])
+const emit = defineEmits(['qed', 'clear'])
 
 const showDependencies = computed(() => {
   return proof.lines.some((line) => toRaw(line.rule) === Rule.SUPPOSITION)
@@ -25,6 +25,19 @@ const justifications = computed(() =>
 const submitting = ref(false)
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
+
+let startedAt: number
+const solvedIn = ref<number>()
+
+watch(
+  () => proof,
+  async () => {
+    if (proof.deductions.length === 0) {
+      startedAt = Date.now()
+    }
+  },
+  { immediate: true },
+)
 
 const hasUnsavedChanges = computed(() => {
   return (
@@ -73,11 +86,22 @@ const submitLine = () => {
   submitting.value = false
 
   if (qed.value) {
+    solvedIn.value = Date.now() - startedAt
     emit('qed', proof)
   }
 }
 
-defineExpose({ hasUnsavedChanges })
+const clear = async () => {
+  if (hasUnsavedChanges.value && !window.confirm('Are you sure?')) {
+    return
+  }
+
+  proof.clear()
+  startedAt = Date.now()
+  emit('clear', proof)
+}
+
+defineExpose({ clear, solvedIn, hasUnsavedChanges })
 </script>
 
 <template>
@@ -146,11 +170,19 @@ defineExpose({ hasUnsavedChanges })
       </BTbody>
     </BTableSimple>
 
-    <div v-if="!qed" class="d-grid gap-2 mt-2">
-      <BButton variant="primary" type="submit" :disabled="submitting">
-        <span v-if="submitting"><BSpinner small /> Submitting...</span>
-        <span v-else>Submit Line</span>
-      </BButton>
+    <div class="d-grid gap-2 mt-2">
+      <template v-if="qed">
+        <BButton variant="primary" @click="clear">Solve Again</BButton>
+      </template>
+      <template v-else>
+        <BButton variant="primary" type="submit" :disabled="submitting">
+          <span v-if="submitting"><BSpinner small /> Submitting...</span>
+          <span v-else>Submit Line</span>
+        </BButton>
+        <BButton v-if="proof.deductions.length" variant="outline-secondary" @click="clear">
+          Start Over
+        </BButton>
+      </template>
     </div>
   </BForm>
 </template>
