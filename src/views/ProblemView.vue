@@ -125,7 +125,7 @@ onBeforeRouteUpdate(confirmDiscard)
             :class="['d-flex align-items-center', { active: index === solution }]">
             <span class="flex-grow-1">
               {{ humanizeTimestamp(s.t) }}
-              <small class="d-block text-muted">Solved in {{ humanizeDuration(s.d) }}</small>
+              <small :class="['d-block', `text-${index === solution ? '-bg-primary' : 'muted'}`]">Solved in {{ humanizeDuration(s.d) }}</small>
             </span>
             <a
               v-if="index !== solution"
