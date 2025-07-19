@@ -3,7 +3,11 @@ import { Operator } from '../lib/logic'
 </script>
 
 <template>
-  <BCard header="What symbols can I use?">
+  <BCard header-class="d-flex align-items-center">
+    <template #header>
+      <IBiQuestionCircle class="me-2" />
+      What symbols can I use?
+    </template>
     <BCardText>
       <ul>
         <li>Any alphabetical character from <code>A</code> to <code>Z</code></li>

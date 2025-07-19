@@ -61,6 +61,7 @@ declare module 'vue' {
     IBiArrowRightShort: typeof import('~icons/bi/arrow-right-short')['default']
     IBiCheckCircleFill: typeof import('~icons/bi/check-circle-fill')['default']
     IBiGithub: typeof import('~icons/bi/github')['default']
+    IBiQuestionCircle: typeof import('~icons/bi/question-circle')['default']
     IBiRocketTakeoff: typeof import('~icons/bi/rocket-takeoff')['default']
     IBiTrash: typeof import('~icons/bi/trash')['default']
     IBiXOctagonFill: typeof import('~icons/bi/x-octagon-fill')['default']
