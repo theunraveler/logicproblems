@@ -112,7 +112,11 @@ onBeforeRouteUpdate(confirmDiscard)
         data-testid="solutions">
         <template #header>
           Solutions
-          <small v-if="solutions.length" class="text-success"><IBiCheckCircleFill /> Solved</small>
+          <span
+            v-if="solutions.length"
+            class="badge rounded-pill text-bg-success d-flex align-items-center">
+            <IBiCheckCircleFill class="me-1" /> Solved
+          </span>
         </template>
         <BListGroup flush v-if="solutions.length">
           <BListGroupItem

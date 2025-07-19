@@ -51,9 +51,11 @@ const updatePage = (page: string | number) => {
       <BCard v-for="[id, problem] in pageProblems" :key="id" class="mb-4" no-body>
         <BCardHeader class="d-flex justify-content-between align-items-center">
           <span>{{ problem.title }}</span>
-          <span v-if="id in solutions" class="text-success">
+          <span
+            v-if="id in solutions"
+            class="badge rounded-pill text-bg-success d-flex align-items-center">
             <IBiCheckCircleFill class="me-1" />
-            <small>Solved {{ new Date(solutions[id][0].t).toLocaleDateString() }}</small>
+            Solved {{ new Date(solutions[id][0].t).toLocaleDateString() }}
           </span>
         </BCardHeader>
         <BListGroup flush numbered>
