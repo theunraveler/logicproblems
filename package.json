@@ -7,7 +7,7 @@
   "scripts": {
     "build": "run-p type-check \"build-only {@}\" --",
     "build-only": "vite build",
-    "ci": "run-s test lint type-check",
+    "ci": "run-p test lint type-check",
     "dev": "vite",
     "format": "prettier --write e2e/ src/ vite.config.ts vitest.config.ts eslint.config.ts playwright.config.ts",
     "lint": "eslint . --fix",
