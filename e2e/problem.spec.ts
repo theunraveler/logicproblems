@@ -3,7 +3,7 @@ import { test, expect, Dialog, Locator, Page } from '@playwright/test'
 test.describe('solving a proof', () => {
   test.describe('correctly', () => {
     test('displays a Q.E.D. message', async ({ page }) => {
-      await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+      await page.goto('/problems/gof9o3')
       const proofTable = getProofTable(page)
 
       await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
@@ -15,7 +15,7 @@ test.describe('solving a proof', () => {
     })
 
     test('adds an entry to the solutions list', async ({ page }) => {
-      await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+      await page.goto('/problems/gof9o3')
       const proofTable = getProofTable(page)
 
       await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
@@ -26,7 +26,7 @@ test.describe('solving a proof', () => {
     })
 
     test('handles suppositions', async ({ page }) => {
-      await page.goto('/problems/5b35cbf6-dee5-440e-b6ed-607dada1ce16')
+      await page.goto('/problems/j7hkhm')
       const proofTable = getProofTable(page)
 
       await enterAndEnsureLine(proofTable, 'C', 'S', [], 3, [3])
@@ -43,7 +43,7 @@ test.describe('solving a proof', () => {
 
   test.describe('incorrectly', () => {
     test('indicates that there is an error', async ({ page }) => {
-      await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+      await page.goto('/problems/gof9o3')
       const proofTable = getProofTable(page)
 
       await enterLine(proofTable, 'M → Z', '→ O', [0, 2])
@@ -56,7 +56,7 @@ test.describe('solving a proof', () => {
 
 test.describe('showing previous solutions', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/problems/1095208a-68e1-4a15-8175-51684a5459ba')
+    await page.goto('/problems/gof9o3')
     const proofTable = getProofTable(page)
     await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
     await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
@@ -85,40 +85,40 @@ test.describe('showing previous solutions', () => {
 
 test.describe('navigating away', () => {
   test('does not alert if proof has not been started', async ({ page }) => {
-    await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
+    await page.goto('/problems/tqpiwb')
     await page.getByTestId('next-problem-link').click()
-    await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
+    await expect(page).toHaveURL('/problems/ktn47i')
   })
 
   test.describe('proof has been started but not completed', () => {
     test.beforeEach('Open the URL and fill the formula field', async ({ page }) => {
-      await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
+      await page.goto('/problems/tqpiwb')
       await getProofTable(page).getByPlaceholder('Formula').fill('testing')
     })
 
     test('confirming the alert', async ({ page }) => {
       page.on('dialog', ensureDialog())
       await page.getByTestId('next-problem-link').click()
-      await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
+      await expect(page).toHaveURL('/problems/ktn47i')
     })
 
     test('dismissing the alert', async ({ page }) => {
       page.on('dialog', ensureDialog(false))
       await page.getByTestId('next-problem-link').click()
-      await expect(page).toHaveURL('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
+      await expect(page).toHaveURL('/problems/tqpiwb')
     })
   })
 
   test('does not alert if proof has been completed', async ({ page }) => {
     await test.step('Complete the proof', async () => {
-      await page.goto('/problems/d3e5f749-8b67-4116-ba5b-628102d8f306')
+      await page.goto('/problems/tqpiwb')
       const proofTable = getProofTable(page)
       await enterAndEnsureLine(proofTable, 'B', '→ O', [0, 1], 2, null, true)
       await page.getByRole('dialog').locator('[aria-label="Close"]').click()
     })
 
     await page.getByTestId('next-problem-link').click()
-    await expect(page).toHaveURL('/problems/70182d92-3db1-46c0-9f50-2d7e9e6c3b7e')
+    await expect(page).toHaveURL('/problems/ktn47i')
   })
 })
 

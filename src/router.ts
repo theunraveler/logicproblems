@@ -21,7 +21,7 @@ const router = createRouter({
       meta: { title: 'Problems' },
     },
     {
-      path: '/problems/:id',
+      path: '/problems/:id([a-z0-9]{6})',
       name: 'problem',
       component: () => import('./views/ProblemView.vue'),
       props: (route) => ({
