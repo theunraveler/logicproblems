@@ -143,7 +143,9 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
             <abbr :title="line.rule.label">{{ line.rule }}</abbr>
           </BTd>
         </BTr>
-        <BTr v-if="qed" class="table-group-divider">
+      </BTbody>
+      <BTfoot class="table-group-divider">
+        <BTr v-if="qed">
           <BTd :colspan="showDependencies ? 5 : 4" variant="success">
             <IBiRocketTakeoff /> Q.E.D.
           </BTd>
@@ -167,7 +169,7 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
             </BFormSelect>
           </BTd>
         </BTr>
-      </BTbody>
+      </BTfoot>
     </BTableSimple>
 
     <div class="d-grid gap-2 mt-2">
