@@ -9,7 +9,7 @@ test.describe('solving a proof', () => {
       await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
       await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
 
-      const qedCell = proofTable.locator('tbody tr').last().getByRole('cell')
+      const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
       await expect(qedCell).toHaveText(' Q.E.D. ')
     })
@@ -35,7 +35,7 @@ test.describe('solving a proof', () => {
       await enterAndEnsureLine(proofTable, 'A', '→ O', [2, 5], 6, [0, 1, 2, 3])
       await enterAndEnsureLine(proofTable, 'C → A', '→ I', [3, 6], 7, [0, 1, 2], true)
 
-      const qedCell = proofTable.locator('tbody tr').last().getByRole('cell')
+      const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
       await expect(qedCell).toHaveText(' Q.E.D. ')
     })
@@ -48,7 +48,7 @@ test.describe('solving a proof', () => {
 
       await enterLine(proofTable, 'M → Z', '→ O', [0, 2])
 
-      const formRow = proofTable.locator('tbody tr').last()
+      const formRow = proofTable.locator('tfoot tr').last()
       await expect(formRow).toContainClass('table-danger')
     })
   })
