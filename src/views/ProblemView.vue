@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { inject, onMounted, reactive, ref, toRaw, useTemplateRef } from 'vue'
+import { inject, reactive, toRaw, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useModal } from 'bootstrap-vue-next'
-import { db } from '../store'
-import {
-  chaptersInjectionKey,
-  humanizeDuration,
-  humanizeTimestamp,
-  type ChapterList,
-  type Solution,
-} from '../utils'
+import { chaptersInjectionKey, humanizeDuration, type ChapterList, type Solution } from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProblemNav from '../components/ProblemNav.vue'
 import ProofTable from '../components/ProofTable.vue'
+import SolutionList from '../components/SolutionList.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
 type ProblemNavType = InstanceType<typeof ProblemNav>
+type SolutionListType = InstanceType<typeof SolutionList>
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
@@ -24,18 +19,16 @@ const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclu
 const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
 const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
+const solutionList = useTemplateRef<SolutionListType>('solution-list')
 
 const { hide: hideModal, show: showModal } = useModal('qed-modal')
 
-const solutions = ref<Solution[]>([])
-const solutionId = ref<number>()
-
 const qed = async (proof: Proof) => {
-  if (!proofTable?.value?.solvedIn) {
+  if (!proofTable?.value?.solvedIn || !solutionList?.value) {
     return
   }
 
-  solutionId.value = await db.solutions.add({
+  await solutionList.value.addSolution({
     problemId: props.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,
@@ -47,7 +40,6 @@ const qed = async (proof: Proof) => {
       ]
     }),
   })
-  loadSolutions()
   showModal()
 }
 
@@ -60,37 +52,23 @@ const confirmDiscard = async () => {
   )
 }
 
-const viewSolution = async (id: number) => {
+const viewSolution = async (solution: Solution) => {
   if (!(await confirmDiscard())) {
     return
   }
 
-  const solution = solutions.value.find((s) => s.id === id)
-  if (!solution) {
-    return
-  }
   proof.clear()
-  solutionId.value = id
   solution.lines.forEach((line) => {
     proof.addDeduction(...line)
   })
 }
 
 const clear = () => {
-  solutionId.value = undefined
+  solutionList?.value?.clearSelection()
   hideModal()
 }
 
-const loadSolutions = async () => {
-  solutions.value = await db.solutions
-    .where('problemId')
-    .equals(props.id)
-    .reverse()
-    .sortBy('completedAt')
-}
-
 onBeforeRouteUpdate(confirmDiscard)
-onMounted(loadSolutions)
 </script>
 
 <template>
@@ -119,42 +97,7 @@ onMounted(loadSolutions)
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
-      <BCard
-        class="mb-3"
-        no-body
-        header-class="d-flex justify-content-between align-items-center"
-        data-testid="solutions">
-        <template #header>
-          Solutions
-          <span
-            v-if="solutions.length"
-            class="badge rounded-pill text-bg-success d-flex align-items-center">
-            <IBiCheckCircleFill class="me-1" /> Solved
-          </span>
-        </template>
-        <BListGroup flush v-if="solutions.length">
-          <BListGroupItem
-            v-for="s in solutions"
-            :key="s.id"
-            :class="['d-flex align-items-center', { active: s.id === solutionId }]">
-            <span class="flex-grow-1">
-              {{ humanizeTimestamp(s.completedAt) }}
-              <small :class="['d-block', `text-${s.id === solutionId ? '-bg-primary' : 'muted'}`]">
-                Solved in {{ humanizeDuration(s.completedIn) }}
-              </small>
-            </span>
-            <a
-              v-if="s.id !== solutionId"
-              href="#"
-              @click.prevent="viewSolution(s.id)"
-              class="stretched-link ms-3">
-              View
-            </a>
-          </BListGroupItem>
-        </BListGroup>
-        <BCardBody v-else>You have not solved this problem yet.</BCardBody>
-      </BCard>
-
+      <SolutionList ref="solution-list" :problemId="props.id" @select="viewSolution" />
       <FormulaInputHelp />
     </BCol>
   </BRow>

@@ -24,12 +24,15 @@ export type ChapterList = {
 
 export const chaptersInjectionKey = Symbol() as InjectionKey<ChapterList>
 
-export interface Solution {
-  id: number
+export interface UnsavedSolution {
   problemId: string
   completedAt: number
   completedIn: number
   lines: [string, string, number[]][]
+}
+
+export interface Solution extends UnsavedSolution {
+  id: number
 }
 
 export const humanizeDuration = (d: number): string => _humanizeDuration(d, { round: true })

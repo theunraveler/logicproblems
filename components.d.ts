@@ -69,5 +69,7 @@ declare module 'vue' {
     ProofTable: typeof import('./src/components/ProofTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SolutionList: typeof import('./src/components/SolutionList.vue')['default']
+    SolutionsList: typeof import('./src/components/SolutionsList.vue')['default']
   }
 }
