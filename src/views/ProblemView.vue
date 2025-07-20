@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { computed, inject, reactive, ref, useTemplateRef } from 'vue'
+import { inject, onMounted, reactive, ref, toRaw, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { useStorage } from '@vueuse/core'
 import { useModal } from 'bootstrap-vue-next'
-import { chaptersInjectionKey, humanizeDuration, humanizeTimestamp } from '../utils'
-import type { ChapterList, SolutionList } from '../utils'
+import { db } from '../store'
+import {
+  chaptersInjectionKey,
+  humanizeDuration,
+  humanizeTimestamp,
+  type ChapterList,
+  type Solution,
+} from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProblemNav from '../components/ProblemNav.vue'
 import ProofTable from '../components/ProofTable.vue'
@@ -22,31 +27,27 @@ const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
 
 const { hide: hideModal, show: showModal } = useModal('qed-modal')
 
-const allSolutions = useStorage(`solutions`, {} as SolutionList)
-const solutions = computed(() => allSolutions.value[props.id] || [])
-const solution = ref<number>()
+const solutions = ref<Solution[]>([])
+const solutionId = ref<number>()
 
-const qed = (proof: Proof) => {
+const qed = async (proof: Proof) => {
   if (!proofTable?.value?.solvedIn) {
     return
   }
 
-  if (!(props.id in allSolutions.value)) {
-    allSolutions.value[props.id] = []
-  }
-
-  allSolutions.value[props.id].unshift({
-    t: Date.now(),
-    d: proofTable.value.solvedIn,
-    l: proof.deductions.map((l: Line) => {
+  solutionId.value = await db.solutions.add({
+    problemId: props.id,
+    completedAt: Date.now(),
+    completedIn: proofTable.value.solvedIn,
+    lines: proof.deductions.map((l: Line) => {
       return [
         l.formula.toString().replaceAll(' ', ''),
         l.rule.toString().replaceAll(' ', ''),
-        l.justifications,
+        toRaw(l.justifications),
       ]
     }),
   })
-  solution.value = 0
+  loadSolutions()
   showModal()
 }
 
@@ -59,24 +60,37 @@ const confirmDiscard = async () => {
   )
 }
 
-const viewSolution = async (index: number) => {
+const viewSolution = async (id: number) => {
   if (!(await confirmDiscard())) {
     return
   }
 
-  solution.value = index
+  const solution = solutions.value.find((s) => s.id === id)
+  if (!solution) {
+    return
+  }
   proof.clear()
-  solutions.value[index].l.forEach((line) => {
+  solutionId.value = id
+  solution.lines.forEach((line) => {
     proof.addDeduction(...line)
   })
 }
 
 const clear = () => {
-  solution.value = undefined
+  solutionId.value = undefined
   hideModal()
 }
 
+const loadSolutions = async () => {
+  solutions.value = await db.solutions
+    .where('problemId')
+    .equals(props.id)
+    .reverse()
+    .sortBy('completedAt')
+}
+
 onBeforeRouteUpdate(confirmDiscard)
+onMounted(loadSolutions)
 </script>
 
 <template>
@@ -120,17 +134,19 @@ onBeforeRouteUpdate(confirmDiscard)
         </template>
         <BListGroup flush v-if="solutions.length">
           <BListGroupItem
-            v-for="(s, index) in solutions"
-            :key="index"
-            :class="['d-flex align-items-center', { active: index === solution }]">
+            v-for="s in solutions"
+            :key="s.id"
+            :class="['d-flex align-items-center', { active: s.id === solutionId }]">
             <span class="flex-grow-1">
-              {{ humanizeTimestamp(s.t) }}
-              <small :class="['d-block', `text-${index === solution ? '-bg-primary' : 'muted'}`]">Solved in {{ humanizeDuration(s.d) }}</small>
+              {{ humanizeTimestamp(s.completedAt) }}
+              <small :class="['d-block', `text-${s.id === solutionId ? '-bg-primary' : 'muted'}`]">
+                Solved in {{ humanizeDuration(s.completedIn) }}
+              </small>
             </span>
             <a
-              v-if="index !== solution"
+              v-if="s.id !== solutionId"
               href="#"
-              @click.prevent="viewSolution(index)"
+              @click.prevent="viewSolution(s.id)"
               class="stretched-link ms-3">
               View
             </a>

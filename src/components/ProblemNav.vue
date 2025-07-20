@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
-import { problemsInjectionKey } from '../utils'
-import type { ProblemList } from '../utils'
+import { problemsInjectionKey, type ProblemList } from '../utils'
 
 const props = defineProps(['current'])
 

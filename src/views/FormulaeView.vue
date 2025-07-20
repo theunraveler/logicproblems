@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
-import type { Ref } from 'vue'
+import { ref, useTemplateRef, type Ref } from 'vue'
 import { Expression } from 'propositional/lib/syntax/ast'
 import FormulaInput from '../components/FormulaInput.vue'
 

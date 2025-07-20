@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
+import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStorage } from '@vueuse/core'
 import { Formula } from '../lib/logic'
-import { problemsInjectionKey, chaptersInjectionKey } from '../utils'
-import type { ProblemList, ChapterList, SolutionList } from '../utils'
+import { db } from '../store'
+import {
+  problemsInjectionKey,
+  chaptersInjectionKey,
+  type ProblemList,
+  type ChapterList,
+} from '../utils'
 
 const $router = useRouter()
 
@@ -14,14 +18,12 @@ const props = defineProps({
 })
 const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList))
 const chapters = inject(chaptersInjectionKey) as ChapterList
-const solutions = useStorage(`solutions`, {} as SolutionList)
 
 if (props.chapter) {
   problems.value = problems.value.filter(([, problem]) => problem.chapter === props.chapter)
 }
 
 const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
-const rows = computed(() => problems.value.length)
 const perPage = ref(30)
 const pageProblems = computed(() => {
   return problems.value.slice((props.page - 1) * perPage.value, props.page * perPage.value)
@@ -35,6 +37,13 @@ const updatePage = (page: string | number) => {
     },
   })
 }
+
+const solvedProblems = ref<string[]>([])
+const loadSolvedProblems = async () => {
+  solvedProblems.value = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
+}
+
+onMounted(loadSolvedProblems)
 </script>
 
 <template>
@@ -52,10 +61,9 @@ const updatePage = (page: string | number) => {
         <BCardHeader class="d-flex justify-content-between align-items-center">
           <span>{{ problem.title }}</span>
           <span
-            v-if="id in solutions"
+            v-if="solvedProblems.includes(id)"
             class="badge rounded-pill text-bg-success d-flex align-items-center">
-            <IBiCheckCircleFill class="me-1" />
-            Solved {{ new Date(solutions[id][0].t).toLocaleDateString() }}
+            <IBiCheckCircleFill class="me-1" /> Solved
           </span>
         </BCardHeader>
         <BListGroup flush numbered>
@@ -79,7 +87,7 @@ const updatePage = (page: string | number) => {
       <BPagination
         @update:model-value="updatePage"
         :model-value="props.page"
-        :total-rows="rows"
+        :total-rows="problems.length"
         :per-page="perPage"
         align="center"
         data-testid="problem-paginator" />
@@ -88,7 +96,9 @@ const updatePage = (page: string | number) => {
     <BCol lg="3" class="d-none d-lg-block">
       <BCard header="Browse by Chapter" no-body class="sticky-top" style="top: 2em">
         <BListGroup flush>
-          <BListGroupItem :to="{ name: 'problems' }" :class="{ active: !props.chapter }">View All</BListGroupItem>
+          <BListGroupItem :to="{ name: 'problems' }" :class="{ active: !props.chapter }">
+            View All
+          </BListGroupItem>
           <BListGroupItem
             v-for="(name, key) in chapters"
             :key="key"
