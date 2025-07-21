@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { toString as formulaToString } from 'propositional/lib/transform/toString'
-import * as AST from 'propositional/lib/syntax/ast'
+import { Expression } from 'propositional/lib/syntax/ast'
 import { Formula, Operator } from '../lib/logic'
 
 const props = defineProps(['expression'])
 
-const expressionToString = (expression: AST.Expression): string => {
+const expressionToString = (expression: Expression): string => {
   return Formula.normalize(formulaToString(expression, true), true)
 }
 
