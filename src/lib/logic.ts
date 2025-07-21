@@ -1,4 +1,3 @@
-import pluralize from 'pluralize'
 import { Formula as LibFormula } from 'propositional'
 import { Expression, BinaryExpression, UnaryExpression } from 'propositional/lib/syntax/ast'
 import { toString as formulaToString } from 'propositional/lib/transform/toString'
@@ -99,7 +98,7 @@ export class Rule {
   evaluate(formula: Formula, justifications: Line[], proof: Proof) {
     if (justifications.length !== this.requiredJustifications) {
       throw new InvalidDeductionError(
-        `Rule requires ${this.requiredJustifications} ${pluralize('justification', this.requiredJustifications)}`,
+        `Rule requires ${this.requiredJustifications} justification${this.requiredJustifications === 1 ? '' : 's'}`,
       )
     }
     this.evalFunc(formula.ast, justifications, proof)
