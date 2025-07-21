@@ -283,12 +283,12 @@ function evalArrowOut(exp: AST.Expression, justifications: Line[]) {
   const [mainJust] = orderedJust
 
   if (!isConditional(mainJust)) {
-    throw new InvalidDeductionError('First justification must be a conditional')
+    throw new InvalidDeductionError('First justification must contain an arrow operator')
   }
 
   if (prettyFormula(mainJust.right) !== prettyFormula(exp)) {
     throw new InvalidDeductionError(
-      'Formula must be the consequent of the first justification',
+      'Formula must be the consequent of the conditional justification',
     )
   }
 }
@@ -417,7 +417,7 @@ function evalWedgeIn(exp: AST.Expression, [justification]: Line[]) {
   const justExp = prettyFormula(justification.formula.ast)
   if (prettyFormula(exp.left) !== justExp && prettyFormula(exp.right) !== justExp) {
     throw new InvalidDeductionError(
-      'Justification must appear as either the antecedent or consequent of the formula',
+      'Formula must contain the justification as either its antecedent or consequent',
     )
   }
 }

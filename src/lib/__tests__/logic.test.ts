@@ -8,7 +8,7 @@ describe('Rule', () => {
       ['C → D', ['A → (C → D)', 'A']],
       ['C → D', ['(A → B) → (C → D)', 'A → B']],
       ['C → D', ['A → B', '(A → B) → (C → D)']],
-      ['C', ['A → B', 'A'], /must be the consequent of the first justification/],
+      ['C', ['A → B', 'A'], /must be the consequent of the conditional justification/],
     ])
 
     // eslint-disable-next-line vitest/valid-title
@@ -90,7 +90,7 @@ describe('Rule', () => {
       [
         'A ∨ B',
         ['C'],
-        /justification must appear as either the antecedent or consequent of the formula/i,
+        /formula must contain the justification as either its antecedent or consequent/i,
       ],
     ])
 
