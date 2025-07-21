@@ -11,14 +11,11 @@ const env: string = (() => {
   }
 })()
 
-const POST_CLIENT_ITEM_TOKEN =
-  '317399a7c3e04e89a04d588e9850e9e4862d9ea5f99b5479edab6102ff07ae90e156ff98b6b041aadbb4a18b5d3b4285'
-
 export default {
   install(app: App) {
     const rollbar = new Rollbar({
       enabled: import.meta.env.PROD,
-      accessToken: POST_CLIENT_ITEM_TOKEN,
+      accessToken: import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN,
       captureUncaught: true,
       captureUnhandledRejections: true,
       payload: {

@@ -55,5 +55,6 @@ export default defineConfig({
     ['import.meta.env.GIT_COMMIT_SHA']: JSON.stringify(commit),
     ['import.meta.env.GITHUB_URL']: JSON.stringify(packageInfo.homepage),
     ['import.meta.env.BRANCH']: JSON.stringify(process.env.WORKERS_CI_BRANCH),
+    ['import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN']: JSON.stringify(process.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN),
   },
 })
