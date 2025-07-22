@@ -21,7 +21,14 @@ const selected = ref<number>()
 
 const addSolution = async (solution: SolutionProps) => {
   selected.value = await db.solutions.add(solution)
-  rollbar.info('Problem solved', { solution })
+  rollbar.info('Problem solved', {
+    solution: {
+      ...solution,
+      ...{
+        lines: JSON.stringify(solution.lines),
+      },
+    },
+  })
   loadSolutions()
 }
 
