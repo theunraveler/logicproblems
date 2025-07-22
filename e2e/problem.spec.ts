@@ -7,7 +7,7 @@ test.describe('solving a proof', () => {
       const proofTable = getProofTable(page)
 
       await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
 
       const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
@@ -19,7 +19,7 @@ test.describe('solving a proof', () => {
       const proofTable = getProofTable(page)
 
       await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
 
       const solutions = page.getByTestId('solutions').locator('.list-group-item')
       await expect(solutions).toHaveCount(1)
@@ -29,11 +29,11 @@ test.describe('solving a proof', () => {
       await page.goto('/problems/j7hkhm')
       const proofTable = getProofTable(page)
 
-      await enterAndEnsureLine(proofTable, 'C', 'S', [], 3, [3])
-      await enterAndEnsureLine(proofTable, 'F', '→ O', [0, 3], 4, [0, 3])
-      await enterAndEnsureLine(proofTable, 'B', '→ O', [1, 4], 5, [0, 1, 3])
-      await enterAndEnsureLine(proofTable, 'A', '→ O', [2, 5], 6, [0, 1, 2, 3])
-      await enterAndEnsureLine(proofTable, 'C → A', '→ I', [3, 6], 7, [0, 1, 2], true)
+      await enterAndEnsureLine(proofTable, 'C', 'S', [], 3)
+      await enterAndEnsureLine(proofTable, 'F', '→ O', [0, 3], 4)
+      await enterAndEnsureLine(proofTable, 'B', '→ O', [1, 4], 5)
+      await enterAndEnsureLine(proofTable, 'A', '→ O', [2, 5], 6)
+      await enterAndEnsureLine(proofTable, 'C → A', '→ I', [3, 6], 7, true)
 
       const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
@@ -59,12 +59,12 @@ test.describe('showing previous solutions', () => {
     await page.goto('/problems/gof9o3')
     const proofTable = getProofTable(page)
     await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
 
     await page.reload()
     await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-    await enterAndEnsureLine(proofTable, 'A', 'S', [], 4, [4])
-    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 5, [0, 1, 2], true)
+    await enterAndEnsureLine(proofTable, 'A', 'S', [], 4)
+    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 5, true)
   })
 
   test('shows the proof when clicked', async ({ page }) => {
@@ -72,13 +72,13 @@ test.describe('showing previous solutions', () => {
     const proofTable = getProofTable(page)
 
     page.getByTestId('solutions').locator('.list-group-item').last().click()
-    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, null, true)
-    await ensureLine(proofTable, 'R', '→ O', [1, 3], 4, null, true)
+    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, true)
+    await ensureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
 
     page.getByTestId('solutions').locator('.list-group-item').first().click()
-    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, [0, 2], true)
-    await ensureLine(proofTable, 'A', 'S', [], 4, [4], true)
-    await ensureLine(proofTable, 'R', '→ O', [1, 3], 5, [0, 1, 2], true)
+    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, true)
+    await ensureLine(proofTable, 'A', 'S', [], 4, true)
+    await ensureLine(proofTable, 'R', '→ O', [1, 3], 5, true)
     expect(true).toBe(true)
   })
 })
@@ -113,7 +113,7 @@ test.describe('navigating away', () => {
     await test.step('Complete the proof', async () => {
       await page.goto('/problems/tqpiwb')
       const proofTable = getProofTable(page)
-      await enterAndEnsureLine(proofTable, 'B', '→ O', [0, 1], 2, null, true)
+      await enterAndEnsureLine(proofTable, 'B', '→ O', [0, 1], 2, true)
       await page.getByRole('dialog').locator('[aria-label="Close"]').click()
     })
 
@@ -148,27 +148,18 @@ const ensureLine = async (
   rule: string,
   justifications: number[],
   expectedIndex: number,
-  dependencies: number[] | null = null,
   completesProof: boolean = false,
 ) => {
-  let startingColumn = 0
-  if (!completesProof) {
-    startingColumn += 1
-  }
-  if (!dependencies) {
-    startingColumn -= 1
-  }
+  const startingColumn = completesProof ? 0 : 1
   await test.step(`Ensure proof line ${expectedIndex}`, async () => {
     const cols = proofTable.locator('tbody tr').nth(expectedIndex).getByRole('cell')
-    if (dependencies && dependencies.length > 0) {
-      await expect(cols.nth(startingColumn)).toHaveText(dependencies.map((i) => i + 1).join(', '))
-    }
-    await expect(cols.nth(startingColumn + 1)).toHaveText(`${expectedIndex + 1}`)
-    await expect(cols.nth(startingColumn + 2)).toHaveText(formula)
-    await expect(cols.nth(startingColumn + 3)).toHaveText(
-      justifications.map((i) => i + 1).join(', '),
-    )
-    await expect(cols.nth(startingColumn + 4)).toHaveText(rule)
+    const justText = rule === 'S'
+      ? /^Unresolved Supposition/
+      : justifications.map((i) => i + 1).join(', ')
+    await expect(cols.nth(startingColumn)).toHaveText(`${expectedIndex + 1}`)
+    await expect(cols.nth(startingColumn + 1)).toHaveText(formula)
+    await expect(cols.nth(startingColumn + 2)).toHaveText(justText)
+    await expect(cols.nth(startingColumn + 3)).toHaveText(rule)
   })
 }
 
@@ -178,20 +169,11 @@ const enterAndEnsureLine = async (
   rule: string,
   justifications: number[],
   expectedIndex: number,
-  dependencies: number[] | null = null,
   completesProof: boolean = false,
 ) => {
   await test.step(`Enter and ensure proof line ${expectedIndex}`, async () => {
     await enterLine(proofTable, formula, rule, justifications)
-    await ensureLine(
-      proofTable,
-      formula,
-      rule,
-      justifications,
-      expectedIndex,
-      dependencies,
-      completesProof,
-    )
+    await ensureLine(proofTable, formula, rule, justifications, expectedIndex, completesProof)
   })
 }
 

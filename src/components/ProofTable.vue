@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useId, useTemplateRef, watch } from 'vue'
 import { useModal, useModalController } from 'bootstrap-vue-next'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
-import { Proof, Rule, InvalidDeductionError } from '@/logic'
+import { Line, Proof, Rule, InvalidDeductionError } from '@/logic'
 
 const { proof } = defineProps<{ proof: Proof }>()
 const emit = defineEmits(['qed', 'clear'])
 
 const id = useId()
 
-const showDependencies = computed(() => {
-  return proof.lines.some((line) => toRaw(line.rule) === Rule.SUPPOSITION)
-})
 const qed = computed(() => proof.qed())
 const form = {
   rule: ref(''),
@@ -32,14 +29,25 @@ const { show: showErrorModal } = useModal(`error-modal-${id}`)
 const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)
 const { create: createModal } = useModalController()
 
-let startedAt: number
+const startedAt = ref<number>(Date.now())
 const solvedIn = ref<number>()
+
+const listFormatter = new Intl.ListFormat('en', {
+  style: 'long',
+  type: 'disjunction',
+});
+const unresolvedSuppositionText = `
+  Your proof is currently dependent on this unresolved supposition. You must
+  resolve the supposition using a
+  ${listFormatter.format(Rule.all.filter((r) => r.resolvesSupposition).map((r) => `<strong>${r.shorthand}</strong>`))}
+  rule before completing the proof.
+`
 
 watch(
   () => proof,
   async () => {
     if (proof.deductions.length === 0) {
-      startedAt = Date.now()
+      startedAt.value = Date.now()
     }
   },
   { immediate: true },
@@ -82,7 +90,7 @@ const submitLine = () => {
     return
   }
 
-  solvedIn.value = Date.now() - startedAt
+  solvedIn.value = Date.now() - startedAt.value
   if (!tour.isActive()) {
     showQedModal()
   }
@@ -97,7 +105,7 @@ const clear = async () => {
   hideQedModal()
   proof.clear()
   clearForm()
-  startedAt = Date.now()
+  startedAt.value = Date.now()
   emit('clear', proof)
 }
 
@@ -137,6 +145,16 @@ const clearForm = () => {
   submitting.value = false
 }
 
+const isUnresolvedSupposition = (line: Line) => {
+  return (
+    line.rule.valueOf() === Rule.SUPPOSITION.valueOf() &&
+    (line.index === proof.lines.length - 1 ||
+      !proof.deductions.some((deduction) => {
+        return deduction.rule.resolvesSupposition && deduction.justifications.includes(line.index)
+      }))
+  )
+}
+
 defineExpose({ clear, solvedIn, confirmDiscard })
 </script>
 
@@ -145,37 +163,36 @@ defineExpose({ clear, solvedIn, confirmDiscard })
     <BTableSimple class="text-center" data-tour="proof">
       <BThead>
         <BTr>
-          <BTh v-if="!qed"><abbr title="Select justification lines">J</abbr></BTh>
-          <BTh v-if="showDependencies"><abbr title="Depenency lines">D</abbr></BTh>
-          <BTh><abbr title="Line number">L</abbr></BTh>
+          <BTh v-if="!qed"></BTh>
+          <BTh>Line</BTh>
           <BTh class="text-start">Formula</BTh>
-          <BTh>Lines</BTh>
+          <BTh class="text-truncate" style="max-width: 20px">Justification(s)</BTh>
           <BTh>Rule</BTh>
         </BTr>
       </BThead>
       <BTbody class="table-group-divider">
-        <BTr
-          v-for="(line, index) in proof.lines"
-          :key="index"
-          :class="{ 'table-active': form.justifications.value.includes(index.toString()) }"
-          :data-tour="`line-${index}`">
+        <BTr v-for="(line, index) in proof.lines" :key="index" :data-tour="`line-${index}`">
           <BTd v-if="!qed" :data-tour="`justification-${index}`">
             <BFormCheckbox
               v-model="form.justifications.value"
               :value="index"
               :data-testid="`justification-${index}`" />
           </BTd>
-          <BTd v-if="showDependencies">
-            {{
-              line
-                .dependencies(proof)
-                .map((n) => n + 1)
-                .join(', ')
-            }}
-          </BTd>
           <BTd>{{ line.index + 1 }}</BTd>
-          <BTd class="text-start">{{ line.formula }}</BTd>
-          <BTd>{{ line.justifications.map((n) => n + 1).join(', ') }}</BTd>
+          <BTd class="text-start">
+            {{ line.formula }}
+          </BTd>
+          <BTd>
+            <BPopover v-if="isUnresolvedSupposition(line)" title="Unresolved Supposition">
+              <template #target>
+                <IBiExclamationTriangle class="text-warning" />
+              </template>
+              <div v-html="unresolvedSuppositionText" />
+            </BPopover>
+            <template v-else>
+              {{ line.justifications.map((n) => n + 1).join(', ') }}
+            </template>
+          </BTd>
           <BTd>
             <abbr :title="line.rule.label">{{ line.rule }}</abbr>
           </BTd>
@@ -183,13 +200,10 @@ defineExpose({ clear, solvedIn, confirmDiscard })
       </BTbody>
       <BTfoot class="table-group-divider align-top">
         <BTr v-if="qed">
-          <BTd :colspan="showDependencies ? 5 : 4" variant="success" data-tour="qed">
-            <IBiRocketTakeoff /> Q.E.D.
-          </BTd>
+          <BTd colspan="4" variant="success" data-tour="qed"> <IBiRocketTakeoff /> Q.E.D. </BTd>
         </BTr>
         <BTr v-else :variant="error ? 'danger' : null">
           <BTd><IBiXCircleFill v-if="error" :title="error" class="text-danger" /></BTd>
-          <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
             <FormulaInput ref="formula-input" autofocus data-tour="formula" />

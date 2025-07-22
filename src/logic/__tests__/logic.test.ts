@@ -424,8 +424,8 @@ describe('Proof', () => {
 
       test('returns false when suppositions have not been cleared', () => {
         const proof = new Proof(['A → B'], 'B')
-        proof.addDeduction('A', Rule.SUPPOSITION)
-        proof.addDeduction('B', Rule.ARROW_OUT, [0, 1])
+        proof.deductions.push(new Line(1, 'A', Rule.SUPPOSITION))
+        proof.deductions.push(new Line(2, 'B', Rule.ARROW_OUT, [0, 1]))
         expect(proof.qed()).toBe(false)
       })
     })

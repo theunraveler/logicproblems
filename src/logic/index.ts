@@ -55,7 +55,7 @@ export class Rule {
     public readonly label: string,
     public readonly evalFunc: LineEvalFunction,
     public readonly requiredJustifications: number,
-    public readonly clearsSupposition: boolean = false,
+    public readonly resolvesSupposition: boolean = false,
   ) {
     Rule.all.push(this)
   }
@@ -110,13 +110,19 @@ export class Line {
     const deps = [
       ...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof))),
     ].toSorted()
-    if (!this.rule.clearsSupposition) {
+    if (!this.rule.resolvesSupposition) {
       return deps
     }
     return deps.filter(
       (l) =>
         !this.justifications.includes(l) || lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf(),
     )
+  }
+
+  hasUnresolvedDependencies(proof: Proof): boolean {
+    const lines = proof.lines
+    const deps = this.dependencies(proof).map((i) => lines[i])
+    return deps.some((l) => l.rule.valueOf() === Rule.SUPPOSITION.valueOf())
   }
 
   toString(): string {
@@ -159,6 +165,14 @@ export class Proof {
       deduction.justifications.map((index) => lines[index]),
       this,
     )
+    if (
+      deduction.formula.valueOf() === this.conclusion.valueOf() &&
+      deduction.hasUnresolvedDependencies(this)
+    ) {
+      throw new InvalidDeductionError(
+        'Cannot conclude the proof without resolving all supposition dependencies',
+      )
+    }
     this.deductions.push(deduction)
     return deduction
   }
@@ -173,13 +187,10 @@ export class Proof {
     }
 
     const lastLine = this.deductions[this.deductions.length - 1]
-    if (this.conclusion.valueOf() !== lastLine.formula.valueOf()) {
-      return false
-    }
-
-    const lines = this.lines
-    const lastLineDependencies = lastLine.dependencies(this).map((i) => lines[i])
-    return lastLineDependencies.every((l) => l.rule.valueOf() === Rule.ASSUMPTION.valueOf())
+    return (
+      this.conclusion.valueOf() === lastLine.formula.valueOf() &&
+      !lastLine.hasUnresolvedDependencies(this)
+    )
   }
 }
 
