@@ -12,6 +12,8 @@ type ProofTableType = InstanceType<typeof ProofTable>
 type ProblemNavType = InstanceType<typeof ProblemNav>
 type SolutionListType = InstanceType<typeof SolutionList>
 
+const rollbar = inject('rollbar')
+
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem'])
@@ -28,7 +30,7 @@ const qed = async (proof: Proof) => {
     return
   }
 
-  await solutionList.value.add({
+  const solution = {
     problemId: props.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,
@@ -39,8 +41,10 @@ const qed = async (proof: Proof) => {
         toRaw(l.justifications),
       ]
     }),
-  })
+  }
+  await solutionList.value.add(solution)
   showModal()
+  rollbar.info('Problem solved', solution)
 }
 
 const confirmDiscard = async () => {
