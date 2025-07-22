@@ -25,13 +25,15 @@ const plugins = [
 ]
 
 if (process.env.ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN) {
-  plugins.push(viteRollbar({
-    accessToken: process.env.ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN,
-    version: commit,
-    baseUrl: 'logicproblems.org',
-    ignoreUploadErrors: false,
-    silent: false,
-  }))
+  plugins.push(
+    viteRollbar({
+      accessToken: process.env.ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN,
+      version: commit,
+      baseUrl: 'logicproblems.org',
+      ignoreUploadErrors: false,
+      silent: false,
+    }),
+  )
 }
 
 export default defineConfig({
@@ -55,6 +57,8 @@ export default defineConfig({
     ['import.meta.env.GIT_COMMIT_SHA']: JSON.stringify(commit),
     ['import.meta.env.GITHUB_URL']: JSON.stringify(packageInfo.homepage),
     ['import.meta.env.BRANCH']: JSON.stringify(process.env.WORKERS_CI_BRANCH),
-    ['import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN']: JSON.stringify(process.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN),
+    ['import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN']: JSON.stringify(
+      process.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN,
+    ),
   },
 })

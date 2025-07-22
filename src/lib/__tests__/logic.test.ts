@@ -254,7 +254,11 @@ describe('Rule', () => {
     testCasesFor(Rule.CHAIN_RULE, [
       ['A → C', ['A → B', 'B → C']],
       ['A → C', ['B → C', 'A → B']],
-      ['A → C', ['A → B', 'B → D'], /consequent of the formula must be the consequent of the second justification/i],
+      [
+        'A → C',
+        ['A → B', 'B → D'],
+        /consequent of the formula must be the consequent of the second justification/i,
+      ],
       ['N → C', ['A → B', 'B → C'], /formula must be the antecedent of one of the justifications/i],
     ])
 

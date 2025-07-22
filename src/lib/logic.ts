@@ -518,10 +518,7 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
   }
 
   const expInner = formulaToString(exp.inner)
-  const [negationJust, conditionalJust] = orderedJusts as [
-    UnaryExpression,
-    BinaryExpression,
-  ]
+  const [negationJust, conditionalJust] = orderedJusts as [UnaryExpression, BinaryExpression]
 
   if (formulaToString(conditionalJust.left) !== expInner) {
     throw new InvalidDeductionError(
@@ -542,7 +539,9 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
       return false
     }
     const bExp = formulaToString(b.inner)
-    return isDisjunction(a) && (formulaToString(a.left) === bExp || formulaToString(a.right) === bExp)
+    return (
+      isDisjunction(a) && (formulaToString(a.left) === bExp || formulaToString(a.right) === bExp)
+    )
   })
   if (!orderedJusts) {
     throw new InvalidDeductionError(
@@ -613,11 +612,15 @@ function evalChainRule(exp: Expression, justifications: Line[]) {
   const secondJust = justExps[firstJustIndex ? 0 : 1]
 
   if (formulaToString(firstJust.right) !== formulaToString(secondJust.left)) {
-    throw new InvalidDeductionError('Consequent of the first justification must be the antecedent of the second justification')
+    throw new InvalidDeductionError(
+      'Consequent of the first justification must be the antecedent of the second justification',
+    )
   }
 
   if (formulaToString(secondJust.right) !== formulaToString(exp.right)) {
-    throw new InvalidDeductionError('Consequent of the formula must be the consequent of the second justification')
+    throw new InvalidDeductionError(
+      'Consequent of the formula must be the consequent of the second justification',
+    )
   }
 }
 
@@ -661,7 +664,9 @@ function evalDemorgansLaw(
       (isDisjunction(exp) && isConjunction(justExpInner))
     )
   ) {
-    throwOrRecip('Formula and justification must be a conjunction and a disjunction (or vice versa)')
+    throwOrRecip(
+      'Formula and justification must be a conjunction and a disjunction (or vice versa)',
+    )
     return
   }
 
@@ -778,7 +783,9 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
   const justExp = justification.formula.ast
 
   if (!isConditional(justExp) || !isConditional(exp)) {
-    throw new InvalidDeductionError('Both the formula and the justification must contain an arrow operator')
+    throw new InvalidDeductionError(
+      'Both the formula and the justification must contain an arrow operator',
+    )
   }
 
   // -B → -A from A → B
@@ -837,9 +844,7 @@ function isNegation(exp: Expression): exp is UnaryExpression {
 }
 
 function isConditional(exp: Expression): exp is BinaryExpression {
-  return (
-    exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONDITIONAL['libChar']
-  )
+  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONDITIONAL['libChar']
 }
 
 function isBiconditional(exp: Expression): exp is BinaryExpression {
@@ -849,15 +854,11 @@ function isBiconditional(exp: Expression): exp is BinaryExpression {
 }
 
 function isConjunction(exp: Expression): exp is BinaryExpression {
-  return (
-    exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONJUNCTION['libChar']
-  )
+  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONJUNCTION['libChar']
 }
 
 function isDisjunction(exp: Expression): exp is BinaryExpression {
-  return (
-    exp instanceof BinaryExpression && exp.operator.lexeme === Operator.DISJUNCTION['libChar']
-  )
+  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.DISJUNCTION['libChar']
 }
 
 function isContradiction(exp: Expression): exp is BinaryExpression {

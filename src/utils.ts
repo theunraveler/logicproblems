@@ -28,7 +28,7 @@ export interface Solution {
   lines: [string, string, number[]][]
 }
 
-export type SolutionProps = Omit<Solution, 'id'>;
+export type SolutionProps = Omit<Solution, 'id'>
 
 export const humanizeDuration = (d: number): string => _humanizeDuration(d, { round: true })
 
