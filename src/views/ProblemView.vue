@@ -28,7 +28,7 @@ const qed = async (proof: Proof) => {
     return
   }
 
-  await solutionList.value.addSolution({
+  await solutionList.value.add({
     problemId: props.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,

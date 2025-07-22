@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { db } from '../store'
-import { humanizeDuration, humanizeTimestamp, type Solution, type UnsavedSolution } from '../utils'
+import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '../utils'
 
 const props = defineProps(['problemId'])
 const emit = defineEmits(['select'])
@@ -16,7 +16,7 @@ const loadSolutions = async () => {
 }
 const selected = ref<number>()
 
-const addSolution = async (solution: UnsavedSolution) => {
+const addSolution = async (solution: SolutionProps) => {
   selected.value = await db.solutions.add(solution)
   loadSolutions()
 }
@@ -30,7 +30,7 @@ const clearSelection = () => {
   selected.value = undefined
 }
 
-defineExpose({ addSolution, clearSelection })
+defineExpose({ add: addSolution, clearSelection })
 
 onMounted(loadSolutions)
 </script>
