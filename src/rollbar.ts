@@ -11,10 +11,6 @@ const env: string = (() => {
   }
 })()
 
-if (import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN) {
-  console.log(`Rollbar loaded with token ${import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN}`)
-}
-
 export default {
   install(app: App) {
     const rollbar = new Rollbar({

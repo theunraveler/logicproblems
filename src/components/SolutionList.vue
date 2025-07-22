@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import { db } from '../store'
+import Rollbar from 'rollbar'
 import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '../utils'
+
+const rollbar = inject('rollbar') as Rollbar
 
 const props = defineProps(['problemId'])
 const emit = defineEmits(['select'])
@@ -18,6 +21,7 @@ const selected = ref<number>()
 
 const addSolution = async (solution: SolutionProps) => {
   selected.value = await db.solutions.add(solution)
+  rollbar.info('Problem solved', { solution })
   loadSolutions()
 }
 
