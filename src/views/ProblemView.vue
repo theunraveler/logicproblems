@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { inject, reactive, toRaw, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { useModal } from 'bootstrap-vue-next'
-import { chaptersInjectionKey, humanizeDuration, type ChapterList, type Solution } from '../utils'
+import { chaptersInjectionKey, type ChapterList, type Solution } from '../utils'
 import { Proof, Line } from '../lib/logic'
 import ProblemNav from '../components/ProblemNav.vue'
 import ProofTable from '../components/ProofTable.vue'
@@ -21,10 +20,8 @@ const proofTable = useTemplateRef<ProofTableType>('proof-table')
 const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
 const solutionList = useTemplateRef<SolutionListType>('solution-list')
 
-const { hide: hideModal, show: showModal } = useModal('qed-modal')
-
 const qed = async (proof: Proof) => {
-  if (!proofTable?.value?.solvedIn || !solutionList?.value) {
+  if (!proofTable.value?.solvedIn || !solutionList.value) {
     return
   }
 
@@ -40,7 +37,6 @@ const qed = async (proof: Proof) => {
       ]
     }),
   })
-  showModal()
 }
 
 const confirmDiscard = async () => {
@@ -65,7 +61,6 @@ const viewSolution = async (solution: Solution) => {
 
 const clear = () => {
   solutionList.value?.clearSelection()
-  hideModal()
 }
 
 onBeforeRouteUpdate(confirmDiscard)
@@ -92,7 +87,17 @@ onBeforeRouteUpdate(confirmDiscard)
         :proof="proof"
         @qed="qed"
         @clear="clear"
-        data-testid="proof-table" />
+        data-testid="proof-table">
+        <template #qed-modal-actions="{ clear }">
+          <BButton variant="outline-secondary" @click="clear">Solve Again</BButton>
+          <BLink
+            v-if="problemNav?.next"
+            class="btn btn-primary"
+            :to="{ name: 'problem', params: { id: problemNav.next.id } }">
+            Next Problem<IBiArrowRightShort />
+          </BLink>
+        </template>
+      </ProofTable>
       <ProblemNav ref="problem-nav" class="px-0 mt-4 mt-lg-5" :current="id" />
     </BCol>
 
@@ -101,19 +106,4 @@ onBeforeRouteUpdate(confirmDiscard)
       <FormulaInputHelp />
     </BCol>
   </BRow>
-
-  <BModal title="Q.E.D." id="qed-modal">
-    <template v-if="proofTable?.solvedIn">
-      Congrats, you solved the problem in {{ humanizeDuration(proofTable.solvedIn) }}!
-    </template>
-    <template #footer>
-      <BButton variant="outline-secondary" @click="proofTable?.clear()">Solve Again</BButton>
-      <BLink
-        v-if="problemNav?.next"
-        class="btn btn-primary"
-        :to="{ name: 'problem', params: { id: problemNav.next.id } }">
-        Next Problem<IBiArrowRightShort />
-      </BLink>
-    </template>
-  </BModal>
 </template>

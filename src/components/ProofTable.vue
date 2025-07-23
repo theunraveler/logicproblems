@@ -2,6 +2,7 @@
 import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
 import { useModal } from 'bootstrap-vue-next'
 import FormulaInput from '../components/FormulaInput.vue'
+import { humanizeDuration } from '../utils'
 import { Proof, Rule, InvalidDeductionError } from '../lib/logic'
 
 type FormulaInputType = InstanceType<typeof FormulaInput>
@@ -28,7 +29,9 @@ const justifications = computed(() =>
 const submitting = ref(false)
 const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
-const { show: showModal } = useModal(`error-modal-${id}`)
+const { show: showErrorModal } = useModal(`error-modal-${id}`)
+const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)
+
 
 let startedAt: number
 const solvedIn = ref<number>()
@@ -76,7 +79,7 @@ const submitLine = () => {
   } catch (err) {
     if (err instanceof InvalidDeductionError) {
       error.value = err.message
-      showModal()
+      showErrorModal()
     } else {
       throw error
     }
@@ -88,6 +91,7 @@ const submitLine = () => {
 
   if (qed.value) {
     solvedIn.value = Date.now() - startedAt
+    showQedModal()
     emit('qed', proof)
   }
 }
@@ -97,6 +101,7 @@ const clear = async () => {
     return
   }
 
+  hideQedModal()
   proof.clear()
   clearForm()
   startedAt = Date.now()
@@ -200,6 +205,17 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
 
     <BModal :id="`error-modal-${id}`" title="Invalid Deduction" ok-only ok-title="Close">
       {{ error }}
+    </BModal>
+
+    <BModal :id="`qed-modal-${id}`" title="Q.E.D.">
+      <template v-if="solvedIn">
+        Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
+      </template>
+      <template #footer>
+        <slot name="qed-modal-actions" :clear="clear">
+          <BButton variant="primary" @click="clear">Solve Again</BButton>
+        </slot>
+      </template>
     </BModal>
   </BForm>
 </template>
