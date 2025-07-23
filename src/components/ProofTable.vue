@@ -105,6 +105,7 @@ const clear = async () => {
 
 const clearForm = () => {
   formulaInput.value?.reset()
+  formulaInput.value?.input?.focus()
   form.rule.value = ''
   form.justifications.value = []
   error.value = ''
@@ -165,7 +166,7 @@ defineExpose({ clear, solvedIn, hasUnsavedChanges })
           <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
-            <FormulaInput ref="formula-input" />
+            <FormulaInput ref="formula-input" autofocus />
           </BTd>
           <BTd>{{ justifications }}</BTd>
           <BTd>

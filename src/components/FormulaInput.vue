@@ -30,10 +30,10 @@ const validate = () => {
     text.value = formula.value.text
     validationState.value = true
   } catch (err) {
-    if (typeof err === 'string') {
-      error.value = err
-    } else if (err instanceof Error) {
+    if (err instanceof Error) {
       error.value = err.message
+    } else if (typeof err === 'string') {
+      error.value = err
     }
     validationState.value = false
   }
@@ -46,11 +46,11 @@ const reset = () => {
   formula.value = null
 }
 
-defineExpose({ text, formula, error, validate, reset })
+defineExpose({ text, formula, input, error, validate, reset })
 </script>
 
 <template>
-  <BFormInput v-model="text" ref="input" placeholder="Formula" :state="validationState" required />
+  <BFormInput v-model="text" ref="input" placeholder="Formula" :state="validationState" required v-bind="$attrs" />
   <BButtonGroup class="mt-1" aria-label="Operators">
     <BButton
       size="sm"
