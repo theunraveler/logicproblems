@@ -64,7 +64,7 @@ const viewSolution = async (solution: Solution) => {
 }
 
 const clear = () => {
-  solutionList?.value?.clearSelection()
+  solutionList.value?.clearSelection()
   hideModal()
 }
 

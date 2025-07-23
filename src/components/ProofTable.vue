@@ -84,11 +84,7 @@ const submitLine = () => {
     return
   }
 
-  formulaInput.value.reset()
-  form.rule.value = ''
-  form.justifications.value = []
-  error.value = ''
-  submitting.value = false
+  clearForm()
 
   if (qed.value) {
     solvedIn.value = Date.now() - startedAt
@@ -102,8 +98,17 @@ const clear = async () => {
   }
 
   proof.clear()
+  clearForm()
   startedAt = Date.now()
   emit('clear', proof)
+}
+
+const clearForm = () => {
+  formulaInput.value?.reset()
+  form.rule.value = ''
+  form.justifications.value = []
+  error.value = ''
+  submitting.value = false
 }
 
 defineExpose({ clear, solvedIn, hasUnsavedChanges })
