@@ -10,6 +10,7 @@ import viteRollbar from 'vite-plugin-rollbar-sourcemap'
 import childProcess from 'child_process'
 import packageInfo from './package.json'
 
+const branch = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
 const commit = childProcess.execSync('git rev-parse --short HEAD').toString().trim()
 
 const plugins = [
@@ -56,7 +57,7 @@ export default defineConfig({
   define: {
     ['import.meta.env.GIT_COMMIT_SHA']: JSON.stringify(commit),
     ['import.meta.env.GITHUB_URL']: JSON.stringify(packageInfo.homepage),
-    ['import.meta.env.BRANCH']: JSON.stringify(process.env.WORKERS_CI_BRANCH),
+    ['import.meta.env.BRANCH']: JSON.stringify(branch),
     ['import.meta.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN']: JSON.stringify(
       process.env.ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN,
     ),
