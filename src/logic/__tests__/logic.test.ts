@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { Formula, Line, Proof, Rule } from '../logic'
+import { Formula, Line, Proof, Rule } from '@/logic'
 
 describe('Rule', () => {
   describe('#evaluate', () => {

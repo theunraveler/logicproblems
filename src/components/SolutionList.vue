@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { inject, onMounted, ref } from 'vue'
-import { db } from '../store'
 import Rollbar from 'rollbar'
-import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '../utils'
+import { db } from '@/store'
+import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '@/utils'
 
 const rollbar = inject('rollbar') as Rollbar
 

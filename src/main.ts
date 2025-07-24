@@ -4,10 +4,10 @@ import { createApp } from 'vue'
 import { createBootstrap } from 'bootstrap-vue-next'
 import { default as numberToWords } from 'number-to-words'
 import { titleCase } from 'title-case'
-import App from './App.vue'
-import { chaptersInjectionKey, problems, problemsInjectionKey } from './utils'
-import RollbarPlugin from './rollbar.ts'
-import router from './router.ts'
+import App from '@/App.vue'
+import { chaptersInjectionKey, problems, problemsInjectionKey } from '@/utils'
+import RollbarPlugin from '@/rollbar'
+import router from '@/router'
 
 const app = createApp(App)
 

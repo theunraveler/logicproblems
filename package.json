@@ -25,7 +25,6 @@
     "humanize-duration": "^3.33.0",
     "insert-text-at-cursor": "^0.3.0",
     "number-to-words": "^1.2.4",
-    "propositional": "^1.0.2",
     "rollbar": "^2.26.4",
     "title-case": "^4.3.2",
     "vue": "^3.5.17",

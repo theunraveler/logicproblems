@@ -2,7 +2,8 @@
 import { ref, useTemplateRef } from 'vue'
 import type { Ref } from 'vue'
 import insertTextAtCursor from 'insert-text-at-cursor'
-import { Formula, Operator } from '../lib/logic'
+import { Formula } from '@/logic'
+import { Operator } from '@/logic/ast'
 
 const text = ref('')
 const input = useTemplateRef<HTMLInputElement>('input')
@@ -50,7 +51,13 @@ defineExpose({ text, formula, input, error, validate, reset })
 </script>
 
 <template>
-  <BFormInput v-model="text" ref="input" placeholder="Formula" :state="validationState" required v-bind="$attrs" />
+  <BFormInput
+    v-model="text"
+    ref="input"
+    placeholder="Formula"
+    :state="validationState"
+    required
+    v-bind="$attrs" />
   <BButtonGroup class="mt-1" aria-label="Operators">
     <BButton
       size="sm"

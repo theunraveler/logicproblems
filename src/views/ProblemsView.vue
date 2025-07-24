@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Formula } from '../lib/logic'
-import { db } from '../store'
+import { Formula } from '@/logic'
+import { db } from '@/store'
 import {
   problemsInjectionKey,
   chaptersInjectionKey,
   type ProblemList,
   type ChapterList,
-} from '../utils'
+} from '@/utils'
 
 const $router = useRouter()
 

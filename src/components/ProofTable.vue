@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
 import { useModal } from 'bootstrap-vue-next'
-import FormulaInput from '../components/FormulaInput.vue'
-import { humanizeDuration } from '../utils'
-import { Proof, Rule, InvalidDeductionError } from '../lib/logic'
+import FormulaInput from '@/components/FormulaInput.vue'
+import { humanizeDuration } from '@/utils'
+import { Proof, Rule, InvalidDeductionError } from '@/logic'
 
 type FormulaInputType = InstanceType<typeof FormulaInput>
 
@@ -31,7 +31,6 @@ const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
 const { show: showErrorModal } = useModal(`error-modal-${id}`)
 const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)
-
 
 let startedAt: number
 const solvedIn = ref<number>()

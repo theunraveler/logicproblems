@@ -1,51 +1,16 @@
-import { Formula as LibFormula } from 'propositional'
-import { Expression, BinaryExpression, UnaryExpression } from 'propositional/lib/syntax/ast'
-import { toString as formulaToString } from 'propositional/lib/transform/toString'
+import {
+  Biconditional,
+  BinaryExpression,
+  Conditional,
+  Conjunction,
+  Disjunction,
+  Expression,
+  Negation,
+  Operator,
+} from '@/logic/ast'
+import { parse } from '@/logic/parse'
 
 export class InvalidDeductionError extends Error {}
-
-export class Operator {
-  static all: Operator[] = []
-
-  static readonly CONDITIONAL = new Operator('→', 'arrow', '=>', '⇒')
-  static readonly BICONDITIONAL = new Operator('↔', 'double arrow', '<=>', '⇔')
-  static readonly DISJUNCTION = new Operator('∨', 'wedge', '|')
-  static readonly CONJUNCTION = new Operator('&', 'ampersand', null, '∧')
-  static readonly NEGATION = new Operator('-', 'dash', '!', '¬', false)
-
-  constructor(
-    public readonly symbol: string,
-    public readonly label: string,
-    private readonly _libChar: string | null = null,
-    private readonly _prettyLibChar: string | null = null,
-    public readonly isBinary: boolean = true,
-  ) {
-    Operator.all.push(this)
-  }
-
-  private get libChar(): string {
-    return this._libChar || this.symbol
-  }
-
-  private get prettyLibChar(): string {
-    return this._prettyLibChar || this.symbol
-  }
-
-  toString(): string {
-    return this.symbol
-  }
-
-  public static findBySymbol(symbol: string): Operator {
-    const found = Operator.all.find(
-      (operator) =>
-        operator.symbol === symbol || (operator['libChar'] && operator['libChar'] === symbol),
-    )
-    if (!found) {
-      throw new Error('Operator not found')
-    }
-    return found
-  }
-}
 
 type LineEvalFunction = {
   (exp: Expression, justifications: Line[], proof: Proof): void
@@ -127,17 +92,12 @@ export class Formula {
   _text: string | null = null
 
   constructor(text: string) {
-    try {
-      this.ast = new LibFormula(Formula.normalizeForParsing(text)).ast
-    } catch (error) {
-      const message = error instanceof Error ? error.message : (error as string).toString()
-      throw new Error(Formula.normalize(message))
-    }
+    this.ast = parse(text)
   }
 
   get text() {
     if (!this._text) {
-      this._text = Formula.normalize(formulaToString(this.ast, true), true)
+      this._text = this.ast.toString(false)
     }
     return this._text
   }
@@ -148,29 +108,6 @@ export class Formula {
 
   valueOf(): string {
     return this.text
-  }
-
-  static normalize(text: string, fromPretty: boolean = false): string {
-    let str = Operator.all
-      .toReversed()
-      .filter((o: Operator) => o['libChar'])
-      .reduce((t: string, operator: Operator) => {
-        return t.replaceAll(operator[fromPretty ? 'prettyLibChar' : 'libChar'], operator.symbol)
-      }, text)
-    if (str.charAt(0) === '(' && str.slice(-1) === ')') {
-      str = str.substring(1, str.length - 1)
-    }
-    return str.trim()
-  }
-
-  private static normalizeForParsing(text: string): string {
-    return Operator.all
-      .toReversed()
-      .filter((o: Operator) => o['libChar'])
-      .reduce(
-        (t: string, operator: Operator) => t.replaceAll(operator.symbol, operator['libChar']),
-        text,
-      )
   }
 }
 
@@ -273,19 +210,17 @@ export class Proof {
 function evalArrowOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula.ast)
   const orderedJust = [justExps, justExps.toReversed()].find(([a, b]) => {
-    return a instanceof BinaryExpression && formulaToString(a.left) === formulaToString(b)
+    return a instanceof Conditional && a.antecedent.toString() === b.toString()
   })
   if (!orderedJust) {
-    throw new InvalidDeductionError('First justification must include the second as its antecedent')
+    throw new InvalidDeductionError(
+      'Justifications must include a conditional that has the other justification as its antecedent',
+    )
   }
 
-  const [mainJust] = orderedJust
+  const [mainJust] = orderedJust as [Conditional]
 
-  if (!isConditional(mainJust)) {
-    throw new InvalidDeductionError('First justification must contain an arrow operator')
-  }
-
-  if (formulaToString(mainJust.right) !== formulaToString(exp)) {
+  if (mainJust.consequent.toString() !== exp.toString()) {
     throw new InvalidDeductionError(
       'Formula must be the consequent of the conditional justification',
     )
@@ -293,7 +228,7 @@ function evalArrowOut(exp: Expression, justifications: Line[]) {
 }
 
 function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
-  if (!isConditional(exp)) {
+  if (!(exp instanceof Conditional)) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
 
@@ -314,12 +249,12 @@ function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
     )
   }
 
-  if (formulaToString(exp.left) !== formulaToString(supposition.formula.ast)) {
+  if (exp.antecedent.toString() !== supposition.formula.ast.toString()) {
     throw new InvalidDeductionError(
       'The antecedent of the formula must be the supposition justification',
     )
   }
-  if (formulaToString(exp.right) !== formulaToString(consequent.formula.ast)) {
+  if (exp.consequent.toString() !== consequent.formula.ast.toString()) {
     throw new InvalidDeductionError(
       'The consequent of the formula must be the second justification',
     )
@@ -329,17 +264,17 @@ function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
 function evalBiconditionalOut(exp: Expression, [justification]: Line[]) {
   const just = justification.formula.ast
 
-  if (!isBiconditional(just)) {
+  if (!(just instanceof Biconditional)) {
     throw new InvalidDeductionError('Justification must contain a double arrow operator')
   }
-  if (!isConditional(exp)) {
+  if (!(exp instanceof Conditional)) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
 
-  const expLeft = formulaToString(exp.left)
-  const expRight = formulaToString(exp.right)
-  const justLeft = formulaToString(just.left)
-  const justRight = formulaToString(just.right)
+  const expLeft = exp.antecedent.toString()
+  const expRight = exp.consequent.toString()
+  const justLeft = just.antecedent.toString()
+  const justRight = just.consequent.toString()
   if (
     !(expLeft === justLeft && expRight === justRight) &&
     !(expLeft === justRight && expRight === justLeft)
@@ -351,25 +286,25 @@ function evalBiconditionalOut(exp: Expression, [justification]: Line[]) {
 }
 
 function evalBiconditionalIn(exp: Expression, justifications: Line[]) {
-  if (!isBiconditional(exp)) {
+  if (!(exp instanceof Biconditional)) {
     throw new InvalidDeductionError('Formula must contain a double arrow operator')
   }
 
   const justExps = justifications.map((j) => j.formula.ast)
-  if (!justExps.every((e) => isConditional(e))) {
+  if (!justExps.every((e) => e instanceof Conditional)) {
     throw new InvalidDeductionError('Justifications must both contain arrow operators')
   }
 
-  const justExpsStr = justExps.map((e) => formulaToString(e))
-  const expLeft = formulaToString(exp.left)
-  const expRight = formulaToString(exp.right)
+  const justExpsStr = justExps.map((e) => e.toString())
+  const leftRight = new Conditional(exp.antecedent, exp.consequent).toString()
+  const rightLeft = new Conditional(exp.consequent, exp.antecedent).toString()
 
-  if (!justExpsStr.includes(`(${expLeft}${Operator.CONDITIONAL['libChar']}${expRight})`)) {
+  if (!justExpsStr.includes(leftRight)) {
     throw new InvalidDeductionError(
       'Antecedent and consequent must be the antecedent and consequent of one justification',
     )
   }
-  if (!justExpsStr.includes(`(${expRight}${Operator.CONDITIONAL['libChar']}${expLeft})`)) {
+  if (!justExpsStr.includes(rightLeft)) {
     throw new InvalidDeductionError(
       'Antecedent and consequent must be the consequent and antecedent of one justification',
     )
@@ -378,29 +313,29 @@ function evalBiconditionalIn(exp: Expression, justifications: Line[]) {
 
 function evalWedgeOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula.ast)
-  const orJustIndex = justExps.findIndex((e) => isDisjunction(e))
+  const orJustIndex = justExps.findIndex((e) => e instanceof Disjunction)
   if (orJustIndex === -1) {
     throw new InvalidDeductionError('One justification must contain a wedge operator')
   }
   const [orJust] = justExps.splice(orJustIndex, 1)
-  if (!isDisjunction(orJust)) {
+  if (!(orJust instanceof Disjunction)) {
     throw new InvalidDeductionError('One justification must contain a wedge operator')
   }
 
-  if (!justExps.every((e) => isConditional(e))) {
+  if (!justExps.every((e) => e instanceof Conditional)) {
     throw new InvalidDeductionError('Other two justifications must contain arrow operators')
   }
 
-  const expStr = formulaToString(exp)
+  const expStr = exp.toString()
 
-  if (!justExps.every((e) => formulaToString(e.right) === expStr)) {
+  if (!justExps.every((e) => e.consequent.toString() === expStr)) {
     throw new InvalidDeductionError(
       'Both conditional justifications must contain the formula as their consequent',
     )
   }
 
-  const orJustParts = [orJust.left, orJust.right].map((p) => formulaToString(p)).sort()
-  const justExpLefts = justExps.map((e) => formulaToString(e.left)).sort()
+  const orJustParts = [orJust.antecedent, orJust.consequent].map((p) => p.toString()).sort()
+  const justExpLefts = justExps.map((e) => e.antecedent.toString()).sort()
   if (!orJustParts.every((val, index) => val === justExpLefts[index])) {
     throw new InvalidDeductionError(
       'Both the antecedent and the consequent of the wedge justification must be the antecedent of the conditional justifications',
@@ -409,12 +344,12 @@ function evalWedgeOut(exp: Expression, justifications: Line[]) {
 }
 
 function evalWedgeIn(exp: Expression, [justification]: Line[]) {
-  if (!isDisjunction(exp)) {
+  if (!(exp instanceof Disjunction)) {
     throw new InvalidDeductionError('Formula must contain a wedge operator')
   }
 
-  const justExp = formulaToString(justification.formula.ast)
-  if (formulaToString(exp.left) !== justExp && formulaToString(exp.right) !== justExp) {
+  const justExp = justification.formula.ast.toString()
+  if (exp.antecedent.toString() !== justExp && exp.consequent.toString() !== justExp) {
     throw new InvalidDeductionError(
       'Formula must contain the justification as either its antecedent or consequent',
     )
@@ -424,12 +359,12 @@ function evalWedgeIn(exp: Expression, [justification]: Line[]) {
 function evalAndOut(exp: Expression, [justification]: Line[]) {
   const just = justification.formula.ast
 
-  if (!isConjunction(just)) {
+  if (!(just instanceof Conjunction)) {
     throw new InvalidDeductionError('Justification must contain an ampersand operator')
   }
 
-  const expStr = formulaToString(exp)
-  if (formulaToString(just.left) !== expStr && formulaToString(just.right) !== expStr) {
+  const expStr = exp.toString()
+  if (just.antecedent.toString() !== expStr && just.consequent.toString() !== expStr) {
     throw new InvalidDeductionError(
       'Formula must be either the antecedent or consequent of the justification',
     )
@@ -437,13 +372,13 @@ function evalAndOut(exp: Expression, [justification]: Line[]) {
 }
 
 function evalAndIn(exp: Expression, justifications: Line[]) {
-  if (!isConjunction(exp)) {
+  if (!(exp instanceof Conjunction)) {
     throw new InvalidDeductionError('Formula must contain an ampersand operator')
   }
 
-  const expLeft = formulaToString(exp.left)
-  const expRight = formulaToString(exp.right)
-  const justExps = justifications.map((j) => formulaToString(j.formula.ast))
+  const expLeft = exp.antecedent.toString()
+  const expRight = exp.consequent.toString()
+  const justExps = justifications.map((j) => j.formula.ast.toString())
 
   if (!justExps.includes(expLeft)) {
     throw new InvalidDeductionError('Formula antecedent must be one of the justifications')
@@ -455,7 +390,11 @@ function evalAndIn(exp: Expression, justifications: Line[]) {
 
 function evalNegationOut(exp: Expression, justifications: Line[], proof: Proof) {
   const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
-    return a.rule.valueOf() === Rule.SUPPOSITION.valueOf() && isContradiction(b.formula.ast)
+    return (
+      a.rule.valueOf() === Rule.SUPPOSITION.valueOf() &&
+      b.formula.ast instanceof Conjunction &&
+      b.formula.ast.isContradiction()
+    )
   })
   if (!orderedJusts) {
     throw new InvalidDeductionError('Justifications must include a supposition and a contradiction')
@@ -464,10 +403,10 @@ function evalNegationOut(exp: Expression, justifications: Line[], proof: Proof) 
   const [supposition, contradiction] = orderedJusts
 
   const suppositionExp = supposition.formula.ast
-  if (!isNegation(suppositionExp)) {
+  if (!(suppositionExp instanceof Negation)) {
     throw new InvalidDeductionError('The supposition justification must contain a dash operator')
   }
-  if (formulaToString(suppositionExp.inner) !== formulaToString(exp)) {
+  if (suppositionExp.expression.toString() !== exp.toString()) {
     throw new InvalidDeductionError('Formula must be the negation of the supposition justification')
   }
 
@@ -478,12 +417,16 @@ function evalNegationOut(exp: Expression, justifications: Line[], proof: Proof) 
 }
 
 function evalNegationIn(exp: Expression, justifications: Line[], proof: Proof) {
-  if (!isNegation(exp)) {
+  if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
 
   const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
-    return a.rule.valueOf() === Rule.SUPPOSITION.valueOf() && isContradiction(b.formula.ast)
+    return (
+      a.rule.valueOf() === Rule.SUPPOSITION.valueOf() &&
+      b.formula.ast instanceof Conjunction &&
+      b.formula.ast.isContradiction()
+    )
   })
   if (!orderedJusts) {
     throw new InvalidDeductionError('Justifications must include a supposition and a contradiction')
@@ -492,7 +435,7 @@ function evalNegationIn(exp: Expression, justifications: Line[], proof: Proof) {
   const [supposition, contradiction] = orderedJusts
 
   const suppositionExp = supposition.formula.ast
-  if (formulaToString(exp.inner) !== formulaToString(suppositionExp)) {
+  if (exp.expression.toString() !== suppositionExp.toString()) {
     throw new InvalidDeductionError('Formula must be the negation of the supposition justification')
   }
 
@@ -503,13 +446,13 @@ function evalNegationIn(exp: Expression, justifications: Line[], proof: Proof) {
 }
 
 function evalModusTollens(exp: Expression, justifications: Line[]) {
-  if (!isNegation(exp)) {
+  if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
 
   const justExps = justifications.map((j) => j.formula.ast)
   const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
-    return isNegation(a) && isConditional(b)
+    return a instanceof Negation && b instanceof Conditional
   })
   if (!orderedJusts) {
     throw new InvalidDeductionError(
@@ -517,15 +460,15 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
     )
   }
 
-  const expInner = formulaToString(exp.inner)
-  const [negationJust, conditionalJust] = orderedJusts as [UnaryExpression, BinaryExpression]
+  const expInner = exp.expression.toString()
+  const [negationJust, conditionalJust] = orderedJusts as [Negation, Conditional]
 
-  if (formulaToString(conditionalJust.left) !== expInner) {
+  if (conditionalJust.antecedent.toString() !== expInner) {
     throw new InvalidDeductionError(
       'Conditional justification must contain the negated formula as its antecedent',
     )
   }
-  if (formulaToString(conditionalJust.right) !== formulaToString(negationJust.inner)) {
+  if (conditionalJust.consequent.toString() !== negationJust.expression.toString()) {
     throw new InvalidDeductionError(
       'Conditional justification must contain the negated negation justification as its consequent',
     )
@@ -535,12 +478,13 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
 function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula.ast)
   const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
-    if (!isNegation(b)) {
+    if (!(b instanceof Negation)) {
       return false
     }
-    const bExp = formulaToString(b.inner)
+    const bExp = b.expression.toString()
     return (
-      isDisjunction(a) && (formulaToString(a.left) === bExp || formulaToString(a.right) === bExp)
+      a instanceof Disjunction &&
+      (a.antecedent.toString() === bExp || a.consequent.toString() === bExp)
     )
   })
   if (!orderedJusts) {
@@ -549,11 +493,11 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
     )
   }
 
-  const disjunctionJust = orderedJusts[0] as BinaryExpression
-  const expStr = formulaToString(exp)
+  const disjunctionJust = orderedJusts[0] as Disjunction
+  const expStr = exp.toString()
   if (
-    formulaToString(disjunctionJust.left) !== expStr &&
-    formulaToString(disjunctionJust.right) !== expStr
+    disjunctionJust.antecedent.toString() !== expStr &&
+    disjunctionJust.consequent.toString() !== expStr
   ) {
     throw new InvalidDeductionError(
       'Formula must be either the antecedent or consequent of the disjunction justification',
@@ -562,17 +506,17 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
 }
 
 function evalConjunctiveArgument(exp: Expression, justifications: Line[]) {
-  if (!isNegation(exp)) {
+  if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
 
   const justExps = justifications.map((j) => j.formula.ast)
   const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
-    const bStr = formulaToString(b)
+    const bStr = b.toString()
     return (
-      isNegation(a) &&
-      isConjunction(a.inner) &&
-      (formulaToString(a.inner.left) === bStr || formulaToString(a.inner.right) === bStr)
+      a instanceof Negation &&
+      a.expression instanceof Conjunction &&
+      (a.expression.antecedent.toString() === bStr || a.expression.consequent.toString() === bStr)
     )
   })
   if (!orderedJusts) {
@@ -581,11 +525,11 @@ function evalConjunctiveArgument(exp: Expression, justifications: Line[]) {
     )
   }
 
-  const conjunctionJust = (orderedJusts[0] as UnaryExpression).inner as BinaryExpression
-  const innerStr = formulaToString(exp.inner)
+  const conjunctionJust = (orderedJusts[0] as Negation).expression as Conjunction
+  const innerStr = exp.expression.toString()
   if (
-    formulaToString(conjunctionJust.left) !== innerStr &&
-    formulaToString(conjunctionJust.right) !== innerStr
+    conjunctionJust.antecedent.toString() !== innerStr &&
+    conjunctionJust.consequent.toString() !== innerStr
   ) {
     throw new InvalidDeductionError(
       'Negated formula must be either the antecedent or the consequent of the conjunction justification',
@@ -594,30 +538,30 @@ function evalConjunctiveArgument(exp: Expression, justifications: Line[]) {
 }
 
 function evalChainRule(exp: Expression, justifications: Line[]) {
-  if (!isConditional(exp)) {
+  if (!(exp instanceof Conditional)) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
 
   const justExps = justifications.map((j) => j.formula.ast)
-  if (!justExps.every((e) => isConditional(e))) {
+  if (!justExps.every((e) => e instanceof Conditional)) {
     throw new InvalidDeductionError('Justifications must all contain an arrow operator')
   }
 
-  const expLeft = formulaToString(exp.left)
-  const firstJustIndex = justExps.findIndex((e) => formulaToString(e.left) === expLeft)
+  const expLeft = exp.antecedent.toString()
+  const firstJustIndex = justExps.findIndex((e) => e.antecedent.toString() === expLeft)
   if (firstJustIndex === -1) {
     throw new InvalidDeductionError('Formula must be the antecedent of one of the justifications')
   }
   const firstJust = justExps[firstJustIndex]
   const secondJust = justExps[firstJustIndex ? 0 : 1]
 
-  if (formulaToString(firstJust.right) !== formulaToString(secondJust.left)) {
+  if (firstJust.consequent.toString() !== secondJust.antecedent.toString()) {
     throw new InvalidDeductionError(
       'Consequent of the first justification must be the antecedent of the second justification',
     )
   }
 
-  if (formulaToString(secondJust.right) !== formulaToString(exp.right)) {
+  if (secondJust.consequent.toString() !== exp.consequent.toString()) {
     throw new InvalidDeductionError(
       'Consequent of the formula must be the consequent of the second justification',
     )
@@ -625,9 +569,9 @@ function evalChainRule(exp: Expression, justifications: Line[]) {
 }
 
 function evalDoubleNegation(exp: Expression, [justification]: Line[]) {
-  const expStr = formulaToString(exp)
-  const justExp = formulaToString(justification.formula.ast)
-  const doubleNegation = Operator.NEGATION['libChar'].repeat(2)
+  const expStr = exp.toString()
+  const justExp = justification.formula.ast.toString()
+  const doubleNegation = Operator.NEGATION.symbol.repeat(2)
 
   if (expStr !== `${doubleNegation}${justExp}` && `${doubleNegation}${expStr}` !== justExp) {
     throw new InvalidDeductionError('Formula or justification must contain 2 dash operators')
@@ -640,28 +584,28 @@ function evalDemorgansLaw(
   proof: Proof,
   tryReciprocal: boolean = true,
 ) {
-  const justExp = justification.formula.ast as UnaryExpression
+  const justExp = justification.formula.ast as Negation
 
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
   const throwOrRecip = (message: string) => {
     if (tryReciprocal) {
-      evalDemorgansLaw(justExp, [new Line(0, formulaToString(exp), Rule.ASSUMPTION)], proof, false)
+      evalDemorgansLaw(justExp, [new Line(0, exp.toString(), Rule.ASSUMPTION)], proof, false)
     } else {
       throw new InvalidDeductionError(message)
     }
   }
 
-  if (!isNegation(justExp)) {
+  if (!(justExp instanceof Negation)) {
     throwOrRecip('Justification must contain a dash operator')
     return
   }
-  const justExpInner = justExp.inner as BinaryExpression
+  const justExpInner = justExp.expression as Conjunction | Disjunction
 
   if (
     !(
-      (isConjunction(exp) && isDisjunction(justExpInner)) ||
-      (isDisjunction(exp) && isConjunction(justExpInner))
+      (exp instanceof Conjunction && justExpInner instanceof Disjunction) ||
+      (exp instanceof Disjunction && justExpInner instanceof Conjunction)
     )
   ) {
     throwOrRecip(
@@ -673,23 +617,23 @@ function evalDemorgansLaw(
   const expT = exp as BinaryExpression
 
   if (
-    isNegation(justExpInner.left) &&
-    isNegation(justExpInner.right) &&
-    !isNegation(expT.left) &&
-    !isNegation(expT.right) &&
-    formulaToString(justExpInner.left.inner) === formulaToString(expT.left) &&
-    formulaToString(justExpInner.right.inner) === formulaToString(expT.right)
+    justExpInner.antecedent instanceof Negation &&
+    justExpInner.consequent instanceof Negation &&
+    !(expT.antecedent instanceof Negation) &&
+    !(expT.consequent instanceof Negation) &&
+    justExpInner.antecedent.expression.toString() === expT.antecedent.toString() &&
+    justExpInner.consequent.expression.toString() === expT.consequent.toString()
   ) {
     return
   }
 
   if (
-    !isNegation(justExpInner.left) &&
-    !isNegation(justExpInner.right) &&
-    isNegation(expT.left) &&
-    isNegation(expT.right) &&
-    formulaToString(justExpInner.left) === formulaToString(expT.left.inner) &&
-    formulaToString(justExpInner.right) === formulaToString(expT.right.inner)
+    !(justExpInner.antecedent instanceof Negation) &&
+    !(justExpInner.consequent instanceof Negation) &&
+    expT.antecedent instanceof Negation &&
+    expT.consequent instanceof Negation &&
+    justExpInner.antecedent.toString() === expT.antecedent.expression.toString() &&
+    justExpInner.consequent.toString() === expT.consequent.expression.toString()
   ) {
     return
   }
@@ -708,70 +652,72 @@ function evalArrow(
   // ways.
   const throwOrRecip = (message: string) => {
     if (tryReciprocal) {
-      evalArrow(justExp, [new Line(0, formulaToString(exp), Rule.ASSUMPTION)], proof, false)
+      evalArrow(justExp, [new Line(0, exp.toString(), Rule.ASSUMPTION)], proof, false)
     } else {
       throw new InvalidDeductionError(message)
     }
   }
 
-  const conditionalJust = (isNegation(justExp) ? justExp.inner : justExp) as BinaryExpression
-  if (!isConditional(conditionalJust)) {
+  const conditionalJust = (
+    justExp instanceof Negation ? justExp.expression : justExp
+  ) as Conditional
+  if (!(conditionalJust instanceof Conditional)) {
     throwOrRecip('Justification must contain an arrow operator')
   }
 
   // -A ∨ B from A → B
   if (
-    !isNegation(justExp) &&
-    !isNegation(conditionalJust.left) &&
-    !isNegation(conditionalJust.right) &&
-    isDisjunction(exp) &&
-    isNegation(exp.left) &&
-    !isNegation(exp.right) &&
-    formulaToString(conditionalJust.left) === formulaToString(exp.left.inner) &&
-    formulaToString(conditionalJust.right) === formulaToString(exp.right)
+    !(justExp instanceof Negation) &&
+    !(conditionalJust.antecedent instanceof Negation) &&
+    !(conditionalJust.consequent instanceof Negation) &&
+    exp instanceof Disjunction &&
+    exp.antecedent instanceof Negation &&
+    !(exp.consequent instanceof Negation) &&
+    conditionalJust.antecedent.toString() === exp.antecedent.expression.toString() &&
+    conditionalJust.consequent.toString() === exp.consequent.toString()
   ) {
     return
   }
 
   // A ∨ B from -A → B
   if (
-    !isNegation(justExp) &&
-    isNegation(conditionalJust.left) &&
-    !isNegation(conditionalJust.right) &&
-    isDisjunction(exp) &&
-    !isNegation(exp.left) &&
-    !isNegation(exp.right) &&
-    formulaToString(conditionalJust.left.inner) === formulaToString(exp.left) &&
-    formulaToString(conditionalJust.right) === formulaToString(exp.right)
+    !(justExp instanceof Negation) &&
+    conditionalJust.antecedent instanceof Negation &&
+    !(conditionalJust.consequent instanceof Negation) &&
+    exp instanceof Disjunction &&
+    !(exp.antecedent instanceof Negation) &&
+    !(exp.consequent instanceof Negation) &&
+    conditionalJust.antecedent.expression.toString() === exp.antecedent.toString() &&
+    conditionalJust.consequent.toString() === exp.consequent.toString()
   ) {
     return
   }
 
   // -(A & -B) from A → B
   if (
-    !isNegation(justExp) &&
-    isNegation(exp) &&
-    !isNegation(conditionalJust.left) &&
-    !isNegation(conditionalJust.right) &&
-    isConjunction(exp.inner) &&
-    !isNegation(exp.inner.left) &&
-    isNegation(exp.inner.right) &&
-    formulaToString(conditionalJust.left) === formulaToString(exp.inner.left) &&
-    formulaToString(conditionalJust.right) === formulaToString(exp.inner.right.inner)
+    !(justExp instanceof Negation) &&
+    exp instanceof Negation &&
+    !(conditionalJust.antecedent instanceof Negation) &&
+    !(conditionalJust.consequent instanceof Negation) &&
+    exp.expression instanceof Conjunction &&
+    !(exp.expression.antecedent instanceof Negation) &&
+    exp.expression.consequent instanceof Negation &&
+    conditionalJust.antecedent.toString() === exp.expression.antecedent.toString() &&
+    conditionalJust.consequent.toString() === exp.expression.consequent.expression.toString()
   ) {
     return
   }
 
   // A & -B from -(A → B)
   if (
-    isNegation(justExp) &&
-    !isNegation(conditionalJust.left) &&
-    !isNegation(conditionalJust.right) &&
-    isConjunction(exp) &&
-    !isNegation(exp.left) &&
-    isNegation(exp.right) &&
-    formulaToString(conditionalJust.left) === formulaToString(exp.left) &&
-    formulaToString(conditionalJust.right) === formulaToString(exp.right.inner)
+    justExp instanceof Negation &&
+    !(conditionalJust.antecedent instanceof Negation) &&
+    !(conditionalJust.consequent instanceof Negation) &&
+    exp instanceof Conjunction &&
+    !(exp.antecedent instanceof Negation) &&
+    exp.consequent instanceof Negation &&
+    conditionalJust.antecedent.toString() === exp.antecedent.toString() &&
+    conditionalJust.consequent.toString() === exp.consequent.expression.toString()
   ) {
     return
   }
@@ -782,7 +728,7 @@ function evalArrow(
 function evalContraposition(exp: Expression, [justification]: Line[]) {
   const justExp = justification.formula.ast
 
-  if (!isConditional(justExp) || !isConditional(exp)) {
+  if (!(justExp instanceof Conditional) || !(exp instanceof Conditional)) {
     throw new InvalidDeductionError(
       'Both the formula and the justification must contain an arrow operator',
     )
@@ -790,84 +736,51 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
 
   // -B → -A from A → B
   if (
-    !isNegation(justExp.left) &&
-    !isNegation(justExp.right) &&
-    isNegation(exp.left) &&
-    isNegation(exp.right) &&
-    formulaToString(exp.left.inner) === formulaToString(justExp.right) &&
-    formulaToString(exp.right.inner) === formulaToString(justExp.left)
+    !(justExp.antecedent instanceof Negation) &&
+    !(justExp.consequent instanceof Negation) &&
+    exp.antecedent instanceof Negation &&
+    exp.consequent instanceof Negation &&
+    exp.antecedent.expression.toString() === justExp.consequent.toString() &&
+    exp.consequent.expression.toString() === justExp.antecedent.toString()
   ) {
     return
   }
 
   // B → A from -A → -B
   if (
-    isNegation(justExp.left) &&
-    isNegation(justExp.right) &&
-    !isNegation(exp.left) &&
-    !isNegation(exp.right) &&
-    formulaToString(justExp.left.inner) === formulaToString(exp.right) &&
-    formulaToString(justExp.right.inner) === formulaToString(exp.left)
+    justExp.antecedent instanceof Negation &&
+    justExp.consequent instanceof Negation &&
+    !(exp.antecedent instanceof Negation) &&
+    !(exp.consequent instanceof Negation) &&
+    justExp.antecedent.expression.toString() === exp.consequent.toString() &&
+    justExp.consequent.expression.toString() === exp.antecedent.toString()
   ) {
     return
   }
 
   // -B → A from -A → B
   if (
-    isNegation(justExp.left) &&
-    !isNegation(justExp.right) &&
-    isNegation(exp.left) &&
-    !isNegation(exp.right) &&
-    formulaToString(justExp.left.inner) === formulaToString(exp.right) &&
-    formulaToString(justExp.right) === formulaToString(exp.left.inner)
+    justExp.antecedent instanceof Negation &&
+    !(justExp.consequent instanceof Negation) &&
+    exp.antecedent instanceof Negation &&
+    !(exp.consequent instanceof Negation) &&
+    justExp.antecedent.expression.toString() === exp.consequent.toString() &&
+    justExp.consequent.toString() === exp.antecedent.expression.toString()
   ) {
     return
   }
 
   // B → -A from A → -B
   if (
-    !isNegation(justExp.left) &&
-    isNegation(justExp.right) &&
-    !isNegation(exp.left) &&
-    isNegation(exp.right) &&
-    formulaToString(justExp.left) === formulaToString(exp.right.inner) &&
-    formulaToString(justExp.right.inner) === formulaToString(exp.left)
+    !(justExp.antecedent instanceof Negation) &&
+    justExp.consequent instanceof Negation &&
+    !(exp.antecedent instanceof Negation) &&
+    exp.consequent instanceof Negation &&
+    justExp.antecedent.toString() === exp.consequent.expression.toString() &&
+    justExp.consequent.expression.toString() === exp.antecedent.toString()
   ) {
     return
   }
 
   throw new InvalidDeductionError('Invalid deduction')
-}
-
-function isNegation(exp: Expression): exp is UnaryExpression {
-  return exp instanceof UnaryExpression && exp.operator.lexeme === Operator.NEGATION['libChar']
-}
-
-function isConditional(exp: Expression): exp is BinaryExpression {
-  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONDITIONAL['libChar']
-}
-
-function isBiconditional(exp: Expression): exp is BinaryExpression {
-  return (
-    exp instanceof BinaryExpression && exp.operator.lexeme === Operator.BICONDITIONAL['libChar']
-  )
-}
-
-function isConjunction(exp: Expression): exp is BinaryExpression {
-  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.CONJUNCTION['libChar']
-}
-
-function isDisjunction(exp: Expression): exp is BinaryExpression {
-  return exp instanceof BinaryExpression && exp.operator.lexeme === Operator.DISJUNCTION['libChar']
-}
-
-function isContradiction(exp: Expression): exp is BinaryExpression {
-  if (!isConjunction(exp)) {
-    return false
-  }
-  const pairs = [
-    [exp.left, exp.right],
-    [exp.right, exp.left],
-  ]
-  return !!pairs.find(([a, b]) => isNegation(a) && formulaToString(a.inner) === formulaToString(b))
 }

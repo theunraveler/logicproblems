@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { inject, reactive, toRaw, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { chaptersInjectionKey, type ChapterList, type Solution } from '../utils'
-import { Proof, Line } from '../lib/logic'
-import ProblemNav from '../components/ProblemNav.vue'
-import ProofTable from '../components/ProofTable.vue'
-import SolutionList from '../components/SolutionList.vue'
+import { chaptersInjectionKey, type ChapterList, type Solution } from '@/utils'
+import { Proof, Line } from '@/logic'
+import ProblemNav from '@/components/ProblemNav.vue'
+import ProofTable from '@/components/ProofTable.vue'
+import SolutionList from '@/components/SolutionList.vue'
 
 type ProofTableType = InstanceType<typeof ProofTable>
 type ProblemNavType = InstanceType<typeof ProblemNav>

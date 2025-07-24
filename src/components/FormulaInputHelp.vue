@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Operator } from '../lib/logic'
+import { Operator } from '@/logic/ast'
 </script>
 
 <template>
