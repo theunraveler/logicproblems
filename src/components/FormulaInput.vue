@@ -2,14 +2,14 @@
 import { ref, useTemplateRef } from 'vue'
 import type { Ref } from 'vue'
 import insertTextAtCursor from 'insert-text-at-cursor'
-import { Formula } from '@/logic'
-import { Operator } from '@/logic/ast'
+import { Expression, Operator } from '@/logic/ast'
+import { parse } from '@/logic/parse'
 
 const text = ref('')
 const input = useTemplateRef<HTMLInputElement>('input')
 const error = ref('')
 const validationState: Ref<boolean | undefined> = ref(undefined)
-const formula: Ref<Formula | null> = ref(null)
+const formula: Ref<Expression | undefined> = ref()
 
 const addOperator = (operator: Operator) => {
   if (!input.value) {
@@ -27,8 +27,8 @@ const validate = () => {
   validationState.value = undefined
   error.value = ''
   try {
-    formula.value = new Formula(text.value)
-    text.value = formula.value.text
+    formula.value = parse(text.value)
+    text.value = formula.value.toString()
     validationState.value = true
   } catch (err) {
     if (err instanceof Error) {
@@ -44,7 +44,7 @@ const reset = () => {
   text.value = ''
   validationState.value = undefined
   error.value = ''
-  formula.value = null
+  formula.value = undefined
 }
 
 defineExpose({ text, formula, input, error, validate, reset })

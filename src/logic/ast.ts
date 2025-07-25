@@ -31,6 +31,10 @@ export class Operator {
 export abstract class Expression {
   abstract toString() : string;
   abstract toString(includeParens: boolean) : string;
+
+  valueOf(): string {
+    return this.toString()
+  }
 }
 
 abstract class OperatorExpression extends Expression {
@@ -49,11 +53,11 @@ export abstract class BinaryExpression extends OperatorExpression {
     super()
   }
 
-  toString(includeParens: boolean = true): string {
+  toString(includeParens: boolean = false): string {
     const str = [
-      this.antecedent.toString(),
+      this.antecedent.toString(true),
       this.operator.symbol,
-      this.consequent.toString(),
+      this.consequent.toString(true),
     ].join(' ')
     return includeParens ? `(${str})` : str
   }
@@ -65,7 +69,7 @@ export abstract class UnaryExpression extends OperatorExpression {
   }
 
   toString(): string {
-    return `${this.operator.symbol}${this.expression.toString()}`
+    return `${this.operator.symbol}${this.expression.toString(true)}`
   }
 }
 

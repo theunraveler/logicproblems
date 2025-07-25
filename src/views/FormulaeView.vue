@@ -19,7 +19,7 @@ const onSubmit = () => {
     return
   }
 
-  expression.value = formulaInput.value.formula?.ast
+  expression.value = formulaInput.value.formula
 }
 </script>
 

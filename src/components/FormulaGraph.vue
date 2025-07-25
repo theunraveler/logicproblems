@@ -8,7 +8,7 @@ const props = defineProps(['expression'])
       <BCard class="text-center" v-if="props.expression">
         <div>
           <span class="fw-bold">Formula: </span>
-          {{ props.expression.toString(false) }}
+          {{ props.expression }}
         </div>
         <div v-if="props.expression?.operator" class="text-capitalize">
           <span class="fw-bold">Operator: </span>

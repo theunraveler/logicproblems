@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import { Formula, Line, Proof, Rule } from '@/logic'
+import { Line, Proof, Rule } from '@/logic'
+import { parse } from '@/logic/parse'
 
 describe('Rule', () => {
   describe('#evaluate', () => {
@@ -327,7 +328,7 @@ describe('Rule', () => {
   const evaluateSimple = (rule: Rule, formula: string, justifications: string[] = []) => {
     const assumptions = justifications.map((j, i) => new Line(i, j, 'A'))
     const proof = new Proof(assumptions, 'Z')
-    rule.evaluate(new Formula(formula), assumptions, proof)
+    rule.evaluate(parse(formula), assumptions, proof)
   }
 
   describe('.findByShorthand', () => {
@@ -393,7 +394,7 @@ describe('Proof', () => {
     test('adds the line to the proof', () => {
       const proof = new Proof(['A → B', 'A'], 'B')
       proof.addDeduction('B', Rule.ARROW_OUT, [0, 1])
-      expect(proof.lines[2].formula.text).toEqual('B')
+      expect(proof.lines[2].formula.toString()).toEqual('B')
       expect(proof.lines[2].rule).toBe(Rule.ARROW_OUT)
       expect(proof.lines[2].justifications).toEqual([0, 1])
     })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Formula } from '@/logic'
+import { parse } from '@/logic/parse'
 import { db } from '@/store'
 import {
   problemsInjectionKey,
@@ -68,12 +68,12 @@ onMounted(loadSolvedProblems)
         </BCardHeader>
         <BListGroup flush numbered>
           <BListGroupItem v-for="(assumption, index) in problem.assumptions" :key="index">
-            <span class="ms-3">{{ new Formula(assumption) }}</span>
+            <span class="ms-3">{{ parse(assumption) }}</span>
           </BListGroupItem>
         </BListGroup>
         <BListGroup flush class="border-top-0">
           <BListGroupItem>
-            <span>Conclusion: {{ new Formula(problem.conclusion) }}</span>
+            <span>Conclusion: {{ parse(problem.conclusion) }}</span>
           </BListGroupItem>
         </BListGroup>
         <BCardBody>
