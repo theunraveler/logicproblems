@@ -1,6 +1,6 @@
 {
   "tqpiwb": {
-    "title": "Course Orientation Test",
+    "title": "Orientation",
     "chapter": 3,
     "assumptions": ["A → B", "A"],
     "conclusion": "B"

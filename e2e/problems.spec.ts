@@ -9,7 +9,7 @@ test('shows all problems', async ({ page }) => {
   await page.goto('/problems')
   await expect(
     page.getByTestId('problems').locator('.card:first-of-type .card-header span:first-of-type'),
-  ).toHaveText('Course Orientation Test')
+  ).toHaveText('Orientation')
 })
 
 test.describe('filtering by chapter', () => {
