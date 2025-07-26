@@ -57,6 +57,7 @@ const viewSolution = async (solution: Solution) => {
   solution.lines.forEach((line) => {
     proof.addDeduction(...line)
   })
+  proofTable.value?.$el?.scrollIntoView({behavior: 'auto', block: 'center'})
 }
 
 const clear = () => {
