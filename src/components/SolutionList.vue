@@ -48,7 +48,6 @@ onMounted(loadSolutions)
 
 <template>
   <BCard
-    class="mb-3"
     tag="aside"
     no-body
     header-class="d-flex justify-content-between align-items-center"
