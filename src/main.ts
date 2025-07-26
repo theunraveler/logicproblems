@@ -1,4 +1,4 @@
-import './scss/styles.scss'
+import '@/scss/styles.scss'
 
 import { createApp } from 'vue'
 import { createBootstrap } from 'bootstrap-vue-next'

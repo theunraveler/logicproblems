@@ -60,9 +60,7 @@ onMounted(loadSolvedProblems)
       <BCard v-for="[id, problem] in pageProblems" :key="id" class="mb-4" no-body>
         <BCardHeader class="d-flex justify-content-between align-items-center">
           <span>{{ problem.title }}</span>
-          <span
-            v-if="solvedProblems.includes(id)"
-            class="badge rounded-pill text-bg-success d-flex align-items-center">
+          <span v-if="solvedProblems.includes(id)" class="badge rounded-pill text-bg-success">
             <IBiCheckCircleFill class="me-1" /> Solved
           </span>
         </BCardHeader>

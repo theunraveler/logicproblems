@@ -33,7 +33,7 @@ defineExpose({ prev, next })
       class="btn btn-outline-secondary float-start"
       :title="prev.title"
       data-testid="previous-problem-link">
-      <IBiArrowLeftShort />Previous
+      <IBiArrowLeftShort class="me-2" />Previous
     </BLink>
     <BLink
       v-if="next"
@@ -41,7 +41,7 @@ defineExpose({ prev, next })
       class="btn btn-outline-secondary float-end"
       :title="next.title"
       data-testid="next-problem-link">
-      Next<IBiArrowRightShort />
+      Next<IBiArrowRightShort class="ms-2" />
     </BLink>
   </BContainer>
 </template>

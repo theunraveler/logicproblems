@@ -1,5 +1,6 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { decompressFromEncodedURIComponent } from 'lz-string'
 import { problems } from '@/utils'
 
 const router = createRouter({
@@ -27,6 +28,9 @@ const router = createRouter({
       props: (route) => ({
         id: route.params.id,
         problem: problems[route.params.id.toString()],
+        lines: route.query.l
+          ? JSON.parse(decompressFromEncodedURIComponent(route.query.l.toString()))
+          : undefined,
       }),
     },
     {
@@ -53,7 +57,7 @@ const router = createRouter({
   },
 })
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _, next) => {
   if (to.name === 'problem' && !(to.params.id.toString() in problems)) {
     next({ name: 'notFound' })
   }

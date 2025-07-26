@@ -54,9 +54,7 @@ onMounted(loadSolutions)
     data-testid="solutions">
     <template #header>
       Solutions
-      <span
-        v-if="solutions.length"
-        class="badge rounded-pill text-bg-success d-flex align-items-center">
+      <span v-if="solutions.length" class="badge rounded-pill text-bg-success">
         <IBiCheckCircleFill class="me-1" /> Solved
       </span>
     </template>
@@ -75,7 +73,7 @@ onMounted(loadSolutions)
           v-if="solution.id !== selected"
           href="#"
           @click.stop.prevent="updateSelection(solution)"
-          class="stretched-link ms-3">
+          class="stretched-link">
           View
         </a>
       </BListGroupItem>

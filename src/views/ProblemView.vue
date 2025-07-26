@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject, reactive, toRaw, useTemplateRef } from 'vue'
-import { onBeforeRouteUpdate } from 'vue-router'
-import { chaptersInjectionKey, type ChapterList, type Solution } from '@/utils'
-import { Proof, Line } from '@/logic'
+import { inject, onMounted, reactive, useTemplateRef } from 'vue'
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { chaptersInjectionKey, compressProofLines, type ChapterList, type Solution } from '@/utils'
+import { Proof } from '@/logic'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
 import SolutionList from '@/components/SolutionList.vue'
@@ -11,16 +11,18 @@ type ProofTableType = InstanceType<typeof ProofTable>
 type ProblemNavType = InstanceType<typeof ProblemNav>
 type SolutionListType = InstanceType<typeof SolutionList>
 
+const $router = useRouter()
+
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
-const props = defineProps(['id', 'problem'])
+const props = defineProps(['id', 'problem', 'lines'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
 const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
 const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
 const solutionList = useTemplateRef<SolutionListType>('solution-list')
 
-const qed = async (proof: Proof) => {
+const onQed = async (proof: Proof) => {
   if (!proofTable.value?.solvedIn || !solutionList.value) {
     return
   }
@@ -29,42 +31,34 @@ const qed = async (proof: Proof) => {
     problemId: props.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,
-    lines: proof.deductions.map((l: Line) => {
-      return [
-        l.formula.toString().replaceAll(' ', ''),
-        l.rule.toString().replaceAll(' ', ''),
-        toRaw(l.justifications),
-      ]
-    }),
+    lines: compressProofLines(proof),
   })
 }
 
-const confirmDiscard = async () => {
-  return (
-    !proofTable?.value?.hasUnsavedChanges ||
-    window.confirm(
-      "It looks like you started this proof but haven't finished it. Are you sure you want to leave?",
-    )
-  )
-}
-
 const viewSolution = async (solution: Solution) => {
-  if (!(await confirmDiscard())) {
+  if (!(await proofTable?.value?.confirmDiscard())) {
     return
   }
 
   proof.clear()
-  solution.lines.forEach((line) => {
-    proof.addDeduction(...line)
-  })
+  proof.addDeductions(solution.lines)
   proofTable.value?.$el?.scrollIntoView({ behavior: 'auto', block: 'center' })
 }
 
 const clear = () => {
   solutionList.value?.clearSelection()
+  const { l: _, ...params } = $router.currentRoute.value.query
+  $router.push(params)
 }
 
-onBeforeRouteUpdate(confirmDiscard)
+onBeforeRouteUpdate(async () => await proofTable?.value?.confirmDiscard())
+onMounted(async () => {
+  if (!props.lines) {
+    return
+  }
+
+  proof.addDeductions(props.lines)
+})
 </script>
 
 <template>
@@ -86,7 +80,7 @@ onBeforeRouteUpdate(confirmDiscard)
       <ProofTable
         ref="proof-table"
         :proof="proof"
-        @qed="qed"
+        @qed="onQed"
         @clear="clear"
         data-testid="proof-table">
         <template #qed-modal-actions="{ clear }">
@@ -104,6 +98,7 @@ onBeforeRouteUpdate(confirmDiscard)
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <SolutionList ref="solution-list" :problemId="props.id" @select="viewSolution" class="mb-3" />
+      <ProofPermalink tag="aside" :id="props.id" :title="problem.title" :proof="proof" class="mb-3" />
       <FormulaInputHelp />
     </BCol>
   </BRow>

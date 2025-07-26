@@ -110,13 +110,13 @@ export class Line {
     const deps = [
       ...new Set(this.justifications.flatMap((i) => lines[i].dependencies(proof))),
     ].toSorted()
-    return this.rule.clearsSupposition
-      ? deps.filter(
-          (l) =>
-            !this.justifications.includes(l) ||
-            lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf(),
-        )
-      : deps
+    if (!this.rule.clearsSupposition) {
+      return deps
+    }
+    return deps.filter(
+      (l) =>
+        !this.justifications.includes(l) || lines[l].rule.valueOf() !== Rule.SUPPOSITION.valueOf(),
+    )
   }
 
   toString(): string {
@@ -141,6 +141,10 @@ export class Proof {
    */
   get lines() {
     return this.assumptions.concat(this.deductions)
+  }
+
+  addDeductions(deductions: [Expression | string, Rule | string, number[] | undefined][]): Line[] {
+    return deductions.map((deduction) => this.addDeduction(...deduction))
   }
 
   addDeduction(

@@ -1,2 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-vue-next/src/styles/styles.scss';
+
+.btn:has(svg),
+.badge:has(svg) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

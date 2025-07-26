@@ -45,16 +45,6 @@ watch(
   { immediate: true },
 )
 
-const hasUnsavedChanges = computed(() => {
-  return (
-    !qed.value &&
-    (proof.deductions.length > 0 ||
-      (formulaInput.value?.text && formulaInput.value.text.length > 0) ||
-      form.rule.value ||
-      form.justifications.value.length > 0)
-  )
-})
-
 const submitLine = () => {
   submitting.value = true
 
@@ -96,7 +86,7 @@ const submitLine = () => {
 }
 
 const clear = async () => {
-  if (hasUnsavedChanges.value && !window.confirm('Are you sure?')) {
+  if (!(await confirmDiscard())) {
     return
   }
 
@@ -107,6 +97,21 @@ const clear = async () => {
   emit('clear', proof)
 }
 
+const hasUnsavedChanges = computed(
+  () =>
+    !qed.value &&
+    (proof.deductions.length > 0 ||
+      (formulaInput.value?.text && formulaInput.value.text.length > 0) ||
+      form.rule.value ||
+      form.justifications.value.length > 0),
+)
+
+const confirmDiscard = async () =>
+  !hasUnsavedChanges.value ||
+  window.confirm(
+    "It looks like you started this proof but haven't finished it. Are you sure you want to discard your progress?",
+  )
+
 const clearForm = () => {
   formulaInput.value?.reset()
   formulaInput.value?.input?.focus()
@@ -116,7 +121,7 @@ const clearForm = () => {
   submitting.value = false
 }
 
-defineExpose({ clear, solvedIn, hasUnsavedChanges })
+defineExpose({ clear, solvedIn, confirmDiscard })
 </script>
 
 <template>

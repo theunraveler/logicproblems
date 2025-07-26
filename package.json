@@ -24,6 +24,7 @@
     "dexie": "^4.0.11",
     "humanize-duration": "^3.33.0",
     "insert-text-at-cursor": "^0.3.0",
+    "lz-string": "^1.5.0",
     "number-to-words": "^1.2.4",
     "rollbar": "^2.26.4",
     "title-case": "^4.3.2",
