@@ -5,10 +5,12 @@ import { chaptersInjectionKey, compressProofLines, type ChapterList, type Soluti
 import { Proof } from '@/logic'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
+import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
 
-type ProofTableType = InstanceType<typeof ProofTable>
 type ProblemNavType = InstanceType<typeof ProblemNav>
+type ProofTableType = InstanceType<typeof ProofTable>
+type ProofTourType = InstanceType<typeof ProofTour>
 type SolutionListType = InstanceType<typeof SolutionList>
 
 const $router = useRouter()
@@ -17,9 +19,10 @@ const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem', 'lines'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
-const proofTable = useTemplateRef<ProofTableType>('proof-table')
 
 const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
+const proofTable = useTemplateRef<ProofTableType>('proof-table')
+const proofTour = useTemplateRef<ProofTourType>('tour')
 const solutionList = useTemplateRef<SolutionListType>('solution-list')
 
 const onQed = async (proof: Proof) => {
@@ -75,7 +78,7 @@ onMounted(async () => {
     <BCol cols="12" lg="8" xl="9">
       <div class="d-flex justify-content-between align-items-center border-bottom mb-4">
         <h2>{{ problem.title }}</h2>
-        <h4>Conclusion: {{ proof.conclusion }}</h4>
+        <h4 data-tour="conclusion">Conclusion: {{ proof.conclusion }}</h4>
       </div>
       <ProofTable
         ref="proof-table"
@@ -98,13 +101,19 @@ onMounted(async () => {
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <SolutionList ref="solution-list" :problemId="props.id" @select="viewSolution" class="mb-3" />
-      <ProofPermalink
-        tag="aside"
-        :id="props.id"
-        :title="problem.title"
-        :proof="proof"
-        class="mb-3" />
+      <ProofPermalink :id="props.id" :title="problem.title" :proof="proof" class="mb-3" />
+      <aside class="mb-3">
+        <BButton
+          @click.prevent="proofTour?.prompt()"
+          variant="outline-secondary"
+          class="w-100"
+          data-tour="tour">
+          <IBiSignpostSplit class="me-2" /> How Do I Use This?
+        </BButton>
+      </aside>
       <FormulaInputHelp />
     </BCol>
   </BRow>
+
+  <ProofTour ref="tour" />
 </template>

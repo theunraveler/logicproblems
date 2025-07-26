@@ -51,6 +51,7 @@ onMounted(loadSolutions)
     tag="aside"
     no-body
     header-class="d-flex justify-content-between align-items-center"
+    data-tour="solutions"
     data-testid="solutions">
     <template #header>
       Solutions

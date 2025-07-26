@@ -2,6 +2,7 @@
 import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
 import { useModal, useModalController } from 'bootstrap-vue-next'
 import FormulaInput from '@/components/FormulaInput.vue'
+import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
 import { Proof, Rule, InvalidDeductionError } from '@/logic'
 
@@ -79,11 +80,15 @@ const submitLine = () => {
 
   clearForm()
 
-  if (qed.value) {
-    solvedIn.value = Date.now() - startedAt
-    showQedModal()
-    emit('qed', proof)
+  if (!qed.value) {
+    return
   }
+
+  solvedIn.value = Date.now() - startedAt
+  if (!tour.isActive()) {
+    showQedModal()
+  }
+  emit('qed', proof)
 }
 
 const clear = async () => {
@@ -139,7 +144,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
 
 <template>
   <BForm @submit.prevent="submitLine">
-    <BTableSimple class="text-center">
+    <BTableSimple class="text-center" data-tour="proof">
       <BThead>
         <BTr>
           <BTh v-if="!qed"><abbr title="Select justification lines">J</abbr></BTh>
@@ -154,8 +159,9 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         <BTr
           v-for="(line, index) in proof.lines"
           :key="index"
-          :class="{ 'table-active': form.justifications.value.includes(index.toString()) }">
-          <BTd v-if="!qed">
+          :class="{ 'table-active': form.justifications.value.includes(index.toString()) }"
+          :data-tour="`line-${index}`">
+          <BTd v-if="!qed" :data-tour="`justification-${index}`">
             <BFormCheckbox
               v-model="form.justifications.value"
               :value="index"
@@ -179,7 +185,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
       </BTbody>
       <BTfoot class="table-group-divider align-top">
         <BTr v-if="qed">
-          <BTd :colspan="showDependencies ? 5 : 4" variant="success">
+          <BTd :colspan="showDependencies ? 5 : 4" variant="success" data-tour="qed">
             <IBiRocketTakeoff /> Q.E.D.
           </BTd>
         </BTr>
@@ -188,11 +194,11 @@ defineExpose({ clear, solvedIn, confirmDiscard })
           <BTd v-if="showDependencies"></BTd>
           <BTd>{{ proof.lines.length + 1 }}</BTd>
           <BTd class="text-start">
-            <FormulaInput ref="formula-input" autofocus />
+            <FormulaInput ref="formula-input" autofocus data-tour="formula" />
           </BTd>
-          <BTd>{{ justifications }}</BTd>
+          <BTd data-tour="justifications">{{ justifications }}</BTd>
           <BTd>
-            <BFormSelect v-model="form.rule.value" required>
+            <BFormSelect v-model="form.rule.value" required data-tour="rule">
               <BFormSelectOption value="" disabled selected hidden>Rule</BFormSelectOption>
               <template v-for="rule in Rule.all" :key="rule.shorthand">
                 <BFormSelectOption v-if="rule !== Rule.ASSUMPTION" :value="rule.shorthand">
@@ -210,7 +216,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         <BButton variant="primary" @click="clear">Solve Again</BButton>
       </template>
       <template v-else>
-        <BButton variant="primary" type="submit" :disabled="submitting">
+        <BButton variant="primary" type="submit" :disabled="submitting" data-tour="submit">
           <span v-if="submitting"><BSpinner small /> Submitting...</span>
           <span v-else>Submit Line</span>
         </BButton>

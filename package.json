@@ -27,6 +27,7 @@
     "lz-string": "^1.5.0",
     "number-to-words": "^1.2.4",
     "rollbar": "^2.26.4",
+    "shepherd.js": "^14.5.1",
     "title-case": "^4.3.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

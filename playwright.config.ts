@@ -41,6 +41,21 @@ export default defineConfig({
 
     /* Only on CI systems run the tests headless */
     headless: !!process.env.CI,
+
+    storageState: {
+      cookies: [],
+      origins: [
+        {
+          origin: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5173',
+          localStorage: [
+            {
+              name: 'proof-tour',
+              value: 'completed'
+            },
+          ],
+        },
+      ],
+    },
   },
 
   /* Configure projects for major browsers */

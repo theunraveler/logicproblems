@@ -59,7 +59,7 @@ defineExpose({ text, formula, input, error, validate, reset })
     :state="validationState"
     required
     v-bind="$attrs" />
-  <BButtonGroup class="mt-1" aria-label="Operators">
+  <BButtonGroup class="mt-1" aria-label="Operators" data-tour="operators">
     <BButton
       size="sm"
       variant="outline-secondary"
