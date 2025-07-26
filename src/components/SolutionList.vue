@@ -49,6 +49,7 @@ onMounted(loadSolutions)
 <template>
   <BCard
     class="mb-3"
+    tag="aside"
     no-body
     header-class="d-flex justify-content-between align-items-center"
     data-testid="solutions">
@@ -60,7 +61,7 @@ onMounted(loadSolutions)
         <IBiCheckCircleFill class="me-1" /> Solved
       </span>
     </template>
-    <BListGroup flush v-if="solutions.length">
+    <BListGroup flush v-if="solutions.length" class="overflow-y-auto" style="max-height: 50vh">
       <BListGroupItem
         v-for="solution in solutions"
         :key="solution.id"
