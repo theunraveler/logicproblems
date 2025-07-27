@@ -32,7 +32,7 @@ export default (app: App) => {
     if (import.meta.env.PROD) {
       alert('An error has occurred. Please refresh the page and try again.')
     } else {
-      console.error(error)
+      throw error
     }
   }
   app.provide('rollbar', rollbar)
