@@ -4,22 +4,22 @@ import { problemsInjectionKey, type ProblemList } from '@/utils'
 
 const props = defineProps(['current'])
 
-const _problems = inject(problemsInjectionKey) as ProblemList
-const _problemKeys = computed(() => Object.keys(_problems))
-const _problemIndex = computed(() => _problemKeys.value.indexOf(props.current))
+const problems = inject(problemsInjectionKey) as ProblemList
+const problemKeys = Object.keys(problems)
+const currentIndex = computed(() => problemKeys.indexOf(props.current))
 const prev = computed(() => {
-  if (_problemIndex.value === 0) {
+  if (currentIndex.value === 0) {
     return
   }
-  const id = _problemKeys.value[_problemIndex.value - 1]
-  return { id, title: _problems[id].title }
+  const id = problemKeys[currentIndex.value - 1]
+  return { id, title: problems[id].title }
 })
 const next = computed(() => {
-  if (_problemIndex.value === _problemKeys.value.length - 1) {
+  if (currentIndex.value === problemKeys.length - 1) {
     return
   }
-  const id = _problemKeys.value[_problemIndex.value + 1]
-  return { id, title: _problems[id].title }
+  const id = problemKeys[currentIndex.value + 1]
+  return { id, title: problems[id].title }
 })
 
 defineExpose({ prev, next })

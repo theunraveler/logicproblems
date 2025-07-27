@@ -29,8 +29,8 @@ export class Operator {
 }
 
 export abstract class Expression {
-  abstract toString() : string;
-  abstract toString(includeParens: boolean) : string;
+  abstract toString(): string
+  abstract toString(includeParens: boolean): string
 
   valueOf(): string {
     return this.toString()

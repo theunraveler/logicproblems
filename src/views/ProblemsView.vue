@@ -24,9 +24,9 @@ if (props.chapter) {
 }
 
 const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
-const perPage = ref(30)
+const perPage = 30
 const pageProblems = computed(() => {
-  return problems.value.slice((props.page - 1) * perPage.value, props.page * perPage.value)
+  return problems.value.slice((props.page - 1) * perPage, props.page * perPage)
 })
 
 const updatePage = (page: string | number) => {

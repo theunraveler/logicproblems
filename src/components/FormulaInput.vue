@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
-import type { Ref } from 'vue'
 import insertTextAtCursor from 'insert-text-at-cursor'
 import { Expression, Operator } from '@/logic/ast'
 import { parse } from '@/logic/parse'
@@ -8,8 +7,8 @@ import { parse } from '@/logic/parse'
 const text = ref('')
 const input = useTemplateRef<HTMLInputElement>('input')
 const error = ref('')
-const validationState: Ref<boolean | undefined> = ref(undefined)
-const formula: Ref<Expression | undefined> = ref()
+const validationState = ref<boolean>()
+const formula = ref<Expression>()
 
 const addOperator = (operator: Operator) => {
   if (!input.value) {
@@ -26,6 +25,8 @@ const addOperator = (operator: Operator) => {
 const validate = () => {
   validationState.value = undefined
   error.value = ''
+  formula.value = undefined
+
   try {
     formula.value = parse(text.value)
     text.value = formula.value.toString()

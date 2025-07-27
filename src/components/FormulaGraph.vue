@@ -10,9 +10,9 @@ const props = defineProps(['expression'])
           <span class="fw-bold">Formula: </span>
           {{ props.expression }}
         </div>
-        <div v-if="props.expression?.operator" class="text-capitalize">
+        <div v-if="props.expression?.operator">
           <span class="fw-bold">Operator: </span>
-          <span>
+          <span class="text-capitalize">
             {{ props.expression.operator.label }} ({{ props.expression.operator.symbol }})
           </span>
         </div>
