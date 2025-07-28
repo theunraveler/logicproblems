@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, toRaw, useId, useTemplateRef, watch } from 'vue'
-import { useModal } from 'bootstrap-vue-next'
+import { useModal, useModalController } from 'bootstrap-vue-next'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { humanizeDuration } from '@/utils'
 import { Proof, Rule, InvalidDeductionError } from '@/logic'
@@ -31,6 +31,7 @@ const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
 const error = ref('')
 const { show: showErrorModal } = useModal(`error-modal-${id}`)
 const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)
+const { create: createModal } = useModalController()
 
 let startedAt: number
 const solvedIn = ref<number>()
@@ -106,11 +107,23 @@ const hasUnsavedChanges = computed(
       form.justifications.value.length > 0),
 )
 
-const confirmDiscard = async () =>
-  !hasUnsavedChanges.value ||
-  window.confirm(
-    "It looks like you started this proof but haven't finished it. Are you sure you want to discard your progress?",
+const confirmDiscard = async (): Promise<boolean> => {
+  if (!hasUnsavedChanges.value) {
+    return true
+  }
+
+  const modal = createModal(
+    {
+      props: {
+        body: "It looks like you started this proof but haven't finished it. Are you sure you want to discard your progress?",
+        noHeader: true,
+        centered: true,
+      },
+    },
+    { returnBoolean: true },
   )
+  return !!(await modal.show())
+}
 
 const clearForm = () => {
   formulaInput.value?.reset()

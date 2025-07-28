@@ -98,7 +98,12 @@ onMounted(async () => {
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <SolutionList ref="solution-list" :problemId="props.id" @select="viewSolution" class="mb-3" />
-      <ProofPermalink tag="aside" :id="props.id" :title="problem.title" :proof="proof" class="mb-3" />
+      <ProofPermalink
+        tag="aside"
+        :id="props.id"
+        :title="problem.title"
+        :proof="proof"
+        class="mb-3" />
       <FormulaInputHelp />
     </BCol>
   </BRow>

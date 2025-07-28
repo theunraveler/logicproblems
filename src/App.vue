@@ -101,4 +101,6 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
       </ul>
     </BContainer>
   </footer>
+
+  <BModalOrchestrator />
 </template>

@@ -42,7 +42,9 @@ const doShare = () => {
           :disabled="props.proof.deductions.length === 0"
           @click.prevent="shareIsSupported ? doShare() : copy()"
           class="w-100">
-          <template v-if="copied"> <IBiClipboardCheck class="me-2" /> Copied to Clipboard </template>
+          <template v-if="copied">
+            <IBiClipboardCheck class="me-2" /> Copied to Clipboard
+          </template>
           <template v-else> <IBiShare class="me-2" /> Share This Proof </template>
         </BButton>
       </aside>

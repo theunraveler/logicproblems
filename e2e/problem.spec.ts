@@ -1,4 +1,4 @@
-import { test, expect, Dialog, Locator, Page } from '@playwright/test'
+import { test, expect, Locator, Page } from '@playwright/test'
 
 test.describe('solving a proof', () => {
   test.describe('correctly', () => {
@@ -97,14 +97,14 @@ test.describe('navigating away', () => {
     })
 
     test('confirming the alert', async ({ page }) => {
-      page.on('dialog', ensureDialog())
       await page.getByTestId('next-problem-link').click()
+      await ensureDialog(page)
       await expect(page).toHaveURL('/problems/ktn47i')
     })
 
     test('dismissing the alert', async ({ page }) => {
-      page.on('dialog', ensureDialog(false))
       await page.getByTestId('next-problem-link').click()
+      await ensureDialog(page, false)
       await expect(page).toHaveURL('/problems/tqpiwb')
     })
   })
@@ -195,10 +195,9 @@ const enterAndEnsureLine = async (
   })
 }
 
-const ensureDialog = (accept: boolean = true) => {
-  return async function (dialog: Dialog) {
-    expect(dialog.type()).toContain('confirm')
-    expect(dialog.message()).toContain('Are you sure')
-    await dialog[accept ? 'accept' : 'dismiss']()
-  }
-}
+const ensureDialog = async (
+  page: Page,
+  accept: boolean = true,
+  okButton: string = 'OK',
+  cancelButton: string = 'Cancel',
+) => await page.getByRole('button', { name: accept ? okButton : cancelButton }).click()
