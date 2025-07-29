@@ -50,7 +50,7 @@ export default defineConfig({
           localStorage: [
             {
               name: 'proof-tour',
-              value: 'completed'
+              value: 'completed',
             },
           ],
         },

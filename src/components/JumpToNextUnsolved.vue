@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { db } from '@/store'
+
+const props = defineProps(['problems'])
+
+const firstUnsolvedId = ref<string>()
+const firstUnsolved = computed(() =>
+  firstUnsolvedId.value ? props.problems[firstUnsolvedId.value] : undefined,
+)
+const loadSolvedProblems = async () => {
+  const solvedProblems = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
+  firstUnsolvedId.value = Object.keys(props.problems).find((id) => !solvedProblems.includes(id))
+}
+
+onMounted(loadSolvedProblems)
+</script>
+
+<template>
+  <BLink
+    v-if="firstUnsolved"
+    :to="{ name: 'problem', params: { id: firstUnsolvedId } }"
+    class="btn btn-outline-secondary d-flex align-items-center">
+    <span class="me-2 flex-grow-1 text-start">
+      <small class="d-block">Jump to Next Unsolved Problem</small>
+      {{ firstUnsolved.title }}
+    </span>
+    <IBiArrowRightSquareFill />
+  </BLink>
+</template>

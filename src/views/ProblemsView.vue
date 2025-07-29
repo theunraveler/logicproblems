@@ -92,20 +92,24 @@ onMounted(loadSolvedProblems)
     </BCol>
 
     <BCol lg="3" class="d-none d-lg-block">
-      <BCard tag="aside" header="Browse by Chapter" no-body class="sticky-top" style="top: 2em">
-        <BListGroup flush>
-          <BListGroupItem :to="{ name: 'problems' }" :class="{ active: !props.chapter }">
-            View All
-          </BListGroupItem>
-          <BListGroupItem
-            v-for="(name, key) in chapters"
-            :key="key"
-            :to="{ name: 'problems', query: { chapter: key } }"
-            :class="{ active: props.chapter == key }">
-            {{ name }}
-          </BListGroupItem>
-        </BListGroup>
-      </BCard>
+      <div class="sticky-top" style="top: 2em">
+        <JumpToNextUnsolved :problems="Object.fromEntries(problems)" class="mb-3" />
+
+        <BCard tag="aside" header="Browse by Chapter" no-body>
+          <BListGroup flush>
+            <BListGroupItem :to="{ name: 'problems' }" :class="{ active: !props.chapter }">
+              View All
+            </BListGroupItem>
+            <BListGroupItem
+              v-for="(name, key) in chapters"
+              :key="key"
+              :to="{ name: 'problems', query: { chapter: key } }"
+              :class="{ active: props.chapter == key }">
+              {{ name }}
+            </BListGroupItem>
+          </BListGroup>
+        </BCard>
+      </div>
     </BCol>
   </BRow>
 </template>
