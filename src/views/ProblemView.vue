@@ -5,6 +5,7 @@ import { useHead } from '@unhead/vue'
 import { onKeyDown } from '@vueuse/core'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
+import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
 import { Proof } from '@/logic'
 import { chaptersInjectionKey, type ChapterList, type Problem } from '@/plugins/data'
@@ -25,6 +26,7 @@ useHead({ title: props.problem.title })
 
 const problemNav = useTemplateRef<InstanceType<typeof ProblemNav>>('problem-nav')
 const proofTable = useTemplateRef<InstanceType<typeof ProofTable>>('proof-table')
+const proofTour = useTemplateRef<InstanceType<typeof ProofTour>>('tour')
 const solutionList = useTemplateRef<InstanceType<typeof SolutionList>>('solution-list')
 
 const keys = Object.fromEntries([...Array(9).keys()].map((n) => [`${n + 1}`, n]))
@@ -95,8 +97,9 @@ onMounted(async () => {
       <ProofTable
         v-if="proof"
         ref="proof-table"
-        :proof="proof"
         data-testid="proof-table"
+        :proof="proof"
+        :skip-qed-modal="!!proofTour?.currentStep"
         @qed="onQed"
         @clear="clear">
         <template #qed-modal-actions="{ clear: _clear, close: _close }">
@@ -120,7 +123,9 @@ onMounted(async () => {
         class="mb-3"
         @select="viewSolution" />
       <ProofPermalink v-if="proof" :problem="props.problem" :proof="proof" class="mb-3" />
-      <ProofHelp />
+      <ProofHelp :tour="proofTour" />
     </BCol>
   </BRow>
+
+  <ProofTour ref="tour" />
 </template>

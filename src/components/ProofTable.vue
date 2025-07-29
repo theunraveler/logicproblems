@@ -4,12 +4,11 @@ import { onBeforeRouteUpdate } from 'vue-router'
 import { useModal, useToggle } from 'bootstrap-vue-next'
 import { useEventListener } from '@vueuse/core'
 import FormulaInput from '@/components/FormulaInput.vue'
-import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
 import { Line, Proof } from '@/logic'
 import { InvalidDeductionError, Rule } from '@/logic/rules'
 
-const { proof } = defineProps<{ proof: Proof }>()
+const { proof, skipQedModal } = defineProps<{ proof: Proof, skipQedModal: boolean }>()
 const emit = defineEmits(['qed', 'clear'])
 
 const id = useId()
@@ -81,7 +80,7 @@ const submitLine = () => {
   }
 
   solvedIn.value = Date.now() - startedAt.value
-  if (!tour.isActive()) {
+  if (!skipQedModal) {
     showQedModal()
   }
   emit('qed', proof)

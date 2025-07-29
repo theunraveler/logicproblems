@@ -4,9 +4,9 @@ import { useStorage } from '@vueuse/core'
 import { Operator } from '@/logic/ast'
 import ProofTour from '@/components/ProofTour.vue'
 
+const props = defineProps<{ tour?: InstanceType<typeof ProofTour> | null }>()
 const id = useId()
 const collapse = useTemplateRef('collapse')
-const proofTour = useTemplateRef<InstanceType<typeof ProofTour>>('tour')
 const collapseState = useStorage('help-expanded', true)
 </script>
 
@@ -28,17 +28,19 @@ const collapseState = useStorage('help-expanded', true)
     </template>
     <BCollapse :id="`${id}-collapse`" ref="collapse" v-model="collapseState">
       <BCardBody>
-        <aside class="mb-3">
-          <BButton
-            variant="outline-secondary"
-            class="w-100"
-            data-tour="tour"
-            @click.prevent="proofTour?.prompt()">
-            <IBiSignpostSplit class="me-2" /> Take a Tour
-          </BButton>
-        </aside>
+        <template v-if="props.tour">
+          <aside class="mb-3">
+            <BButton
+              variant="outline-secondary"
+              class="w-100"
+              data-tour="tour"
+              @click.prevent="props.tour?.prompt()">
+              <IBiSignpostSplit class="me-2" /> Take a Tour
+            </BButton>
+          </aside>
 
-        <hr />
+          <hr />
+        </template>
 
         <BCardText>
           <h6>Allowed Characters/Symbols</h6>
@@ -88,8 +90,6 @@ const collapseState = useStorage('help-expanded', true)
       </BCardBody>
     </BCollapse>
   </BCard>
-
-  <ProofTour ref="tour" />
 </template>
 
 <style scoped lang="scss">
