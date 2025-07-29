@@ -68,7 +68,7 @@ function reset() {
 </script>
 
 <template>
-  <h1>Contact Us</h1>
+  <h1 class="mb-4">Contact Us</h1>
 
   <BAlert :model-value="!!alertText" :variant="hasError ? 'danger' : 'success'">
     {{ alertText }}

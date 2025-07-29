@@ -1,5 +1,5 @@
 <template>
-  <h1>Solve Propositional Logic Problems Online!</h1>
+  <h1 class="mb-4">Solve Propositional Logic Problems Online!</h1>
 
   <p>
     Welcome to <strong>logicproblems.org</strong>! This system is capable of validating whether or
