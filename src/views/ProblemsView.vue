@@ -93,6 +93,7 @@ onMounted(loadSolvedProblems)
 
     <BCol lg="3" class="d-none d-lg-block">
       <div class="sticky-top" style="top: 2em">
+        <ProblemsCompletionBar :problems="Object.fromEntries(problems)" class="mb-3" />
         <JumpToNextUnsolved :problems="Object.fromEntries(problems)" class="mb-3" />
         <ChapterList :current="props.chapter" />
       </div>
