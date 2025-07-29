@@ -6,15 +6,24 @@ const props = defineProps(['problems'])
 const problemIds = computed(() => Object.keys(props.problems))
 const solvedProblemIds = ref<string[]>([])
 
-watch(problemIds, async (problemIds) => {
-  const solved = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
-  solvedProblemIds.value = solved.filter((id) => problemIds.includes(id))
-}, { immediate: true })
+watch(
+  problemIds,
+  async (problemIds) => {
+    const solved = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
+    solvedProblemIds.value = solved.filter((id) => problemIds.includes(id))
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <aside>
-    <BProgress :value="solvedProblemIds.length" :max="problemIds.length" :variant="solvedProblemIds.length === problemIds.length ? 'success' : undefined" />
-    <small class="text-center">Solved {{ solvedProblemIds.length }} of {{ problemIds.length }}</small>
+    <BProgress
+      :value="solvedProblemIds.length"
+      :max="problemIds.length"
+      :variant="solvedProblemIds.length === problemIds.length ? 'success' : undefined" />
+    <small class="text-center"
+      >Solved {{ solvedProblemIds.length }} of {{ problemIds.length }}</small
+    >
   </aside>
 </template>
