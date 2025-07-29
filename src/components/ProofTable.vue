@@ -6,8 +6,6 @@ import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
 import { Proof, Rule, InvalidDeductionError } from '@/logic'
 
-type FormulaInputType = InstanceType<typeof FormulaInput>
-
 const { proof } = defineProps<{ proof: Proof }>()
 const emit = defineEmits(['qed', 'clear'])
 
@@ -28,7 +26,7 @@ const justifications = computed(() =>
     .join(', '),
 )
 const submitting = ref(false)
-const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
+const formulaInput = useTemplateRef<InstanceType<typeof FormulaInput>>('formula-input')
 const error = ref('')
 const { show: showErrorModal } = useModal(`error-modal-${id}`)
 const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)

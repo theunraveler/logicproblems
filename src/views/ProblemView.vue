@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { inject, onMounted, reactive, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { chaptersInjectionKey, compressProofLines, type ChapterList, type Solution } from '@/utils'
 import { Proof } from '@/logic'
 import ProblemNav from '@/components/ProblemNav.vue'
@@ -8,22 +9,19 @@ import ProofTable from '@/components/ProofTable.vue'
 import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
 
-type ProblemNavType = InstanceType<typeof ProblemNav>
-type ProofTableType = InstanceType<typeof ProofTable>
-type ProofTourType = InstanceType<typeof ProofTour>
-type SolutionListType = InstanceType<typeof SolutionList>
-
-const $router = useRouter()
+const router = useRouter()
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem', 'lines'])
 const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
 
-const problemNav = useTemplateRef<ProblemNavType>('problem-nav')
-const proofTable = useTemplateRef<ProofTableType>('proof-table')
-const proofTour = useTemplateRef<ProofTourType>('tour')
-const solutionList = useTemplateRef<SolutionListType>('solution-list')
+useHead({ title: props.problem.title })
+
+const problemNav = useTemplateRef<InstanceType<typeof ProblemNav>>('problem-nav')
+const proofTable = useTemplateRef<InstanceType<typeof ProofTable>>('proof-table')
+const proofTour = useTemplateRef<InstanceType<typeof ProofTour>>('tour')
+const solutionList = useTemplateRef<InstanceType<typeof SolutionList>>('solution-list')
 
 const onQed = async (proof: Proof) => {
   if (!proofTable.value?.solvedIn || !solutionList.value) {
@@ -50,8 +48,8 @@ const viewSolution = async (solution: Solution) => {
 
 const clear = () => {
   solutionList.value?.clearSelection()
-  const { l: _, ...params } = $router.currentRoute.value.query
-  $router.push(params)
+  const { l: _, ...params } = router.currentRoute.value.query
+  router.push(params)
 }
 
 onBeforeRouteUpdate(async () => await proofTable?.value?.confirmDiscard())

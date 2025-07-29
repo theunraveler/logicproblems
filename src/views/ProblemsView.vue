@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { parse } from '@/logic/parse'
 import { db } from '@/store'
 import {
@@ -10,7 +11,7 @@ import {
   type ChapterList,
 } from '@/utils'
 
-const $router = useRouter()
+const router = useRouter()
 
 const props = defineProps({
   page: { type: Number, default: 1 },
@@ -24,15 +25,17 @@ if (props.chapter) {
 }
 
 const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
+useHead({ title })
+
 const perPage = 30
 const pageProblems = computed(() => {
   return problems.value.slice((props.page - 1) * perPage, props.page * perPage)
 })
 
 const updatePage = (page: string | number) => {
-  $router.push({
+  router.push({
     query: {
-      ...$router.currentRoute.value.query,
+      ...router.currentRoute.value.query,
       page: page,
     },
   })

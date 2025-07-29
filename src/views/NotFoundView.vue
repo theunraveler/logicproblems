@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useHead } from '@unhead/vue'
+
+useHead({ title: 'NotFound' })
+</script>
+
 <template>
   <h1>Page Not Found</h1>
 

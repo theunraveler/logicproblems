@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
+import { useHead } from '@unhead/vue'
 import FormulaInput from '@/components/FormulaInput.vue'
 
-type FormulaInputType = InstanceType<typeof FormulaInput>
-const formulaInput = useTemplateRef<FormulaInputType>('formula-input')
+useHead({ title: 'Formulae' })
+
+const formulaInput = useTemplateRef<InstanceType<typeof FormulaInput>>('formula-input')
 </script>
 
 <template>

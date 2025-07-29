@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useHead } from '@unhead/vue'
+
+useHead({ title: 'About' })
+</script>
+
 <template>
   <h1 class="mb-4">Solve Propositional Logic Problems Online!</h1>
 
