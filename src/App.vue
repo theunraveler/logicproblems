@@ -49,6 +49,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
         </BNavbarNav>
         <BNavbarNav>
           <BNavItem :to="{ name: 'contact' }">Contact</BNavItem>
+          <BNavItem :to="{ name: 'about' }">About</BNavItem>
           <BNavItemDropdown style="z-index: 2000">
             <template #button-content>
               <Component :is="modes[colorMode].icon" />

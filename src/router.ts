@@ -9,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue'),
+      redirect: { name: 'problems' },
     },
     {
       path: '/problems',
@@ -44,6 +44,12 @@ const router = createRouter({
       name: 'contact',
       component: () => import('@/views/ContactView.vue'),
       meta: { title: 'Contact' },
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutView.vue'),
+      meta: { title: 'About' },
     },
     {
       path: '/:catchAll(.*)*',
