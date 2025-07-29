@@ -51,6 +51,7 @@ declare module 'vue' {
     BThead: typeof import('bootstrap-vue-next/components/BTable')['BThead']
     BTooltip: typeof import('bootstrap-vue-next/components/BTooltip')['BTooltip']
     BTr: typeof import('bootstrap-vue-next/components/BTable')['BTr']
+    ChapterList: typeof import('./src/components/ChapterList.vue')['default']
     FormulaGraph: typeof import('./src/components/FormulaGraph.vue')['default']
     FormulaInput: typeof import('./src/components/FormulaInput.vue')['default']
     FormulaInputHelp: typeof import('./src/components/FormulaInputHelp.vue')['default']
