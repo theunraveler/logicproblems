@@ -200,7 +200,7 @@
   "349kjt": {
     "title": "Chapter Three Packet #20",
     "chapter": 3,
-    "assumptions": ["M → (P → B)", "J → (E → M)", "E", "j"],
+    "assumptions": ["M → (P → B)", "J → (E → M)", "E", "J"],
     "conclusion": "P→B"
   },
   "tqwlfh": {
