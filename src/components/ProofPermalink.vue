@@ -32,7 +32,7 @@ const doShare = async () => {
       url: permalink.value,
     })
   } catch (error) {
-    if (error.toString().includes('AbortError')) return
+    if (error instanceof DOMException && error.name === 'AbortError') return
     throw error
   }
 }
