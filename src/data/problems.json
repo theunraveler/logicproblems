@@ -1089,7 +1089,7 @@
     "title": "Chapter Six #17",
     "chapter": 6,
     "assumptions": ["W → (M & R)", "(R → N) & (E → W)"],
-    "conclusion": "(E → N) & M"
+    "conclusion": "(E → N) ∨ M"
   },
   "mfe13z": {
     "title": "Chapter Six #18",
