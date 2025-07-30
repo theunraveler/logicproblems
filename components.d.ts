@@ -78,6 +78,7 @@ declare module 'vue' {
     IFa6BrandsCreativeCommonsBy: typeof import('~icons/fa6-brands/creative-commons-by')['default']
     IFa6BrandsCreativeCommonsSa: typeof import('~icons/fa6-brands/creative-commons-sa')['default']
     JumpToNextUnsolved: typeof import('./src/components/JumpToNextUnsolved.vue')['default']
+    ProblemCard: typeof import('./src/components/ProblemCard.vue')['default']
     ProblemNav: typeof import('./src/components/ProblemNav.vue')['default']
     ProblemsCompletionBar: typeof import('./src/components/ProblemsCompletionBar.vue')['default']
     ProofPermalink: typeof import('./src/components/ProofPermalink.vue')['default']

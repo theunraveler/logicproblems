@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { parse } from '@/logic/parse'
-import { db } from '@/store'
 import {
   problemsInjectionKey,
   chaptersInjectionKey,
@@ -40,13 +38,6 @@ const updatePage = (page: string | number) => {
     },
   })
 }
-
-const solvedProblems = ref<string[]>([])
-const loadSolvedProblems = async () => {
-  solvedProblems.value = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
-}
-
-onMounted(loadSolvedProblems)
 </script>
 
 <template>
@@ -60,31 +51,13 @@ onMounted(loadSolvedProblems)
 
   <BRow>
     <BCol cols="12" lg="9" data-testid="problems">
-      <BCard v-for="[id, problem] in pageProblems" :key="id" class="mb-4" no-body>
-        <BCardHeader class="d-flex justify-content-between align-items-center">
-          <span>{{ problem.title }}</span>
-          <span v-if="solvedProblems.includes(id)" class="badge rounded-pill text-bg-success">
-            <IBiCheckCircleFill class="me-1" /> Solved
-          </span>
-        </BCardHeader>
-        <BListGroup flush numbered>
-          <BListGroupItem v-for="(assumption, index) in problem.assumptions" :key="index">
-            <span class="ms-3">{{ parse(assumption) }}</span>
-          </BListGroupItem>
-        </BListGroup>
-        <BListGroup flush class="border-top-0">
-          <BListGroupItem>
-            <span>Conclusion: {{ parse(problem.conclusion) }}</span>
-          </BListGroupItem>
-        </BListGroup>
-        <BCardBody>
-          <BLink
-            :to="{ name: 'problem', params: { id: id } }"
-            class="btn btn-primary stretched-link">
-            Solve!
-          </BLink>
-        </BCardBody>
-      </BCard>
+      <ProblemCard
+        v-for="[id, problem] in pageProblems"
+        :key="id"
+        :id="id"
+        :problem="problem"
+        class="mb-4" />
+
       <BPagination
         @update:model-value="updatePage"
         :model-value="props.page"
