@@ -66,7 +66,7 @@ defineExpose({ prompt, start, dismiss })
         It looks like it's your first time solving a proof. Would you like to solve one together so
         that I can show you how to use the features of this app?
       </p>
-      <div class="alert alert-info d-flex align-items-center">
+      <div class="alert alert-info hstack">
         <IBiSignTurnLeftFill class="me-2" /> You can always do this later by clicking the button in
         the sidebar.
       </div>

@@ -20,7 +20,7 @@ onMounted(loadSolvedProblems)
   <BLink
     v-if="firstUnsolved"
     :to="{ name: 'problem', params: { id: firstUnsolvedId } }"
-    class="btn btn-outline-secondary d-flex align-items-center">
+    class="btn btn-outline-secondary hstack">
     <span class="me-2 flex-grow-1 text-start">
       <small class="d-block">Jump to Next Unsolved Problem</small>
       {{ firstUnsolved.title }}

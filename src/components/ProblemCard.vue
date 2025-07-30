@@ -17,7 +17,7 @@ watch(
 
 <template>
   <BCard no-body>
-    <BCardHeader class="d-flex justify-content-between align-items-center">
+    <BCardHeader class="hstack justify-content-between">
       <span>{{ props.problem.title }}</span>
       <span v-if="isSolved" class="badge rounded-pill text-bg-success">
         <IBiCheckCircleFill class="me-1" /> Solved

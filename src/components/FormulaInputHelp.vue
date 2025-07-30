@@ -3,7 +3,7 @@ import { Operator } from '@/logic/ast'
 </script>
 
 <template>
-  <BCard tag="aside" header-class="d-flex align-items-center">
+  <BCard tag="aside" header-class="hstack">
     <template #header>
       <IBiQuestionCircle class="me-2" />
       What symbols can I use?

@@ -50,7 +50,7 @@ onMounted(loadSolutions)
   <BCard
     tag="aside"
     no-body
-    header-class="d-flex justify-content-between align-items-center"
+    header-class="hstack justify-content-between"
     data-tour="solutions"
     data-testid="solutions">
     <template #header>
@@ -63,7 +63,7 @@ onMounted(loadSolutions)
       <BListGroupItem
         v-for="solution in solutions"
         :key="solution.id"
-        :class="['d-flex align-items-center', { active: solution.id === selected }]">
+        :class="['hstack', { active: solution.id === selected }]">
         <span class="flex-grow-1">
           {{ humanizeTimestamp(solution.completedAt) }}
           <small :class="['d-block', `text-${solution.id === selected ? '-bg-primary' : 'muted'}`]">

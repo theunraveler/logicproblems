@@ -34,7 +34,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
       <BNavbarBrand :to="{ name: 'home' }" data-testid="link-home">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
-        <BNavbarNav class="me-auto">
+        <BNavbarNav class="hstack me-auto">
           <BNavItemDropdown text="Problems">
             <BDropdownItem :to="{ name: 'problems' }">View All</BDropdownItem>
             <li><hr class="dropdown-divider" /></li>
@@ -47,7 +47,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
           </BNavItemDropdown>
           <BNavItem :to="{ name: 'formulae' }">Formulae</BNavItem>
         </BNavbarNav>
-        <BNavbarNav>
+        <BNavbarNav class="hstack">
           <BNavItem :to="{ name: 'contact' }">Contact</BNavItem>
           <BNavItem :to="{ name: 'about' }">About</BNavItem>
           <BNavItemDropdown style="z-index: 2000">
@@ -58,11 +58,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
               v-for="(m, name) in modes"
               :key="name"
               @click="colorMode = name"
-              :link-class="{
-                'd-flex': true,
-                'align-items-center': true,
-                active: colorMode === name,
-              }">
+              :link-class="['hstack', { active: colorMode === name }]">
               <Component :is="m.icon" class="me-2" />
               <span class="flex-grow-1">{{ m.label }}</span>
             </BDropdownItem>
@@ -77,12 +73,12 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
   </BContainer>
 
   <footer class="border-top py-3 mt-auto">
-    <BContainer class="d-flex flex-wrap justify-content-end align-items-center">
-      <ul class="nav list-unstyled text-body-secondary">
-        <li class="me-3">
+    <BContainer class="d-flex hstack flex-wrap justify-content-end">
+      <ul class="nav list-unstyled text-body-secondary hstack">
+        <li class="me-3 hstack">
           <a
             target="_new"
-            class="text-body-secondary"
+            class="text-body-secondary me-1"
             href="https://creativecommons.org/licenses/by-sa/4.0/">
             <IFa6BrandsCreativeCommons />
             <IFa6BrandsCreativeCommonsBy />
@@ -90,7 +86,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
           </a>
           by Maran Wolston
         </li>
-        <li>
+        <li class="hstack">
           <a target="_new" class="text-body-secondary me-1" :href="githubUrl"><IBiGithub /></a>
           <a
             target="_new"
