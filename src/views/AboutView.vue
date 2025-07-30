@@ -14,9 +14,9 @@ useHead({ title: 'About' })
   </p>
 
   <p>
-    An instructor can create logic proof problems by supplying the system with a set of premises
-    and a desired conclusion. A student of logic may then try and solve the proof with a given set
-    of rules.
+    An instructor can create logic proof problems by supplying the system with a set of premises and
+    a desired conclusion. A student of logic may then try and solve the proof with a given set of
+    rules.
   </p>
 
   <p>
