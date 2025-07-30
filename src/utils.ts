@@ -12,7 +12,7 @@ export type ProblemList = Record<string, Problem>
 export interface Problem {
   title: string
   chapter: number
-  assumptions: string[]
+  premises: string[]
   conclusion: string
 }
 

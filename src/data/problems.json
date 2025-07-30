@@ -2,2395 +2,2395 @@
   "tqpiwb": {
     "title": "Orientation",
     "chapter": 3,
-    "assumptions": ["A → B", "A"],
+    "premises": ["A → B", "A"],
     "conclusion": "B"
   },
   "ktn47i": {
     "title": "Chapter Three #1",
     "chapter": 3,
-    "assumptions": ["E → R", "E"],
+    "premises": ["E → R", "E"],
     "conclusion": "R"
   },
   "gof9o3": {
     "title": "Chapter Three #2",
     "chapter": 3,
-    "assumptions": ["E → (M → R)", "M", "E"],
+    "premises": ["E → (M → R)", "M", "E"],
     "conclusion": "R"
   },
   "qvw161": {
     "title": "Chapter Three #3",
     "chapter": 3,
-    "assumptions": ["G", "G → M"],
+    "premises": ["G", "G → M"],
     "conclusion": "M"
   },
   "ww1cde": {
     "title": "Chapter Three #4",
     "chapter": 3,
-    "assumptions": ["K → R", "E → K", "E"],
+    "premises": ["K → R", "E → K", "E"],
     "conclusion": "R"
   },
   "r6i2v7": {
     "title": "Chapter Three #5",
     "chapter": 3,
-    "assumptions": ["(M → F) → L", "E → (M → F)", "E"],
+    "premises": ["(M → F) → L", "E → (M → F)", "E"],
     "conclusion": "L"
   },
   "s38b5e": {
     "title": "Chapter Three #6",
     "chapter": 3,
-    "assumptions": ["N", "N → D", "N → (D → F)"],
+    "premises": ["N", "N → D", "N → (D → F)"],
     "conclusion": "F"
   },
   "d1qcq4": {
     "title": "Chapter Three #7",
     "chapter": 3,
-    "assumptions": ["(H → F) → (M → R)", "E → (H → F)", "E", "M"],
+    "premises": ["(H → F) → (M → R)", "E → (H → F)", "E", "M"],
     "conclusion": "R"
   },
   "f2r5jj": {
     "title": "Chapter Three #8",
     "chapter": 3,
-    "assumptions": ["A → (B → (C → D))", "A", "B"],
+    "premises": ["A → (B → (C → D))", "A", "B"],
     "conclusion": "C → D"
   },
   "sejovw": {
     "title": "Chapter Three #9",
     "chapter": 3,
-    "assumptions": ["-H → (W → N)", "E → -H", "E", "W"],
+    "premises": ["-H → (W → N)", "E → -H", "E", "W"],
     "conclusion": "N"
   },
   "148jpm": {
     "title": "Chapter Three #10",
     "chapter": 3,
-    "assumptions": ["(F → -A) → S", "H → (F → -A)", "H", "S → (R → B)", "R"],
+    "premises": ["(F → -A) → S", "H → (F → -A)", "H", "S → (R → B)", "R"],
     "conclusion": "B"
   },
   "gnvnd6": {
     "title": "Chapter Three #11",
     "chapter": 3,
-    "assumptions": ["A → (E → D)", "B → E", "B", "A", "D → -F"],
+    "premises": ["A → (E → D)", "B → E", "B", "A", "D → -F"],
     "conclusion": "-F"
   },
   "47um38": {
     "title": "Chapter Three #12",
     "chapter": 3,
-    "assumptions": ["R → M", "R"],
+    "premises": ["R → M", "R"],
     "conclusion": "M"
   },
   "76eg5w": {
     "title": "Chapter Three #13",
     "chapter": 3,
-    "assumptions": ["D", "-B → C", "D → -B"],
+    "premises": ["D", "-B → C", "D → -B"],
     "conclusion": "C"
   },
   "eq60fa": {
     "title": "Chapter Three #14",
     "chapter": 3,
-    "assumptions": ["E → G", "( E → G ) → ( G → F )", "E"],
+    "premises": ["E → G", "( E → G ) → ( G → F )", "E"],
     "conclusion": "F"
   },
   "i7pn40": {
     "title": "Chapter Three Packet #1",
     "chapter": 3,
-    "assumptions": ["A", "A → B", "B → C", "C → D"],
+    "premises": ["A", "A → B", "B → C", "C → D"],
     "conclusion": "D"
   },
   "dznsoo": {
     "title": "Chapter Three Packet #2",
     "chapter": 3,
-    "assumptions": ["A → B", "B → (C → D)", "A", "C"],
+    "premises": ["A → B", "B → (C → D)", "A", "C"],
     "conclusion": "D"
   },
   "ih3whn": {
     "title": "Chapter Three Packet #3",
     "chapter": 3,
-    "assumptions": ["N", "N → M", "M → R"],
+    "premises": ["N", "N → M", "M → R"],
     "conclusion": "R"
   },
   "osfre7": {
     "title": "Chapter Three Packet #4",
     "chapter": 3,
-    "assumptions": ["L → M", "-N", "M → O", "-N → L"],
+    "premises": ["L → M", "-N", "M → O", "-N → L"],
     "conclusion": "O"
   },
   "zhxp7q": {
     "title": "Chapter Three Packet #5",
     "chapter": 3,
-    "assumptions": ["(G → H) → (I → J)", "G → H", "I"],
+    "premises": ["(G → H) → (I → J)", "G → H", "I"],
     "conclusion": "J"
   },
   "4ritor": {
     "title": "Chapter Three Packet #6",
     "chapter": 3,
-    "assumptions": ["(-C → D) → E", "E → -C", "-C → D"],
+    "premises": ["(-C → D) → E", "E → -C", "-C → D"],
     "conclusion": "D"
   },
   "y31x1r": {
     "title": "Chapter Three Packet #7",
     "chapter": 3,
-    "assumptions": ["F → G", "(F → G) → (G → H)", "F"],
+    "premises": ["F → G", "(F → G) → (G → H)", "F"],
     "conclusion": "H"
   },
   "v7uf4f": {
     "title": "Chapter Three Packet #8",
     "chapter": 3,
-    "assumptions": ["P → (A → B)", "(A → B) → (L → R)", "P"],
+    "premises": ["P → (A → B)", "(A → B) → (L → R)", "P"],
     "conclusion": "L → R"
   },
   "kn60ia": {
     "title": "Chapter Three Packet #9",
     "chapter": 3,
-    "assumptions": ["E → (N → -P)", "E", "E → (-P → T)", "N"],
+    "premises": ["E → (N → -P)", "E", "E → (-P → T)", "N"],
     "conclusion": "T"
   },
   "x29hg2": {
     "title": "Chapter Three Packet #10",
     "chapter": 3,
-    "assumptions": ["(N  → H) → (J → F)", "N → H", "(J → F) → K"],
+    "premises": ["(N  → H) → (J → F)", "N → H", "(J → F) → K"],
     "conclusion": "K"
   },
   "riwb7j": {
     "title": "Chapter Three Packet #11",
     "chapter": 3,
-    "assumptions": ["H → (J → R)", "H → J", "H", "R → P"],
+    "premises": ["H → (J → R)", "H → J", "H", "R → P"],
     "conclusion": "P"
   },
   "0mp16v": {
     "title": "Chapter Three Packet #13",
     "chapter": 3,
-    "assumptions": ["(L → M) → N", "E → D", "(E → D) → (L → M)", "N → R"],
+    "premises": ["(L → M) → N", "E → D", "(E → D) → (L → M)", "N → R"],
     "conclusion": "R"
   },
   "itjht9": {
     "title": "Chapter Three Packet #14",
     "chapter": 3,
-    "assumptions": ["L → (J → H)", "H → (P → K)", "J", "L"],
+    "premises": ["L → (J → H)", "H → (P → K)", "J", "L"],
     "conclusion": "P → K"
   },
   "s0nxm8": {
     "title": "Chapter Three Packet #15",
     "chapter": 3,
-    "assumptions": ["E → (-F → W)", "E", "(-F → W) → (T → Q)", "T"],
+    "premises": ["E → (-F → W)", "E", "(-F → W) → (T → Q)", "T"],
     "conclusion": "Q"
   },
   "53dxgt": {
     "title": "Chapter Three Packet #16",
     "chapter": 3,
-    "assumptions": ["E → H", "(R → P) → E", "A → (R → P)", "A"],
+    "premises": ["E → H", "(R → P) → E", "A → (R → P)", "A"],
     "conclusion": "H"
   },
   "8t3h9q": {
     "title": "Chapter Three Packet #17",
     "chapter": 3,
-    "assumptions": ["(S → -E) → (J → N)", "M → (S → -E)", "J", "M"],
+    "premises": ["(S → -E) → (J → N)", "M → (S → -E)", "J", "M"],
     "conclusion": "N"
   },
   "490tnm": {
     "title": "Chapter Three Packet #18",
     "chapter": 3,
-    "assumptions": ["R → (J → G)", "R", "R → J", "G → M"],
+    "premises": ["R → (J → G)", "R", "R → J", "G → M"],
     "conclusion": "M"
   },
   "01sg96": {
     "title": "Chapter Three Packet #19",
     "chapter": 3,
-    "assumptions": ["-P", "K → (-P → -J)", "D → K", "D"],
+    "premises": ["-P", "K → (-P → -J)", "D → K", "D"],
     "conclusion": "-J"
   },
   "349kjt": {
     "title": "Chapter Three Packet #20",
     "chapter": 3,
-    "assumptions": ["M → (P → B)", "J → (E → M)", "E", "J"],
+    "premises": ["M → (P → B)", "J → (E → M)", "E", "J"],
     "conclusion": "P → B"
   },
   "tqwlfh": {
     "title": "Chapter Three Packet #21",
     "chapter": 3,
-    "assumptions": ["A → ((B → C) → (-D → E))", "B → C", "A", "-D"],
+    "premises": ["A → ((B → C) → (-D → E))", "B → C", "A", "-D"],
     "conclusion": "E"
   },
   "ego24v": {
     "title": "Chapter Three Sample Quiz #1, Question 2",
     "chapter": 3,
-    "assumptions": ["P → J", "(P → J) → B", "B → R"],
+    "premises": ["P → J", "(P → J) → B", "B → R"],
     "conclusion": "R"
   },
   "9e3qr5": {
     "title": "Chapter Three Sample Quiz #1, Question 3",
     "chapter": 3,
-    "assumptions": ["Y → (E → (W → S))", "W", "E", "Y"],
+    "premises": ["Y → (E → (W → S))", "W", "E", "Y"],
     "conclusion": "S"
   },
   "90npyd": {
     "title": "Chapter Three Sample Quiz #2, Question 2",
     "chapter": 3,
-    "assumptions": ["H → -R", "(H → -R) → (B → E)", "(B → E) → P"],
+    "premises": ["H → -R", "(H → -R) → (B → E)", "(B → E) → P"],
     "conclusion": "P"
   },
   "hwr1n9": {
     "title": "Chapter Three Sample Quiz #2, Question 3",
     "chapter": 3,
-    "assumptions": ["K", "N → D", "K → ((N → D) → J)", "J → A"],
+    "premises": ["K", "N → D", "K → ((N → D) → J)", "J → A"],
     "conclusion": "A"
   },
   "uph9dp": {
     "title": "Chapter Three Sample Quiz #3, Question 2",
     "chapter": 3,
-    "assumptions": ["A", "A → (M → -H)", "M"],
+    "premises": ["A", "A → (M → -H)", "M"],
     "conclusion": "-H"
   },
   "e1wstz": {
     "title": "Chapter Three Sample Quiz #3, Question 3",
     "chapter": 3,
-    "assumptions": ["(P → G) → (K → R)", "K", "R → S", "P → G"],
+    "premises": ["(P → G) → (K → R)", "K", "R → S", "P → G"],
     "conclusion": "S"
   },
   "aan3vn": {
     "title": "Chapter Three Sample Quiz #4, Question 2",
     "chapter": 3,
-    "assumptions": ["J → (-P → M)", "-P", "J"],
+    "premises": ["J → (-P → M)", "-P", "J"],
     "conclusion": "M"
   },
   "2ypjkw": {
     "title": "Chapter Three Sample Quiz #4, Question 3",
     "chapter": 3,
-    "assumptions": ["(N → T) → (W → H)", "E → (N → T)", "E → W", "E"],
+    "premises": ["(N → T) → (W → H)", "E → (N → T)", "E → W", "E"],
     "conclusion": "H"
   },
   "iv66x2": {
     "title": "Chapter Four #1",
     "chapter": 4,
-    "assumptions": ["( E & G) → (A → -D)", "G → E", "A & (G & -L)"],
+    "premises": ["( E & G) → (A → -D)", "G → E", "A & (G & -L)"],
     "conclusion": "-D & -L"
   },
   "epy7mz": {
     "title": "Chapter Four #2",
     "chapter": 4,
-    "assumptions": ["A ↔ K", "A"],
+    "premises": ["A ↔ K", "A"],
     "conclusion": "A & K"
   },
   "63o277": {
     "title": "Chapter Four #3",
     "chapter": 4,
-    "assumptions": ["A → B", "B → A", "E"],
+    "premises": ["A → B", "B → A", "E"],
     "conclusion": "(A ↔ B) & E"
   },
   "8m2wvv": {
     "title": "Chapter Four #4",
     "chapter": 4,
-    "assumptions": ["(A & B) → C", "A", "B"],
+    "premises": ["(A & B) → C", "A", "B"],
     "conclusion": "C"
   },
   "yutqih": {
     "title": "Chapter Four #5",
     "chapter": 4,
-    "assumptions": ["E → R", "J & E", "R → -M"],
+    "premises": ["E → R", "J & E", "R → -M"],
     "conclusion": "J & -M"
   },
   "pickqo": {
     "title": "Chapter Four #6",
     "chapter": 4,
-    "assumptions": ["A ↔ G", "A → (L & R)", "G & M", "R → D"],
+    "premises": ["A ↔ G", "A → (L & R)", "G & M", "R → D"],
     "conclusion": "D"
   },
   "1drya0": {
     "title": "Chapter Four #7",
     "chapter": 4,
-    "assumptions": ["E & A", "A ↔ P"],
+    "premises": ["E & A", "A ↔ P"],
     "conclusion": "P & E"
   },
   "7mqkyl": {
     "title": "Chapter Four #8",
     "chapter": 4,
-    "assumptions": ["-K & -L", "-L → W", "-K → M"],
+    "premises": ["-K & -L", "-L → W", "-K → M"],
     "conclusion": "W & M"
   },
   "666bab": {
     "title": "Chapter Four #9",
     "chapter": 4,
-    "assumptions": ["F → (C & N)", "C → (H & E)", "(N & H) → K", "F"],
+    "premises": ["F → (C & N)", "C → (H & E)", "(N & H) → K", "F"],
     "conclusion": "K"
   },
   "zgcv56": {
     "title": "Chapter Four #10",
     "chapter": 4,
-    "assumptions": ["L → (H → S)", "E → L", "E & (S → H)"],
+    "premises": ["L → (H → S)", "E → L", "E & (S → H)"],
     "conclusion": "H ↔ S"
   },
   "ar7nd8": {
     "title": "Chapter Four #11",
     "chapter": 4,
-    "assumptions": ["(B ↔ D) → (H & E)", "(H → R) & (B → D)", "D → B"],
+    "premises": ["(B ↔ D) → (H & E)", "(H → R) & (B → D)", "D → B"],
     "conclusion": "R & E"
   },
   "5h24k0": {
     "title": "Chapter Four #12",
     "chapter": 4,
-    "assumptions": ["T → (J & H)", "T ↔ (W & B)", "B & E", "W", "(H & E) → C"],
+    "premises": ["T → (J & H)", "T ↔ (W & B)", "B & E", "W", "(H & E) → C"],
     "conclusion": "C & J"
   },
   "fih4x7": {
     "title": "Chapter Four #13",
     "chapter": 4,
-    "assumptions": ["M ↔ L", "(L & E) → W", "M", "E"],
+    "premises": ["M ↔ L", "(L & E) → W", "M", "E"],
     "conclusion": "W"
   },
   "j5ol8q": {
     "title": "Chapter Four #14",
     "chapter": 4,
-    "assumptions": ["K & F", "J ↔ F"],
+    "premises": ["K & F", "J ↔ F"],
     "conclusion": "J & K"
   },
   "aeusds": {
     "title": "Chapter Four #15",
     "chapter": 4,
-    "assumptions": ["A", "B", "C", "D"],
+    "premises": ["A", "B", "C", "D"],
     "conclusion": "((A & C) & B) & D"
   },
   "iwn4pr": {
     "title": "Chapter Four #16",
     "chapter": 4,
-    "assumptions": ["T & W", "(P & A) ↔ W"],
+    "premises": ["T & W", "(P & A) ↔ W"],
     "conclusion": "P & T"
   },
   "8dsu70": {
     "title": "Chapter Four #17",
     "chapter": 4,
-    "assumptions": ["E ↔ D", "D → M", "-K → E", "-K"],
+    "premises": ["E ↔ D", "D → M", "-K → E", "-K"],
     "conclusion": "M"
   },
   "mbvz6a": {
     "title": "Chapter Four #18",
     "chapter": 4,
-    "assumptions": ["J ↔ (E & H)", "E", "H & F"],
+    "premises": ["J ↔ (E & H)", "E", "H & F"],
     "conclusion": "J & F"
   },
   "dnzlsa": {
     "title": "Chapter Four #19",
     "chapter": 4,
-    "assumptions": ["-M → -Q", "A & (-Q → -M)", "A → -F"],
+    "premises": ["-M → -Q", "A & (-Q → -M)", "A → -F"],
     "conclusion": "-F & (-Q ↔ -M)"
   },
   "ihxmlk": {
     "title": "Chapter Four #20",
     "chapter": 4,
-    "assumptions": ["(L ↔ T) → G", "E & (T → L)", "(G → R) & (L → T)"],
+    "premises": ["(L ↔ T) → G", "E & (T → L)", "(G → R) & (L → T)"],
     "conclusion": "R"
   },
   "lgbmlh": {
     "title": "Chapter Four #21",
     "chapter": 4,
-    "assumptions": ["(A & X) ↔ (B & O)", "E → B", "L → O", "E & L"],
+    "premises": ["(A & X) ↔ (B & O)", "E → B", "L → O", "E & L"],
     "conclusion": "A"
   },
   "src5cn": {
     "title": "Chapter Four #22",
     "chapter": 4,
-    "assumptions": ["K → (G & H)", "L ↔ K", "L", "E"],
+    "premises": ["K → (G & H)", "L ↔ K", "L", "E"],
     "conclusion": "G & E"
   },
   "mq1y2u": {
     "title": "Chapter Four #23",
     "chapter": 4,
-    "assumptions": ["M → Y", "R ↔ (Y → M)", "N & (T & R)"],
+    "premises": ["M → Y", "R ↔ (Y → M)", "N & (T & R)"],
     "conclusion": "Y ↔ M"
   },
   "ddqzad": {
     "title": "Chapter Four Packet #1",
     "chapter": 4,
-    "assumptions": ["N & -Q", "R & F"],
+    "premises": ["N & -Q", "R & F"],
     "conclusion": "-Q & F"
   },
   "64ixgl": {
     "title": "Chapter Four Packet #2",
     "chapter": 4,
-    "assumptions": ["R ↔ B"],
+    "premises": ["R ↔ B"],
     "conclusion": "B → R"
   },
   "fhgor2": {
     "title": "Chapter Four Packet #3",
     "chapter": 4,
-    "assumptions": ["U", "-R", "(U & -R) → L"],
+    "premises": ["U", "-R", "(U & -R) → L"],
     "conclusion": "L"
   },
   "0fjo0t": {
     "title": "Chapter Four Packet #4",
     "chapter": 4,
-    "assumptions": ["H & J", "O", "O → M"],
+    "premises": ["H & J", "O", "O → M"],
     "conclusion": "M & H"
   },
   "fe6obw": {
     "title": "Chapter Four Packet #5",
     "chapter": 4,
-    "assumptions": ["A ↔ U", "U → G", "A"],
+    "premises": ["A ↔ U", "U → G", "A"],
     "conclusion": "G"
   },
   "8l8tom": {
     "title": "Chapter Four Packet #6",
     "chapter": 4,
-    "assumptions": ["(H & I) → (L & M)", "H & I"],
+    "premises": ["(H & I) → (L & M)", "H & I"],
     "conclusion": "L"
   },
   "q0agoi": {
     "title": "Chapter Four Packet #7",
     "chapter": 4,
-    "assumptions": ["B → -R", "M & (-R → B)"],
+    "premises": ["B → -R", "M & (-R → B)"],
     "conclusion": "M & (B ↔ -R)"
   },
   "c1xkz3": {
     "title": "Chapter Four Packet #8",
     "chapter": 4,
-    "assumptions": ["G & L", "H", "(H & (G & L)) → R"],
+    "premises": ["G & L", "H", "(H & (G & L)) → R"],
     "conclusion": "R"
   },
   "3n4616": {
     "title": "Chapter Four Packet #9",
     "chapter": 4,
-    "assumptions": ["-A → (B → C)", "C → B", "(C ↔ B) → E", "-A"],
+    "premises": ["-A → (B → C)", "C → B", "(C ↔ B) → E", "-A"],
     "conclusion": "E"
   },
   "xigfn0": {
     "title": "Chapter Four Packet #10",
     "chapter": 4,
-    "assumptions": ["A → (B & C)", "D → (A & E)", "D"],
+    "premises": ["A → (B & C)", "D → (A & E)", "D"],
     "conclusion": "E & B"
   },
   "e6pefo": {
     "title": "Chapter Four Packet #11",
     "chapter": 4,
-    "assumptions": ["(S & U) & Y", "U ↔ -G", "-G → R"],
+    "premises": ["(S & U) & Y", "U ↔ -G", "-G → R"],
     "conclusion": "R & Y"
   },
   "hmerai": {
     "title": "Chapter Four Packet #12",
     "chapter": 4,
-    "assumptions": ["(R → T) & G", "T → H", "R", "(H → M) & (T → K)"],
+    "premises": ["(R → T) & G", "T → H", "R", "(H → M) & (T → K)"],
     "conclusion": "K & M"
   },
   "tv9pdk": {
     "title": "Chapter Four Packet #13",
     "chapter": 4,
-    "assumptions": ["-B ↔ (D ↔ W)", "-B & D"],
+    "premises": ["-B ↔ (D ↔ W)", "-B & D"],
     "conclusion": "W"
   },
   "0i7lal": {
     "title": "Chapter Four Packet #14",
     "chapter": 4,
-    "assumptions": ["H & P", "P → (R & S)", "(R & P) → (S ↔ G)"],
+    "premises": ["H & P", "P → (R & S)", "(R & P) → (S ↔ G)"],
     "conclusion": "S ↔ G"
   },
   "nk17o0": {
     "title": "Chapter Four Packet #15",
     "chapter": 4,
-    "assumptions": ["A → (B → C)", "B & E", "(C & E) → (Y → Z)", "A"],
+    "premises": ["A → (B → C)", "B & E", "(C & E) → (Y → Z)", "A"],
     "conclusion": "Y → Z"
   },
   "9ni0bs": {
     "title": "Chapter Four Packet #16",
     "chapter": 4,
-    "assumptions": ["(H ↔ G) → H", "R & (H → (H ↔ G))"],
+    "premises": ["(H ↔ G) → H", "R & (H → (H ↔ G))"],
     "conclusion": "H ↔ (H ↔ G)"
   },
   "lqagzt": {
     "title": "Chapter Four Packet #17",
     "chapter": 4,
-    "assumptions": ["R & (H & (J & -V))"],
+    "premises": ["R & (H & (J & -V))"],
     "conclusion": "-V & H"
   },
   "hzhtzg": {
     "title": "Chapter Four Packet #18",
     "chapter": 4,
-    "assumptions": ["N → ((U & G) → K)", "K → (L ↔ S)", "N", "N → (U & G)"],
+    "premises": ["N → ((U & G) → K)", "K → (L ↔ S)", "N", "N → (U & G)"],
     "conclusion": "S → L"
   },
   "j6a797": {
     "title": "Chapter Four Packet #19",
     "chapter": 4,
-    "assumptions": ["-Q ↔ T", "J & B"],
+    "premises": ["-Q ↔ T", "J & B"],
     "conclusion": "((-Q → T) & B) & (T → -Q)"
   },
   "h1qzic": {
     "title": "Chapter Four Packet #20",
     "chapter": 4,
-    "assumptions": ["M → N", "O → Y", "M & O", "Y → (Y → O)"],
+    "premises": ["M → N", "O → Y", "M & O", "Y → (Y → O)"],
     "conclusion": "N & (O ↔ Y)"
   },
   "52op4n": {
     "title": "Chapter Four Packet #21",
     "chapter": 4,
-    "assumptions": ["-P → (M & (N & (R & C)))", "-P"],
+    "premises": ["-P → (M & (N & (R & C)))", "-P"],
     "conclusion": "C"
   },
   "637gwz": {
     "title": "Chapter Four Packet #22",
     "chapter": 4,
-    "assumptions": ["M ↔ (S & P)", "L → S", "L & P"],
+    "premises": ["M ↔ (S & P)", "L → S", "L & P"],
     "conclusion": "M"
   },
   "g7tzuj": {
     "title": "Chapter Four Packet #23",
     "chapter": 4,
-    "assumptions": ["B & (J → R)", "R → J", "(R ↔ J) → N"],
+    "premises": ["B & (J → R)", "R → J", "(R ↔ J) → N"],
     "conclusion": "N & B"
   },
   "jdo9if": {
     "title": "Chapter Four Packet #24",
     "chapter": 4,
-    "assumptions": ["G → (S ↔ D)", "S & G", "D → B"],
+    "premises": ["G → (S ↔ D)", "S & G", "D → B"],
     "conclusion": "B"
   },
   "s0632b": {
     "title": "Chapter Four Packet #25",
     "chapter": 4,
-    "assumptions": ["(K & L) → M", "(S ↔ I) → K", "L & (S → I)", "I → S"],
+    "premises": ["(K & L) → M", "(S ↔ I) → K", "L & (S → I)", "I → S"],
     "conclusion": "M"
   },
   "125k1e": {
     "title": "Chapter Four Packet #26",
     "chapter": 4,
-    "assumptions": ["H ↔ J", "E & (J → N)", "H"],
+    "premises": ["H ↔ J", "E & (J → N)", "H"],
     "conclusion": "E & N"
   },
   "owcqja": {
     "title": "Chapter Four Packet #27",
     "chapter": 4,
-    "assumptions": ["(A & B) → C", "E & A", "E → B"],
+    "premises": ["(A & B) → C", "E & A", "E → B"],
     "conclusion": "C"
   },
   "y9n5am": {
     "title": "Chapter Four Packet #28",
     "chapter": 4,
-    "assumptions": ["N ↔ K", "K & P", "N → (E & F)"],
+    "premises": ["N ↔ K", "K & P", "N → (E & F)"],
     "conclusion": "F & P"
   },
   "ufj6uz": {
     "title": "Chapter Four Packet #29",
     "chapter": 4,
-    "assumptions": ["J → D", "(S & -P) → (D → J)", "S", "-P"],
+    "premises": ["J → D", "(S & -P) → (D → J)", "S", "-P"],
     "conclusion": "D ↔ J"
   },
   "0ftn7h": {
     "title": "Chapter Four Packet #30",
     "chapter": 4,
-    "assumptions": ["(C & B) → D", "A & C", "A → B"],
+    "premises": ["(C & B) → D", "A & C", "A → B"],
     "conclusion": "D"
   },
   "svpwqt": {
     "title": "Chapter Four Packet #31",
     "chapter": 4,
-    "assumptions": ["L", "(P → N) → H", "N ↔ P", "L → J"],
+    "premises": ["L", "(P → N) → H", "N ↔ P", "L → J"],
     "conclusion": "H & J"
   },
   "ga3096": {
     "title": "Chapter Four Packet #32",
     "chapter": 4,
-    "assumptions": ["J → (M & L)", "R ↔ M", "E & J"],
+    "premises": ["J → (M & L)", "R ↔ M", "E & J"],
     "conclusion": "L & R"
   },
   "8vxrd8": {
     "title": "Chapter Four Packet #33",
     "chapter": 4,
-    "assumptions": ["(A ↔ B) → G", "B → A", "E → (A → B)", "E & H"],
+    "premises": ["(A ↔ B) → G", "B → A", "E → (A → B)", "E & H"],
     "conclusion": "H & G"
   },
   "t8qyrv": {
     "title": "Chapter Four Packet #34",
     "chapter": 4,
-    "assumptions": ["K ↔ (F & E)", "F → M", "K"],
+    "premises": ["K ↔ (F & E)", "F → M", "K"],
     "conclusion": "M & E"
   },
   "9bdzju": {
     "title": "Chapter Four Packet #35",
     "chapter": 4,
-    "assumptions": ["R & T", "R → (J → H)", "M → (H → J)", "T → M"],
+    "premises": ["R & T", "R → (J → H)", "M → (H → J)", "T → M"],
     "conclusion": "J ↔ H"
   },
   "z2pe01": {
     "title": "Chapter Four Sample Quiz #1, Question #2",
     "chapter": 4,
-    "assumptions": ["A", "(A & R) → M", "R", "M ↔ T"],
+    "premises": ["A", "(A & R) → M", "R", "M ↔ T"],
     "conclusion": "T"
   },
   "flch8l": {
     "title": "Chapter Four Sample Quiz #1, Question #3",
     "chapter": 4,
-    "assumptions": ["H → (-B & W)", "H & S"],
+    "premises": ["H → (-B & W)", "H & S"],
     "conclusion": "W"
   },
   "mvjgyn": {
     "title": "Chapter Four Sample Quiz #2, Question #2",
     "chapter": 4,
-    "assumptions": ["A → (B → C)", "M ↔ A", "M & B"],
+    "premises": ["A → (B → C)", "M ↔ A", "M & B"],
     "conclusion": "C"
   },
   "imzpos": {
     "title": "Chapter Four Sample Quiz #2, Question #3",
     "chapter": 4,
-    "assumptions": ["(S ↔ E) → K", "S → E", "L → (E → S)", "L"],
+    "premises": ["(S ↔ E) → K", "S → E", "L → (E → S)", "L"],
     "conclusion": "K"
   },
   "k1u4el": {
     "title": "Chapter Four Sample Quiz #3, Question #2",
     "chapter": 4,
-    "assumptions": ["P ↔ H", "H → R", "P & -E"],
+    "premises": ["P ↔ H", "H → R", "P & -E"],
     "conclusion": "R & -E"
   },
   "lxv41l": {
     "title": "Chapter Four Sample Quiz #3, Question #3",
     "chapter": 4,
-    "assumptions": ["M", "Z → (K & F)", "Z ↔ M"],
+    "premises": ["M", "Z → (K & F)", "Z ↔ M"],
     "conclusion": "F"
   },
   "abtaum": {
     "title": "Chapter Four Sample Quiz #4, Question #2",
     "chapter": 4,
-    "assumptions": ["-P → (U & J)", "U → (N & R)", "-P"],
+    "premises": ["-P → (U & J)", "U → (N & R)", "-P"],
     "conclusion": "N & J"
   },
   "7kxsvb": {
     "title": "Chapter Four Sample Quiz #4, Question #3",
     "chapter": 4,
-    "assumptions": ["(A & -B) → (R ↔ S)", "A & G", "G → -B", "(S → R) → T"],
+    "premises": ["(A & -B) → (R ↔ S)", "A & G", "G → -B", "(S → R) → T"],
     "conclusion": "T"
   },
   "t597bs": {
     "title": "Chapter Five #1",
     "chapter": 5,
-    "assumptions": ["R"],
+    "premises": ["R"],
     "conclusion": "R ∨ K"
   },
   "p64bvq": {
     "title": "Chapter Five #2",
     "chapter": 5,
-    "assumptions": ["M & R"],
+    "premises": ["M & R"],
     "conclusion": "(R ∨ S) & (E ∨ M)"
   },
   "6wuf0m": {
     "title": "Chapter Five #3",
     "chapter": 5,
-    "assumptions": ["L → T", "(T ∨ J) → W", "L"],
+    "premises": ["L → T", "(T ∨ J) → W", "L"],
     "conclusion": "W"
   },
   "c4f3lk": {
     "title": "Chapter Five #4",
     "chapter": 5,
-    "assumptions": ["P & G", "(G ∨ M) → N"],
+    "premises": ["P & G", "(G ∨ M) → N"],
     "conclusion": "N & P"
   },
   "7ozw20": {
     "title": "Chapter Five #5",
     "chapter": 5,
-    "assumptions": ["(E ∨ B) → J", "(F ∨ H) → B", "F & A"],
+    "premises": ["(E ∨ B) → J", "(F ∨ H) → B", "F & A"],
     "conclusion": "J & A"
   },
   "mighb6": {
     "title": "Chapter Five #6",
     "chapter": 5,
-    "assumptions": ["(J & L) ↔ N", "N & K"],
+    "premises": ["(J & L) ↔ N", "N & K"],
     "conclusion": "K & (L ∨ P)"
   },
   "s46r1g": {
     "title": "Chapter Five #7",
     "chapter": 5,
-    "assumptions": ["R"],
+    "premises": ["R"],
     "conclusion": "G ∨ (M ∨ (E ∨ R))"
   },
   "8hpq30": {
     "title": "Chapter Five #8",
     "chapter": 5,
-    "assumptions": ["(((A ∨ B) ∨ C) ∨ D) → E", "B"],
+    "premises": ["(((A ∨ B) ∨ C) ∨ D) → E", "B"],
     "conclusion": "E ∨ F"
   },
   "mmjgzg": {
     "title": "Chapter Five #9",
     "chapter": 5,
-    "assumptions": ["(K ∨ T) ↔ E", "K ↔ (P & H)", "H & (-M → P)", "-M"],
+    "premises": ["(K ∨ T) ↔ E", "K ↔ (P & H)", "H & (-M → P)", "-M"],
     "conclusion": "E"
   },
   "sj2iq2": {
     "title": "Chapter Five #10",
     "chapter": 5,
-    "assumptions": ["A → (-B & -C)", "-B → D", "(-C → E) & A"],
+    "premises": ["A → (-B & -C)", "-B → D", "(-C → E) & A"],
     "conclusion": "(D ∨ F) & E"
   },
   "ijy17o": {
     "title": "Chapter Five #11",
     "chapter": 5,
-    "assumptions": ["A → C", "B → C", "A ∨ B"],
+    "premises": ["A → C", "B → C", "A ∨ B"],
     "conclusion": "C"
   },
   "t5rwlr": {
     "title": "Chapter Five #12",
     "chapter": 5,
-    "assumptions": ["P ∨ (E & S)", "P → -J", "(E & S) → -J"],
+    "premises": ["P ∨ (E & S)", "P → -J", "(E & S) → -J"],
     "conclusion": "-J"
   },
   "9585i5": {
     "title": "Chapter Five #13",
     "chapter": 5,
-    "assumptions": ["K ↔ N", "N ∨ W", "W → K"],
+    "premises": ["K ↔ N", "N ∨ W", "W → K"],
     "conclusion": "K"
   },
   "1aoeq5": {
     "title": "Chapter Five #14",
     "chapter": 5,
-    "assumptions": ["L → (H → B)", "L & E", "E → (H ∨ -S)", "-S → B"],
+    "premises": ["L → (H → B)", "L & E", "E → (H ∨ -S)", "-S → B"],
     "conclusion": "B"
   },
   "jtopij": {
     "title": "Chapter Five #15",
     "chapter": 5,
-    "assumptions": ["(P & B) → (S → G)", "M ∨ (P & B)", "S", "M → (S → G)"],
+    "premises": ["(P & B) → (S → G)", "M ∨ (P & B)", "S", "M → (S → G)"],
     "conclusion": "G"
   },
   "2b8kb0": {
     "title": "Chapter Five #16",
     "chapter": 5,
-    "assumptions": ["E ∨ L", "L → (A & B)", "E → (A & B)", "B → C"],
+    "premises": ["E ∨ L", "L → (A & B)", "E → (A & B)", "B → C"],
     "conclusion": "C ∨ D"
   },
   "eryheo": {
     "title": "Chapter Five #17",
     "chapter": 5,
-    "assumptions": ["R → (W ∨ (C & G))", "R & -M", "-M → (W → H)", "(C & G) → H"],
+    "premises": ["R → (W ∨ (C & G))", "R & -M", "-M → (W → H)", "(C & G) → H"],
     "conclusion": "H"
   },
   "hvc9tw": {
     "title": "Chapter Five #18",
     "chapter": 5,
-    "assumptions": ["A → E", "A ∨ M", "M → P"],
+    "premises": ["A → E", "A ∨ M", "M → P"],
     "conclusion": "E ∨ P"
   },
   "m7kb7l": {
     "title": "Chapter Five #19",
     "chapter": 5,
-    "assumptions": ["(S & P) → R", "M → N", "M ∨ (S & P)"],
+    "premises": ["(S & P) → R", "M → N", "M ∨ (S & P)"],
     "conclusion": "R ∨ N"
   },
   "47q4ow": {
     "title": "Chapter Five #20",
     "chapter": 5,
-    "assumptions": ["B ∨ F", "(W ∨ M) → L", "B → W", "F → M"],
+    "premises": ["B ∨ F", "(W ∨ M) → L", "B → W", "F → M"],
     "conclusion": "L"
   },
   "p5w6g1": {
     "title": "Chapter Five #21",
     "chapter": 5,
-    "assumptions": ["H ∨ S", "J & (H → E)", "S → E"],
+    "premises": ["H ∨ S", "J & (H → E)", "S → E"],
     "conclusion": "E ∨ P"
   },
   "tumxxc": {
     "title": "Chapter Five #22",
     "chapter": 5,
-    "assumptions": ["(L & K) ↔ T", "W → (T ∨ D)", "W & (D → (L & K))"],
+    "premises": ["(L & K) ↔ T", "W → (T ∨ D)", "W & (D → (L & K))"],
     "conclusion": "L"
   },
   "m9adhf": {
     "title": "Chapter Five Packet #1",
     "chapter": 5,
-    "assumptions": ["A"],
+    "premises": ["A"],
     "conclusion": "C ∨ (B ∨ A)"
   },
   "3mlvbi": {
     "title": "Chapter Five Packet #2",
     "chapter": 5,
-    "assumptions": ["(F ∨ -Q) → R", "F"],
+    "premises": ["(F ∨ -Q) → R", "F"],
     "conclusion": "R"
   },
   "lnteef": {
     "title": "Chapter Five Packet #3",
     "chapter": 5,
-    "assumptions": ["H & M"],
+    "premises": ["H & M"],
     "conclusion": "(M ∨ G) & H"
   },
   "e4dbmn": {
     "title": "Chapter Five Packet #4",
     "chapter": 5,
-    "assumptions": ["X → R", "Y → R", "X ∨ Y"],
+    "premises": ["X → R", "Y → R", "X ∨ Y"],
     "conclusion": "R"
   },
   "qslcsp": {
     "title": "Chapter Five Packet #5",
     "chapter": 5,
-    "assumptions": ["(G & H) ∨ R", "(G & H) → -T", "R → -T"],
+    "premises": ["(G & H) ∨ R", "(G & H) → -T", "R → -T"],
     "conclusion": "-T ∨ M"
   },
   "02l5hb": {
     "title": "Chapter Five Packet #6",
     "chapter": 5,
-    "assumptions": ["A → (L & G)", "B → (L & G)", "A ∨ B"],
+    "premises": ["A → (L & G)", "B → (L & G)", "A ∨ B"],
     "conclusion": "G"
   },
   "4kkx2y": {
     "title": "Chapter Five Packet #7",
     "chapter": 5,
-    "assumptions": ["K → (E ↔ N)", "W → (E ↔ N)", "G → (K ∨ W)", "G"],
+    "premises": ["K → (E ↔ N)", "W → (E ↔ N)", "G → (K ∨ W)", "G"],
     "conclusion": "N → E"
   },
   "g92fcs": {
     "title": "Chapter Five Packet #8",
     "chapter": 5,
-    "assumptions": ["H → (J → I)", "(Z → I) & H", "B & (J ∨ Z)"],
+    "premises": ["H → (J → I)", "(Z → I) & H", "B & (J ∨ Z)"],
     "conclusion": "I & B"
   },
   "6wka5f": {
     "title": "Chapter Five Packet #9",
     "chapter": 5,
-    "assumptions": ["R → H", "J → H", "M & (J ∨ R)"],
+    "premises": ["R → H", "J → H", "M & (J ∨ R)"],
     "conclusion": "H"
   },
   "7x3z5g": {
     "title": "Chapter Five Packet #10",
     "chapter": 5,
-    "assumptions": ["A & (B → (C & H))", "D → (E → (C & H))", "D ↔ A", "A → (B ∨ E)"],
+    "premises": ["A & (B → (C & H))", "D → (E → (C & H))", "D ↔ A", "A → (B ∨ E)"],
     "conclusion": "A & C"
   },
   "45byde": {
     "title": "Chapter Five Packet #11",
     "chapter": 5,
-    "assumptions": ["Q → (-T ∨ L)", "(S ∨ H) → (-T ∨ L)", "Q ∨ (S ∨ H)", "(-T ∨ L) ↔ N"],
+    "premises": ["Q → (-T ∨ L)", "(S ∨ H) → (-T ∨ L)", "Q ∨ (S ∨ H)", "(-T ∨ L) ↔ N"],
     "conclusion": "N"
   },
   "kjjiy5": {
     "title": "Chapter Five Packet #12",
     "chapter": 5,
-    "assumptions": ["A", "(A ∨ Z) → B", "(B ∨ Y) → C", "(C ∨ X) → D"],
+    "premises": ["A", "(A ∨ Z) → B", "(B ∨ Y) → C", "(C ∨ X) → D"],
     "conclusion": "D ∨ W"
   },
   "l9d22b": {
     "title": "Chapter Five Packet #13",
     "chapter": 5,
-    "assumptions": ["K", "(K ∨ T) ↔ N"],
+    "premises": ["K", "(K ∨ T) ↔ N"],
     "conclusion": "N & (K ∨ T)"
   },
   "ojy7bq": {
     "title": "Chapter Five Packet #14",
     "chapter": 5,
-    "assumptions": ["H & R", "H → M", "R → K", "(K ∨ G) → N"],
+    "premises": ["H & R", "H → M", "R → K", "(K ∨ G) → N"],
     "conclusion": "N & M"
   },
   "uys13x": {
     "title": "Chapter Five Packet #15",
     "chapter": 5,
-    "assumptions": ["J ↔ W", "Q & (W ∨ F)", "F → J"],
+    "premises": ["J ↔ W", "Q & (W ∨ F)", "F → J"],
     "conclusion": "J"
   },
   "p4g0a9": {
     "title": "Chapter Five Packet #16",
     "chapter": 5,
-    "assumptions": ["(A & B) → (E ∨ F)", "E → R", "A & (F → R)", "B"],
+    "premises": ["(A & B) → (E ∨ F)", "E → R", "A & (F → R)", "B"],
     "conclusion": "R"
   },
   "pnd6zr": {
     "title": "Chapter Five Packet #17",
     "chapter": 5,
-    "assumptions": ["H & L", "H → C", "(C ∨ M) → D"],
+    "premises": ["H & L", "H → C", "(C ∨ M) → D"],
     "conclusion": "D ∨ J"
   },
   "64bmfp": {
     "title": "Chapter Five Packet #18",
     "chapter": 5,
-    "assumptions": ["(S ∨ A) → (E ∨ T)", "S & (E → M)", "T → M"],
+    "premises": ["(S ∨ A) → (E ∨ T)", "S & (E → M)", "T → M"],
     "conclusion": "M"
   },
   "jug3w0": {
     "title": "Chapter Five Packet #19",
     "chapter": 5,
-    "assumptions": ["J & K", "(E ∨ K) → R", "(R ∨ T) → L"],
+    "premises": ["J & K", "(E ∨ K) → R", "(R ∨ T) → L"],
     "conclusion": "L & J"
   },
   "zdpj3x": {
     "title": "Chapter Five Packet #20",
     "chapter": 5,
-    "assumptions": ["(((E ∨ M) ∨ R) ∨ K) → -J", "M"],
+    "premises": ["(((E ∨ M) ∨ R) ∨ K) → -J", "M"],
     "conclusion": "-J"
   },
   "nt8dze": {
     "title": "Chapter Five Packet #21",
     "chapter": 5,
-    "assumptions": ["R → N", "-H → (B ∨ R)", "(B → N) & -H", "N → E"],
+    "premises": ["R → N", "-H → (B ∨ R)", "(B → N) & -H", "N → E"],
     "conclusion": "E"
   },
   "u729ys": {
     "title": "Chapter Five Packet #22",
     "chapter": 5,
-    "assumptions": ["(J ∨ S) → H", "S & (H → N)"],
+    "premises": ["(J ∨ S) → H", "S & (H → N)"],
     "conclusion": "N ∨ E"
   },
   "abhb2l": {
     "title": "Chapter Five Packet #23",
     "chapter": 5,
-    "assumptions": ["(G ∨ P) & W", "G → (E & R)", "P → (E & R)"],
+    "premises": ["(G ∨ P) & W", "G → (E & R)", "P → (E & R)"],
     "conclusion": "R & W"
   },
   "1kfpgy": {
     "title": "Chapter Five Packet #24",
     "chapter": 5,
-    "assumptions": ["(R ∨ G) → (E & S)", "L → R", "P & L"],
+    "premises": ["(R ∨ G) → (E & S)", "L → R", "P & L"],
     "conclusion": "S & P"
   },
   "qvelrr": {
     "title": "Chapter Five Packet #25",
     "chapter": 5,
-    "assumptions": ["M → (E & F)", "(H & K) ∨ M", "(H & K) → (E & F)"],
+    "premises": ["M → (E & F)", "(H & K) ∨ M", "(H & K) → (E & F)"],
     "conclusion": "F"
   },
   "5swg5f": {
     "title": "Chapter Five Packet #26",
     "chapter": 5,
-    "assumptions": ["K → (N & F)", "(E ∨ G) → K", "G"],
+    "premises": ["K → (N & F)", "(E ∨ G) → K", "G"],
     "conclusion": "F ∨ P"
   },
   "qet8u2": {
     "title": "Chapter Five Sample Quiz #1, Proof #1",
     "chapter": 5,
-    "assumptions": ["A", "(P ∨ A) → (E & L)", "E → S"],
+    "premises": ["A", "(P ∨ A) → (E & L)", "E → S"],
     "conclusion": "S & L"
   },
   "sy59vs": {
     "title": "Chapter Five Sample Quiz #1, Proof #2",
     "chapter": 5,
-    "assumptions": ["(M ∨ P) & (M → S)", "P → S", "S → W"],
+    "premises": ["(M ∨ P) & (M → S)", "P → S", "S → W"],
     "conclusion": "W"
   },
   "4ah2kx": {
     "title": "Chapter Five Sample Quiz #2, Proof #1",
     "chapter": 5,
-    "assumptions": ["M & R", "(R ∨ K) → T", "T → G"],
+    "premises": ["M & R", "(R ∨ K) → T", "T → G"],
     "conclusion": "G ∨ L"
   },
   "ku2v4y": {
     "title": "Chapter Five Sample Quiz #2, Proof #2",
     "chapter": 5,
-    "assumptions": ["B ∨ F", "W & (B → (P & R))", "F → (P & R)"],
+    "premises": ["B ∨ F", "W & (B → (P & R))", "F → (P & R)"],
     "conclusion": "R"
   },
   "5ybgpn": {
     "title": "Chapter Five Sample Quiz #3, Proof #1",
     "chapter": 5,
-    "assumptions": ["S → (J & M)", "R → (J & M)", "(S ∨ R) & L", "J → K"],
+    "premises": ["S → (J & M)", "R → (J & M)", "(S ∨ R) & L", "J → K"],
     "conclusion": "K & L"
   },
   "aav9p2": {
     "title": "Chapter Five Sample Quiz #3, Proof #2",
     "chapter": 5,
-    "assumptions": ["A", "(A ∨ B) → C", "(A ∨ E) → D"],
+    "premises": ["A", "(A ∨ B) → C", "(A ∨ E) → D"],
     "conclusion": "C & D"
   },
   "tj8x8d": {
     "title": "Chapter Five Sample Quiz #4, Proof #1",
     "chapter": 5,
-    "assumptions": ["R ↔ G", "M → (T → R)", "M & N", "G ∨ T"],
+    "premises": ["R ↔ G", "M → (T → R)", "M & N", "G ∨ T"],
     "conclusion": "R"
   },
   "k63329": {
     "title": "Chapter Five Sample Quiz #4, Proof #2",
     "chapter": 5,
-    "assumptions": ["(K ∨ S) → H", "K & E", "(P ∨ E) → B"],
+    "premises": ["(K ∨ S) → H", "K & E", "(P ∨ E) → B"],
     "conclusion": "B & H"
   },
   "j7hkhm": {
     "title": "Chapter Six #1",
     "chapter": 6,
-    "assumptions": ["C → F", "F → B", "B → A"],
+    "premises": ["C → F", "F → B", "B → A"],
     "conclusion": "C → A"
   },
   "4bvrsb": {
     "title": "Chapter Six #2",
     "chapter": 6,
-    "assumptions": ["(B & A) → C"],
+    "premises": ["(B & A) → C"],
     "conclusion": "A → (B → C)"
   },
   "gcehqp": {
     "title": "Chapter Six #3",
     "chapter": 6,
-    "assumptions": ["L → -E", "R → L", "M → R"],
+    "premises": ["L → -E", "R → L", "M → R"],
     "conclusion": "M → -E"
   },
   "muibm7": {
     "title": "Chapter Six #4",
     "chapter": 6,
-    "assumptions": ["(M & N) → -K", "H → (M & N)"],
+    "premises": ["(M & N) → -K", "H → (M & N)"],
     "conclusion": "H → -K"
   },
   "ejvxrx": {
     "title": "Chapter Six #5",
     "chapter": 6,
-    "assumptions": ["A → (B & C)", "C → D"],
+    "premises": ["A → (B & C)", "C → D"],
     "conclusion": "A → D"
   },
   "cs5dm0": {
     "title": "Chapter Six #6",
     "chapter": 6,
-    "assumptions": ["(J → B) → C", "J → A", "A → B"],
+    "premises": ["(J → B) → C", "J → A", "A → B"],
     "conclusion": "C"
   },
   "2jphkl": {
     "title": "Chapter Six #7",
     "chapter": 6,
-    "assumptions": ["R → (E → M)", "E"],
+    "premises": ["R → (E → M)", "E"],
     "conclusion": "R → M"
   },
   "9mjjo3": {
     "title": "Chapter Six #8",
     "chapter": 6,
-    "assumptions": ["P → S", "L → E"],
+    "premises": ["P → S", "L → E"],
     "conclusion": "(P & L) → (S & E)"
   },
   "e4gnr5": {
     "title": "Chapter Six #9",
     "chapter": 6,
-    "assumptions": ["G ↔ M", "G → E"],
+    "premises": ["G ↔ M", "G → E"],
     "conclusion": "M → (G & E)"
   },
   "5tq0q8": {
     "title": "Chapter Six #10",
     "chapter": 6,
-    "assumptions": ["(L ∨ F) → N", "(N ∨ B) → K"],
+    "premises": ["(L ∨ F) → N", "(N ∨ B) → K"],
     "conclusion": "L → K"
   },
   "mz5ggh": {
     "title": "Chapter Six #11",
     "chapter": 6,
-    "assumptions": ["A → B", "B → C", "C → D"],
+    "premises": ["A → B", "B → C", "C → D"],
     "conclusion": "A → (B & (C & D))"
   },
   "atgk8o": {
     "title": "Chapter Six #12",
     "chapter": 6,
-    "assumptions": ["M ↔ (B & E)", "L → B", "E"],
+    "premises": ["M ↔ (B & E)", "L → B", "E"],
     "conclusion": "L → M"
   },
   "0ad27a": {
     "title": "Chapter Six #13",
     "chapter": 6,
-    "assumptions": ["B → A", "N → B", "A → N"],
+    "premises": ["B → A", "N → B", "A → N"],
     "conclusion": "B ↔ A"
   },
   "6mhhgg": {
     "title": "Chapter Six #14",
     "chapter": 6,
-    "assumptions": ["C ∨ L", "E → J", "C → E", "L → J"],
+    "premises": ["C ∨ L", "E → J", "C → E", "L → J"],
     "conclusion": "J"
   },
   "8j92xc": {
     "title": "Chapter Six #15",
     "chapter": 6,
-    "assumptions": ["(E & F) → L", "M → R", "(R & L) → N"],
+    "premises": ["(E & F) → L", "M → R", "(R & L) → N"],
     "conclusion": "M → ((E & F) → N)"
   },
   "lfclc1": {
     "title": "Chapter Six #16",
     "chapter": 6,
-    "assumptions": ["T → M", "E → R", "R → P", "T ∨ E"],
+    "premises": ["T → M", "E → R", "R → P", "T ∨ E"],
     "conclusion": "M ∨ P"
   },
   "dd0lwv": {
     "title": "Chapter Six #17",
     "chapter": 6,
-    "assumptions": ["W → (M & R)", "(R → N) & (E → W)"],
+    "premises": ["W → (M & R)", "(R → N) & (E → W)"],
     "conclusion": "(E → N) ∨ M"
   },
   "mfe13z": {
     "title": "Chapter Six #18",
     "chapter": 6,
-    "assumptions": ["Q → J", "(J & L) → R"],
+    "premises": ["Q → J", "(J & L) → R"],
     "conclusion": "(L & Q) → R"
   },
   "qvec84": {
     "title": "Chapter Six #19",
     "chapter": 6,
-    "assumptions": ["(D ∨ A) → (G ∨ P)", "(P → K) & E", "G → K"],
+    "premises": ["(D ∨ A) → (G ∨ P)", "(P → K) & E", "G → K"],
     "conclusion": "(A → K) & E"
   },
   "a6ln1y": {
     "title": "Chapter Six #20",
     "chapter": 6,
-    "assumptions": ["A → B", "B → C", "C → D"],
+    "premises": ["A → B", "B → C", "C → D"],
     "conclusion": "A → D"
   },
   "o11qq4": {
     "title": "Chapter Six Packet #1",
     "chapter": 6,
-    "assumptions": ["A → B", "B → C"],
+    "premises": ["A → B", "B → C"],
     "conclusion": "A → C"
   },
   "i17mxp": {
     "title": "Chapter Six Packet #2",
     "chapter": 6,
-    "assumptions": ["L → -T"],
+    "premises": ["L → -T"],
     "conclusion": "L → (G ∨ -T)"
   },
   "qyy8wa": {
     "title": "Chapter Six Packet #3",
     "chapter": 6,
-    "assumptions": ["(A ∨ B) → C"],
+    "premises": ["(A ∨ B) → C"],
     "conclusion": "A → C"
   },
   "kwr3d1": {
     "title": "Chapter Six Packet #4",
     "chapter": 6,
-    "assumptions": ["G → C", "L → C"],
+    "premises": ["G → C", "L → C"],
     "conclusion": "(G ∨ L) → C"
   },
   "31xmra": {
     "title": "Chapter Six Packet #5",
     "chapter": 6,
-    "assumptions": ["A → (B → C)"],
+    "premises": ["A → (B → C)"],
     "conclusion": "(A & B) → C"
   },
   "4eg4nf": {
     "title": "Chapter Six Packet #6",
     "chapter": 6,
-    "assumptions": ["R & (N → M)", "M ↔ K"],
+    "premises": ["R & (N → M)", "M ↔ K"],
     "conclusion": "N → K"
   },
   "cuwq5z": {
     "title": "Chapter Six Packet #7",
     "chapter": 6,
-    "assumptions": ["-T → K", "K → V", "V → R"],
+    "premises": ["-T → K", "K → V", "V → R"],
     "conclusion": "-T → (K & R)"
   },
   "cyhody": {
     "title": "Chapter Six Packet #8",
     "chapter": 6,
-    "assumptions": ["A → B", "B → C", "C → D", "D → E"],
+    "premises": ["A → B", "B → C", "C → D", "D → E"],
     "conclusion": "A → E"
   },
   "7bezsq": {
     "title": "Chapter Six Packet #9",
     "chapter": 6,
-    "assumptions": ["B → (H & W)", "K & O"],
+    "premises": ["B → (H & W)", "K & O"],
     "conclusion": "O & (B → H)"
   },
   "kyfstw": {
     "title": "Chapter Six Packet #10",
     "chapter": 6,
-    "assumptions": ["-W → M", "Z → J"],
+    "premises": ["-W → M", "Z → J"],
     "conclusion": "(-W & Z) → (M & J)"
   },
   "7t1ol0": {
     "title": "Chapter Six Packet #11",
     "chapter": 6,
-    "assumptions": ["(M ∨ (T → L)) → K", "R → L", "T → R"],
+    "premises": ["(M ∨ (T → L)) → K", "R → L", "T → R"],
     "conclusion": "K"
   },
   "8r2n9s": {
     "title": "Chapter Six Packet #12",
     "chapter": 6,
-    "assumptions": ["H ∨ T", "H → R", "T ↔ R", "A → (M & L)"],
+    "premises": ["H ∨ T", "H → R", "T ↔ R", "A → (M & L)"],
     "conclusion": "A → (R & M)"
   },
   "3kxe2v": {
     "title": "Chapter Six Packet #13",
     "chapter": 6,
-    "assumptions": ["(X & Y) → Z"],
+    "premises": ["(X & Y) → Z"],
     "conclusion": "Y → (X → Z)"
   },
   "fa3ya8": {
     "title": "Chapter Six Packet #14",
     "chapter": 6,
-    "assumptions": ["T ∨ G", "T → A", "G ↔ (A & Y)"],
+    "premises": ["T ∨ G", "T → A", "G ↔ (A & Y)"],
     "conclusion": "A"
   },
   "dw2qir": {
     "title": "Chapter Six Packet #15",
     "chapter": 6,
-    "assumptions": ["N → (S → L)", "S & (L → P)"],
+    "premises": ["N → (S → L)", "S & (L → P)"],
     "conclusion": "N → P"
   },
   "ph4kfi": {
     "title": "Chapter Six Packet #16",
     "chapter": 6,
-    "assumptions": ["L → (R & E)", "R → H", "(L → H) → W"],
+    "premises": ["L → (R & E)", "R → H", "(L → H) → W"],
     "conclusion": "W"
   },
   "80mtjd": {
     "title": "Chapter Six Packet #17",
     "chapter": 6,
-    "assumptions": ["H ↔ M", "H → (R & T)", "N & (R → -P)"],
+    "premises": ["H ↔ M", "H → (R & T)", "N & (R → -P)"],
     "conclusion": "(M → -P) ∨ K"
   },
   "s3exue": {
     "title": "Chapter Six Packet #18",
     "chapter": 6,
-    "assumptions": ["A → (B & C)", "B → D", "C → E"],
+    "premises": ["A → (B & C)", "B → D", "C → E"],
     "conclusion": "A → (D & E)"
   },
   "mrttxw": {
     "title": "Chapter Six Packet #19",
     "chapter": 6,
-    "assumptions": ["M → (N & G)", "N → E", "(M → E) → Z"],
+    "premises": ["M → (N & G)", "N → E", "(M → E) → Z"],
     "conclusion": "Z"
   },
   "74x44v": {
     "title": "Chapter Six Packet #20",
     "chapter": 6,
-    "assumptions": ["(K ∨ P) → -S", "-S → (H & R)"],
+    "premises": ["(K ∨ P) → -S", "-S → (H & R)"],
     "conclusion": "K → R"
   },
   "2udlu7": {
     "title": "Chapter Six Packet #21",
     "chapter": 6,
-    "assumptions": ["(L → B) → J", "(A & L) → B", "A"],
+    "premises": ["(L → B) → J", "(A & L) → B", "A"],
     "conclusion": "J"
   },
   "iwo5e1": {
     "title": "Chapter Six Packet #22",
     "chapter": 6,
-    "assumptions": ["A → B", "B → C", "C → D"],
+    "premises": ["A → B", "B → C", "C → D"],
     "conclusion": "A → D"
   },
   "lhk1vv": {
     "title": "Chapter Six Packet #23",
     "chapter": 6,
-    "assumptions": ["B → H", "C → (P & R)"],
+    "premises": ["B → H", "C → (P & R)"],
     "conclusion": "(B & C) → (R & H)"
   },
   "za8elv": {
     "title": "Chapter Six Packet #24",
     "chapter": 6,
-    "assumptions": ["M ↔ K", "K → E", "(M → E) → T"],
+    "premises": ["M ↔ K", "K → E", "(M → E) → T"],
     "conclusion": "T"
   },
   "a3wcbx": {
     "title": "Chapter Six Packet #25",
     "chapter": 6,
-    "assumptions": ["M → -E", "N → M", "-E → (K & H)"],
+    "premises": ["M → -E", "N → M", "-E → (K & H)"],
     "conclusion": "N → (K & H)"
   },
   "ra0oqg": {
     "title": "Chapter Six Packet #26",
     "chapter": 6,
-    "assumptions": ["N", "L → E"],
+    "premises": ["N", "L → E"],
     "conclusion": "(N ↔ L) → E"
   },
   "a8d5sz": {
     "title": "Chapter Six Packet #27",
     "chapter": 6,
-    "assumptions": ["S ∨ R", "R → M", "E → M", "S → E"],
+    "premises": ["S ∨ R", "R → M", "E → M", "S → E"],
     "conclusion": "M"
   },
   "qh5nbr": {
     "title": "Chapter Six Packet #28",
     "chapter": 6,
-    "assumptions": ["L → R", "E → L", "R → M"],
+    "premises": ["L → R", "E → L", "R → M"],
     "conclusion": "E → M"
   },
   "nhzwwf": {
     "title": "Chapter Six Packet #29",
     "chapter": 6,
-    "assumptions": ["(J ∨ P) → K", "G"],
+    "premises": ["(J ∨ P) → K", "G"],
     "conclusion": "J → (K & G)"
   },
   "grkvcl": {
     "title": "Chapter Six Packet #30",
     "chapter": 6,
-    "assumptions": ["H ↔ N", "N → B", "(R & B) → W"],
+    "premises": ["H ↔ N", "N → B", "(R & B) → W"],
     "conclusion": "(H & R) → W"
   },
   "ck5ib9": {
     "title": "Chapter Six Packet #31",
     "chapter": 6,
-    "assumptions": ["-B → F", "F → E", "M → -B"],
+    "premises": ["-B → F", "F → E", "M → -B"],
     "conclusion": "M → E"
   },
   "1y4fa1": {
     "title": "Chapter Six Packet #32",
     "chapter": 6,
-    "assumptions": ["E ↔ S", "D → E", "P"],
+    "premises": ["E ↔ S", "D → E", "P"],
     "conclusion": "(D → S) & P"
   },
   "63oos1": {
     "title": "Chapter Six Packet #33",
     "chapter": 6,
-    "assumptions": ["A → C", "B → D"],
+    "premises": ["A → C", "B → D"],
     "conclusion": "(A & B) → (C & D)"
   },
   "a95svh": {
     "title": "Chapter Six Packet #34",
     "chapter": 6,
-    "assumptions": ["B → C", "C → D", "A → B"],
+    "premises": ["B → C", "C → D", "A → B"],
     "conclusion": "A → D"
   },
   "sz8rmn": {
     "title": "Chapter Six Packet #35",
     "chapter": 6,
-    "assumptions": ["G → M", "R → G", "M → R"],
+    "premises": ["G → M", "R → G", "M → R"],
     "conclusion": "M ↔ G"
   },
   "gl6838": {
     "title": "Chapter Six Packet #36",
     "chapter": 6,
-    "assumptions": ["E", "K → (N & M)", "M → B"],
+    "premises": ["E", "K → (N & M)", "M → B"],
     "conclusion": "K → (B & E)"
   },
   "uoivl8": {
     "title": "Chapter Six Packet #37",
     "chapter": 6,
-    "assumptions": ["J → (E & N)", "E → K", "R → J"],
+    "premises": ["J → (E & N)", "E → K", "R → J"],
     "conclusion": "R → K"
   },
   "zr31rj": {
     "title": "Chapter Six Packet #38",
     "chapter": 6,
-    "assumptions": ["(B ∨ A) → P", "H → B", "G → F"],
+    "premises": ["(B ∨ A) → P", "H → B", "G → F"],
     "conclusion": "(H & G) → (P & F)"
   },
   "1mjb46": {
     "title": "Chapter Six Packet #39",
     "chapter": 6,
-    "assumptions": ["P → R", "L → P", "(L → R) → M"],
+    "premises": ["P → R", "L → P", "(L → R) → M"],
     "conclusion": "M"
   },
   "psicsj": {
     "title": "Chapter Six Sample Quiz #1, Proof #1",
     "chapter": 6,
-    "assumptions": ["N → S", "(S ∨ G) → L"],
+    "premises": ["N → S", "(S ∨ G) → L"],
     "conclusion": "N → L"
   },
   "hgm4rj": {
     "title": "Chapter Six Sample Quiz #1, Proof #2",
     "chapter": 6,
-    "assumptions": ["(N & P) → Y", "J → N"],
+    "premises": ["(N & P) → Y", "J → N"],
     "conclusion": "(P & J) → Y"
   },
   "yur3zy": {
     "title": "Chapter Six Sample Quiz #1, Proof #3",
     "chapter": 6,
-    "assumptions": ["A ∨ B", "A → E", "B → C", "(C ∨ S) → E"],
+    "premises": ["A ∨ B", "A → E", "B → C", "(C ∨ S) → E"],
     "conclusion": "E"
   },
   "34chgm": {
     "title": "Chapter Six Sample Quiz #2, Proof #1",
     "chapter": 6,
-    "assumptions": ["(A & B) → M", "A", "M → H"],
+    "premises": ["(A & B) → M", "A", "M → H"],
     "conclusion": "B → H"
   },
   "vkuopd": {
     "title": "Chapter Six Sample Quiz #2, Proof #2",
     "chapter": 6,
-    "assumptions": ["(K ∨ T) → (G & R)", "(R & M) → J"],
+    "premises": ["(K ∨ T) → (G & R)", "(R & M) → J"],
     "conclusion": "(M & K) → J"
   },
   "hm3wd4": {
     "title": "Chapter Six Sample Quiz #2, Proof #3",
     "chapter": 6,
-    "assumptions": ["P → N", "N → G", "(N ↔ P) → B", "G → P"],
+    "premises": ["P → N", "N → G", "(N ↔ P) → B", "G → P"],
     "conclusion": "B"
   },
   "90ow2j": {
     "title": "Chapter Six Sample Quiz #3, Proof #1",
     "chapter": 6,
-    "assumptions": ["(A ∨ B) → H", "E → A"],
+    "premises": ["(A ∨ B) → H", "E → A"],
     "conclusion": "E → H"
   },
   "hqzp48": {
     "title": "Chapter Six Sample Quiz #3, Proof #2",
     "chapter": 6,
-    "assumptions": ["G → (L & B)", "(B & R) → N"],
+    "premises": ["G → (L & B)", "(B & R) → N"],
     "conclusion": "(R & G) → N"
   },
   "3m9ecp": {
     "title": "Chapter Six Sample Quiz #3, Proof #3",
     "chapter": 6,
-    "assumptions": ["(A & B) → R", "R → T", "(A → T) → C", "B"],
+    "premises": ["(A & B) → R", "R → T", "(A → T) → C", "B"],
     "conclusion": "C"
   },
   "26zeo4": {
     "title": "Chapter Six Sample Quiz #4, Proof #1",
     "chapter": 6,
-    "assumptions": ["M ∨ N", "N → K", "M → J", "J → K"],
+    "premises": ["M ∨ N", "N → K", "M → J", "J → K"],
     "conclusion": "K"
   },
   "9hqf04": {
     "title": "Chapter Six Sample Quiz #4, Proof #2",
     "chapter": 6,
-    "assumptions": ["(P ∨ J) → Y"],
+    "premises": ["(P ∨ J) → Y"],
     "conclusion": "P → (Y ∨ R)"
   },
   "broxu0": {
     "title": "Chapter Six Sample Quiz #4, Proof #3",
     "chapter": 6,
-    "assumptions": ["A → K", "B → (S & T)"],
+    "premises": ["A → K", "B → (S & T)"],
     "conclusion": "(A & B) → (K & T)"
   },
   "zbus4e": {
     "title": "Chapter Seven #1",
     "chapter": 7,
-    "assumptions": ["Z → M", "-M"],
+    "premises": ["Z → M", "-M"],
     "conclusion": "-Z"
   },
   "tr9eu2": {
     "title": "Chapter Seven #2",
     "chapter": 7,
-    "assumptions": ["-W → -S", "S"],
+    "premises": ["-W → -S", "S"],
     "conclusion": "W"
   },
   "i43cr8": {
     "title": "Chapter Seven #3",
     "chapter": 7,
-    "assumptions": ["A → C", "B → -C"],
+    "premises": ["A → C", "B → -C"],
     "conclusion": "-(A & B)"
   },
   "urlrq5": {
     "title": "Chapter Seven #4",
     "chapter": 7,
-    "assumptions": ["E → -H", "M → R", "R → H", "M"],
+    "premises": ["E → -H", "M → R", "R → H", "M"],
     "conclusion": "-E"
   },
   "iju7ov": {
     "title": "Chapter Seven #5",
     "chapter": 7,
-    "assumptions": ["K & -M", "N → M"],
+    "premises": ["K & -M", "N → M"],
     "conclusion": "-(K → N)"
   },
   "aglzwe": {
     "title": "Chapter Seven #6",
     "chapter": 7,
-    "assumptions": ["-J → -F", "E & F"],
+    "premises": ["-J → -F", "E & F"],
     "conclusion": "J & E"
   },
   "5ysbnb": {
     "title": "Chapter Seven #9",
     "chapter": 7,
-    "assumptions": ["B & (E → -M)", "(-D → E) & M"],
+    "premises": ["B & (E → -M)", "(-D → E) & M"],
     "conclusion": "D & B"
   },
   "9u9wdt": {
     "title": "Chapter Seven #10",
     "chapter": 7,
-    "assumptions": ["C → B", "(A → C) & (-A → -E)", "E"],
+    "premises": ["C → B", "(A → C) & (-A → -E)", "E"],
     "conclusion": "B"
   },
   "7qbezh": {
     "title": "Chapter Seven #11",
     "chapter": 7,
-    "assumptions": ["M → H", "K → H", "-H"],
+    "premises": ["M → H", "K → H", "-H"],
     "conclusion": "-(M ∨ K)"
   },
   "j5bm7v": {
     "title": "Chapter Seven #12",
     "chapter": 7,
-    "assumptions": ["C ∨ D", "E → F", "-F & G", "C → E"],
+    "premises": ["C ∨ D", "E → F", "-F & G", "C → E"],
     "conclusion": "-(D → F) & G"
   },
   "l6z2hh": {
     "title": "Chapter Seven #13",
     "chapter": 7,
-    "assumptions": ["(H ∨ A) → (P & K)", "(-H & E) → C", "E & -C"],
+    "premises": ["(H ∨ A) → (P & K)", "(-H & E) → C", "E & -C"],
     "conclusion": "K"
   },
   "0uj0n4": {
     "title": "Chapter Seven #14",
     "chapter": 7,
-    "assumptions": ["-(Z & M)", "B → Z", "W → M"],
+    "premises": ["-(Z & M)", "B → Z", "W → M"],
     "conclusion": "-(W & B)"
   },
   "2g6h8y": {
     "title": "Chapter Seven #15",
     "chapter": 7,
-    "assumptions": ["L → H", "U → (M → L)", "-(M → H)"],
+    "premises": ["L → H", "U → (M → L)", "-(M → H)"],
     "conclusion": "-U"
   },
   "ybt98t": {
     "title": "Chapter Seven #16",
     "chapter": 7,
-    "assumptions": ["B → C", "A → -D"],
+    "premises": ["B → C", "A → -D"],
     "conclusion": "-((A & B) & (C → D))"
   },
   "nlbm1q": {
     "title": "Chapter Seven #17",
     "chapter": 7,
-    "assumptions": ["P → Q"],
+    "premises": ["P → Q"],
     "conclusion": "-Q → -P"
   },
   "amqesz": {
     "title": "Chapter Seven Packet #1",
     "chapter": 7,
-    "assumptions": ["-A → B", "-B"],
+    "premises": ["-A → B", "-B"],
     "conclusion": "A"
   },
   "6y5575": {
     "title": "Chapter Seven Packet #2",
     "chapter": 7,
-    "assumptions": ["-(H ∨ R) → -M", "M"],
+    "premises": ["-(H ∨ R) → -M", "M"],
     "conclusion": "H ∨ R"
   },
   "wg2ran": {
     "title": "Chapter Seven Packet #3",
     "chapter": 7,
-    "assumptions": ["K → B", "-(K & B)"],
+    "premises": ["K → B", "-(K & B)"],
     "conclusion": "-K"
   },
   "4eb5z0": {
     "title": "Chapter Seven Packet #4",
     "chapter": 7,
-    "assumptions": ["-R → -P"],
+    "premises": ["-R → -P"],
     "conclusion": "P → R"
   },
   "at7yrb": {
     "title": "Chapter Seven Packet #5",
     "chapter": 7,
-    "assumptions": ["U", "U → E", "--Q → -E"],
+    "premises": ["U", "U → E", "--Q → -E"],
     "conclusion": "-Q"
   },
   "dpz7zj": {
     "title": "Chapter Seven Packet #6",
     "chapter": 7,
-    "assumptions": ["L → T", "-T"],
+    "premises": ["L → T", "-T"],
     "conclusion": "-L"
   },
   "zh7ria": {
     "title": "Chapter Seven Packet #7",
     "chapter": 7,
-    "assumptions": ["-(I ∨ L)"],
+    "premises": ["-(I ∨ L)"],
     "conclusion": "-(I & L)"
   },
   "8z3f4d": {
     "title": "Chapter Seven Packet #8",
     "chapter": 7,
-    "assumptions": ["A → B", "-(A & B)"],
+    "premises": ["A → B", "-(A & B)"],
     "conclusion": "M ∨ -A"
   },
   "hadhxs": {
     "title": "Chapter Seven Packet #9",
     "chapter": 7,
-    "assumptions": ["C", "C → (J ∨ A)", "J → -S", "A → -S", "-M → S"],
+    "premises": ["C", "C → (J ∨ A)", "J → -S", "A → -S", "-M → S"],
     "conclusion": "M"
   },
   "7lm3gn": {
     "title": "Chapter Seven Packet #10",
     "chapter": 7,
-    "assumptions": ["P → E", "-G → -(E & R)", "P & R"],
+    "premises": ["P → E", "-G → -(E & R)", "P & R"],
     "conclusion": "G"
   },
   "c9ps1b": {
     "title": "Chapter Seven Packet #11",
     "chapter": 7,
-    "assumptions": ["K → (P & -F)", "-E → F"],
+    "premises": ["K → (P & -F)", "-E → F"],
     "conclusion": "-(K & -E)"
   },
   "qhc0sy": {
     "title": "Chapter Seven Packet #12",
     "chapter": 7,
-    "assumptions": ["-R → M", "-P → B", "B → -M"],
+    "premises": ["-R → M", "-P → B", "B → -M"],
     "conclusion": "-(-P & -R)"
   },
   "8zt85d": {
     "title": "Chapter Seven Packet #13",
     "chapter": 7,
-    "assumptions": ["(S & -K) ↔ R", "E & T", "(E → S) & -R"],
+    "premises": ["(S & -K) ↔ R", "E & T", "(E → S) & -R"],
     "conclusion": "K"
   },
   "rntdau": {
     "title": "Chapter Seven Packet #14",
     "chapter": 7,
-    "assumptions": ["T → R", "H → R", "-R"],
+    "premises": ["T → R", "H → R", "-R"],
     "conclusion": "-(T ∨ H)"
   },
   "06fvy4": {
     "title": "Chapter Seven Packet #15",
     "chapter": 7,
-    "assumptions": ["E & R", "L → F", "(-L & R) → -E"],
+    "premises": ["E & R", "L → F", "(-L & R) → -E"],
     "conclusion": "F"
   },
   "2lgpoc": {
     "title": "Chapter Seven Packet #16",
     "chapter": 7,
-    "assumptions": ["L → R", "-(R ∨ B)", "P → L"],
+    "premises": ["L → R", "-(R ∨ B)", "P → L"],
     "conclusion": "-P"
   },
   "vw1wpa": {
     "title": "Chapter Seven Packet #18",
     "chapter": 7,
-    "assumptions": ["T", "T → (-E & M)", "H → E"],
+    "premises": ["T", "T → (-E & M)", "H → E"],
     "conclusion": "-H"
   },
   "jezvwq": {
     "title": "Chapter Seven Packet #19",
     "chapter": 7,
-    "assumptions": ["G → R", "-R & L"],
+    "premises": ["G → R", "-R & L"],
     "conclusion": "-(L → G)"
   },
   "pj3fad": {
     "title": "Chapter Seven Packet #20",
     "chapter": 7,
-    "assumptions": ["P → -E", "N → E"],
+    "premises": ["P → -E", "N → E"],
     "conclusion": "-(N & P)"
   },
   "y7bcxf": {
     "title": "Chapter Seven Packet #21",
     "chapter": 7,
-    "assumptions": ["-R", "-K → B", "B → R"],
+    "premises": ["-R", "-K → B", "B → R"],
     "conclusion": "K ∨ F"
   },
   "kuz3kw": {
     "title": "Chapter Seven Packet #22",
     "chapter": 7,
-    "assumptions": ["G ↔ M", "G → P", "-P"],
+    "premises": ["G ↔ M", "G → P", "-P"],
     "conclusion": "-M"
   },
   "m8vntl": {
     "title": "Chapter Seven Packet #23",
     "chapter": 7,
-    "assumptions": ["-(E & S)", "-K → E", "E → S"],
+    "premises": ["-(E & S)", "-K → E", "E → S"],
     "conclusion": "K"
   },
   "j38aqx": {
     "title": "Chapter Seven Packet (Word Problem) #1",
     "chapter": 7,
-    "assumptions": ["P → D", "-D"],
+    "premises": ["P → D", "-D"],
     "conclusion": "-P"
   },
   "6k7gwk": {
     "title": "Chapter Seven Packet (Word Problem) #2",
     "chapter": 7,
-    "assumptions": ["-S → H"],
+    "premises": ["-S → H"],
     "conclusion": "-H → S"
   },
   "1iu4ha": {
     "title": "Chapter Seven Packet (Word Problem) #3",
     "chapter": 7,
-    "assumptions": ["R", "R → B", "--M → -B"],
+    "premises": ["R", "R → B", "--M → -B"],
     "conclusion": "-M"
   },
   "5qgdbi": {
     "title": "Chapter Seven Packet (Word Problem) #4",
     "chapter": 7,
-    "assumptions": ["T", "S → -T", "-S → M"],
+    "premises": ["T", "S → -T", "-S → M"],
     "conclusion": "M"
   },
   "zysiy7": {
     "title": "Chapter Seven Packet (Word Problem) #5",
     "chapter": 7,
-    "assumptions": ["F → (S ↔ H)", "F & -H"],
+    "premises": ["F → (S ↔ H)", "F & -H"],
     "conclusion": "-S"
   },
   "i5ocdm": {
     "title": "Chapter Seven Packet (Word Problem) #6",
     "chapter": 7,
-    "assumptions": ["-(J ∨ M)"],
+    "premises": ["-(J ∨ M)"],
     "conclusion": "-(J & M)"
   },
   "ybjzke": {
     "title": "Chapter Seven Packet (Word Problem) #7",
     "chapter": 7,
-    "assumptions": ["-S → -T", "S → A"],
+    "premises": ["-S → -T", "S → A"],
     "conclusion": "T → A"
   },
   "6yeuz5": {
     "title": "Chapter Seven Sample Quiz #1, Question 2",
     "chapter": 7,
-    "assumptions": ["A", "A → -P", "- - L → P"],
+    "premises": ["A", "A → -P", "- - L → P"],
     "conclusion": "-L"
   },
   "6q9kl5": {
     "title": "Chapter Seven Sample Quiz #1, Question 3",
     "chapter": 7,
-    "assumptions": ["R → (B & -G)", "J → (B ↔ G)"],
+    "premises": ["R → (B & -G)", "J → (B ↔ G)"],
     "conclusion": "-(J & R)"
   },
   "t7ano3": {
     "title": "Chapter Seven Sample Quiz #2, Question 2",
     "chapter": 7,
-    "assumptions": ["-H → F", "H → L", "-F"],
+    "premises": ["-H → F", "H → L", "-F"],
     "conclusion": "L"
   },
   "rmkvqg": {
     "title": "Chapter Seven Sample Quiz #2, Question 3",
     "chapter": 7,
-    "assumptions": ["M → (-B & K)", "M"],
+    "premises": ["M → (-B & K)", "M"],
     "conclusion": "-(K → B)"
   },
   "kvm1r5": {
     "title": "Chapter Seven Sample Quiz #3, Question 2",
     "chapter": 7,
-    "assumptions": ["-S → (C & -P)", "C → P"],
+    "premises": ["-S → (C & -P)", "C → P"],
     "conclusion": "S"
   },
   "9er0ef": {
     "title": "Chapter Seven Sample Quiz #3, Question 3",
     "chapter": 7,
-    "assumptions": ["J → S", "R → S", "S → -E", "E"],
+    "premises": ["J → S", "R → S", "S → -E", "E"],
     "conclusion": "-(J ∨ R)"
   },
   "4q4imo": {
     "title": "Chapter Seven Sample Quiz #4, Question 2",
     "chapter": 7,
-    "assumptions": ["H → (A & R)", "-(A ∨ C)"],
+    "premises": ["H → (A & R)", "-(A ∨ C)"],
     "conclusion": "-H"
   },
   "u63nk8": {
     "title": "Chapter Seven Sample Quiz #4, Question 3",
     "chapter": 7,
-    "assumptions": ["-T → -G"],
+    "premises": ["-T → -G"],
     "conclusion": "-(-T & G)"
   },
   "g88rvs": {
     "title": "Chapter Eight #1",
     "chapter": 8,
-    "assumptions": ["K", "K → --U"],
+    "premises": ["K", "K → --U"],
     "conclusion": "U"
   },
   "j8slfa": {
     "title": "Chapter Eight #2",
     "chapter": 8,
-    "assumptions": ["-(R → M)", "(R & E) → -T", "E"],
+    "premises": ["-(R → M)", "(R & E) → -T", "E"],
     "conclusion": "-(T ∨ M)"
   },
   "y3vqko": {
     "title": "Chapter Eight #3",
     "chapter": 8,
-    "assumptions": ["E → R", "M → -R", "-E → --L"],
+    "premises": ["E → R", "M → -R", "-E → --L"],
     "conclusion": "-L ∨ --M"
   },
   "ohvdnj": {
     "title": "Chapter Eight #4",
     "chapter": 8,
-    "assumptions": ["B → C", "--A ∨ B"],
+    "premises": ["B → C", "--A ∨ B"],
     "conclusion": "-A → C"
   },
   "ohrivj": {
     "title": "Chapter Eight #5",
     "chapter": 8,
-    "assumptions": ["A → C", "B → -C"],
+    "premises": ["A → C", "B → -C"],
     "conclusion": "-(A & B)"
   },
   "3n3y2f": {
     "title": "Chapter Eight #6",
     "chapter": 8,
-    "assumptions": ["L → -T"],
+    "premises": ["L → -T"],
     "conclusion": "L → (G ∨ -T)"
   },
   "gj8bbk": {
     "title": "Chapter Eight #7",
     "chapter": 8,
-    "assumptions": ["P → Q"],
+    "premises": ["P → Q"],
     "conclusion": "-Q → -P"
   },
   "3x7q1b": {
     "title": "Chapter Eight Packet #1",
     "chapter": 8,
-    "assumptions": ["A → B", "-B"],
+    "premises": ["A → B", "-B"],
     "conclusion": "-A"
   },
   "t50lu8": {
     "title": "Chapter Eight Packet #2",
     "chapter": 8,
-    "assumptions": ["A ∨ B", "-A"],
+    "premises": ["A ∨ B", "-A"],
     "conclusion": "B"
   },
   "trylrp": {
     "title": "Chapter Eight Packet #3",
     "chapter": 8,
-    "assumptions": ["I & -M"],
+    "premises": ["I & -M"],
     "conclusion": "-(I → M)"
   },
   "br6te2": {
     "title": "Chapter Eight Packet #4",
     "chapter": 8,
-    "assumptions": ["---P"],
+    "premises": ["---P"],
     "conclusion": "-P"
   },
   "25xeyr": {
     "title": "Chapter Eight Packet #5",
     "chapter": 8,
-    "assumptions": ["-S ∨ -P", "--S"],
+    "premises": ["-S ∨ -P", "--S"],
     "conclusion": "-P"
   },
   "ywen2g": {
     "title": "Chapter Eight Packet #6",
     "chapter": 8,
-    "assumptions": ["-B → R", "-R"],
+    "premises": ["-B → R", "-R"],
     "conclusion": "--B"
   },
   "9z2u9n": {
     "title": "Chapter Eight Packet #7",
     "chapter": 8,
-    "assumptions": ["E", "-(E & M)"],
+    "premises": ["E", "-(E & M)"],
     "conclusion": "-M"
   },
   "u82gvl": {
     "title": "Chapter Eight Packet #8",
     "chapter": 8,
-    "assumptions": ["--M"],
+    "premises": ["--M"],
     "conclusion": "M"
   },
   "r9bjdk": {
     "title": "Chapter Eight Packet #10",
     "chapter": 8,
-    "assumptions": ["A"],
+    "premises": ["A"],
     "conclusion": "--A"
   },
   "sd96nx": {
     "title": "Chapter Eight Packet #11",
     "chapter": 8,
-    "assumptions": ["(M & P) ∨ (Q & S)", "-(M & P)"],
+    "premises": ["(M & P) ∨ (Q & S)", "-(M & P)"],
     "conclusion": "Q & S"
   },
   "i4kr78": {
     "title": "Chapter Eight Packet #12",
     "chapter": 8,
-    "assumptions": ["-(-B & -R)"],
+    "premises": ["-(-B & -R)"],
     "conclusion": "B ∨ R"
   },
   "n3xtbb": {
     "title": "Chapter Eight Packet #13",
     "chapter": 8,
-    "assumptions": ["-K"],
+    "premises": ["-K"],
     "conclusion": "---K"
   },
   "9sb2fp": {
     "title": "Chapter Eight Packet #14",
     "chapter": 8,
-    "assumptions": ["-(A & B)"],
+    "premises": ["-(A & B)"],
     "conclusion": "-A ∨ -B"
   },
   "rpzy25": {
     "title": "Chapter Eight Packet #15",
     "chapter": 8,
-    "assumptions": ["B → T"],
+    "premises": ["B → T"],
     "conclusion": "-B ∨ T"
   },
   "ed81kh": {
     "title": "Chapter Eight Packet #16",
     "chapter": 8,
-    "assumptions": ["-((A & B) & C)", "C"],
+    "premises": ["-((A & B) & C)", "C"],
     "conclusion": "-(A & B)"
   },
   "ufou67": {
     "title": "Chapter Eight Packet #17",
     "chapter": 8,
-    "assumptions": ["L ∨ -T", "-L"],
+    "premises": ["L ∨ -T", "-L"],
     "conclusion": "-T"
   },
   "ns4rf2": {
     "title": "Chapter Eight Packet #18",
     "chapter": 8,
-    "assumptions": ["-A ∨ -B"],
+    "premises": ["-A ∨ -B"],
     "conclusion": "-(A & B)"
   },
   "1tlqcz": {
     "title": "Chapter Eight Packet #19",
     "chapter": 8,
-    "assumptions": ["- - M → -Q"],
+    "premises": ["- - M → -Q"],
     "conclusion": "Q → -M"
   },
   "i7q3bj": {
     "title": "Chapter Eight Packet #20",
     "chapter": 8,
-    "assumptions": ["G ∨ M", "-G"],
+    "premises": ["G ∨ M", "-G"],
     "conclusion": "M"
   },
   "1524x9": {
     "title": "Chapter Eight Packet #21",
     "chapter": 8,
-    "assumptions": ["A → B", "B → C"],
+    "premises": ["A → B", "B → C"],
     "conclusion": "A → C"
   },
   "q310gc": {
     "title": "Chapter Eight Packet #22",
     "chapter": 8,
-    "assumptions": ["-H", "J → H"],
+    "premises": ["-H", "J → H"],
     "conclusion": "-J"
   },
   "7ep61d": {
     "title": "Chapter Eight Packet #23",
     "chapter": 8,
-    "assumptions": ["-(-M → K)"],
+    "premises": ["-(-M → K)"],
     "conclusion": "-M & -K"
   },
   "dacuvf": {
     "title": "Chapter Eight Packet #24",
     "chapter": 8,
-    "assumptions": ["-(F ∨ G)"],
+    "premises": ["-(F ∨ G)"],
     "conclusion": "-F & -G"
   },
   "hz68nv": {
     "title": "Chapter Eight Packet #25",
     "chapter": 8,
-    "assumptions": ["--N → G"],
+    "premises": ["--N → G"],
     "conclusion": "-N ∨ G"
   },
   "41dtni": {
     "title": "Chapter Eight Packet #26",
     "chapter": 8,
-    "assumptions": ["A → (R & G)", "-(R & G)"],
+    "premises": ["A → (R & G)", "-(R & G)"],
     "conclusion": "-A"
   },
   "fzrbaf": {
     "title": "Chapter Eight Packet #27",
     "chapter": 8,
-    "assumptions": ["-M → -(P & L)", "--(P & L)"],
+    "premises": ["-M → -(P & L)", "--(P & L)"],
     "conclusion": "--M"
   },
   "yqcuu7": {
     "title": "Chapter Eight Packet MLQ #1",
     "chapter": 8,
-    "assumptions": ["-R ∨ J", "-J", "A → R"],
+    "premises": ["-R ∨ J", "-J", "A → R"],
     "conclusion": "-A"
   },
   "bvk5x2": {
     "title": "Chapter Eight Packet MLQ #2",
     "chapter": 8,
-    "assumptions": ["A → B", "B → C", "C → D"],
+    "premises": ["A → B", "B → C", "C → D"],
     "conclusion": "A → D"
   },
   "bvas8x": {
     "title": "Chapter Eight Packet MLQ #3",
     "chapter": 8,
-    "assumptions": ["-M → S", "-S"],
+    "premises": ["-M → S", "-S"],
     "conclusion": "M"
   },
   "utextl": {
     "title": "Chapter Eight Packet MLQ #4",
     "chapter": 8,
-    "assumptions": ["B → Q", "-Q"],
+    "premises": ["B → Q", "-Q"],
     "conclusion": "---B"
   },
   "pu708i": {
     "title": "Chapter Eight Packet MLQ #5",
     "chapter": 8,
-    "assumptions": ["K → L", "L → E", "E → (W ∨ M)"],
+    "premises": ["K → L", "L → E", "E → (W ∨ M)"],
     "conclusion": "K → (W ∨ M)"
   },
   "e100yl": {
     "title": "Chapter Eight Packet MLQ #6",
     "chapter": 8,
-    "assumptions": ["-P", "H → P", "M → H"],
+    "premises": ["-P", "H → P", "M → H"],
     "conclusion": "-M"
   },
   "wivj2f": {
     "title": "Chapter Eight Packet MLQ #7",
     "chapter": 8,
-    "assumptions": ["-(A & B)", "Q → A", "Q"],
+    "premises": ["-(A & B)", "Q → A", "Q"],
     "conclusion": "-B"
   },
   "nu9c2k": {
     "title": "Chapter Eight Packet MLQ #8",
     "chapter": 8,
-    "assumptions": ["M ∨ (-L → S)", "-M", "-S"],
+    "premises": ["M ∨ (-L → S)", "-M", "-S"],
     "conclusion": "--L"
   },
   "9v1253": {
     "title": "Chapter Eight Packet MLQ #9",
     "chapter": 8,
-    "assumptions": ["H → -Q", "--Q", "S ∨ H"],
+    "premises": ["H → -Q", "--Q", "S ∨ H"],
     "conclusion": "S"
   },
   "3gt1jj": {
     "title": "Chapter Eight Packet MLQ #10",
     "chapter": 8,
-    "assumptions": ["-M → -S", "--M → K", "--S"],
+    "premises": ["-M → -S", "--M → K", "--S"],
     "conclusion": "K"
   },
   "lutthj": {
     "title": "Chapter Eight Packet MLQ #11",
     "chapter": 8,
-    "assumptions": ["-R → -Z", "-Z → S", "-S"],
+    "premises": ["-R → -Z", "-Z → S", "-S"],
     "conclusion": "--R"
   },
   "9tcz5s": {
     "title": "Chapter Eight Packet MLQ #12",
     "chapter": 8,
-    "assumptions": ["M → R", "R → T", "-T", "M ∨ S"],
+    "premises": ["M → R", "R → T", "-T", "M ∨ S"],
     "conclusion": "S"
   },
   "agzvqu": {
     "title": "Chapter Eight Packet MLQ #13",
     "chapter": 8,
-    "assumptions": ["-(-A & -B)", "A → B", "B → C", "-C"],
+    "premises": ["-(-A & -B)", "A → B", "B → C", "-C"],
     "conclusion": "--B"
   },
   "ffpzjb": {
     "title": "Chapter Eight Packet MLQ #14",
     "chapter": 8,
-    "assumptions": ["-(B & H)", "-B → L", "-J", "L → J"],
+    "premises": ["-(B & H)", "-B → L", "-J", "L → J"],
     "conclusion": "-H"
   },
   "a7b6f0": {
     "title": "Chapter Eight Packet MLQ #15",
     "chapter": 8,
-    "assumptions": ["H → (A ∨ P)", "-A & -P"],
+    "premises": ["H → (A ∨ P)", "-A & -P"],
     "conclusion": "-H"
   },
   "xg7t8j": {
     "title": "Chapter Eight Packet MLQ #16",
     "chapter": 8,
-    "assumptions": ["-(R ∨ S) → M", "M → (N & O)", "-(N & O)"],
+    "premises": ["-(R ∨ S) → M", "M → (N & O)", "-(N & O)"],
     "conclusion": "-(-R & -S)"
   },
   "vmcus0": {
     "title": "Chapter Eight Packet MLQ #17",
     "chapter": 8,
-    "assumptions": ["-(-E ∨ -G)", "E → F"],
+    "premises": ["-(-E ∨ -G)", "E → F"],
     "conclusion": "F"
   },
   "8a4gu1": {
     "title": "Chapter Eight Packet MLQ #19",
     "chapter": 8,
-    "assumptions": ["A ↔ N", "A → R"],
+    "premises": ["A ↔ N", "A → R"],
     "conclusion": "-R → -N"
   },
   "lln2rl": {
     "title": "Chapter Eight Packet MLQ #20",
     "chapter": 8,
-    "assumptions": ["M", "M → (K → T)"],
+    "premises": ["M", "M → (K → T)"],
     "conclusion": "-T → -K"
   },
   "rwlyed": {
     "title": "Chapter Eight Packet MLQ #21",
     "chapter": 8,
-    "assumptions": ["-K ∨ M", "K & (M → L)"],
+    "premises": ["-K ∨ M", "K & (M → L)"],
     "conclusion": "L"
   },
   "8djlk1": {
     "title": "Chapter Eight Packet MLQ #22",
     "chapter": 8,
-    "assumptions": ["(A → B) & (-A → C)"],
+    "premises": ["(A → B) & (-A → C)"],
     "conclusion": "B ∨ C"
   },
   "ynpwjx": {
     "title": "Chapter Eight Packet MLQ #23",
     "chapter": 8,
-    "assumptions": ["A", "(A & B) → C", "-C", "-B → (D & E)"],
+    "premises": ["A", "(A & B) → C", "-C", "-B → (D & E)"],
     "conclusion": "-B & (D & E)"
   },
   "lgxft3": {
     "title": "Chapter Eight Packet MLQ #24",
     "chapter": 8,
-    "assumptions": ["H ∨ M", "H → K", "-K", "M → L"],
+    "premises": ["H ∨ M", "H → K", "-K", "M → L"],
     "conclusion": "L"
   },
   "42w7b5": {
     "title": "Chapter Eight Packet MLQ #25",
     "chapter": 8,
-    "assumptions": ["E → (G → U)", "G & -U"],
+    "premises": ["E → (G → U)", "G & -U"],
     "conclusion": "-E"
   },
   "dknmai": {
     "title": "Chapter Eight Packet MLQ #26",
     "chapter": 8,
-    "assumptions": ["-M → N", "K → -M", "N → -R", "--R"],
+    "premises": ["-M → N", "K → -M", "N → -R", "--R"],
     "conclusion": "-K"
   },
   "pe4h6g": {
     "title": "Chapter Eight Packet MLQ #27",
     "chapter": 8,
-    "assumptions": ["--O", "O → A", "A → K", "-(W & K)"],
+    "premises": ["--O", "O → A", "A → K", "-(W & K)"],
     "conclusion": "-W"
   },
   "wdbemw": {
     "title": "Chapter Eight Packet MLQ #28",
     "chapter": 8,
-    "assumptions": ["R → F", "-R → E", "(F ∨ E) → P"],
+    "premises": ["R → F", "-R → E", "(F ∨ E) → P"],
     "conclusion": "P"
   },
   "i1uw2g": {
     "title": "Chapter Eight Packet MLQ #29",
     "chapter": 8,
-    "assumptions": ["(W & M) → -J", "-J → -P", "P & M"],
+    "premises": ["(W & M) → -J", "-J → -P", "P & M"],
     "conclusion": "-(W & M)"
   },
   "225ugq": {
     "title": "Chapter Eight Packet MLQ #30",
     "chapter": 8,
-    "assumptions": ["-((A & -B) & C)", "C"],
+    "premises": ["-((A & -B) & C)", "C"],
     "conclusion": "-A ∨ B"
   },
   "lhs91f": {
     "title": "Chapter Eight Packet MLQ #31",
     "chapter": 8,
-    "assumptions": ["O → -P", "P", "-O → (T ∨ R)", "R → -L", "L"],
+    "premises": ["O → -P", "P", "-O → (T ∨ R)", "R → -L", "L"],
     "conclusion": "T"
   },
   "fht1xh": {
     "title": "Chapter Eight Packet MLQ #32",
     "chapter": 8,
-    "assumptions": ["-W", "-(R ∨ -S) ∨ W"],
+    "premises": ["-W", "-(R ∨ -S) ∨ W"],
     "conclusion": "S"
   },
   "xohxr2": {
     "title": "Chapter Eight Packet MLQ #33",
     "chapter": 8,
-    "assumptions": ["(H → E) → -P", "P"],
+    "premises": ["(H → E) → -P", "P"],
     "conclusion": "H & -E"
   },
   "oimym8": {
     "title": "Chapter Eight Packet MLQ #34",
     "chapter": 8,
-    "assumptions": ["(L & -H) → -G", "M → G", "M & -H"],
+    "premises": ["(L & -H) → -G", "M → G", "M & -H"],
     "conclusion": "-L"
   },
   "vfun0v": {
     "title": "Chapter Eight Packet MLQ #35",
     "chapter": 8,
-    "assumptions": ["E → (W ∨ B)", "L → E", "-B & L"],
+    "premises": ["E → (W ∨ B)", "L → E", "-B & L"],
     "conclusion": "W"
   },
   "416iy8": {
     "title": "Chapter Eight Packet MLQ #36",
     "chapter": 8,
-    "assumptions": ["E → R", "-(G → R)", "-(J & -E)"],
+    "premises": ["E → R", "-(G → R)", "-(J & -E)"],
     "conclusion": "-J"
   },
   "ghlzzr": {
     "title": "Chapter Eight Packet MLQ #37",
     "chapter": 8,
-    "assumptions": ["-(F & P) → D", "-E", "D → E"],
+    "premises": ["-(F & P) → D", "-E", "D → E"],
     "conclusion": "F"
   },
   "y3nty3": {
     "title": "Chapter Eight Packet MLQ #38",
     "chapter": 8,
-    "assumptions": ["-(A & B) → C", "C → D", "-D"],
+    "premises": ["-(A & B) → C", "C → D", "-D"],
     "conclusion": "A"
   },
   "6qf2y7": {
     "title": "Chapter Eight Packet MLQ #39",
     "chapter": 8,
-    "assumptions": ["- - J", "J → H", "-(H & M)"],
+    "premises": ["- - J", "J → H", "-(H & M)"],
     "conclusion": "-M"
   },
   "irf047": {
     "title": "Chapter Eight Packet MLQ #40",
     "chapter": 8,
-    "assumptions": ["N ↔ L", "R → P", "-N ∨ R"],
+    "premises": ["N ↔ L", "R → P", "-N ∨ R"],
     "conclusion": "-P → -L"
   },
   "r7ujn5": {
     "title": "Chapter Eight Packet MLQ #41",
     "chapter": 8,
-    "assumptions": ["A → -B", "-A → C"],
+    "premises": ["A → -B", "-A → C"],
     "conclusion": "B → C"
   },
   "156s9q": {
     "title": "Chapter Eight Packet MLQ #42",
     "chapter": 8,
-    "assumptions": ["R", "E → S", "-R ∨ E"],
+    "premises": ["R", "E → S", "-R ∨ E"],
     "conclusion": "S"
   },
   "gns4kw": {
     "title": "Chapter Eight Packet MLQ #43",
     "chapter": 8,
-    "assumptions": ["(K & G) ∨ R", "L → R", "-R"],
+    "premises": ["(K & G) ∨ R", "L → R", "-R"],
     "conclusion": "K & -L"
   },
   "govrz7": {
     "title": "Chapter Eight Packet MLQ #44",
     "chapter": 8,
-    "assumptions": ["- - - H", "E → H"],
+    "premises": ["- - - H", "E → H"],
     "conclusion": "-E"
   },
   "sooosx": {
     "title": "Chapter Eight Packet MLQ #45",
     "chapter": 8,
-    "assumptions": ["-(M & G)", "J ∨ M", "G"],
+    "premises": ["-(M & G)", "J ∨ M", "G"],
     "conclusion": "J"
   },
   "x0wqoo": {
     "title": "Chapter Eight Packet MLQ #46",
     "chapter": 8,
-    "assumptions": ["A → M", "B → A", "E → B"],
+    "premises": ["A → M", "B → A", "E → B"],
     "conclusion": "-M → -E"
   },
   "71qmus": {
     "title": "Chapter Eight Packet MLQ #47",
     "chapter": 8,
-    "assumptions": ["- - G", "-(M & -R)", "R → -G"],
+    "premises": ["- - G", "-(M & -R)", "R → -G"],
     "conclusion": "-M"
   },
   "6djyxe": {
     "title": "Chapter Eight Packet MLQ #49",
     "chapter": 8,
-    "assumptions": ["H → -P", "L → P", "L ∨ G"],
+    "premises": ["H → -P", "L → P", "L ∨ G"],
     "conclusion": "H → G"
   },
   "7q5ffk": {
     "title": "Chapter Eight Packet MLQ #49",
     "chapter": 8,
-    "assumptions": ["-E", "-J → P", "E ∨ (N & -P)"],
+    "premises": ["-E", "-J → P", "E ∨ (N & -P)"],
     "conclusion": "J & N"
   },
   "njqwkw": {
     "title": "Chapter Eight Packet MLQ #50",
     "chapter": 8,
-    "assumptions": ["-(E & H)", "M → H", "E"],
+    "premises": ["-(E & H)", "M → H", "E"],
     "conclusion": "-M"
   },
   "lmiv2s": {
     "title": "Chapter Eight Packet MLQ #51",
     "chapter": 8,
-    "assumptions": ["A → J", "-P → -J"],
+    "premises": ["A → J", "-P → -J"],
     "conclusion": "-P → -A"
   },
   "gunua1": {
     "title": "Chapter Eight Packet MLQ #52",
     "chapter": 8,
-    "assumptions": ["-(-S & -E)", "-E"],
+    "premises": ["-(-S & -E)", "-E"],
     "conclusion": "S"
   },
   "vnfc5v": {
     "title": "Chapter Eight Packet MLQ #53",
     "chapter": 8,
-    "assumptions": ["A → R", "E → A", "-R"],
+    "premises": ["A → R", "E → A", "-R"],
     "conclusion": "-E"
   },
   "iv0oth": {
     "title": "Chapter Eight Packet MLQ #54",
     "chapter": 8,
-    "assumptions": ["- - P", "-(P & T)", "T ∨ F"],
+    "premises": ["- - P", "-(P & T)", "T ∨ F"],
     "conclusion": "F"
   },
   "31gfml": {
     "title": "Chapter Eight Packet MLQ #55",
     "chapter": 8,
-    "assumptions": ["-(M → C)", "M → P"],
+    "premises": ["-(M → C)", "M → P"],
     "conclusion": "P & -C"
   },
   "j53e03": {
     "title": "Chapter Eight Packet MLQ #56",
     "chapter": 8,
-    "assumptions": ["B ∨ T", "-(T & G)", "G"],
+    "premises": ["B ∨ T", "-(T & G)", "G"],
     "conclusion": "B"
   },
   "8kut9z": {
     "title": "Chapter Eight Packet MLQ #57",
     "chapter": 8,
-    "assumptions": ["-(-A & -J)", "A → R", "-J"],
+    "premises": ["-(-A & -J)", "A → R", "-J"],
     "conclusion": "R"
   },
   "21aw26": {
     "title": "Chapter Eight Packet MLQ #58",
     "chapter": 8,
-    "assumptions": ["-J → -P", "J → M"],
+    "premises": ["-J → -P", "J → M"],
     "conclusion": "P → M"
   },
   "ymqyay": {
     "title": "Chapter Eight Packet MLQ #59",
     "chapter": 8,
-    "assumptions": ["-((R & B) & M)", "- - M & R"],
+    "premises": ["-((R & B) & M)", "- - M & R"],
     "conclusion": "-B"
   },
   "yg68p1": {
     "title": "Chapter Eight Packet MLQ #60",
     "chapter": 8,
-    "assumptions": ["-(H & S) ∨ T", "-G → -T", "-G ∨ R", "H & -R"],
+    "premises": ["-(H & S) ∨ T", "-G → -T", "-G ∨ R", "H & -R"],
     "conclusion": "-S"
   },
   "9ka2bu": {
     "title": "Chapter Eight Packet MLQ #61",
     "chapter": 8,
-    "assumptions": ["E → (W → B)", "W & F", "-(F & B)"],
+    "premises": ["E → (W → B)", "W & F", "-(F & B)"],
     "conclusion": "-E"
   },
   "vlsm9n": {
     "title": "Chapter Eight Sample Quiz #1, Question 1",
     "chapter": 8,
-    "assumptions": ["-H & -T", "P → (H ∨ T)"],
+    "premises": ["-H & -T", "P → (H ∨ T)"],
     "conclusion": "-P"
   },
   "vjsi8u": {
     "title": "Chapter Eight Sample Quiz #1, Question 2",
     "chapter": 8,
-    "assumptions": ["-(K & -S)", "- - - S", "H → K"],
+    "premises": ["-(K & -S)", "- - - S", "H → K"],
     "conclusion": "-H"
   },
   "wwj91p": {
     "title": "Chapter Eight Sample Quiz #1, Question 3",
     "chapter": 8,
-    "assumptions": ["-C → -B", "A → B"],
+    "premises": ["-C → -B", "A → B"],
     "conclusion": "A → C"
   },
   "z9hq14": {
     "title": "Chapter Eight Sample Quiz #2, Question 1",
     "chapter": 8,
-    "assumptions": ["B → C", "A → B"],
+    "premises": ["B → C", "A → B"],
     "conclusion": "-A ∨ C"
   },
   "2k39xo": {
     "title": "Chapter Eight Sample Quiz #2, Question 2",
     "chapter": 8,
-    "assumptions": ["G → -P", "P", "-G → K"],
+    "premises": ["G → -P", "P", "-G → K"],
     "conclusion": "K"
   },
   "6fspoj": {
     "title": "Chapter Eight Sample Quiz #2, Question 3",
     "chapter": 8,
-    "assumptions": ["-(R & -F)", "-F", "R ∨ M"],
+    "premises": ["-(R & -F)", "-F", "R ∨ M"],
     "conclusion": "M"
   },
   "w7w0kx": {
     "title": "Chapter Eight Sample Quiz #3, Question 1",
     "chapter": 8,
-    "assumptions": ["A → -B", "B", "A ∨ C"],
+    "premises": ["A → -B", "B", "A ∨ C"],
     "conclusion": "C"
   },
   "k1hluy": {
     "title": "Chapter Eight Sample Quiz #3, Question 2",
     "chapter": 8,
-    "assumptions": ["-E ∨ Q", "Q → W"],
+    "premises": ["-E ∨ Q", "Q → W"],
     "conclusion": "E → W"
   },
   "r70cqa": {
     "title": "Chapter Eight Sample Quiz #3, Question 3",
     "chapter": 8,
-    "assumptions": ["H → G", "-P → -G", "- - H"],
+    "premises": ["H → G", "-P → -G", "- - H"],
     "conclusion": "P"
   },
   "aro42m": {
     "title": "Chapter Eight Sample Quiz #4, Question 1",
     "chapter": 8,
-    "assumptions": ["-(A & -B)", "-C → -B"],
+    "premises": ["-(A & -B)", "-C → -B"],
     "conclusion": "A → C"
   },
   "sediz7": {
     "title": "Chapter Eight Sample Quiz #4, Question 2",
     "chapter": 8,
-    "assumptions": ["-(G & R) ∨ -T", "T", "G"],
+    "premises": ["-(G & R) ∨ -T", "T", "G"],
     "conclusion": "-R"
   },
   "z4h3zs": {
     "title": "Chapter Eight Sample Quiz #4, Question 3",
     "chapter": 8,
-    "assumptions": ["-(E ∨ S) → P", "-P & (S → H)"],
+    "premises": ["-(E ∨ S) → P", "-P & (S → H)"],
     "conclusion": "-E → H"
   },
   "vkkuvg": {
     "title": "Chapter Eight Sample Quiz #5, Question 1",
     "chapter": 8,
-    "assumptions": ["- - E ∨ R", "R → (N ∨ S)"],
+    "premises": ["- - E ∨ R", "R → (N ∨ S)"],
     "conclusion": "-E → (N ∨ S)"
   },
   "3fo8b3": {
     "title": "Chapter Eight Sample Quiz #5, Question 2",
     "chapter": 8,
-    "assumptions": ["-(-(E ∨ T) & H)", "- - H", "-E"],
+    "premises": ["-(-(E ∨ T) & H)", "- - H", "-E"],
     "conclusion": "T"
   },
   "x8dtw5": {
     "title": "Chapter Eight Sample Quiz #5, Question 3",
     "chapter": 8,
-    "assumptions": ["(J → R) & (-J → -Y)"],
+    "premises": ["(J → R) & (-J → -Y)"],
     "conclusion": "R ∨ -Y"
   },
   "qqirlg": {
     "title": "Chapter Eight Sample Quiz #6, Question 1",
     "chapter": 8,
-    "assumptions": ["-(M & F) ∨ P", "M", "- - - P"],
+    "premises": ["-(M & F) ∨ P", "M", "- - - P"],
     "conclusion": "-F"
   },
   "o71pp6": {
     "title": "Chapter Eight Sample Quiz #6, Question 2",
     "chapter": 8,
-    "assumptions": ["(A → B) & (-C → -B)"],
+    "premises": ["(A → B) & (-C → -B)"],
     "conclusion": "-A ∨ C"
   },
   "cb15ts": {
     "title": "Chapter Eight Sample Quiz #6, Question 3",
     "chapter": 8,
-    "assumptions": ["-(-E ∨ -G)", "K → -G"],
+    "premises": ["-(-E ∨ -G)", "K → -G"],
     "conclusion": "-K"
   }
 }

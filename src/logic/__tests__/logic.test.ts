@@ -326,9 +326,9 @@ describe('Rule', () => {
   }
 
   const evaluateSimple = (rule: Rule, formula: string, justifications: string[] = []) => {
-    const assumptions = justifications.map((j, i) => new Line(i, j, 'A'))
-    const proof = new Proof(assumptions, 'Z')
-    rule.evaluate(parse(formula), assumptions, proof)
+    const premises = justifications.map((j, i) => new Line(i, j, 'A'))
+    const proof = new Proof(premises, 'Z')
+    rule.evaluate(parse(formula), premises, proof)
   }
 
   describe('.findByShorthand', () => {

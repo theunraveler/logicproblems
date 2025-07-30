@@ -24,8 +24,8 @@ watch(
       </span>
     </BCardHeader>
     <BListGroup flush numbered>
-      <BListGroupItem v-for="(assumption, index) in props.problem.assumptions" :key="index">
-        <span class="ms-3">{{ parse(assumption) }}</span>
+      <BListGroupItem v-for="(premise, index) in props.problem.premises" :key="index">
+        <span class="ms-3">{{ parse(premise) }}</span>
       </BListGroupItem>
     </BListGroup>
     <BListGroup flush class="border-top-0">

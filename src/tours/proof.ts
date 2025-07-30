@@ -24,9 +24,9 @@ tour.addSteps([
     buttons: [{ text: 'Next', action: tour.next }],
   },
   {
-    id: 'assumptions',
-    title: 'Assumptions',
-    text: "These are the <strong>assumptions</strong> we are given to start the proof. We'll use these to make new deductions that will lead us to the conclusion.",
+    id: 'premises',
+    title: 'Premises',
+    text: "These are the <strong>premises</strong> we are given to start the proof. We'll use these to make new deductions that will lead us to the conclusion.",
     modalOverlayOpeningPadding: 0,
     attachTo: { element: '[data-tour="line-0"]', on: 'auto' },
     extraHighlights: ['[data-tour="line-1"]'],

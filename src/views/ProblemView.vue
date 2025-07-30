@@ -14,7 +14,7 @@ const router = useRouter()
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps(['id', 'problem', 'lines'])
-const proof = reactive(new Proof(props.problem.assumptions, props.problem.conclusion))
+const proof = reactive(new Proof(props.problem.premises, props.problem.conclusion))
 
 useHead({ title: props.problem.title })
 

@@ -125,22 +125,22 @@ export class Line {
 }
 
 export class Proof {
-  public readonly assumptions: Line[]
+  public readonly premises: Line[]
   public readonly conclusion: Expression
   public readonly deductions: Line[] = []
 
-  constructor(assumptions: Expression[] | Line[] | string[], conclusion: Expression | string) {
-    this.assumptions = assumptions.map((assumption, index) => {
-      return assumption instanceof Line ? assumption : new Line(index, assumption, Rule.ASSUMPTION)
+  constructor(premises: Expression[] | Line[] | string[], conclusion: Expression | string) {
+    this.premises = premises.map((premise, index) => {
+      return premise instanceof Line ? premise : new Line(index, premise, Rule.ASSUMPTION)
     })
     this.conclusion = conclusion instanceof Expression ? conclusion : parse(conclusion)
   }
 
   /**
-   * Return all lines of the proof, including assumptions.
+   * Return all lines of the proof, including premises.
    */
   get lines() {
-    return this.assumptions.concat(this.deductions)
+    return this.premises.concat(this.deductions)
   }
 
   addDeductions(deductions: [Expression | string, Rule | string, number[] | undefined][]): Line[] {
