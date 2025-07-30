@@ -24,12 +24,17 @@ const permalink = computed(() => {
 const { copy, copied, isSupported: clipboardIsSupported } = useClipboard({ source: permalink })
 const { share, isSupported: shareIsSupported } = useShare()
 
-const doShare = () => {
-  share({
-    title: `${props.title} | Logic Problems`,
-    text: `Check out my proof for ${props.title} on Logic Problems`,
-    url: location.href,
-  })
+const doShare = async () => {
+  try {
+    await share({
+      title: `${props.title} | Logic Problems`,
+      text: `Check out my proof for ${props.title} on Logic Problems`,
+      url: permalink.value,
+    })
+  } catch (error) {
+    if (error.toString().includes('AbortError')) return
+    throw error
+  }
 }
 </script>
 
