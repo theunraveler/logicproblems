@@ -13,8 +13,10 @@ db.version(1).stores({
  * Helper functions for initiating persistent storage.
  * Ripped from https://dexie.org/docs/StorageManager.
  */
-await (async () => {
-  return (await navigator.storage) && navigator.storage.persist
-    ? navigator.storage.persist()
-    : undefined
-})()
+if (import.meta.env.PROD) {
+  await (async () => {
+    return (await navigator.storage) && navigator.storage.persist
+      ? navigator.storage.persist()
+      : undefined
+  })()
+}
