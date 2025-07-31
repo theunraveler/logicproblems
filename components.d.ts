@@ -65,7 +65,7 @@ declare module 'vue' {
     IBiArrowRightSquareFill: typeof import('~icons/bi/arrow-right-square-fill')['default']
     IBiCheckCircleFill: typeof import('~icons/bi/check-circle-fill')['default']
     IBiClipboardCheck: typeof import('~icons/bi/clipboard-check')['default']
-    IBiExclamationTriangle: typeof import('~icons/bi/exclamation-triangle')['default']
+    IBiExclamationTriangleFill: typeof import('~icons/bi/exclamation-triangle-fill')['default']
     IBiGithub: typeof import('~icons/bi/github')['default']
     IBiLightbulb: typeof import('~icons/bi/lightbulb')['default']
     IBiLightbulbFill: typeof import('~icons/bi/lightbulb-fill')['default']

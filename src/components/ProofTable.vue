@@ -40,7 +40,8 @@ const unresolvedSuppositionText = `
   Your proof is currently dependent on this unresolved supposition. You must
   resolve the supposition using a
   ${listFormatter.format(Rule.all.filter((r) => r.resolvesSupposition).map((r) => `<strong>${r.shorthand}</strong>`))}
-  rule before completing the proof.
+  rule before completing the proof. This warning will no longer appear when the
+  supposition has been resolved.
 `
 
 watch(
@@ -199,7 +200,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
           <BTd>
             <BPopover v-if="isUnresolvedSupposition(line)" title="Unresolved Supposition">
               <template #target>
-                <IBiExclamationTriangle class="text-warning" />
+                <IBiExclamationTriangleFill class="text-warning" />
               </template>
               <div v-html="unresolvedSuppositionText" />
             </BPopover>
