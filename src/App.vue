@@ -68,9 +68,13 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
     </BNavbar>
   </header>
 
-  <BContainer tag="main" class="my-3">
-    <RouterView :key="$route.fullPath" />
-  </BContainer>
+  <RouterView :key="$route.fullPath" v-slot="{ Component }">
+    <Transition name="fade" mode="out-in" appear>
+      <BContainer tag="main" class="my-3">
+        <Component :is="Component" />
+      </BContainer>
+    </Transition>
+  </RouterView>
 
   <footer class="border-top py-3 mt-auto">
     <BContainer class="d-flex hstack flex-wrap justify-content-center justify-content-lg-end">
@@ -101,3 +105,17 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
 
   <BModalOrchestrator />
 </template>
+
+<style scoped lang="scss">
+.fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+</style>
