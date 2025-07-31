@@ -34,7 +34,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
       <BNavbarBrand :to="{ name: 'home' }" data-testid="link-home">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
-        <BNavbarNav class="hstack me-auto">
+        <BNavbarNav class="d-lg-flex align-items-lg-center me-auto">
           <BNavItemDropdown text="Problems">
             <BDropdownItem :to="{ name: 'problems' }">View All</BDropdownItem>
             <li><hr class="dropdown-divider" /></li>
@@ -47,10 +47,10 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
           </BNavItemDropdown>
           <BNavItem :to="{ name: 'formulae' }">Formulae</BNavItem>
         </BNavbarNav>
-        <BNavbarNav class="hstack">
+        <BNavbarNav class="d-lg-flex align-items-lg-center">
           <BNavItem :to="{ name: 'contact' }">Contact</BNavItem>
           <BNavItem :to="{ name: 'about' }">About</BNavItem>
-          <BNavItemDropdown style="z-index: 2000">
+          <BNavItemDropdown>
             <template #button-content>
               <Component :is="modes[colorMode].icon" />
             </template>
@@ -73,7 +73,7 @@ const commitSha = import.meta.env.GIT_COMMIT_SHA
   </BContainer>
 
   <footer class="border-top py-3 mt-auto">
-    <BContainer class="d-flex hstack flex-wrap justify-content-end">
+    <BContainer class="d-flex hstack flex-wrap justify-content-center justify-content-lg-end">
       <ul class="nav list-unstyled text-body-secondary hstack">
         <li class="me-3 hstack">
           <a

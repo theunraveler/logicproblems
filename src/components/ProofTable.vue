@@ -269,15 +269,11 @@ defineExpose({ clear, solvedIn, confirmDiscard })
   </BForm>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 table {
   &.qed {
     th,
     td {
-      &:nth-child(1) {
-        max-width: 30px;
-      }
-
       &:nth-child(3) {
         max-width: 50px;
       }
@@ -287,14 +283,6 @@ table {
   &.no-qed {
     th,
     td {
-      &:nth-child(1) {
-        max-width: 20px;
-      }
-
-      &:nth-child(2) {
-        max-width: 30px;
-      }
-
       &:nth-child(4) {
         max-width: 50px;
       }
