@@ -169,13 +169,13 @@ defineExpose({ clear, solvedIn, confirmDiscard })
 
 <template>
   <BForm @submit.prevent="submitLine">
-    <BTableSimple class="text-center" data-tour="proof">
+    <BTableSimple bordered :class="['text-center', qed ? 'qed' : 'no-qed']" data-tour="proof">
       <BThead>
         <BTr>
           <BTh v-if="!qed"></BTh>
           <BTh>Line</BTh>
           <BTh class="text-start">Formula</BTh>
-          <BTh class="text-truncate" style="max-width: 20px">Justification(s)</BTh>
+          <BTh class="text-truncate">Justification(s)</BTh>
           <BTh>Rule</BTh>
         </BTr>
       </BThead>
@@ -268,3 +268,37 @@ defineExpose({ clear, solvedIn, confirmDiscard })
     </BModal>
   </BForm>
 </template>
+
+<style lang="scss">
+table {
+  &.qed {
+    th,
+    td {
+      &:nth-child(1) {
+        max-width: 30px;
+      }
+
+      &:nth-child(3) {
+        max-width: 50px;
+      }
+    }
+  }
+
+  &.no-qed {
+    th,
+    td {
+      &:nth-child(1) {
+        max-width: 20px;
+      }
+
+      &:nth-child(2) {
+        max-width: 30px;
+      }
+
+      &:nth-child(4) {
+        max-width: 50px;
+      }
+    }
+  }
+}
+</style>
