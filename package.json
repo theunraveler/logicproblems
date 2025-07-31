@@ -24,6 +24,8 @@
     "bootstrap": "^5.3.7",
     "bootstrap-vue-next": "^0.30.4",
     "dexie": "^4.0.11",
+    "dexie-export-import": "^4.1.4",
+    "downloadjs": "^1.4.7",
     "humanize-duration": "^3.33.0",
     "insert-text-at-cursor": "^0.3.0",
     "lz-string": "^1.5.0",
