@@ -153,9 +153,8 @@ const ensureLine = async (
   const startingColumn = completesProof ? 0 : 1
   await test.step(`Ensure proof line ${expectedIndex}`, async () => {
     const cols = proofTable.locator('tbody tr').nth(expectedIndex).getByRole('cell')
-    const justText = rule === 'S'
-      ? /^Unresolved Supposition/
-      : justifications.map((i) => i + 1).join(', ')
+    const justText =
+      rule === 'S' ? /^Unresolved Supposition/ : justifications.map((i) => i + 1).join(', ')
     await expect(cols.nth(startingColumn)).toHaveText(`${expectedIndex + 1}`)
     await expect(cols.nth(startingColumn + 1)).toHaveText(formula)
     await expect(cols.nth(startingColumn + 2)).toHaveText(justText)

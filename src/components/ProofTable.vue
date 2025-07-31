@@ -14,7 +14,7 @@ const id = useId()
 const qed = computed(() => proof.qed())
 const form = {
   rule: ref(''),
-  justifications: ref<string[]>([]),
+  justifications: ref<number[]>([]),
 }
 const justifications = computed(() =>
   form.justifications.value
@@ -35,7 +35,7 @@ const solvedIn = ref<number>()
 const listFormatter = new Intl.ListFormat('en', {
   style: 'long',
   type: 'disjunction',
-});
+})
 const unresolvedSuppositionText = `
   Your proof is currently dependent on this unresolved supposition. You must
   resolve the supposition using a
@@ -68,11 +68,7 @@ const submitLine = () => {
   }
 
   try {
-    proof.addDeduction(
-      formulaInput.value.formula,
-      form.rule.value,
-      form.justifications.value.map((n) => parseInt(n)),
-    )
+    proof.addDeduction(formulaInput.value.formula, form.rule.value, form.justifications.value)
   } catch (err) {
     if (err instanceof InvalidDeductionError) {
       error.value = err.message
@@ -107,6 +103,19 @@ const clear = async () => {
   clearForm()
   startedAt.value = Date.now()
   emit('clear', proof)
+}
+
+const rowClicked = (lineNumber: number) => {
+  if (qed.value) {
+    return
+  }
+
+  const index = form.justifications.value.indexOf(lineNumber)
+  if (index === -1) {
+    form.justifications.value.push(lineNumber)
+  } else {
+    form.justifications.value.splice(index, 1)
+  }
 }
 
 const hasUnsavedChanges = computed(
@@ -171,7 +180,12 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         </BTr>
       </BThead>
       <BTbody class="table-group-divider">
-        <BTr v-for="(line, index) in proof.lines" :key="index" :data-tour="`line-${index}`">
+        <BTr
+          v-for="(line, index) in proof.lines"
+          :key="index"
+          @click="rowClicked(index)"
+          :class="{ 'table-active': form.justifications.value.includes(index) }"
+          :data-tour="`line-${index}`">
           <BTd v-if="!qed" :data-tour="`justification-${index}`">
             <BFormCheckbox
               v-model="form.justifications.value"
