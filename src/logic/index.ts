@@ -165,14 +165,6 @@ export class Proof {
       deduction.justifications.map((index) => lines[index]),
       this,
     )
-    if (
-      deduction.formula.valueOf() === this.conclusion.valueOf() &&
-      deduction.hasUnresolvedDependencies(this)
-    ) {
-      throw new InvalidDeductionError(
-        'Cannot conclude the proof without resolving all supposition dependencies',
-      )
-    }
     this.deductions.push(deduction)
     return deduction
   }
