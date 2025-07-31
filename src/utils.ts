@@ -3,6 +3,8 @@ import type { InjectionKey } from 'vue'
 import _humanizeDuration from 'humanize-duration'
 import { Line, Proof } from '@/logic'
 
+export const COLOR_MODE_STORAGE_KEY = 'color-theme'
+
 export const problems: ProblemList = (
   await import('./data/problems.json', { assert: { type: 'json' } })
 ).default

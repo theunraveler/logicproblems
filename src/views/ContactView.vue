@@ -1,20 +1,30 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useId, useTemplateRef } from 'vue'
 import { useHead } from '@unhead/vue'
+import { useColorMode } from '@vueuse/core'
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
+import { COLOR_MODE_STORAGE_KEY } from '@/utils'
 
 useHead({ title: 'Contact' })
 
+const id = useId()
 const form = {
   name: ref(''),
   email: ref(''),
   message: ref(''),
-  botcheck: ref(false),
 }
 const submitting = ref(false)
 const hasError = ref(false)
 const alertText = ref('')
+const colorMode = useColorMode({ storageKey: COLOR_MODE_STORAGE_KEY })
 
-const onSubmit = async () => {
+const hcaptchaSiteKey = import.meta.env.PROD
+  ? '0118bbb2-12b6-4906-b8ee-76a22bda1102'
+  : '10000000-ffff-ffff-ffff-000000000001'
+const hcaptcha = useTemplateRef('hcaptcha')
+const hcaptchaToken = ref<string>()
+
+const submit = async () => {
   alertText.value = ''
   hasError.value = false
   submitting.value = true
@@ -27,19 +37,25 @@ const onSubmit = async () => {
       }),
     ),
     {
-      access_key: '2662d8d2-a598-4646-bd14-ba3adabbcbdb',
       subject: 'Contact Form Submission from logicproblems.org',
-      from_name: 'Logic Problems',
+      'h-captcha-response': hcaptchaToken.value,
     },
   )
 
-  if (import.meta.env.DEV) {
-    alertText.value = `Would have submitted the following data: ${JSON.stringify(payload)}`
-    reset()
-    return
+  if (import.meta.env.PROD) {
+    await submitToFormspree(payload)
+  } else {
+    showAlert(payload)
   }
 
-  fetch('https://api.web3forms.com/submit', {
+  submitting.value = false
+  if (!hasError.value) {
+    reset()
+  }
+}
+
+const submitToFormspree = (payload: { [key: string]: string }) => {
+  return fetch('https://formspree.io/f/movlwowd', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -48,25 +64,34 @@ const onSubmit = async () => {
     body: JSON.stringify(payload),
   })
     .then(async (response) => {
-      const json = await response.json()
-      if (response.ok && json.success) {
+      if (response.ok) {
         alertText.value = "Thanks for contacting us. We'll get back to you shortly."
+      } else {
+        const json = await response.json()
+        if (Object.hasOwn(json, 'errors')) {
+          alertText.value = json.errors.map((error: Error) => error.message).join(', ')
+        } else {
+          alertText.value = 'Oops! There was a problem submitting your form.'
+        }
+        hasError.value = true
       }
-      reset()
     })
-    .catch(async (error) => {
+    .catch((error) => {
       alertText.value = `Error: ${error instanceof Error ? error.message : error}`
       hasError.value = true
-      submitting.value = false
     })
 }
 
-function reset() {
+const showAlert = (payload: { [key: string]: string }) => {
+  alertText.value = `Would have submitted the following data: <pre class="my-2">${JSON.stringify(payload, undefined, 2)}</pre>`
+}
+
+const reset = () => {
   form.name.value = ''
   form.email.value = ''
   form.message.value = ''
-  form.botcheck.value = false
   submitting.value = false
+  hcaptcha.value?.reset()
 }
 </script>
 
@@ -74,25 +99,52 @@ function reset() {
   <h1 class="mb-4">Contact Us</h1>
 
   <BAlert :model-value="!!alertText" :variant="hasError ? 'danger' : 'success'">
-    {{ alertText }}
+    <template #default>
+      <div v-html="alertText" />
+    </template>
   </BAlert>
 
-  <BForm @submit.prevent="onSubmit">
-    <BFormGroup label="Name" label-for="name" class="mb-3">
-      <BFormInput id="name" v-model="form.name.value" required />
+  <BForm @submit.prevent="submit">
+    <BRow class="mb-3">
+      <BFormGroup label="Name" :label-for="`${id}-name`" class="col col-lg-6" floating>
+        <BFormInput
+          :id="`${id}-name`"
+          v-model="form.name.value"
+          placeholder="Enter your name"
+          required />
+      </BFormGroup>
+      <BFormGroup label="Email Address" :label-for="`${id}-email`" class="col col-lg-6" floating>
+        <BFormInput
+          type="email"
+          :id="`${id}-email`"
+          v-model="form.email.value"
+          placeholder="Enter your email address"
+          required />
+      </BFormGroup>
+    </BRow>
+    <BFormGroup label="Message" :label-form="`${id}-message`" :label-visually-hidden="true" class="mb-3">
+      <BFormTextarea
+        :id="`${id}-message`"
+        v-model="form.message.value"
+        placeholder="Enter your message"
+        rows="3"
+        required />
     </BFormGroup>
-    <BFormGroup label="Email Address" label-for="email" class="mb-3">
-      <BFormInput type="email" id="email" v-model="form.email.value" required />
-    </BFormGroup>
-    <BFormGroup label="Message" label-for="message" class="mb-3">
-      <BFormTextarea id="message" v-model="form.message.value" required />
-    </BFormGroup>
-    <BFormCheckbox v-model="form.botcheck.value" class="d-none">
-      Leave this checkbox unchecked
-    </BFormCheckbox>
-    <BButton variant="primary" type="submit" :disabled="submitting">
-      <span v-if="submitting"><BSpinner small /> Sending...</span>
-      <span v-else>Send</span>
-    </BButton>
+    <div class="d-flex justify-content-between align-items-center">
+      <VueHcaptcha
+        ref="hcaptcha"
+        :sitekey="hcaptchaSiteKey"
+        :theme="colorMode"
+        data-testid="hcaptcha"
+        @verify="(token: string) => (hcaptchaToken = token)" />
+      <BButton
+        variant="primary"
+        type="submit"
+        :disabled="!hcaptchaToken || submitting"
+        class="ms-3">
+        <span v-if="submitting"><BSpinner small /> Sending...</span>
+        <span v-else>Send</span>
+      </BButton>
+    </div>
   </BForm>
 </template>
