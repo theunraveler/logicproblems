@@ -1,23 +1,26 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computedAsync } from '@vueuse/core'
 import { parse } from '@/logic/parse'
 import { db } from '@/store'
+import type { Problem } from '@/utils'
 
-const props = defineProps(['id', 'problem'])
-const isSolved = ref(false)
-
-watch(
-  props,
-  async () => {
-    isSolved.value = !!(await db.solutions.get({ problemId: props.id }))
-  },
-  { immediate: true },
+const props = withDefaults(
+  defineProps<{
+    id: string
+    problem: Problem
+    compact?: boolean
+  }>(),
+  { compact: false },
 )
+
+const isSolved = computedAsync(async () => {
+  return !!(await db.solutions.get({ problemId: props.id }))
+}, false)
 </script>
 
 <template>
   <BCard no-body>
-    <BCardHeader class="hstack justify-content-between">
+    <BCardHeader v-if="!compact" class="hstack justify-content-between">
       <span>{{ props.problem.title }}</span>
       <span v-if="isSolved" class="badge rounded-pill text-bg-success">
         <IBiCheckCircleFill class="me-1" /> Solved
@@ -33,7 +36,7 @@ watch(
         <span>Conclusion: {{ parse(props.problem.conclusion) }}</span>
       </BListGroupItem>
     </BListGroup>
-    <BCardBody>
+    <BCardBody v-if="!props.compact">
       <BLink
         :to="{ name: 'problem', params: { id: props.id } }"
         class="btn btn-primary stretched-link">

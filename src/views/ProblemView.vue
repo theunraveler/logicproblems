@@ -94,7 +94,7 @@ onMounted(async () => {
           </BLink>
         </template>
       </ProofTable>
-      <ProblemNav ref="problem-nav" class="px-0 mt-4 mt-lg-5" :current="id" />
+      <ProblemNav ref="problem-nav" class="px-0 mt-4" :current="id" />
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">

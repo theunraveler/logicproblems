@@ -98,12 +98,14 @@ test.describe('navigating away', () => {
 
     test('confirming the alert', async ({ page }) => {
       await page.getByTestId('next-problem-link').click()
+      await page.mouse.move(0, 0)
       await ensureDialog(page)
       await expect(page).toHaveURL('/problems/ktn47i')
     })
 
     test('dismissing the alert', async ({ page }) => {
       await page.getByTestId('next-problem-link').click()
+      await page.mouse.move(0, 0)
       await ensureDialog(page, false)
       await expect(page).toHaveURL('/problems/tqpiwb')
     })
