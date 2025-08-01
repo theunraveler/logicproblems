@@ -29,8 +29,11 @@ onFileChange(async (files: FileList | null) => {
     await db.delete({disableAutoOpen: false})
     await db.solutions.bulkAdd(data)
   } catch (error) {
-    importing.value = false
-    importError.value = typeof error === 'string' ? error : error.message
+    if (error instanceof Error) {
+      importError.value = error.message
+    } else if (typeof error === 'string') {
+      importError.value = error
+    }
   } finally {
     setTimeout(() => {
       importing.value = false
