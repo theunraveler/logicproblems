@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { db } from '@/store'
+import { db, uniqueKeys } from '@/store'
 
 const props = defineProps(['problems'])
 const problemIds = computed(() => Object.keys(props.problems))
@@ -9,7 +9,7 @@ const solvedProblemIds = ref<string[]>([])
 watch(
   problemIds,
   async (problemIds) => {
-    const solved = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
+    const solved = await uniqueKeys(db.solutions.orderBy('problemId'))
     solvedProblemIds.value = solved.filter((id) => problemIds.includes(id))
   },
   { immediate: true },

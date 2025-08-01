@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { db } from '@/store'
+import { db, uniqueKeys } from '@/store'
 
 const props = defineProps(['problems'])
 
@@ -9,7 +9,7 @@ const firstUnsolved = computed(() =>
   firstUnsolvedId.value ? props.problems[firstUnsolvedId.value] : undefined,
 )
 const loadSolvedProblems = async () => {
-  const solvedProblems = (await db.solutions.orderBy('problemId').uniqueKeys()) as string[]
+  const solvedProblems = await uniqueKeys(db.solutions.orderBy('problemId'))
   firstUnsolvedId.value = Object.keys(props.problems).find((id) => !solvedProblems.includes(id))
 }
 
