@@ -122,11 +122,7 @@ const reset = () => {
           required />
       </BFormGroup>
     </BRow>
-    <BFormGroup
-      label="Message"
-      :label-form="`${id}-message`"
-      :label-visually-hidden="true"
-      class="mb-3">
+    <BFormGroup label="Message" :label-form="`${id}-message`" :label-visually-hidden="true" class="mb-3">
       <BFormTextarea
         :id="`${id}-message`"
         v-model="form.message.value"
