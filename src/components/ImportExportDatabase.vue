@@ -9,7 +9,11 @@ const importing = ref(false)
 const totalRows = ref<number>()
 const importError = ref<string>()
 
-const { open: openFileDialog, onChange: onFileChange, reset: resetFileDialog } = useFileDialog({
+const {
+  open: openFileDialog,
+  onChange: onFileChange,
+  reset: resetFileDialog,
+} = useFileDialog({
   accept: 'application/json',
   directory: false,
   multiple: false,
@@ -26,7 +30,7 @@ onFileChange(async (files: FileList | null) => {
   try {
     const data = JSON.parse(await files[0].text())
     totalRows.value = data.length
-    await db.delete({disableAutoOpen: false})
+    await db.delete({ disableAutoOpen: false })
     await db.solutions.bulkAdd(data)
   } catch (error) {
     if (error instanceof Error) {
@@ -44,7 +48,7 @@ onFileChange(async (files: FileList | null) => {
 })
 
 const downloadDB = async () => {
-  const solutions = (await db.solutions.toArray()).map(({id: _, ...data}) => data)
+  const solutions = (await db.solutions.toArray()).map(({ id: _, ...data }) => data)
   download(JSON.stringify(solutions), 'solutions.json', 'application/json')
 }
 </script>
@@ -55,10 +59,14 @@ const downloadDB = async () => {
   </BButton>
 
   <BModal v-model="showModal" title="Import/Export Data" no-footer>
-    All solution data is currently stored only in your internet browser's local storage. This means that you won't see any of your solutions if you use this site from another device, a different browser on your computer, etc. You can move your data between devices or browsers by exporting it here, then importing the file on your other device or browser.
+    All solution data is currently stored only in your internet browser's local storage. This means
+    that you won't see any of your solutions if you use this site from another device, a different
+    browser on your computer, etc. You can move your data between devices or browsers by exporting
+    it here, then importing the file on your other device or browser.
 
     <div class="alert alert-danger mt-3">
-      Note that when you import data, your current solutions will be deleted and replaced with the ones in the file. Please use this feature carefully.
+      Note that when you import data, your current solutions will be deleted and replaced with the
+      ones in the file. Please use this feature carefully.
     </div>
 
     <hr />
@@ -67,9 +75,7 @@ const downloadDB = async () => {
       <BButton variant="primary" @click="downloadDB" class="mb-2">
         <IBiDownload class="me-2" /> Export Data
       </BButton>
-      <div v-if="importError" class="text-danger m-auto hstack">
-        Error: {{ importError }}
-      </div>
+      <div v-if="importError" class="text-danger m-auto hstack">Error: {{ importError }}</div>
       <div v-else-if="importing" class="text-success m-auto hstack">
         <IBiCheckCircleFill class="me-2" />
         {{ totalRows }} item{{ totalRows === 1 ? '' : 's' }} successfully imported
