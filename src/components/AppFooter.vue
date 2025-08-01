@@ -1,23 +1,12 @@
 <script setup lang="ts">
-import { exportDB } from 'dexie-export-import';
-import download from 'downloadjs'
-import { db } from '@/store'
-
 const githubUrl = import.meta.env.GITHUB_URL
 const commitSha = import.meta.env.GIT_COMMIT_SHA
-
-const downloadDB = async () => {
-  download(await exportDB(db), 'logicproblems.json', 'application/json')
-}
 </script>
 
 <template>
   <footer class="border-top py-3 mt-auto">
     <BContainer class="d-flex hstack flex-wrap justify-content-center justify-content-lg-end">
       <ul class="nav list-unstyled text-body-secondary hstack">
-        <li class="me-3">
-          <BButton size="sm" variant="outline-secondary" @click.prevent="downloadDB">Export Data</BButton>
-        </li>
         <li class="me-3 hstack">
           <a
             target="_new"
@@ -29,7 +18,7 @@ const downloadDB = async () => {
           </a>
           by Maran Wolston
         </li>
-        <li class="hstack">
+        <li class="me-3 hstack">
           <a target="_new" class="text-body-secondary me-1" :href="githubUrl"><IBiGithub /></a>
           <a
             target="_new"
@@ -37,6 +26,9 @@ const downloadDB = async () => {
             :href="`${githubUrl}/commit/${commitSha}`">
             {{ commitSha }}
           </a>
+        </li>
+        <li>
+          <ImportExportDatabase />
         </li>
       </ul>
     </BContainer>
