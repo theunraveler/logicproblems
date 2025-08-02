@@ -19,9 +19,9 @@ const { system: systemColorMode, store: storedColorMode } = useColorMode({
   attribute: 'data-bs-theme',
   storageKey: 'color-theme',
 })
-const currentColorMode = computed(() => (
-  storedColorMode.value === 'auto' ? systemColorMode.value : storedColorMode.value
-))
+const currentColorMode = computed(() =>
+  storedColorMode.value === 'auto' ? systemColorMode.value : storedColorMode.value,
+)
 
 const navbar = useTemplateRef('navbar')
 const themeColor = computed(() => {
@@ -30,15 +30,18 @@ const themeColor = computed(() => {
 })
 
 useHead({
-  meta: [
-    { name: 'theme-color', content: themeColor },
-  ],
+  meta: [{ name: 'theme-color', content: themeColor }],
 })
 </script>
 
 <template>
   <header>
-    <BNavbar container ref="navbar" :variant="currentColorMode" toggleable="lg" class="border-bottom border-body">
+    <BNavbar
+      container
+      ref="navbar"
+      :variant="currentColorMode"
+      toggleable="lg"
+      class="border-bottom border-body">
       <BNavbarBrand :to="{ name: 'home' }" data-testid="link-home">Logic Problems</BNavbarBrand>
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
