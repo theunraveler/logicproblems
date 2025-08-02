@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { decompressFromEncodedURIComponent } from 'lz-string'
-import { problems } from '@/utils'
+import { problems } from '@/plugins/data'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

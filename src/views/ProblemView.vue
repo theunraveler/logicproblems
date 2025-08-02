@@ -2,12 +2,13 @@
 import { inject, onMounted, reactive, useTemplateRef } from 'vue'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { chaptersInjectionKey, compressProofLines, type ChapterList, type Solution } from '@/utils'
-import { Proof } from '@/logic'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
 import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
+import { Proof } from '@/logic'
+import { chaptersInjectionKey, type ChapterList } from '@/plugins/data'
+import { compressProofLines, type Solution } from '@/utils'
 
 const router = useRouter()
 

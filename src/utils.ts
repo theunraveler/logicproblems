@@ -1,28 +1,6 @@
 import { toRaw } from 'vue'
-import type { InjectionKey } from 'vue'
 import _humanizeDuration from 'humanize-duration'
 import { Line, Proof } from '@/logic'
-
-export const COLOR_MODE_STORAGE_KEY = 'color-theme'
-
-export const problems: ProblemList = (
-  await import('./data/problems.json', { assert: { type: 'json' } })
-).default
-
-export type ProblemList = Record<string, Problem>
-
-export interface Problem {
-  title: string
-  chapter: number
-  premises: string[]
-  conclusion: string
-}
-
-export const problemsInjectionKey = Symbol() as InjectionKey<ProblemList>
-
-export type ChapterList = Record<number, string>
-
-export const chaptersInjectionKey = Symbol() as InjectionKey<ChapterList>
 
 type SerializedLine = [string, string, number[]]
 

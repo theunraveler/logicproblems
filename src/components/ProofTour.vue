@@ -4,7 +4,7 @@ import { StorageSerializers, useStorage } from '@vueuse/core'
 import { useModal } from 'bootstrap-vue-next'
 import { useRouter, NavigationFailureType, isNavigationFailure } from 'vue-router'
 import { tour } from '@/tours/proof'
-import { problemsInjectionKey, type ProblemList } from '@/utils'
+import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
 
 const problemId = Object.keys(inject(problemsInjectionKey) as ProblemList)[0]
 const id = useId()

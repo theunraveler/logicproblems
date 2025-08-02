@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { inject } from 'vue'
+import { colorModeInjectionKey, type ColorMode } from '@/plugins/theme'
+
+const { current: colorMode } = inject(colorModeInjectionKey) as ColorMode
+
 const githubUrl = import.meta.env.GITHUB_URL
 const commitSha = import.meta.env.GIT_COMMIT_SHA
 </script>
 
 <template>
-  <footer class="border-top py-3 mt-auto">
+  <footer :class="['border-top py-3 mt-auto', `bg-${colorMode}`]">
     <BContainer class="d-flex hstack flex-wrap justify-content-center justify-content-lg-end">
       <div class="hstack">
         <a

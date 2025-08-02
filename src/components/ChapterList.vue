@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { chaptersInjectionKey, type ChapterList } from '@/utils'
+import { chaptersInjectionKey, type ChapterList } from '@/plugins/data'
 
 const props = defineProps(['current'])
 const chapters = inject(chaptersInjectionKey) as ChapterList

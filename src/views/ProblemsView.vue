@@ -7,7 +7,7 @@ import {
   chaptersInjectionKey,
   type ProblemList,
   type ChapterList,
-} from '@/utils'
+} from '@/plugins/data'
 
 const router = useRouter()
 

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed, inject, useTemplateRef } from 'vue'
-import { useColorMode, useCssVar } from '@vueuse/core'
+import { useCssVar } from '@vueuse/core'
 import { useHead } from '@unhead/vue'
 import IBiSun from '~icons/bi/sun'
 import IBiMoon from '~icons/bi/moon'
 import IBiCircleHalf from '~icons/bi/circle-half'
-import { chaptersInjectionKey } from '@/utils'
+import { chaptersInjectionKey } from '@/plugins/data'
+import { colorModeInjectionKey, type ColorMode } from '@/plugins/theme'
 
 const chapters = inject(chaptersInjectionKey)
 
@@ -14,15 +15,7 @@ const modes = {
   light: { icon: IBiSun, label: 'Light' },
   dark: { icon: IBiMoon, label: 'Dark' },
 }
-const { system: systemColorMode, store: storedColorMode } = useColorMode({
-  selector: 'body',
-  attribute: 'data-bs-theme',
-  storageKey: 'color-theme',
-})
-const currentColorMode = computed(() =>
-  storedColorMode.value === 'auto' ? systemColorMode.value : storedColorMode.value,
-)
-
+const { store: storedColorMode, current: currentColorMode } = inject(colorModeInjectionKey) as ColorMode
 const navbar = useTemplateRef('navbar')
 const themeColor = computed(() => {
   const varName = `--bs-${currentColorMode.value}-rgb`

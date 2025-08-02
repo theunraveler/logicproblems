@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, inject, useTemplateRef } from 'vue'
-import { problemsInjectionKey, type ProblemList } from '@/utils'
+import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
 
 const props = defineProps(['current'])
 

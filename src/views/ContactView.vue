@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref, useId, useTemplateRef } from 'vue'
+import { inject, ref, useId, useTemplateRef } from 'vue'
 import { useHead } from '@unhead/vue'
-import { useColorMode } from '@vueuse/core'
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
-import { COLOR_MODE_STORAGE_KEY } from '@/utils'
+import { colorModeInjectionKey, type ColorMode } from '@/plugins/theme'
 
 useHead({ title: 'Contact' })
 
@@ -16,7 +15,8 @@ const form = {
 const submitting = ref(false)
 const hasError = ref(false)
 const alertText = ref('')
-const colorMode = useColorMode({ storageKey: COLOR_MODE_STORAGE_KEY })
+
+const { current: colorMode } = inject(colorModeInjectionKey) as ColorMode
 
 const hcaptchaSiteKey = import.meta.env.PROD
   ? '0118bbb2-12b6-4906-b8ee-76a22bda1102'

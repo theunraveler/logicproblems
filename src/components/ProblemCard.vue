@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computedAsync } from '@vueuse/core'
 import { parse } from '@/logic/parse'
+import type { Problem } from '@/plugins/data'
 import { db } from '@/store'
-import type { Problem } from '@/utils'
 
 const props = withDefaults(
   defineProps<{
