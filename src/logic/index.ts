@@ -1,6 +1,5 @@
 import {
   Biconditional,
-  BinaryExpression,
   Conditional,
   Conjunction,
   Disjunction,
@@ -194,14 +193,14 @@ function evalArrowOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orderedJust = [justExps, justExps.toReversed()].find(([a, b]) => {
     return a instanceof Conditional && a.antecedent.toString() === b.toString()
-  })
+  }) as [Conditional, Expression] | undefined
   if (!orderedJust) {
     throw new InvalidDeductionError(
       'Justifications must include a conditional that has the other justification as its antecedent',
     )
   }
 
-  const [mainJust] = orderedJust as [Conditional]
+  const [mainJust] = orderedJust
 
   if (mainJust.consequent.toString() !== exp.toString()) {
     throw new InvalidDeductionError(
@@ -436,7 +435,7 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
     return a instanceof Negation && b instanceof Conditional
-  })
+  }) as [Negation, Conditional]
   if (!orderedJusts) {
     throw new InvalidDeductionError(
       'Justifications must consist of a negation formula and a conditional formula',
@@ -444,7 +443,7 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
   }
 
   const expInner = exp.expression.toString()
-  const [negationJust, conditionalJust] = orderedJusts as [Negation, Conditional]
+  const [negationJust, conditionalJust] = orderedJusts
 
   if (conditionalJust.antecedent.toString() !== expInner) {
     throw new InvalidDeductionError(
@@ -469,14 +468,14 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
       a instanceof Disjunction &&
       (a.antecedent.toString() === bExp || a.consequent.toString() === bExp)
     )
-  })
+  }) as [Disjunction, Negation] | undefined
   if (!orderedJusts) {
     throw new InvalidDeductionError(
       'Justifications must include a disjunction and a negation, and the disjunction must contain the negated negation as either its antecedent or consequent',
     )
   }
 
-  const disjunctionJust = orderedJusts[0] as Disjunction
+  const [disjunctionJust] = orderedJusts
   const expStr = exp.toString()
   if (
     disjunctionJust.antecedent.toString() !== expStr &&
@@ -567,7 +566,7 @@ function evalDemorgansLaw(
   proof: Proof,
   tryReciprocal: boolean = true,
 ) {
-  const justExp = justification.formula as Negation
+  const justExp = justification.formula
 
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
@@ -580,10 +579,9 @@ function evalDemorgansLaw(
   }
 
   if (!(justExp instanceof Negation)) {
-    throwOrRecip('Justification must contain a dash operator')
-    return
+    return throwOrRecip('Justification must contain a dash operator')
   }
-  const justExpInner = justExp.expression as Conjunction | Disjunction
+  const justExpInner = justExp.expression
 
   if (
     !(
@@ -591,21 +589,18 @@ function evalDemorgansLaw(
       (exp instanceof Disjunction && justExpInner instanceof Conjunction)
     )
   ) {
-    throwOrRecip(
+    return throwOrRecip(
       'Formula and justification must be a conjunction and a disjunction (or vice versa)',
     )
-    return
   }
-
-  const expT = exp as BinaryExpression
 
   if (
     justExpInner.antecedent instanceof Negation &&
     justExpInner.consequent instanceof Negation &&
-    !(expT.antecedent instanceof Negation) &&
-    !(expT.consequent instanceof Negation) &&
-    justExpInner.antecedent.expression.toString() === expT.antecedent.toString() &&
-    justExpInner.consequent.expression.toString() === expT.consequent.toString()
+    !(exp.antecedent instanceof Negation) &&
+    !(exp.consequent instanceof Negation) &&
+    justExpInner.antecedent.expression.toString() === exp.antecedent.toString() &&
+    justExpInner.consequent.expression.toString() === exp.consequent.toString()
   ) {
     return
   }
@@ -613,10 +608,10 @@ function evalDemorgansLaw(
   if (
     !(justExpInner.antecedent instanceof Negation) &&
     !(justExpInner.consequent instanceof Negation) &&
-    expT.antecedent instanceof Negation &&
-    expT.consequent instanceof Negation &&
-    justExpInner.antecedent.toString() === expT.antecedent.expression.toString() &&
-    justExpInner.consequent.toString() === expT.consequent.expression.toString()
+    exp.antecedent instanceof Negation &&
+    exp.consequent instanceof Negation &&
+    justExpInner.antecedent.toString() === exp.antecedent.expression.toString() &&
+    justExpInner.consequent.toString() === exp.consequent.expression.toString()
   ) {
     return
   }
@@ -643,9 +638,9 @@ function evalArrow(
 
   const conditionalJust = (
     justExp instanceof Negation ? justExp.expression : justExp
-  ) as Conditional
+  )
   if (!(conditionalJust instanceof Conditional)) {
-    throwOrRecip('Justification must contain an arrow operator')
+    return throwOrRecip('Justification must contain an arrow operator')
   }
 
   // -A ∨ B from A → B
