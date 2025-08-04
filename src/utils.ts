@@ -2,7 +2,7 @@ import { toRaw } from 'vue'
 import _humanizeDuration from 'humanize-duration'
 import { Line, Proof } from '@/logic'
 
-type SerializedLine = [string, string, number[]]
+export type SerializedLine = [string, string, number[]]
 
 export interface Solution {
   id: number

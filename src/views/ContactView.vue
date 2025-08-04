@@ -4,6 +4,14 @@ import { useHead } from '@unhead/vue'
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
 import { colorModeInjectionKey, type ColorMode } from '@/plugins/theme'
 
+interface Payload {
+  name: string
+  email: string
+  message: string
+  subject: string
+  'h-captcha-response': string
+}
+
 useHead({ title: 'Contact' })
 
 const id = useId()
@@ -14,7 +22,8 @@ const form = {
 }
 const submitting = ref(false)
 const hasError = ref(false)
-const alertText = ref('')
+const alertText = ref<string>()
+const alertHtml = ref<string>()
 
 const { current: colorMode } = inject(colorModeInjectionKey) as ColorMode
 
@@ -22,25 +31,20 @@ const hcaptchaSiteKey = import.meta.env.PROD
   ? '0118bbb2-12b6-4906-b8ee-76a22bda1102'
   : '10000000-ffff-ffff-ffff-000000000001'
 const hcaptcha = useTemplateRef('hcaptcha')
-const hcaptchaToken = ref<string>()
+const hcaptchaToken = ref('')
 
 const submit = async () => {
   alertText.value = ''
   hasError.value = false
   submitting.value = true
 
-  const payload = Object.assign(
-    {},
-    Object.fromEntries(
-      Object.entries(form).map(([key, value]) => {
-        return [key, value.value]
-      }),
-    ),
-    {
-      subject: 'Contact Form Submission from logicproblems.org',
-      'h-captcha-response': hcaptchaToken.value,
-    },
-  )
+  const payload = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value,
+    subject: 'Contact Form Submission from logicproblems.org',
+    'h-captcha-response': hcaptchaToken.value,
+  }
 
   if (import.meta.env.PROD) {
     await submitToFormspree(payload)
@@ -54,7 +58,7 @@ const submit = async () => {
   }
 }
 
-const submitToFormspree = (payload: { [key: string]: string }) => {
+const submitToFormspree = (payload: Payload) => {
   return fetch('https://formspree.io/f/movlwowd', {
     method: 'POST',
     headers: {
@@ -82,8 +86,9 @@ const submitToFormspree = (payload: { [key: string]: string }) => {
     })
 }
 
-const showAlert = (payload: { [key: string]: string }) => {
-  alertText.value = `Would have submitted the following data: <pre class="my-2">${JSON.stringify(payload, undefined, 2)}</pre>`
+const showAlert = (payload: Payload) => {
+  alertText.value = 'Would have submitted the following data:'
+  alertHtml.value = JSON.stringify(payload, undefined, 2)
 }
 
 const reset = () => {
@@ -100,7 +105,10 @@ const reset = () => {
 
   <BAlert :model-value="!!alertText" :variant="hasError ? 'danger' : 'success'">
     <template #default>
-      <div v-html="alertText" />
+      {{ alertText }}
+      <pre v-if="alertHtml" class="my-2">
+        {{ alertHtml }}
+      </pre>
     </template>
   </BAlert>
 
@@ -115,9 +123,9 @@ const reset = () => {
       </BFormGroup>
       <BFormGroup label="Email Address" :label-for="`${id}-email`" class="col col-lg-6" floating>
         <BFormInput
-          type="email"
           :id="`${id}-email`"
           v-model="form.email.value"
+          type="email"
           placeholder="Enter your email address"
           required />
       </BFormGroup>

@@ -7,14 +7,14 @@ import ProofTable from '@/components/ProofTable.vue'
 import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
 import { Proof } from '@/logic'
-import { chaptersInjectionKey, type ChapterList } from '@/plugins/data'
-import { compressProofLines, type Solution } from '@/utils'
+import { chaptersInjectionKey, type ChapterList, type Problem } from '@/plugins/data'
+import { compressProofLines, type SerializedLine, type Solution } from '@/utils'
 
 const router = useRouter()
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
-const props = defineProps(['id', 'problem', 'lines'])
+const props = defineProps<{ id: string; problem: Problem; lines: SerializedLine[] }>()
 const proof = reactive(new Proof(props.problem.premises, props.problem.conclusion))
 
 useHead({ title: props.problem.title })
@@ -82,11 +82,11 @@ onMounted(async () => {
       <ProofTable
         ref="proof-table"
         :proof="proof"
+        data-testid="proof-table"
         @qed="onQed"
-        @clear="clear"
-        data-testid="proof-table">
-        <template #qed-modal-actions="{ clear }">
-          <BButton variant="outline-secondary" @click="clear">Solve Again</BButton>
+        @clear="clear">
+        <template #qed-modal-actions="{ clear: _clear }">
+          <BButton variant="outline-secondary" @click="_clear">Solve Again</BButton>
           <BLink
             v-if="problemNav?.next"
             class="btn btn-primary"
@@ -99,14 +99,18 @@ onMounted(async () => {
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
-      <SolutionList ref="solution-list" :problemId="props.id" @select="viewSolution" class="mb-3" />
+      <SolutionList
+        ref="solution-list"
+        :problem-id="props.id"
+        class="mb-3"
+        @select="viewSolution" />
       <ProofPermalink :id="props.id" :title="problem.title" :proof="proof" class="mb-3" />
       <aside class="mb-3">
         <BButton
-          @click.prevent="proofTour?.prompt()"
           variant="outline-secondary"
           class="w-100"
-          data-tour="tour">
+          data-tour="tour"
+          @click.prevent="proofTour?.prompt()">
           <IBiSignpostSplit class="me-2" /> How Do I Use This?
         </BButton>
       </aside>

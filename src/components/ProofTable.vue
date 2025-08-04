@@ -184,9 +184,9 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         <BTr
           v-for="(line, index) in proof.lines"
           :key="index"
-          @click="rowClicked(index)"
           :class="{ 'table-active': form.justifications.value.includes(index) }"
-          :data-tour="`line-${index}`">
+          :data-tour="`line-${index}`"
+          @click="rowClicked(index)">
           <BTd v-if="!qed" :data-tour="`justification-${index}`">
             <BFormCheckbox
               v-model="form.justifications.value"
@@ -202,6 +202,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
               <template #target>
                 <IBiExclamationTriangleFill class="text-warning" />
               </template>
+              <!-- eslint-disable-next-line vue/no-v-html -->
               <div v-html="unresolvedSuppositionText" />
             </BPopover>
             <template v-else>

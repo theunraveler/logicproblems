@@ -15,7 +15,9 @@ const modes = {
   light: { icon: IBiSun, label: 'Light' },
   dark: { icon: IBiMoon, label: 'Dark' },
 }
-const { store: storedColorMode, current: currentColorMode } = inject(colorModeInjectionKey) as ColorMode
+const { store: storedColorMode, current: currentColorMode } = inject(
+  colorModeInjectionKey,
+) as ColorMode
 const navbar = useTemplateRef('navbar')
 const themeColor = computed(() => {
   const varName = `--bs-${currentColorMode.value}-rgb`
@@ -30,8 +32,8 @@ useHead({
 <template>
   <header>
     <BNavbar
-      container
       ref="navbar"
+      container
       :variant="currentColorMode"
       toggleable="lg"
       class="border-bottom border-body">
@@ -61,8 +63,8 @@ useHead({
             <BDropdownItem
               v-for="(m, name) in modes"
               :key="name"
-              @click="storedColorMode = name"
-              :link-class="['hstack', { active: storedColorMode === name }]">
+              :link-class="['hstack', { active: storedColorMode === name }]"
+              @click="storedColorMode = name">
               <Component :is="m.icon" class="me-2" />
               <span class="flex-grow-1">{{ m.label }}</span>
             </BDropdownItem>

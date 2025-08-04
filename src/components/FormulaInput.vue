@@ -53,20 +53,20 @@ defineExpose({ text, formula, input, error, validate, reset })
 
 <template>
   <BFormInput
-    v-model="text"
     ref="input"
+    v-model="text"
     placeholder="Formula"
     :state="validationState"
     required
     v-bind="$attrs" />
   <BButtonGroup class="mt-1" aria-label="Operators" data-tour="operators">
     <BButton
-      size="sm"
-      variant="outline-secondary"
       v-for="operator in Operator.all"
       :key="operator.symbol"
-      @click.stop.prevent="addOperator(operator)"
-      :title="`Insert ${operator.label} operator (${operator})`">
+      size="sm"
+      variant="outline-secondary"
+      :title="`Insert ${operator.label} operator (${operator})`"
+      @click.stop.prevent="addOperator(operator)">
       {{ operator }}
     </BButton>
   </BButtonGroup>

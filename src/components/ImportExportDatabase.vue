@@ -54,7 +54,7 @@ const downloadDB = async () => {
 </script>
 
 <template>
-  <BButton size="sm" variant="outline-secondary" @click="showModal = true" v-bind="$attrs">
+  <BButton size="sm" variant="outline-secondary" v-bind="$attrs" @click="showModal = true">
     Import/Export Data
   </BButton>
 
@@ -72,7 +72,7 @@ const downloadDB = async () => {
     <hr />
 
     <div class="d-flex flex-column justify-content-center">
-      <BButton variant="primary" @click="downloadDB" class="mb-2">
+      <BButton variant="primary" class="mb-2" @click="downloadDB">
         <IBiDownload class="me-2" /> Export Data
       </BButton>
       <div v-if="importError" class="text-danger m-auto hstack">Error: {{ importError }}</div>

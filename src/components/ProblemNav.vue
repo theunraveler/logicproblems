@@ -2,7 +2,7 @@
 import { computed, inject, useTemplateRef } from 'vue'
 import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
 
-const props = defineProps(['current'])
+const props = defineProps<{ current: string }>()
 
 const problems = inject(problemsInjectionKey) as ProblemList
 const problemKeys = Object.keys(problems)
@@ -35,9 +35,9 @@ defineExpose({ prev, next })
       <template #target>
         <BLink
           :to="{ name: 'problem', params: { id: prev.id } }"
-          @click="prevPopover?.hide()"
           class="btn btn-outline-secondary"
-          data-testid="previous-problem-link">
+          data-testid="previous-problem-link"
+          @click="prevPopover?.hide()">
           <IBiArrowLeftShort class="me-2" />
           <span class="d-inline-block text-truncate" style="max-width: 250px">
             {{ prev.problem.title }}
@@ -53,9 +53,9 @@ defineExpose({ prev, next })
       <template #target>
         <BLink
           :to="{ name: 'problem', params: { id: next.id } }"
-          @click="nextPopover?.hide()"
           class="btn btn-outline-secondary"
-          data-testid="next-problem-link">
+          data-testid="next-problem-link"
+          @click="nextPopover?.hide()">
           <span class="d-inline-block text-truncate" style="max-width: 250px">
             {{ next.problem.title }}
           </span>

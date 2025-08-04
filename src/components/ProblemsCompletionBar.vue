@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import type { ProblemList } from '@/plugins/data'
 import { db, uniqueKeys } from '@/store'
 
-const props = defineProps(['problems'])
+const props = defineProps<{ problems: ProblemList }>()
 const problemIds = computed(() => Object.keys(props.problems))
 const solvedProblemIds = ref<string[]>([])
 

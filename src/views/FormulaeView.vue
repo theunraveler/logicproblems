@@ -9,7 +9,7 @@ const formulaInput = useTemplateRef<InstanceType<typeof FormulaInput>>('formula-
 </script>
 
 <template>
-  <BForm @submit.prevent="formulaInput?.validate()" class="mb-3">
+  <BForm class="mb-3" @submit.prevent="formulaInput?.validate()">
     <FormulaInput ref="formula-input" />
     <div class="d-grid gap-2 mt-2">
       <BButton type="submit" variant="primary">Test and Graph</BButton>

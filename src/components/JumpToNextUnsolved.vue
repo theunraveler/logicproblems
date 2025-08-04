@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import type { ProblemList } from '@/plugins/data'
 import { db, uniqueKeys } from '@/store'
 
-const props = defineProps(['problems'])
+const props = defineProps<{ problems: ProblemList }>()
 
 const firstUnsolvedId = ref<string>()
 const firstUnsolved = computed(() =>

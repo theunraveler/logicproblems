@@ -37,7 +37,7 @@ export abstract class Expression {
   }
 }
 
-abstract class OperatorExpression extends Expression {
+export abstract class OperatorExpression extends Expression {
   static readonly operator: Operator
 
   get operator(): Operator {

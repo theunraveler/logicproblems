@@ -3,9 +3,10 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useClipboard, useShare } from '@vueuse/core'
 import { compressToEncodedURIComponent } from 'lz-string'
+import { Proof } from '@/logic'
 import { compressProofLines } from '@/utils'
 
-const props = defineProps(['id', 'title', 'proof'])
+const props = defineProps<{ id: string; title: string; proof: Proof }>()
 
 const $router = useRouter()
 
@@ -45,8 +46,8 @@ const doShare = async () => {
         <BButton
           :variant="copied ? 'success' : 'outline-secondary'"
           :disabled="props.proof.deductions.length === 0"
-          @click.prevent="shareIsSupported ? doShare() : copy()"
-          class="w-100">
+          class="w-100"
+          @click.prevent="shareIsSupported ? doShare() : copy()">
           <template v-if="copied">
             <IBiClipboardCheck class="me-2" /> Copied to Clipboard
           </template>

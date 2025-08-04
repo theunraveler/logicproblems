@@ -13,7 +13,7 @@ const router = useRouter()
 
 const props = defineProps({
   page: { type: Number, default: 1 },
-  chapter: { type: Number },
+  chapter: { type: Number, default: undefined },
 })
 const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList))
 const chapters = inject(chaptersInjectionKey) as ChapterList
@@ -53,25 +53,25 @@ const updatePage = (page: string | number) => {
     <BCol cols="12" lg="9" data-testid="problems">
       <ProblemCard
         v-for="[id, problem] in pageProblems"
-        :key="id"
         :id="id"
+        :key="id"
         :problem="problem"
         class="mb-4" />
 
       <BPagination
-        @update:model-value="updatePage"
         :model-value="props.page"
         :total-rows="problems.length"
         :per-page="perPage"
         align="center"
-        data-testid="problem-paginator" />
+        data-testid="problem-paginator"
+        @update:model-value="updatePage" />
     </BCol>
 
     <BCol lg="3" class="d-none d-lg-block">
       <div class="sticky-top" style="top: 2em">
         <ProblemsCompletionBar :problems="Object.fromEntries(problems)" class="mb-3" />
         <JumpToNextUnsolved :problems="Object.fromEntries(problems)" class="mb-3" />
-        <ChapterList :current="props.chapter" />
+        <ChapterNav :current="props.chapter" />
       </div>
     </BCol>
   </BRow>

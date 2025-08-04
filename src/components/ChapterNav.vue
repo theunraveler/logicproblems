@@ -2,7 +2,7 @@
 import { inject } from 'vue'
 import { chaptersInjectionKey, type ChapterList } from '@/plugins/data'
 
-const props = defineProps(['current'])
+const props = defineProps<{ current?: number }>()
 const chapters = inject(chaptersInjectionKey) as ChapterList
 </script>
 

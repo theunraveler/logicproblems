@@ -10,6 +10,7 @@
     "ci": "run-p test lint type-check",
     "dev": "vite",
     "format": "prettier --write e2e/ src/ vite.config.ts vitest.config.ts eslint.config.ts playwright.config.ts",
+    "gen-problem-id": "nanoid --alphabet 0123456789abcdefghijklmnopqrstuvwxyz --size 6",
     "lint": "eslint . --fix",
     "preview": "vite preview",
     "test": "run-s test:unit test:e2e",

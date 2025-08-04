@@ -6,7 +6,7 @@ import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps 
 
 const rollbar = inject('rollbar') as Rollbar
 
-const props = defineProps(['problemId'])
+const props = defineProps<{ problemId: string }>()
 const emit = defineEmits(['select'])
 
 const solutions = ref<Solution[]>([])
@@ -59,7 +59,7 @@ onMounted(loadSolutions)
         <IBiCheckCircleFill class="me-1" /> Solved
       </span>
     </template>
-    <BListGroup flush v-if="solutions.length" class="overflow-y-auto" style="max-height: 50vh">
+    <BListGroup v-if="solutions.length" flush class="overflow-y-auto" style="max-height: 50vh">
       <BListGroupItem
         v-for="solution in solutions"
         :key="solution.id"
@@ -73,8 +73,8 @@ onMounted(loadSolutions)
         <a
           v-if="solution.id !== selected"
           href="#"
-          @click.stop.prevent="updateSelection(solution)"
-          class="stretched-link">
+          class="stretched-link"
+          @click.stop.prevent="updateSelection(solution)">
           View
         </a>
       </BListGroupItem>
