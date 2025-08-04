@@ -579,7 +579,7 @@ function evalDemorgansLaw(
   }
 
   if (!(justExp instanceof Negation)) {
-    return throwOrRecip('Justification must contain a dash operator')
+    return throwOrRecip('Invalid deduction')
   }
   const justExpInner = justExp.expression
 
@@ -589,29 +589,27 @@ function evalDemorgansLaw(
       (exp instanceof Disjunction && justExpInner instanceof Conjunction)
     )
   ) {
-    return throwOrRecip(
-      'Formula and justification must be a conjunction and a disjunction (or vice versa)',
-    )
+    return throwOrRecip('Invalid deduction')
   }
 
+  // -A ∨ -B from -(A & B)
+  // -A & -B from -(A ∨ B)
   if (
-    justExpInner.antecedent instanceof Negation &&
-    justExpInner.consequent instanceof Negation &&
-    !(exp.antecedent instanceof Negation) &&
-    !(exp.consequent instanceof Negation) &&
-    justExpInner.antecedent.expression.toString() === exp.antecedent.toString() &&
-    justExpInner.consequent.expression.toString() === exp.consequent.toString()
+    exp.antecedent instanceof Negation &&
+    justExpInner.antecedent.toString() === exp.antecedent.expression.toString() &&
+    exp.consequent instanceof Negation &&
+    justExpInner.consequent.toString() === exp.consequent.expression.toString()
   ) {
     return
   }
 
+  // A ∨ B from -(-A & -B)
+  // A & B from -(-A ∨ -B)
   if (
-    !(justExpInner.antecedent instanceof Negation) &&
-    !(justExpInner.consequent instanceof Negation) &&
-    exp.antecedent instanceof Negation &&
-    exp.consequent instanceof Negation &&
-    justExpInner.antecedent.toString() === exp.antecedent.expression.toString() &&
-    justExpInner.consequent.toString() === exp.consequent.expression.toString()
+    justExpInner.antecedent instanceof Negation &&
+    justExpInner.antecedent.expression.toString() === exp.antecedent.toString() &&
+    justExpInner.consequent instanceof Negation &&
+    justExpInner.consequent.expression.toString() === exp.consequent.toString()
   ) {
     return
   }

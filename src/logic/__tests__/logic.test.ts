@@ -281,6 +281,8 @@ describe('Rule', () => {
       ['-(-A & -B)', ['A ∨ B']],
       ['A & B', ['-(-A ∨ -B)']],
       ['-(-A ∨ -B)', ['A & B']],
+      ['--A & -B', ['-(-A ∨ B)']],
+      ['A & -B', ['-(-A ∨ B)'], /invalid deduction/i]
     ])
 
     testCasesFor(Rule.ARROW, [
