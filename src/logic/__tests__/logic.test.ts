@@ -310,10 +310,12 @@ describe('Rule', () => {
   const testCasesFor = (
     rule: Rule,
     cases: ([string, string[]] | [string, string[], string | RegExp])[],
+    only: boolean = false,
   ) => {
     // eslint-disable-next-line vitest/valid-title
     describe(rule.label, () => {
-      test.each(cases)(
+      const testMethod = only ? test.only : test
+      testMethod.each(cases)(
         '%s from %s: %s',
         (formula: string, justifications: string[], error: string | RegExp | null = null) => {
           const caller = () => evaluateSimple(rule, formula, justifications)
