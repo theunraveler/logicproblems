@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, onBeforeMount, onBeforeUnmount, ref, useId, useTemplateRef, watch } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 import { useModal, useModalController } from 'bootstrap-vue-next'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { tour } from '@/tours/proof'
@@ -128,6 +129,9 @@ const hasUnsavedChanges = computed(
       form.justifications.value.length > 0),
 )
 
+const confirmDiscardMessage =
+  "It looks like you started this proof but haven't finished it. Are you sure you want to discard your progress?"
+
 const confirmDiscard = async (): Promise<boolean> => {
   if (!hasUnsavedChanges.value) {
     return true
@@ -136,7 +140,7 @@ const confirmDiscard = async (): Promise<boolean> => {
   const modal = createModal(
     {
       props: {
-        body: "It looks like you started this proof but haven't finished it. Are you sure you want to discard your progress?",
+        body: confirmDiscardMessage,
         noHeader: true,
         centered: true,
       },
@@ -144,6 +148,12 @@ const confirmDiscard = async (): Promise<boolean> => {
     { returnBoolean: true },
   )
   return !!(await modal.show())
+}
+
+const onWindowUnload = (event: BeforeUnloadEvent) => {
+  if (hasUnsavedChanges.value) {
+    event.returnValue = confirmDiscardMessage
+  }
 }
 
 const clearForm = () => {
@@ -164,6 +174,10 @@ const isUnresolvedSupposition = (line: Line) => {
       }))
   )
 }
+
+onBeforeMount(() => window.addEventListener('beforeunload', onWindowUnload))
+onBeforeUnmount(() => window.removeEventListener('beforeunload', onWindowUnload))
+onBeforeRouteUpdate(confirmDiscard)
 
 defineExpose({ clear, solvedIn, confirmDiscard })
 </script>

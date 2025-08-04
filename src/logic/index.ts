@@ -636,9 +636,7 @@ function evalArrow(
     }
   }
 
-  const conditionalJust = (
-    justExp instanceof Negation ? justExp.expression : justExp
-  )
+  const conditionalJust = justExp instanceof Negation ? justExp.expression : justExp
   if (!(conditionalJust instanceof Conditional)) {
     return throwOrRecip('Justification must contain an arrow operator')
   }

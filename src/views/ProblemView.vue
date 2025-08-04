@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, onMounted, reactive, useTemplateRef } from 'vue'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
@@ -14,7 +14,7 @@ const router = useRouter()
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
-const props = defineProps<{ id: string; problem: Problem; lines: SerializedLine[] }>()
+const props = defineProps<{ id: string; problem: Problem; lines?: SerializedLine[] }>()
 const proof = reactive(new Proof(props.problem.premises, props.problem.conclusion))
 
 useHead({ title: props.problem.title })
@@ -53,7 +53,6 @@ const clear = () => {
   router.push(params)
 }
 
-onBeforeRouteUpdate(async () => await proofTable?.value?.confirmDiscard())
 onMounted(async () => {
   if (!props.lines) {
     return
