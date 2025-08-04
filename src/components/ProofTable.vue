@@ -198,7 +198,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         <BTr
           v-for="(line, index) in proof.lines"
           :key="index"
-          :class="{ 'table-active': form.justifications.value.includes(index) }"
+          :variant="form.justifications.value.includes(index) ? 'active' : null"
           :data-tour="`line-${index}`"
           @click="rowClicked(index)">
           <BTd v-if="!qed" :data-tour="`justification-${index}`">
