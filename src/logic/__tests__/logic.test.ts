@@ -50,14 +50,15 @@ describe('Rule', () => {
       ['C → D', ['A & (C → D)']],
       ['A → B', ['(A → B) & (C → D)']],
       ['C → D', ['(A → B) & (C → D)']],
-      ['C', ['A & B'], /must be either the antecedent or consequent of the justification/],
+      ['C', ['A & B'], /must be either the left or right component of the justification/],
     ])
 
     testCasesFor(Rule.AND_IN, [
       ['A & B', ['A', 'B']],
       ['B & A', ['A', 'B']],
       ['(A → B) & (C → D)', ['A → B', 'C → D']],
-      ['A & C', ['A', 'B'], /consequent must be one of the justifications/],
+      ['B & C', ['A', 'C'], /left component of the formula must be one of the justifications/],
+      ['A & C', ['A', 'B'], /right component of the formula must be one of the justifications/],
     ])
 
     testCasesFor(Rule.BICONDITIONAL_OUT, [
@@ -68,7 +69,7 @@ describe('Rule', () => {
       [
         'B → C',
         ['A ↔ B'],
-        /formula must have have the same antecedent and consequent as the justification/i,
+        /formula must have have the same components as the justification/i,
       ],
     ])
 
@@ -79,7 +80,12 @@ describe('Rule', () => {
       [
         'B ↔ A',
         ['A → B', 'A → C'],
-        /antecedent and consequent must be the antecedent and consequent of one justification/i,
+        /left and right components of the biconditional must be the antecedent and consequent of one justification/i,
+      ],
+      [
+        'B ↔ A',
+        ['B → A', 'A → C'],
+        /left and right components of the biconditional must be the consequent and antecedent of one justification/i,
       ],
       ['B ↔ A', ['A → B', 'B & C'], /justifications must both contain arrow operators/i],
       ['A ↔ B', ['A → B'], /requires 2 justifications/],
@@ -91,7 +97,7 @@ describe('Rule', () => {
       [
         'A ∨ B',
         ['C'],
-        /formula must contain the justification as either its antecedent or consequent/i,
+        /formula must contain the justification as either its left or right component/i,
       ],
     ])
 
@@ -227,17 +233,17 @@ describe('Rule', () => {
       [
         'C',
         ['A ∨ B', '-A'],
-        /formula must be either the antecedent or consequent of the disjunction justification/i,
+        /formula must be either the left or right component of the disjunction justification/i,
       ],
       [
         '-B',
         ['A ∨ B', 'A'],
-        /disjunction must contain the negated negation as either its antecedent or consequent/i,
+        /disjunction must contain the negated negation as either its left or right component/i,
       ],
       [
         '-B',
         ['A ∨ B', '-A'],
-        /formula must be either the antecedent or consequent of the disjunction justification/i,
+        /formula must be either the left or right component of the disjunction justification/i,
       ],
     ])
 
@@ -248,7 +254,7 @@ describe('Rule', () => {
       [
         '-A',
         ['-(A & B)', 'C'],
-        /contains the second justification as either its antecedent or consequent/i,
+        /contains the second justification as either its left or right component/i,
       ],
     ])
 

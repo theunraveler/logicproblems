@@ -192,7 +192,7 @@ export class Proof {
 function evalArrowOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orderedJust = [justExps, justExps.toReversed()].find(([a, b]) => {
-    return a instanceof Conditional && a.antecedent.toString() === b.toString()
+    return a instanceof Conditional && a.left.toString() === b.toString()
   }) as [Conditional, Expression] | undefined
   if (!orderedJust) {
     throw new InvalidDeductionError(
@@ -202,7 +202,7 @@ function evalArrowOut(exp: Expression, justifications: Line[]) {
 
   const [mainJust] = orderedJust
 
-  if (mainJust.consequent.toString() !== exp.toString()) {
+  if (mainJust.right.toString() !== exp.toString()) {
     throw new InvalidDeductionError(
       'Formula must be the consequent of the conditional justification',
     )
@@ -222,8 +222,8 @@ function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
   }
 
   const supposition = justifications[suppositionIndex]
-  const consequent = justifications[suppositionIndex ? 0 : 1]
-  const dependencies = consequent.dependencies(proof)
+  const right = justifications[suppositionIndex ? 0 : 1]
+  const dependencies = right.dependencies(proof)
 
   if (!dependencies.includes(supposition.index)) {
     throw new InvalidDeductionError(
@@ -231,12 +231,12 @@ function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
     )
   }
 
-  if (exp.antecedent.toString() !== supposition.formula.toString()) {
+  if (exp.left.toString() !== supposition.formula.toString()) {
     throw new InvalidDeductionError(
       'The antecedent of the formula must be the supposition justification',
     )
   }
-  if (exp.consequent.toString() !== consequent.formula.toString()) {
+  if (exp.right.toString() !== right.formula.toString()) {
     throw new InvalidDeductionError(
       'The consequent of the formula must be the second justification',
     )
@@ -253,16 +253,16 @@ function evalBiconditionalOut(exp: Expression, [justification]: Line[]) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
 
-  const expLeft = exp.antecedent.toString()
-  const expRight = exp.consequent.toString()
-  const justLeft = just.antecedent.toString()
-  const justRight = just.consequent.toString()
+  const expLeft = exp.left.toString()
+  const expRight = exp.right.toString()
+  const justLeft = just.left.toString()
+  const justRight = just.right.toString()
   if (
     !(expLeft === justLeft && expRight === justRight) &&
     !(expLeft === justRight && expRight === justLeft)
   ) {
     throw new InvalidDeductionError(
-      'Formula must have have the same antecedent and consequent as the justification',
+      'Formula must have have the same components as the justification',
     )
   }
 }
@@ -278,17 +278,17 @@ function evalBiconditionalIn(exp: Expression, justifications: Line[]) {
   }
 
   const justExpsStr = justExps.map((e) => e.toString())
-  const leftRight = new Conditional(exp.antecedent, exp.consequent).toString()
-  const rightLeft = new Conditional(exp.consequent, exp.antecedent).toString()
+  const leftRight = new Conditional(exp.left, exp.right).toString()
+  const rightLeft = new Conditional(exp.right, exp.left).toString()
 
   if (!justExpsStr.includes(leftRight)) {
     throw new InvalidDeductionError(
-      'Antecedent and consequent must be the antecedent and consequent of one justification',
+      'Left and right components of the biconditional must be the antecedent and consequent of one justification',
     )
   }
   if (!justExpsStr.includes(rightLeft)) {
     throw new InvalidDeductionError(
-      'Antecedent and consequent must be the consequent and antecedent of one justification',
+      'Left and right components of the biconditional must be the consequent and antecedent of one justification',
     )
   }
 }
@@ -310,17 +310,17 @@ function evalWedgeOut(exp: Expression, justifications: Line[]) {
 
   const expStr = exp.toString()
 
-  if (!justExps.every((e) => e.consequent.toString() === expStr)) {
+  if (!justExps.every((e) => e.right.toString() === expStr)) {
     throw new InvalidDeductionError(
       'Both conditional justifications must contain the formula as their consequent',
     )
   }
 
-  const orJustParts = [orJust.antecedent, orJust.consequent].map((p) => p.toString()).sort()
-  const justExpLefts = justExps.map((e) => e.antecedent.toString()).sort()
+  const orJustParts = [orJust.left, orJust.right].map((p) => p.toString()).sort()
+  const justExpLefts = justExps.map((e) => e.left.toString()).sort()
   if (!orJustParts.every((val, index) => val === justExpLefts[index])) {
     throw new InvalidDeductionError(
-      'Both the antecedent and the consequent of the wedge justification must be the antecedent of the conditional justifications',
+      'Both the left and right components of the wedge justification must be the antecedents of the conditional justifications',
     )
   }
 }
@@ -331,9 +331,9 @@ function evalWedgeIn(exp: Expression, [justification]: Line[]) {
   }
 
   const justExp = justification.formula.toString()
-  if (exp.antecedent.toString() !== justExp && exp.consequent.toString() !== justExp) {
+  if (exp.left.toString() !== justExp && exp.right.toString() !== justExp) {
     throw new InvalidDeductionError(
-      'Formula must contain the justification as either its antecedent or consequent',
+      'Formula must contain the justification as either its left or right component',
     )
   }
 }
@@ -346,9 +346,9 @@ function evalAndOut(exp: Expression, [justification]: Line[]) {
   }
 
   const expStr = exp.toString()
-  if (just.antecedent.toString() !== expStr && just.consequent.toString() !== expStr) {
+  if (just.left.toString() !== expStr && just.right.toString() !== expStr) {
     throw new InvalidDeductionError(
-      'Formula must be either the antecedent or consequent of the justification',
+      'Formula must be either the left or right component of the justification',
     )
   }
 }
@@ -358,15 +358,15 @@ function evalAndIn(exp: Expression, justifications: Line[]) {
     throw new InvalidDeductionError('Formula must contain an ampersand operator')
   }
 
-  const expLeft = exp.antecedent.toString()
-  const expRight = exp.consequent.toString()
+  const expLeft = exp.left.toString()
+  const expRight = exp.right.toString()
   const justExps = justifications.map((j) => j.formula.toString())
 
   if (!justExps.includes(expLeft)) {
-    throw new InvalidDeductionError('Formula antecedent must be one of the justifications')
+    throw new InvalidDeductionError('The left component of the formula must be one of the justifications')
   }
   if (!justExps.includes(expRight)) {
-    throw new InvalidDeductionError('Formula consequent must be one of the justifications')
+    throw new InvalidDeductionError('The right component of the formula must be one of the justifications')
   }
 }
 
@@ -388,7 +388,7 @@ function evalNegationOut(exp: Expression, justifications: Line[], proof: Proof) 
   if (!(suppositionExp instanceof Negation)) {
     throw new InvalidDeductionError('The supposition justification must contain a dash operator')
   }
-  if (suppositionExp.expression.toString() !== exp.toString()) {
+  if (suppositionExp.inner.toString() !== exp.toString()) {
     throw new InvalidDeductionError('Formula must be the negation of the supposition justification')
   }
 
@@ -417,7 +417,7 @@ function evalNegationIn(exp: Expression, justifications: Line[], proof: Proof) {
   const [supposition, contradiction] = orderedJusts
 
   const suppositionExp = supposition.formula
-  if (exp.expression.toString() !== suppositionExp.toString()) {
+  if (exp.inner.toString() !== suppositionExp.toString()) {
     throw new InvalidDeductionError('Formula must be the negation of the supposition justification')
   }
 
@@ -442,15 +442,15 @@ function evalModusTollens(exp: Expression, justifications: Line[]) {
     )
   }
 
-  const expInner = exp.expression.toString()
+  const expInner = exp.inner.toString()
   const [negationJust, conditionalJust] = orderedJusts
 
-  if (conditionalJust.antecedent.toString() !== expInner) {
+  if (conditionalJust.left.toString() !== expInner) {
     throw new InvalidDeductionError(
       'Conditional justification must contain the negated formula as its antecedent',
     )
   }
-  if (conditionalJust.consequent.toString() !== negationJust.expression.toString()) {
+  if (conditionalJust.right.toString() !== negationJust.inner.toString()) {
     throw new InvalidDeductionError(
       'Conditional justification must contain the negated negation justification as its consequent',
     )
@@ -463,26 +463,26 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
     if (!(b instanceof Negation)) {
       return false
     }
-    const bExp = b.expression.toString()
+    const bExp = b.inner.toString()
     return (
       a instanceof Disjunction &&
-      (a.antecedent.toString() === bExp || a.consequent.toString() === bExp)
+      (a.left.toString() === bExp || a.right.toString() === bExp)
     )
   }) as [Disjunction, Negation] | undefined
   if (!orderedJusts) {
     throw new InvalidDeductionError(
-      'Justifications must include a disjunction and a negation, and the disjunction must contain the negated negation as either its antecedent or consequent',
+      'Justifications must include a disjunction and a negation, and the disjunction must contain the negated negation as either its left or right component',
     )
   }
 
   const [disjunctionJust] = orderedJusts
   const expStr = exp.toString()
   if (
-    disjunctionJust.antecedent.toString() !== expStr &&
-    disjunctionJust.consequent.toString() !== expStr
+    disjunctionJust.left.toString() !== expStr &&
+    disjunctionJust.right.toString() !== expStr
   ) {
     throw new InvalidDeductionError(
-      'Formula must be either the antecedent or consequent of the disjunction justification',
+      'Formula must be either the left or right component of the disjunction justification',
     )
   }
 }
@@ -497,24 +497,24 @@ function evalConjunctiveArgument(exp: Expression, justifications: Line[]) {
     const bStr = b.toString()
     return (
       a instanceof Negation &&
-      a.expression instanceof Conjunction &&
-      (a.expression.antecedent.toString() === bStr || a.expression.consequent.toString() === bStr)
+      a.inner instanceof Conjunction &&
+      (a.inner.left.toString() === bStr || a.inner.right.toString() === bStr)
     )
   })
   if (!orderedJusts) {
     throw new InvalidDeductionError(
-      'Justifications must include a negated conjunction that contains the second justification as either its antecedent or consequent',
+      'Justifications must include a negated conjunction that contains the second justification as either its left or right component',
     )
   }
 
-  const conjunctionJust = (orderedJusts[0] as Negation).expression as Conjunction
-  const innerStr = exp.expression.toString()
+  const conjunctionJust = (orderedJusts[0] as Negation).inner as Conjunction
+  const innerStr = exp.inner.toString()
   if (
-    conjunctionJust.antecedent.toString() !== innerStr &&
-    conjunctionJust.consequent.toString() !== innerStr
+    conjunctionJust.left.toString() !== innerStr &&
+    conjunctionJust.right.toString() !== innerStr
   ) {
     throw new InvalidDeductionError(
-      'Negated formula must be either the antecedent or the consequent of the conjunction justification',
+      'Negated formula must be either the left or right component of the conjunction justification',
     )
   }
 }
@@ -529,21 +529,21 @@ function evalChainRule(exp: Expression, justifications: Line[]) {
     throw new InvalidDeductionError('Justifications must all contain an arrow operator')
   }
 
-  const expLeft = exp.antecedent.toString()
-  const firstJustIndex = justExps.findIndex((e) => e.antecedent.toString() === expLeft)
+  const expLeft = exp.left.toString()
+  const firstJustIndex = justExps.findIndex((e) => e.left.toString() === expLeft)
   if (firstJustIndex === -1) {
-    throw new InvalidDeductionError('Formula must be the antecedent of one of the justifications')
+    throw new InvalidDeductionError('The antecedent of the formula must be the antecedent of one of the justifications')
   }
   const firstJust = justExps[firstJustIndex]
   const secondJust = justExps[firstJustIndex ? 0 : 1]
 
-  if (firstJust.consequent.toString() !== secondJust.antecedent.toString()) {
+  if (firstJust.right.toString() !== secondJust.left.toString()) {
     throw new InvalidDeductionError(
       'Consequent of the first justification must be the antecedent of the second justification',
     )
   }
 
-  if (secondJust.consequent.toString() !== exp.consequent.toString()) {
+  if (secondJust.right.toString() !== exp.right.toString()) {
     throw new InvalidDeductionError(
       'Consequent of the formula must be the consequent of the second justification',
     )
@@ -581,7 +581,7 @@ function evalDemorgansLaw(
   if (!(justExp instanceof Negation)) {
     return throwOrRecip('Invalid deduction')
   }
-  const justExpInner = justExp.expression
+  const justExpInner = justExp.inner
 
   if (
     !(
@@ -595,10 +595,10 @@ function evalDemorgansLaw(
   // -A ∨ -B from -(A & B)
   // -A & -B from -(A ∨ B)
   if (
-    exp.antecedent instanceof Negation &&
-    justExpInner.antecedent.toString() === exp.antecedent.expression.toString() &&
-    exp.consequent instanceof Negation &&
-    justExpInner.consequent.toString() === exp.consequent.expression.toString()
+    exp.left instanceof Negation &&
+    justExpInner.left.toString() === exp.left.inner.toString() &&
+    exp.right instanceof Negation &&
+    justExpInner.right.toString() === exp.right.inner.toString()
   ) {
     return
   }
@@ -606,10 +606,10 @@ function evalDemorgansLaw(
   // A ∨ B from -(-A & -B)
   // A & B from -(-A ∨ -B)
   if (
-    justExpInner.antecedent instanceof Negation &&
-    justExpInner.antecedent.expression.toString() === exp.antecedent.toString() &&
-    justExpInner.consequent instanceof Negation &&
-    justExpInner.consequent.expression.toString() === exp.consequent.toString()
+    justExpInner.left instanceof Negation &&
+    justExpInner.left.inner.toString() === exp.left.toString() &&
+    justExpInner.right instanceof Negation &&
+    justExpInner.right.inner.toString() === exp.right.toString()
   ) {
     return
   }
@@ -634,7 +634,7 @@ function evalArrow(
     }
   }
 
-  const conditionalJust = justExp instanceof Negation ? justExp.expression : justExp
+  const conditionalJust = justExp instanceof Negation ? justExp.inner : justExp
   if (!(conditionalJust instanceof Conditional)) {
     return throwOrRecip('Justification must contain an arrow operator')
   }
@@ -642,13 +642,13 @@ function evalArrow(
   // -A ∨ B from A → B
   if (
     !(justExp instanceof Negation) &&
-    !(conditionalJust.antecedent instanceof Negation) &&
-    !(conditionalJust.consequent instanceof Negation) &&
+    !(conditionalJust.left instanceof Negation) &&
+    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Disjunction &&
-    exp.antecedent instanceof Negation &&
-    !(exp.consequent instanceof Negation) &&
-    conditionalJust.antecedent.toString() === exp.antecedent.expression.toString() &&
-    conditionalJust.consequent.toString() === exp.consequent.toString()
+    exp.left instanceof Negation &&
+    !(exp.right instanceof Negation) &&
+    conditionalJust.left.toString() === exp.left.inner.toString() &&
+    conditionalJust.right.toString() === exp.right.toString()
   ) {
     return
   }
@@ -656,13 +656,13 @@ function evalArrow(
   // A ∨ B from -A → B
   if (
     !(justExp instanceof Negation) &&
-    conditionalJust.antecedent instanceof Negation &&
-    !(conditionalJust.consequent instanceof Negation) &&
+    conditionalJust.left instanceof Negation &&
+    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Disjunction &&
-    !(exp.antecedent instanceof Negation) &&
-    !(exp.consequent instanceof Negation) &&
-    conditionalJust.antecedent.expression.toString() === exp.antecedent.toString() &&
-    conditionalJust.consequent.toString() === exp.consequent.toString()
+    !(exp.left instanceof Negation) &&
+    !(exp.right instanceof Negation) &&
+    conditionalJust.left.inner.toString() === exp.left.toString() &&
+    conditionalJust.right.toString() === exp.right.toString()
   ) {
     return
   }
@@ -671,13 +671,13 @@ function evalArrow(
   if (
     !(justExp instanceof Negation) &&
     exp instanceof Negation &&
-    !(conditionalJust.antecedent instanceof Negation) &&
-    !(conditionalJust.consequent instanceof Negation) &&
-    exp.expression instanceof Conjunction &&
-    !(exp.expression.antecedent instanceof Negation) &&
-    exp.expression.consequent instanceof Negation &&
-    conditionalJust.antecedent.toString() === exp.expression.antecedent.toString() &&
-    conditionalJust.consequent.toString() === exp.expression.consequent.expression.toString()
+    !(conditionalJust.left instanceof Negation) &&
+    !(conditionalJust.right instanceof Negation) &&
+    exp.inner instanceof Conjunction &&
+    !(exp.inner.left instanceof Negation) &&
+    exp.inner.right instanceof Negation &&
+    conditionalJust.left.toString() === exp.inner.left.toString() &&
+    conditionalJust.right.toString() === exp.inner.right.inner.toString()
   ) {
     return
   }
@@ -685,13 +685,13 @@ function evalArrow(
   // A & -B from -(A → B)
   if (
     justExp instanceof Negation &&
-    !(conditionalJust.antecedent instanceof Negation) &&
-    !(conditionalJust.consequent instanceof Negation) &&
+    !(conditionalJust.left instanceof Negation) &&
+    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Conjunction &&
-    !(exp.antecedent instanceof Negation) &&
-    exp.consequent instanceof Negation &&
-    conditionalJust.antecedent.toString() === exp.antecedent.toString() &&
-    conditionalJust.consequent.toString() === exp.consequent.expression.toString()
+    !(exp.left instanceof Negation) &&
+    exp.right instanceof Negation &&
+    conditionalJust.left.toString() === exp.left.toString() &&
+    conditionalJust.right.toString() === exp.right.inner.toString()
   ) {
     return
   }
@@ -710,48 +710,48 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
 
   // -B → -A from A → B
   if (
-    !(justExp.antecedent instanceof Negation) &&
-    !(justExp.consequent instanceof Negation) &&
-    exp.antecedent instanceof Negation &&
-    exp.consequent instanceof Negation &&
-    exp.antecedent.expression.toString() === justExp.consequent.toString() &&
-    exp.consequent.expression.toString() === justExp.antecedent.toString()
+    !(justExp.left instanceof Negation) &&
+    !(justExp.right instanceof Negation) &&
+    exp.left instanceof Negation &&
+    exp.right instanceof Negation &&
+    exp.left.inner.toString() === justExp.right.toString() &&
+    exp.right.inner.toString() === justExp.left.toString()
   ) {
     return
   }
 
   // B → A from -A → -B
   if (
-    justExp.antecedent instanceof Negation &&
-    justExp.consequent instanceof Negation &&
-    !(exp.antecedent instanceof Negation) &&
-    !(exp.consequent instanceof Negation) &&
-    justExp.antecedent.expression.toString() === exp.consequent.toString() &&
-    justExp.consequent.expression.toString() === exp.antecedent.toString()
+    justExp.left instanceof Negation &&
+    justExp.right instanceof Negation &&
+    !(exp.left instanceof Negation) &&
+    !(exp.right instanceof Negation) &&
+    justExp.left.inner.toString() === exp.right.toString() &&
+    justExp.right.inner.toString() === exp.left.toString()
   ) {
     return
   }
 
   // -B → A from -A → B
   if (
-    justExp.antecedent instanceof Negation &&
-    !(justExp.consequent instanceof Negation) &&
-    exp.antecedent instanceof Negation &&
-    !(exp.consequent instanceof Negation) &&
-    justExp.antecedent.expression.toString() === exp.consequent.toString() &&
-    justExp.consequent.toString() === exp.antecedent.expression.toString()
+    justExp.left instanceof Negation &&
+    !(justExp.right instanceof Negation) &&
+    exp.left instanceof Negation &&
+    !(exp.right instanceof Negation) &&
+    justExp.left.inner.toString() === exp.right.toString() &&
+    justExp.right.toString() === exp.left.inner.toString()
   ) {
     return
   }
 
   // B → -A from A → -B
   if (
-    !(justExp.antecedent instanceof Negation) &&
-    justExp.consequent instanceof Negation &&
-    !(exp.antecedent instanceof Negation) &&
-    exp.consequent instanceof Negation &&
-    justExp.antecedent.toString() === exp.consequent.expression.toString() &&
-    justExp.consequent.expression.toString() === exp.antecedent.toString()
+    !(justExp.left instanceof Negation) &&
+    justExp.right instanceof Negation &&
+    !(exp.left instanceof Negation) &&
+    exp.right instanceof Negation &&
+    justExp.left.toString() === exp.right.inner.toString() &&
+    justExp.right.inner.toString() === exp.left.toString()
   ) {
     return
   }

@@ -47,29 +47,29 @@ export abstract class OperatorExpression extends Expression {
 
 export abstract class BinaryExpression extends OperatorExpression {
   constructor(
-    public readonly antecedent: Expression,
-    public readonly consequent: Expression,
+    public readonly left: Expression,
+    public readonly right: Expression,
   ) {
     super()
   }
 
   toString(includeParens: boolean = false): string {
     const str = [
-      this.antecedent.toString(true),
+      this.left.toString(true),
       this.operator.symbol,
-      this.consequent.toString(true),
+      this.right.toString(true),
     ].join(' ')
     return includeParens ? `(${str})` : str
   }
 }
 
 export abstract class UnaryExpression extends OperatorExpression {
-  constructor(public readonly expression: Expression) {
+  constructor(public readonly inner: Expression) {
     super()
   }
 
   toString(): string {
-    return `${this.operator.symbol}${this.expression.toString(true)}`
+    return `${this.operator.symbol}${this.inner.toString(true)}`
   }
 }
 
@@ -86,11 +86,11 @@ export class Conjunction extends BinaryExpression {
 
   isContradiction(): boolean {
     const pairs = [
-      [this.antecedent, this.consequent],
-      [this.consequent, this.antecedent],
+      [this.left, this.right],
+      [this.right, this.left],
     ]
     return !!pairs.find(
-      ([a, b]) => a instanceof Negation && a.expression.toString() === b.toString(),
+      ([a, b]) => a instanceof Negation && a.inner.toString() === b.toString(),
     )
   }
 }

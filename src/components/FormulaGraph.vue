@@ -26,16 +26,16 @@ const props = defineProps<{ expression?: Expression }>()
     <template v-if="props.expression instanceof BinaryExpression">
       <BCol>
         <div class="mb-3 text-end me-5 fs-4"><IBiArrowDownLeft /></div>
-        <FormulaGraph :expression="props.expression.antecedent" />
+        <FormulaGraph :expression="props.expression.left" />
       </BCol>
       <BCol>
         <div class="mb-3 text-start ms-5 fs-4"><IBiArrowDownRight /></div>
-        <FormulaGraph :expression="props.expression.consequent" />
+        <FormulaGraph :expression="props.expression.right" />
       </BCol>
     </template>
     <BCol v-if="props.expression instanceof UnaryExpression">
       <div class="mb-3 text-center fs-4"><IBiArrowDown /></div>
-      <FormulaGraph :expression="props.expression.expression" />
+      <FormulaGraph :expression="props.expression.inner" />
     </BCol>
   </BRow>
 </template>
