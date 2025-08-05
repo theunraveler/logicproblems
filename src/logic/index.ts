@@ -363,10 +363,14 @@ function evalAndIn(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula.toString())
 
   if (!justExps.includes(expLeft)) {
-    throw new InvalidDeductionError('The left component of the formula must be one of the justifications')
+    throw new InvalidDeductionError(
+      'The left component of the formula must be one of the justifications',
+    )
   }
   if (!justExps.includes(expRight)) {
-    throw new InvalidDeductionError('The right component of the formula must be one of the justifications')
+    throw new InvalidDeductionError(
+      'The right component of the formula must be one of the justifications',
+    )
   }
 }
 
@@ -464,10 +468,7 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
       return false
     }
     const bExp = b.inner.toString()
-    return (
-      a instanceof Disjunction &&
-      (a.left.toString() === bExp || a.right.toString() === bExp)
-    )
+    return a instanceof Disjunction && (a.left.toString() === bExp || a.right.toString() === bExp)
   }) as [Disjunction, Negation] | undefined
   if (!orderedJusts) {
     throw new InvalidDeductionError(
@@ -477,10 +478,7 @@ function evalDisjunctiveArgument(exp: Expression, justifications: Line[]) {
 
   const [disjunctionJust] = orderedJusts
   const expStr = exp.toString()
-  if (
-    disjunctionJust.left.toString() !== expStr &&
-    disjunctionJust.right.toString() !== expStr
-  ) {
+  if (disjunctionJust.left.toString() !== expStr && disjunctionJust.right.toString() !== expStr) {
     throw new InvalidDeductionError(
       'Formula must be either the left or right component of the disjunction justification',
     )
@@ -532,7 +530,9 @@ function evalChainRule(exp: Expression, justifications: Line[]) {
   const expLeft = exp.left.toString()
   const firstJustIndex = justExps.findIndex((e) => e.left.toString() === expLeft)
   if (firstJustIndex === -1) {
-    throw new InvalidDeductionError('The antecedent of the formula must be the antecedent of one of the justifications')
+    throw new InvalidDeductionError(
+      'The antecedent of the formula must be the antecedent of one of the justifications',
+    )
   }
   const firstJust = justExps[firstJustIndex]
   const secondJust = justExps[firstJustIndex ? 0 : 1]

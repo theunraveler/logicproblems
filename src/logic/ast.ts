@@ -54,11 +54,9 @@ export abstract class BinaryExpression extends OperatorExpression {
   }
 
   toString(includeParens: boolean = false): string {
-    const str = [
-      this.left.toString(true),
-      this.operator.symbol,
-      this.right.toString(true),
-    ].join(' ')
+    const str = [this.left.toString(true), this.operator.symbol, this.right.toString(true)].join(
+      ' ',
+    )
     return includeParens ? `(${str})` : str
   }
 }
@@ -89,9 +87,7 @@ export class Conjunction extends BinaryExpression {
       [this.left, this.right],
       [this.right, this.left],
     ]
-    return !!pairs.find(
-      ([a, b]) => a instanceof Negation && a.inner.toString() === b.toString(),
-    )
+    return !!pairs.find(([a, b]) => a instanceof Negation && a.inner.toString() === b.toString())
   }
 }
 

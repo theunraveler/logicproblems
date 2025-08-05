@@ -66,11 +66,7 @@ describe('Rule', () => {
       ['B → A', ['A ↔ B']],
       ['(A → C) → B', ['(A → C) ↔ B']],
       ['B → (A → C)', ['(A → C) ↔ B']],
-      [
-        'B → C',
-        ['A ↔ B'],
-        /formula must have have the same components as the justification/i,
-      ],
+      ['B → C', ['A ↔ B'], /formula must have have the same components as the justification/i],
     ])
 
     testCasesFor(Rule.BICONDITIONAL_IN, [
@@ -288,7 +284,7 @@ describe('Rule', () => {
       ['A & B', ['-(-A ∨ -B)']],
       ['-(-A ∨ -B)', ['A & B']],
       ['--A & -B', ['-(-A ∨ B)']],
-      ['A & -B', ['-(-A ∨ B)'], /invalid deduction/i]
+      ['A & -B', ['-(-A ∨ B)'], /invalid deduction/i],
     ])
 
     testCasesFor(Rule.ARROW, [
