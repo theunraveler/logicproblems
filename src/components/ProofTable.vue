@@ -108,8 +108,8 @@ const clear = async () => {
   emit('clear', proof)
 }
 
-const rowClicked = (lineNumber: number) => {
-  if (qed.value) {
+const toggleJustification = (lineNumber: number) => {
+  if (qed.value || lineNumber >= proof.lines.length) {
     return
   }
 
@@ -198,7 +198,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
           :key="index"
           :variant="form.justifications.value.includes(index) ? 'active' : null"
           :data-tour="`line-${index}`"
-          @click="rowClicked(index)">
+          @click="toggleJustification(index)">
           <BTd v-if="!qed" :data-tour="`justification-${index}`">
             <BFormCheckbox
               v-model="form.justifications.value"
