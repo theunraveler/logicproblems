@@ -24,11 +24,12 @@ useHead({ title })
 
 const perPage = 30
 const problems = computed(() => {
-  let problems = allProblems
-  if (props.chapter) {
-    problems = problems.filter(([, problem]) => problem.chapter === props.chapter)
-  }
-  return problems.slice((props.page - 1) * perPage, props.page * perPage)
+  return props.chapter
+    ? allProblems.filter(([, problem]) => problem.chapter === props.chapter)
+    : allProblems
+})
+const pageProblems = computed(() => {
+  return problems.value.slice((props.page - 1) * perPage, props.page * perPage)
 })
 
 const updatePage = (page: string | number) => {
@@ -54,7 +55,7 @@ const updatePage = (page: string | number) => {
     <BCol cols="12" lg="9" data-testid="problems">
       <TransitionGroup name="slide-fade" appear>
         <ProblemCard
-          v-for="([id, problem], index) in problems"
+          v-for="([id, problem], index) in pageProblems"
           :id="id"
           :key="id"
           :problem="problem"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import type { ProblemList } from '@/plugins/data'
 import { db, uniqueKeys } from '@/store'
 
@@ -14,6 +14,7 @@ const loadSolvedProblems = async () => {
   firstUnsolvedId.value = Object.keys(props.problems).find((id) => !solvedProblems.includes(id))
 }
 
+watch(props, loadSolvedProblems)
 onMounted(loadSolvedProblems)
 </script>
 
