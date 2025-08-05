@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, onBeforeUnmount, ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useId, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useModal, useModalController } from 'bootstrap-vue-next'
+import { useEventListener } from '@vueuse/core'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
@@ -150,12 +151,6 @@ const confirmDiscard = async (): Promise<boolean> => {
   return !!(await modal.show())
 }
 
-const onWindowUnload = (event: BeforeUnloadEvent) => {
-  if (hasUnsavedChanges.value) {
-    event.returnValue = confirmDiscardMessage
-  }
-}
-
 const clearForm = () => {
   formulaInput.value?.reset()
   formulaInput.value?.input?.focus()
@@ -175,8 +170,11 @@ const isUnresolvedSupposition = (line: Line) => {
   )
 }
 
-onBeforeMount(() => window.addEventListener('beforeunload', onWindowUnload))
-onBeforeUnmount(() => window.removeEventListener('beforeunload', onWindowUnload))
+useEventListener(window, 'beforeunlead', (event: BeforeUnloadEvent) => {
+  if (hasUnsavedChanges.value) {
+    event.returnValue = confirmDiscardMessage
+  }
+})
 onBeforeRouteUpdate(confirmDiscard)
 
 defineExpose({ clear, solvedIn, confirmDiscard })
