@@ -6,8 +6,8 @@ test.describe('solving a proof', () => {
       await page.goto('/problems/gof9o3')
       const proofTable = getProofTable(page)
 
-      await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
+      await enterAndEnsureLine(proofTable, 3, 'M → R', '→ O', [0, 2])
+      await enterAndEnsureLine(proofTable, 4, 'R', '→ O', [1, 3], true)
 
       const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
@@ -18,8 +18,8 @@ test.describe('solving a proof', () => {
       await page.goto('/problems/gof9o3')
       const proofTable = getProofTable(page)
 
-      await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-      await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
+      await enterAndEnsureLine(proofTable, 3, 'M → R', '→ O', [0, 2])
+      await enterAndEnsureLine(proofTable, 4, 'R', '→ O', [1, 3], true)
 
       const solutions = page.getByTestId('solutions').locator('.list-group-item')
       await expect(solutions).toHaveCount(1)
@@ -29,11 +29,11 @@ test.describe('solving a proof', () => {
       await page.goto('/problems/j7hkhm')
       const proofTable = getProofTable(page)
 
-      await enterAndEnsureLine(proofTable, 'C', 'S', [], 3)
-      await enterAndEnsureLine(proofTable, 'F', '→ O', [0, 3], 4)
-      await enterAndEnsureLine(proofTable, 'B', '→ O', [1, 4], 5)
-      await enterAndEnsureLine(proofTable, 'A', '→ O', [2, 5], 6)
-      await enterAndEnsureLine(proofTable, 'C → A', '→ I', [3, 6], 7, true)
+      await enterAndEnsureLine(proofTable, 3, 'C', 'S')
+      await enterAndEnsureLine(proofTable, 4, 'F', '→ O', [0, 3])
+      await enterAndEnsureLine(proofTable, 5, 'B', '→ O', [1, 4])
+      await enterAndEnsureLine(proofTable, 6, 'A', '→ O', [2, 5])
+      await enterAndEnsureLine(proofTable, 7, 'C → A', '→ I', [3, 6], true)
 
       const qedCell = proofTable.locator('tfoot tr').last().getByRole('cell')
       await expect(qedCell).toContainClass('table-success')
@@ -58,13 +58,13 @@ test.describe('showing previous solutions', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/problems/gof9o3')
     const proofTable = getProofTable(page)
-    await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
+    await enterAndEnsureLine(proofTable, 3, 'M → R', '→ O', [0, 2])
+    await enterAndEnsureLine(proofTable, 4, 'R', '→ O', [1, 3], true)
 
     await page.reload()
-    await enterAndEnsureLine(proofTable, 'M → R', '→ O', [0, 2], 3)
-    await enterAndEnsureLine(proofTable, 'A', 'S', [], 4)
-    await enterAndEnsureLine(proofTable, 'R', '→ O', [1, 3], 5, true)
+    await enterAndEnsureLine(proofTable, 3, 'M → R', '→ O', [0, 2])
+    await enterAndEnsureLine(proofTable, 4, 'A', 'S', [])
+    await enterAndEnsureLine(proofTable, 5, 'R', '→ O', [1, 3], true)
   })
 
   test('shows the proof when clicked', async ({ page }) => {
@@ -72,13 +72,13 @@ test.describe('showing previous solutions', () => {
     const proofTable = getProofTable(page)
 
     page.getByTestId('solutions').locator('.list-group-item').last().click()
-    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, true)
-    await ensureLine(proofTable, 'R', '→ O', [1, 3], 4, true)
+    await ensureLine(proofTable, 3, 'M → R', '→ O', [0, 2], true)
+    await ensureLine(proofTable, 4, 'R', '→ O', [1, 3], true)
 
     page.getByTestId('solutions').locator('.list-group-item').first().click()
-    await ensureLine(proofTable, 'M → R', '→ O', [0, 2], 3, true)
-    await ensureLine(proofTable, 'A', 'S', [], 4, true)
-    await ensureLine(proofTable, 'R', '→ O', [1, 3], 5, true)
+    await ensureLine(proofTable, 3, 'M → R', '→ O', [0, 2], true)
+    await ensureLine(proofTable, 4, 'A', 'S', [], true)
+    await ensureLine(proofTable, 5, 'R', '→ O', [1, 3], true)
     expect(true).toBe(true)
   })
 })
@@ -115,7 +115,7 @@ test.describe('navigating away', () => {
     await test.step('Complete the proof', async () => {
       await page.goto('/problems/tqpiwb')
       const proofTable = getProofTable(page)
-      await enterAndEnsureLine(proofTable, 'B', '→ O', [0, 1], 2, true)
+      await enterAndEnsureLine(proofTable, 2, 'B', '→ O', [0, 1], true)
       await page.getByRole('dialog').locator('[aria-label="Close"]').click()
     })
 
@@ -146,10 +146,10 @@ const enterLine = async (
 
 const ensureLine = async (
   proofTable: Locator,
+  expectedIndex: number,
   formula: string,
   rule: string,
-  justifications: number[],
-  expectedIndex: number,
+  justifications: number[] = [],
   completesProof: boolean = false,
 ) => {
   const startingColumn = completesProof ? 0 : 1
@@ -166,15 +166,15 @@ const ensureLine = async (
 
 const enterAndEnsureLine = async (
   proofTable: Locator,
+  expectedIndex: number,
   formula: string,
   rule: string,
-  justifications: number[],
-  expectedIndex: number,
+  justifications: number[] = [],
   completesProof: boolean = false,
 ) => {
   await test.step(`Enter and ensure proof line ${expectedIndex}`, async () => {
     await enterLine(proofTable, formula, rule, justifications)
-    await ensureLine(proofTable, formula, rule, justifications, expectedIndex, completesProof)
+    await ensureLine(proofTable, expectedIndex, formula, rule, justifications, completesProof)
   })
 }
 
