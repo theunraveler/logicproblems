@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
+import { computed, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import {
@@ -15,19 +15,20 @@ const props = defineProps({
   page: { type: Number, default: 1 },
   chapter: { type: Number, default: undefined },
 })
-const problems = ref(Object.entries(inject(problemsInjectionKey) as ProblemList))
-const chapters = inject(chaptersInjectionKey) as ChapterList
 
-if (props.chapter) {
-  problems.value = problems.value.filter(([, problem]) => problem.chapter === props.chapter)
-}
+const allProblems = Object.entries(inject(problemsInjectionKey) as ProblemList)
+const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
 useHead({ title })
 
 const perPage = 30
-const pageProblems = computed(() => {
-  return problems.value.slice((props.page - 1) * perPage, props.page * perPage)
+const problems = computed(() => {
+  let problems = allProblems
+  if (props.chapter) {
+    problems = problems.filter(([, problem]) => problem.chapter === props.chapter)
+  }
+  return problems.slice((props.page - 1) * perPage, props.page * perPage)
 })
 
 const updatePage = (page: string | number) => {
@@ -51,16 +52,19 @@ const updatePage = (page: string | number) => {
 
   <BRow>
     <BCol cols="12" lg="9" data-testid="problems">
-      <ProblemCard
-        v-for="[id, problem] in pageProblems"
-        :id="id"
-        :key="id"
-        :problem="problem"
-        class="mb-4" />
+      <TransitionGroup name="slide-fade" appear>
+        <ProblemCard
+          v-for="([id, problem], index) in problems"
+          :id="id"
+          :key="id"
+          :problem="problem"
+          :style="`--n: ${index}`"
+          class="mb-4" />
+      </TransitionGroup>
 
       <BPagination
         :model-value="props.page"
-        :total-rows="problems.length"
+        :total-rows="allProblems.length"
         :per-page="perPage"
         align="center"
         data-testid="problem-paginator"
@@ -76,3 +80,22 @@ const updatePage = (page: string | number) => {
     </BCol>
   </BRow>
 </template>
+
+<style scoped lang="scss">
+.slide-fade {
+  &-enter-active {
+    transition: all 0.8s ease-in;
+    transition-delay: calc(var(--n) * 0.1s);
+  }
+
+  &-leave-active {
+    transition: all 0.4s ease-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+</style>

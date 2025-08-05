@@ -1,7 +1,7 @@
 <template>
   <AppHeader />
 
-  <RouterView :key="$route.fullPath" v-slot="{ Component }">
+  <RouterView v-slot="{ Component }">
     <Transition name="fade" mode="out-in" appear>
       <BContainer tag="main" class="my-3">
         <Component :is="Component" />
