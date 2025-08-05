@@ -124,6 +124,40 @@ test.describe('navigating away', () => {
   })
 })
 
+test.describe.only('problem navigation', () => {
+  test.describe('previous', () => {
+    test('goes to the previous problem', async ({ page }) => {
+      await page.goto('/problems/ktn47i')
+      await page.getByTestId('previous-problem-link').click()
+      await expect(page).toHaveURL('/problems/tqpiwb')
+      await expect(page).toHaveTitle(/^Orientation |/)
+      const proofTable = getProofTable(page)
+      await ensureLine(proofTable, 0, 'A → B', 'A')
+    })
+
+    test('does not show if there is no previous problem', async ({ page }) => {
+      await page.goto('/problems/tqpiwb')
+      await expect(page.getByTestId('previous-problem-link')).toHaveCount(0)
+    })
+  })
+
+  test.describe('next', () => {
+    test('goes to the next problem', async ({ page }) => {
+      await page.goto('/problems/ktn47i')
+      await page.getByTestId('next-problem-link').click()
+      await expect(page).toHaveURL('/problems/gof9o3')
+      await expect(page).toHaveTitle(/^Chapter Three #2 |/)
+      const proofTable = getProofTable(page)
+      await ensureLine(proofTable, 0, 'E → (M → R)', 'A')
+    })
+
+    test('does not show if there is no next problem', async ({ page }) => {
+      await page.goto('/problems/cb15ts')
+      await expect(page.getByTestId('next-problem-link')).toHaveCount(0)
+    })
+  })
+})
+
 const getProofTable = (page: Page) => {
   return page.getByTestId('proof-table')
 }
