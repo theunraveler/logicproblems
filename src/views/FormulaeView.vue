@@ -20,7 +20,5 @@ const formulaInput = useTemplateRef<InstanceType<typeof FormulaInput>>('formula-
     <hr class="mb-4" />
     <FormulaGraph :expression="formulaInput.formula" />
   </div>
-  <div v-else>
-    <FormulaInputHelp />
-  </div>
+  <div v-else></div>
 </template>

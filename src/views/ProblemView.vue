@@ -2,9 +2,9 @@
 import { inject, onMounted, ref, toRaw, useTemplateRef, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { onKeyDown } from '@vueuse/core'
 import ProblemNav from '@/components/ProblemNav.vue'
 import ProofTable from '@/components/ProofTable.vue'
-import ProofTour from '@/components/ProofTour.vue'
 import SolutionList from '@/components/SolutionList.vue'
 import { Proof } from '@/logic'
 import { chaptersInjectionKey, type ChapterList, type Problem } from '@/plugins/data'
@@ -25,8 +25,16 @@ useHead({ title: props.problem.title })
 
 const problemNav = useTemplateRef<InstanceType<typeof ProblemNav>>('problem-nav')
 const proofTable = useTemplateRef<InstanceType<typeof ProofTable>>('proof-table')
-const proofTour = useTemplateRef<InstanceType<typeof ProofTour>>('tour')
 const solutionList = useTemplateRef<InstanceType<typeof SolutionList>>('solution-list')
+
+const keys = Object.fromEntries([...Array(9).keys()].map((n) => [`${n + 1}`, n]))
+onKeyDown(
+  (event) => event.key in keys,
+  (event) => {
+    event.preventDefault()
+    proofTable.value?.toggleJustification(keys[event.key])
+  }
+)
 
 const onQed = async (proof: Proof) => {
   if (!proofTable.value?.solvedIn || !solutionList.value) {
@@ -112,18 +120,7 @@ onMounted(async () => {
         class="mb-3"
         @select="viewSolution" />
       <ProofPermalink v-if="proof" :problem="props.problem" :proof="proof" class="mb-3" />
-      <aside class="mb-3">
-        <BButton
-          variant="outline-secondary"
-          class="w-100"
-          data-tour="tour"
-          @click.prevent="proofTour?.prompt()">
-          <IBiSignpostSplit class="me-2" /> How Do I Use This?
-        </BButton>
-      </aside>
-      <FormulaInputHelp />
+      <ProofHelp />
     </BCol>
   </BRow>
-
-  <ProofTour ref="tour" />
 </template>

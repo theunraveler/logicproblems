@@ -178,7 +178,7 @@ watch(
   { immediate: true },
 )
 
-defineExpose({ clear, solvedIn, confirmDiscard })
+defineExpose({ clear, solvedIn, confirmDiscard, toggleJustification })
 </script>
 
 <template>

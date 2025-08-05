@@ -59,7 +59,6 @@ declare module 'vue' {
     ChapterNav: typeof import('./src/components/ChapterNav.vue')['default']
     FormulaGraph: typeof import('./src/components/FormulaGraph.vue')['default']
     FormulaInput: typeof import('./src/components/FormulaInput.vue')['default']
-    FormulaInputHelp: typeof import('./src/components/FormulaInputHelp.vue')['default']
     IBiArrowDown: typeof import('~icons/bi/arrow-down')['default']
     IBiArrowDownLeft: typeof import('~icons/bi/arrow-down-left')['default']
     IBiArrowDownRight: typeof import('~icons/bi/arrow-down-right')['default']
@@ -68,11 +67,13 @@ declare module 'vue' {
     IBiArrowRightSquareFill: typeof import('~icons/bi/arrow-right-square-fill')['default']
     IBiCheckCircleFill: typeof import('~icons/bi/check-circle-fill')['default']
     IBiClipboardCheck: typeof import('~icons/bi/clipboard-check')['default']
+    IBiDash: typeof import('~icons/bi/dash')['default']
     IBiDownload: typeof import('~icons/bi/download')['default']
     IBiExclamationTriangleFill: typeof import('~icons/bi/exclamation-triangle-fill')['default']
     IBiGithub: typeof import('~icons/bi/github')['default']
     IBiLightbulb: typeof import('~icons/bi/lightbulb')['default']
     IBiLightbulbFill: typeof import('~icons/bi/lightbulb-fill')['default']
+    IBiPlus: typeof import('~icons/bi/plus')['default']
     IBiQuestionCircle: typeof import('~icons/bi/question-circle')['default']
     IBiRocketTakeoff: typeof import('~icons/bi/rocket-takeoff')['default']
     IBiShare: typeof import('~icons/bi/share')['default']
@@ -89,11 +90,15 @@ declare module 'vue' {
     ProblemCard: typeof import('./src/components/ProblemCard.vue')['default']
     ProblemNav: typeof import('./src/components/ProblemNav.vue')['default']
     ProblemsCompletionBar: typeof import('./src/components/ProblemsCompletionBar.vue')['default']
+    ProofHelp: typeof import('./src/components/ProofHelp.vue')['default']
     ProofPermalink: typeof import('./src/components/ProofPermalink.vue')['default']
     ProofTable: typeof import('./src/components/ProofTable.vue')['default']
     ProofTour: typeof import('./src/components/ProofTour.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SolutionList: typeof import('./src/components/SolutionList.vue')['default']
+  }
+  export interface GlobalDirectives {
+    vBToggle: typeof import('bootstrap-vue-next/directives/BToggle')['vBToggle']
   }
 }

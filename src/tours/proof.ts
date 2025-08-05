@@ -126,7 +126,7 @@ tour.addSteps([
   },
   {
     id: 'done',
-    text: "<p>That's it for our tour! Now you're ready to test your skills on the others problems on this site. After you close this tour, you can click the <strong>Next</strong> button below to move to the next problem or the <strong>Chapter Three</strong> link above to see the list of problems. If you forget anything we covered, you can always take the tour again by clicking the highlighted button in the sidebar.</p><p>Happy solving!</p>",
+    text: "<p>That's it for our tour! Now you're ready to test your skills on the others problems on this site. After you close this tour, you can click the <strong>Chapter Three #1</strong> button below to move to the next problem or the <strong>Chapter Three</strong> link above to go back to the list of problems. If you forget anything we covered, you can always take the tour again by clicking the highlighted button in the sidebar.</p><p>Happy solving!</p>",
     attachTo: { element: '[data-tour="tour"]' },
     canClickTarget: false,
     buttons: [{ text: 'Close', action: tour.complete }],

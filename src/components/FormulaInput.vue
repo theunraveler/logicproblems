@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
+import { onKeyDown } from '@vueuse/core'
 import insertTextAtCursor from 'insert-text-at-cursor'
 import { Expression, Operator } from '@/logic/ast'
 import { parse } from '@/logic/parse'
@@ -10,6 +11,20 @@ const error = ref('')
 const validationState = ref<boolean>()
 const formula = ref<Expression>()
 
+const keys = {
+  '>': Operator.CONDITIONAL,
+  '<': Operator.BICONDITIONAL,
+  '?': Operator.DISJUNCTION,
+}
+onKeyDown(
+  (event) => event.shiftKey && event.key in keys,
+  (event) => {
+    event.preventDefault()
+    addOperator(keys[event.key])
+  },
+  { target: input.value?.$el }
+)
+
 const addOperator = (operator: Operator) => {
   if (!input.value) {
     return
@@ -19,7 +34,7 @@ const addOperator = (operator: Operator) => {
   if (operator.isBinary) {
     toAdd += ' '
   }
-  insertTextAtCursor(input.value, toAdd)
+  insertTextAtCursor(input.value.$el, toAdd)
 }
 
 const validate = () => {
