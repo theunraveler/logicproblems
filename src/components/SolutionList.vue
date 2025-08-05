@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue'
+import { inject, onMounted, ref, watch } from 'vue'
 import Rollbar from 'rollbar'
 import { db } from '@/store'
 import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '@/utils'
@@ -43,6 +43,10 @@ const clearSelection = () => {
 
 defineExpose({ add: addSolution, clearSelection })
 
+watch(props, async () => {
+  clearSelection()
+  await loadSolutions()
+})
 onMounted(loadSolutions)
 </script>
 

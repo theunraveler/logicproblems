@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted, reactive, useTemplateRef } from 'vue'
+import { inject, onMounted, ref, toRaw, useTemplateRef, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import ProblemNav from '@/components/ProblemNav.vue'
@@ -15,7 +15,11 @@ const router = useRouter()
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const props = defineProps<{ id: string; problem: Problem; lines?: SerializedLine[] }>()
-const proof = reactive(new Proof(props.problem.premises, props.problem.conclusion))
+const proof = ref<Proof>()
+const loadProof = () => {
+  proof.value = new Proof(props.problem.premises, props.problem.conclusion)
+}
+watch(props, loadProof, { immediate: true })
 
 useHead({ title: props.problem.title })
 
@@ -33,7 +37,7 @@ const onQed = async (proof: Proof) => {
     problemId: props.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,
-    lines: compressProofLines(proof),
+    lines: compressProofLines(toRaw(proof)),
   })
 }
 
@@ -42,8 +46,8 @@ const viewSolution = async (solution: Solution) => {
     return
   }
 
-  proof.clear()
-  proof.addDeductions(solution.lines)
+  proof.value?.clear()
+  proof.value?.addDeductions(solution.lines)
   proofTable.value?.$el?.scrollIntoView({ behavior: 'auto', block: 'center' })
 }
 
@@ -54,11 +58,13 @@ const clear = () => {
 }
 
 onMounted(async () => {
+  loadProof()
+
   if (!props.lines) {
     return
   }
 
-  proof.addDeductions(props.lines)
+  proof.value?.addDeductions(props.lines)
 })
 </script>
 
@@ -76,20 +82,22 @@ onMounted(async () => {
     <BCol cols="12" lg="8" xl="9">
       <div class="hstack justify-content-between border-bottom mb-4">
         <h2>{{ problem.title }}</h2>
-        <h4 data-tour="conclusion">Conclusion: {{ proof.conclusion }}</h4>
+        <h4 data-tour="conclusion">Conclusion: {{ proof?.conclusion }}</h4>
       </div>
       <ProofTable
+        v-if="proof"
         ref="proof-table"
         :proof="proof"
         data-testid="proof-table"
         @qed="onQed"
         @clear="clear">
-        <template #qed-modal-actions="{ clear: _clear }">
+        <template #qed-modal-actions="{ clear: _clear, close: _close }">
           <BButton variant="outline-secondary" @click="_clear">Solve Again</BButton>
           <BLink
             v-if="problemNav?.next"
             class="btn btn-primary"
-            :to="{ name: 'problem', params: { id: problemNav.next.id } }">
+            :to="{ name: 'problem', params: { id: problemNav.next.id } }"
+            @click="_close()">
             Next Problem<IBiArrowRightShort />
           </BLink>
         </template>
@@ -103,7 +111,12 @@ onMounted(async () => {
         :problem-id="props.id"
         class="mb-3"
         @select="viewSolution" />
-      <ProofPermalink :id="props.id" :title="problem.title" :proof="proof" class="mb-3" />
+      <ProofPermalink
+        v-if="proof"
+        :id="props.id"
+        :title="problem.title"
+        :proof="proof"
+        class="mb-3" />
       <aside class="mb-3">
         <BButton
           variant="outline-secondary"

@@ -275,7 +275,7 @@ defineExpose({ clear, solvedIn, confirmDiscard })
         Congrats, you solved the problem in {{ humanizeDuration(solvedIn) }}!
       </template>
       <template #footer>
-        <slot name="qed-modal-actions" :clear="clear">
+        <slot name="qed-modal-actions" :clear="clear" :close="hideQedModal">
           <BButton variant="primary" @click="clear">Solve Again</BButton>
         </slot>
       </template>
