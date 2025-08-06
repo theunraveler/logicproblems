@@ -31,7 +31,6 @@ export default defineConfigWithVueTs(
     files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
     rules: {
       ...pluginPlaywright.configs['flat/recommended'].rules,
-      'playwright/no-conditional-in-test': 'off',
     },
   },
   skipFormatting,
