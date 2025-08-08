@@ -23,8 +23,6 @@ watch(
       :value="solved.length"
       :max="ids.length"
       :variant="solved.length === ids.length ? 'success' : undefined" />
-    <small class="text-center">
-      Solved {{ solved.length }} of {{ ids.length }}
-    </small>
+    <small class="text-center"> Solved {{ solved.length }} of {{ ids.length }} </small>
   </aside>
 </template>

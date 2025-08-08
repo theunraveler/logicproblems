@@ -5,9 +5,11 @@ import { titleCase } from 'title-case'
 const _problems: Record<string, Omit<Problem, 'id'>> = (
   await import('@/data/problems.json', { assert: { type: 'json' } })
 ).default
-export const problems: ProblemList = Object.fromEntries(Object.entries(_problems).map(([ id, problem ]) => {
-  return [id, { id, ...problem }]
-}))
+export const problems: ProblemList = Object.fromEntries(
+  Object.entries(_problems).map(([id, problem]) => {
+    return [id, { id, ...problem }]
+  }),
+)
 
 export type ProblemList = Record<string, Problem>
 
