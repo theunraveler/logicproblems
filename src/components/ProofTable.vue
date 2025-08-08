@@ -20,7 +20,7 @@ const form = {
 }
 const justifications = computed(() =>
   form.justifications.value
-    .toSorted()
+    .toSorted((a, b) => a - b)
     .map((n) => n + 1)
     .join(', '),
 )

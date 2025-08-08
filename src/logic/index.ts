@@ -98,7 +98,7 @@ export class Line {
   ) {
     this.formula = formula instanceof Expression ? formula : parse(formula)
     this.rule = rule instanceof Rule ? rule : Rule.findByShorthand(rule)
-    this.justifications = justifications.toSorted()
+    this.justifications = justifications.toSorted((a, b) => a - b)
   }
 
   dependencies(proof: Proof): number[] {
