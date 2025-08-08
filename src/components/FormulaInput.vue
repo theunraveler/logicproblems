@@ -6,12 +6,12 @@ import { Expression, Operator } from '@/logic/ast'
 import { parse } from '@/logic/parse'
 
 const text = ref('')
-const input = useTemplateRef<HTMLInputElement>('input')
+const input = useTemplateRef('input')
 const error = ref('')
 const validationState = ref<boolean>()
 const formula = ref<Expression>()
 
-const keys = {
+const keys: Record<string, Operator> = {
   '>': Operator.CONDITIONAL,
   '<': Operator.BICONDITIONAL,
   '?': Operator.DISJUNCTION,
