@@ -72,6 +72,10 @@ defineExpose({ text, formula, input, error, validate, reset })
     ref="input"
     v-model="text"
     placeholder="Formula"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
     :state="validationState"
     required
     v-bind="$attrs" />
@@ -90,7 +94,7 @@ defineExpose({ text, formula, input, error, validate, reset })
 </template>
 
 <style scoped lang="scss">
-input[type="text"]:not(:placeholder-shown) {
+input[type='text']:not(:placeholder-shown) {
   text-transform: uppercase;
 }
 </style>

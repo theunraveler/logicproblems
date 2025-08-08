@@ -46,11 +46,13 @@ export const expect = baseExpect.extend({
     }
     const cols = await proofTable.locator('tbody tr').nth(index).getByRole('cell')
     try {
-      await Promise.all(Object.entries(colExpectations).map(async ([colIndex, expectedText]) => {
-        const col = await cols.nth(parseInt(colIndex))
-        const expectation = this.isNot ? baseExpect(col).not : baseExpect(col)
-        return expectation.toHaveText(expectedText, options)
-      }))
+      await Promise.all(
+        Object.entries(colExpectations).map(async ([colIndex, expectedText]) => {
+          const col = await cols.nth(parseInt(colIndex))
+          const expectation = this.isNot ? baseExpect(col).not : baseExpect(col)
+          return expectation.toHaveText(expectedText, options)
+        }),
+      )
       pass = true
     } catch (err) {
       matcherResult = err.matcherResult
