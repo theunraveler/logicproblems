@@ -38,6 +38,7 @@ const addOperator = (operator: Operator) => {
 }
 
 const validate = () => {
+  text.value = text.value.toUpperCase()
   validationState.value = undefined
   error.value = ''
   formula.value = undefined
@@ -87,3 +88,9 @@ defineExpose({ text, formula, input, error, validate, reset })
   </BButtonGroup>
   <BFormInvalidFeedback :state="validationState">{{ error }}</BFormInvalidFeedback>
 </template>
+
+<style scoped lang="scss">
+input[type="text"]:not(:placeholder-shown) {
+  text-transform: uppercase;
+}
+</style>
