@@ -14,7 +14,7 @@ const router = useRouter()
 
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
-const props = defineProps<{ id: string; problem: Problem; lines?: SerializedLine[] }>()
+const props = defineProps<{ problem: Problem; lines?: SerializedLine[] }>()
 const proof = ref<Proof>()
 const loadProof = () => {
   proof.value = new Proof(props.problem.premises, props.problem.conclusion)
@@ -34,7 +34,7 @@ const onQed = async (proof: Proof) => {
   }
 
   await solutionList.value.add({
-    problemId: props.id,
+    problemId: props.problem.id,
     completedAt: Date.now(),
     completedIn: proofTable.value.solvedIn,
     lines: compressProofLines(toRaw(proof)),
@@ -102,21 +102,16 @@ onMounted(async () => {
           </BLink>
         </template>
       </ProofTable>
-      <ProblemNav ref="problem-nav" class="px-0 mt-4" :current="id" />
+      <ProblemNav ref="problem-nav" class="px-0 mt-4" :current="problem" />
     </BCol>
 
     <BCol cols="12" lg="4" xl="3" class="mt-4 mt-lg-0">
       <SolutionList
         ref="solution-list"
-        :problem-id="props.id"
+        :problem="props.problem"
         class="mb-3"
         @select="viewSolution" />
-      <ProofPermalink
-        v-if="proof"
-        :id="props.id"
-        :title="problem.title"
-        :proof="proof"
-        class="mb-3" />
+      <ProofPermalink v-if="proof" :problem="props.problem" :proof="proof" class="mb-3" />
       <aside class="mb-3">
         <BButton
           variant="outline-secondary"

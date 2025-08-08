@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { computed, inject, useTemplateRef } from 'vue'
-import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
+import { problemsInjectionKey, type Problem, type ProblemList } from '@/plugins/data'
 
-const props = defineProps<{ current: string }>()
+const props = defineProps<{ current: Problem }>()
 
 const problems = inject(problemsInjectionKey) as ProblemList
 const problemKeys = Object.keys(problems)
-const currentIndex = computed(() => problemKeys.indexOf(props.current))
+const currentIndex = computed(() => problemKeys.indexOf(props.current.id))
 const prev = computed(() => {
   if (currentIndex.value === 0) {
     return
   }
   const id = problemKeys[currentIndex.value - 1]
-  return { id, problem: problems[id] }
+  return problems[id]
 })
 const next = computed(() => {
   if (currentIndex.value === problemKeys.length - 1) {
     return
   }
   const id = problemKeys[currentIndex.value + 1]
-  return { id, problem: problems[id] }
+  return problems[id]
 })
 
 const prevPopover = useTemplateRef('prev-popover')
@@ -31,7 +31,7 @@ defineExpose({ prev, next })
 <template>
   <BContainer class="d-flex justify-content-between align-items-center">
     <BPopover v-if="prev" ref="prev-popover">
-      <template #title>{{ prev.problem.title }}</template>
+      <template #title>{{ prev.title }}</template>
       <template #target>
         <BLink
           :to="{ name: 'problem', params: { id: prev.id } }"
@@ -40,16 +40,16 @@ defineExpose({ prev, next })
           @click="prevPopover?.hide()">
           <IBiArrowLeftShort class="me-2" />
           <span class="d-inline-block text-truncate" style="max-width: 250px">
-            {{ prev.problem.title }}
+            {{ prev.title }}
           </span>
         </BLink>
       </template>
-      <ProblemCard v-bind="prev" compact />
+      <ProblemCard :problem="prev" compact />
     </BPopover>
     <span v-else />
 
     <BPopover v-if="next" ref="next-popover">
-      <template #title>{{ next.problem.title }}</template>
+      <template #title>{{ next.title }}</template>
       <template #target>
         <BLink
           :to="{ name: 'problem', params: { id: next.id } }"
@@ -57,12 +57,12 @@ defineExpose({ prev, next })
           data-testid="next-problem-link"
           @click="nextPopover?.hide()">
           <span class="d-inline-block text-truncate" style="max-width: 250px">
-            {{ next.problem.title }}
+            {{ next.title }}
           </span>
           <IBiArrowRightShort class="ms-2" />
         </BLink>
       </template>
-      <ProblemCard v-bind="next" compact />
+      <ProblemCard :problem="next" compact />
     </BPopover>
   </BContainer>
 </template>

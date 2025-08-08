@@ -3,10 +3,11 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useClipboard, useShare } from '@vueuse/core'
 import { compressToEncodedURIComponent } from 'lz-string'
+import type { Problem } from '@/plugins/data'
 import { Proof } from '@/logic'
 import { compressProofLines } from '@/utils'
 
-const props = defineProps<{ id: string; title: string; proof: Proof }>()
+const props = defineProps<{ problem: Problem; proof: Proof }>()
 
 const $router = useRouter()
 
@@ -17,7 +18,7 @@ const permalink = computed(() => {
   }
   const route = $router.resolve({
     name: 'problem',
-    params: { id: props.id },
+    params: { id: props.problem.id },
     query: query,
   })
   return new URL(route.href, window.location.origin).href
@@ -28,8 +29,8 @@ const { share, isSupported: shareIsSupported } = useShare()
 const doShare = async () => {
   try {
     await share({
-      title: `${props.title} | Logic Problems`,
-      text: `Check out my proof for ${props.title} on Logic Problems`,
+      title: `${props.problem.title} | Logic Problems`,
+      text: `Check out my proof for ${props.problem.title} on Logic Problems`,
       url: permalink.value,
     })
   } catch (error) {

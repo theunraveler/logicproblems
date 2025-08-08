@@ -2,13 +2,17 @@ import type { App, InjectionKey } from 'vue'
 import { default as numberToWords } from 'number-to-words'
 import { titleCase } from 'title-case'
 
-export const problems: ProblemList = (
+const _problems: Record<string, Omit<Problem, 'id'>> = (
   await import('@/data/problems.json', { assert: { type: 'json' } })
 ).default
+export const problems: ProblemList = Object.fromEntries(Object.entries(_problems).map(([ id, problem ]) => {
+  return [id, { id, ...problem }]
+}))
 
 export type ProblemList = Record<string, Problem>
 
 export interface Problem {
+  id: string
   title: string
   chapter: number
   premises: string[]

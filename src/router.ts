@@ -24,7 +24,6 @@ const router = createRouter({
       name: 'problem',
       component: () => import('@/views/ProblemView.vue'),
       props: (route) => ({
-        id: route.params.id,
         problem: problems[route.params.id.toString()],
         lines: route.query.l
           ? JSON.parse(decompressFromEncodedURIComponent(route.query.l.toString()))
@@ -60,9 +59,9 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   if (to.name === 'problem' && !(to.params.id.toString() in problems)) {
     next({ name: 'notFound' })
+  } else {
+    next()
   }
-
-  next()
 })
 
 export default router

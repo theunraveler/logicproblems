@@ -16,7 +16,7 @@ const props = defineProps({
   chapter: { type: Number, default: undefined },
 })
 
-const allProblems = Object.entries(inject(problemsInjectionKey) as ProblemList)
+const allProblems = Object.values(inject(problemsInjectionKey) as ProblemList)
 const chapters = inject(chaptersInjectionKey) as ChapterList
 
 const title = computed(() => (props.chapter ? chapters[props.chapter] : 'Problems'))
@@ -25,7 +25,7 @@ useHead({ title })
 const perPage = 30
 const problems = computed(() => {
   return props.chapter
-    ? allProblems.filter(([, problem]) => problem.chapter === props.chapter)
+    ? allProblems.filter((problem) => problem.chapter === props.chapter)
     : allProblems
 })
 const pageProblems = computed(() => {
@@ -55,9 +55,8 @@ const updatePage = (page: string | number) => {
     <BCol cols="12" lg="9" data-testid="problems">
       <TransitionGroup name="slide-fade" appear>
         <ProblemCard
-          v-for="([id, problem], index) in pageProblems"
-          :id="id"
-          :key="id"
+          v-for="(problem, index) in pageProblems"
+          :key="problem.id"
           :problem="problem"
           :style="`--n: ${index}`"
           class="mb-4" />
@@ -74,8 +73,10 @@ const updatePage = (page: string | number) => {
 
     <BCol lg="3" class="d-none d-lg-block">
       <div class="sticky-top" style="top: 2em">
-        <ProblemsCompletionBar :problems="Object.fromEntries(problems)" class="mb-3" />
-        <JumpToNextUnsolved :problems="Object.fromEntries(problems)" class="mb-3" />
+        <ProblemsCompletionBar :problems="problems" class="mb-3" />
+        <Transition name="fade">
+          <JumpToNextUnsolved :problems="problems" class="mb-3" />
+        </Transition>
         <ChapterNav :current="props.chapter" />
       </div>
     </BCol>

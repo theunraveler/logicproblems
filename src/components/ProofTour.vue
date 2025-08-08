@@ -6,7 +6,7 @@ import { useRouter, NavigationFailureType, isNavigationFailure } from 'vue-route
 import { tour } from '@/tours/proof'
 import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
 
-const problemId = Object.keys(inject(problemsInjectionKey) as ProblemList)[0]
+const problem = Object.values(inject(problemsInjectionKey) as ProblemList)[0]
 const id = useId()
 const $router = useRouter()
 
@@ -17,7 +17,7 @@ const currentStep = useStorage('proof-tour', null, undefined, {
 })
 
 const start = async () => {
-  const failure = await $router.push({ name: 'problem', params: { id: problemId } })
+  const failure = await $router.push({ name: 'problem', params: { id: problem.id } })
 
   if (isNavigationFailure(failure, NavigationFailureType.aborted)) {
     return

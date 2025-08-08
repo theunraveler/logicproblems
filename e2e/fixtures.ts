@@ -4,7 +4,6 @@ export const test = baseTest.extend<{
   proofTable: Locator
   enterLine: (formula: string, rule: string, justifications?: number[]) => void
 }>({
-
   proofTable: async ({ page }, use) => {
     await use(await page.getByTestId('proof-table'))
   },
@@ -45,10 +44,10 @@ export const expect = baseExpect.extend({
       [startingColumn + 2]: justText,
       [startingColumn + 3]: rule,
     }
-    const cols = proofTable.locator('tbody tr').nth(index).getByRole('cell')
+    const cols = await proofTable.locator('tbody tr').nth(index).getByRole('cell')
     try {
       await Object.entries(colExpectations).forEach(async ([colIndex, expectedText]) => {
-        const col = cols.nth(parseInt(colIndex))
+        const col = await cols.nth(parseInt(colIndex))
         const expectation = this.isNot ? baseExpect(col).not : baseExpect(col)
         await expectation.toHaveText(expectedText, options)
       })

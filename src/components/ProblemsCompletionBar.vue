@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import type { ProblemList } from '@/plugins/data'
+import type { Problem } from '@/plugins/data'
 import { db, uniqueKeys } from '@/store'
 
-const props = defineProps<{ problems: ProblemList }>()
-const problemIds = computed(() => Object.keys(props.problems))
-const solvedProblemIds = ref<string[]>([])
+const props = defineProps<{ problems: Problem[] }>()
+const ids = computed(() => props.problems.map((problem) => problem.id))
+const solved = ref<string[]>([])
 
 watch(
-  problemIds,
-  async (problemIds) => {
-    const solved = await uniqueKeys(db.solutions.orderBy('problemId'))
-    solvedProblemIds.value = solved.filter((id) => problemIds.includes(id))
+  ids,
+  async (ids) => {
+    const allSolved = await uniqueKeys(db.solutions.orderBy('problemId'))
+    solved.value = allSolved.filter((id) => ids.includes(id))
   },
   { immediate: true },
 )
@@ -20,11 +20,11 @@ watch(
 <template>
   <aside>
     <BProgress
-      :value="solvedProblemIds.length"
-      :max="problemIds.length"
-      :variant="solvedProblemIds.length === problemIds.length ? 'success' : undefined" />
-    <small class="text-center"
-      >Solved {{ solvedProblemIds.length }} of {{ problemIds.length }}</small
-    >
+      :value="solved.length"
+      :max="ids.length"
+      :variant="solved.length === ids.length ? 'success' : undefined" />
+    <small class="text-center">
+      Solved {{ solved.length }} of {{ ids.length }}
+    </small>
   </aside>
 </template>

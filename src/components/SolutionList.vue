@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { inject, onMounted, ref, watch } from 'vue'
 import Rollbar from 'rollbar'
+import type { Problem } from '@/plugins/data'
 import { db } from '@/store'
 import { humanizeDuration, humanizeTimestamp, type Solution, type SolutionProps } from '@/utils'
 
 const rollbar = inject('rollbar') as Rollbar
 
-const props = defineProps<{ problemId: string }>()
+const props = defineProps<{ problem: Problem }>()
 const emit = defineEmits(['select'])
 
 const solutions = ref<Solution[]>([])
 const loadSolutions = async () => {
   solutions.value = await db.solutions
     .where('problemId')
-    .equals(props.problemId)
+    .equals(props.problem.id)
     .reverse()
     .sortBy('completedAt')
 }

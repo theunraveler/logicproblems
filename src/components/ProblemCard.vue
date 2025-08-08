@@ -6,7 +6,6 @@ import { db } from '@/store'
 
 const props = withDefaults(
   defineProps<{
-    id: string
     problem: Problem
     compact?: boolean
   }>(),
@@ -14,7 +13,7 @@ const props = withDefaults(
 )
 
 const isSolved = computedAsync(async () => {
-  return !!(await db.solutions.get({ problemId: props.id }))
+  return !!(await db.solutions.get({ problemId: props.problem.id }))
 }, false)
 </script>
 
@@ -38,7 +37,7 @@ const isSolved = computedAsync(async () => {
     </BListGroup>
     <BCardBody v-if="!props.compact">
       <BLink
-        :to="{ name: 'problem', params: { id: props.id } }"
+        :to="{ name: 'problem', params: { id: props.problem.id } }"
         class="btn btn-primary stretched-link">
         Solve!
       </BLink>

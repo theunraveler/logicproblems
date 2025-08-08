@@ -124,7 +124,7 @@ test.describe('problem navigation', () => {
       await page.getByTestId('previous-problem-link').click()
       await expect(page).toHaveURL('/problems/tqpiwb')
       await expect(page).toHaveTitle(/^Orientation |/)
-      await expect(proofTable).toHaveProofLine(1, 'A → B', 'A')
+      await expect(proofTable).toHaveProofLine(0, 'A → B', 'A')
     })
 
     test('does not show if there is no previous problem', async ({ page }) => {
