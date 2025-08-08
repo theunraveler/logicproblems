@@ -642,11 +642,8 @@ function evalArrow(
   // -A ∨ B from A → B
   if (
     !(justExp instanceof Negation) &&
-    !(conditionalJust.left instanceof Negation) &&
-    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Disjunction &&
     exp.left instanceof Negation &&
-    !(exp.right instanceof Negation) &&
     conditionalJust.left.toString() === exp.left.inner.toString() &&
     conditionalJust.right.toString() === exp.right.toString()
   ) {
@@ -657,10 +654,7 @@ function evalArrow(
   if (
     !(justExp instanceof Negation) &&
     conditionalJust.left instanceof Negation &&
-    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Disjunction &&
-    !(exp.left instanceof Negation) &&
-    !(exp.right instanceof Negation) &&
     conditionalJust.left.inner.toString() === exp.left.toString() &&
     conditionalJust.right.toString() === exp.right.toString()
   ) {
@@ -671,10 +665,7 @@ function evalArrow(
   if (
     !(justExp instanceof Negation) &&
     exp instanceof Negation &&
-    !(conditionalJust.left instanceof Negation) &&
-    !(conditionalJust.right instanceof Negation) &&
     exp.inner instanceof Conjunction &&
-    !(exp.inner.left instanceof Negation) &&
     exp.inner.right instanceof Negation &&
     conditionalJust.left.toString() === exp.inner.left.toString() &&
     conditionalJust.right.toString() === exp.inner.right.inner.toString()
@@ -685,10 +676,7 @@ function evalArrow(
   // A & -B from -(A → B)
   if (
     justExp instanceof Negation &&
-    !(conditionalJust.left instanceof Negation) &&
-    !(conditionalJust.right instanceof Negation) &&
     exp instanceof Conjunction &&
-    !(exp.left instanceof Negation) &&
     exp.right instanceof Negation &&
     conditionalJust.left.toString() === exp.left.toString() &&
     conditionalJust.right.toString() === exp.right.inner.toString()

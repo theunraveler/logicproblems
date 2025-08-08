@@ -296,6 +296,7 @@ describe('Rule', () => {
       ['A → B', ['-(A & -B)']],
       ['A & -B', ['-(A → B)']],
       ['-(A → B)', ['A & -B']],
+      ['E ∨ --L', ['-E → --L']],
     ])
 
     testCasesFor(Rule.CONTRAPOSITION, [
