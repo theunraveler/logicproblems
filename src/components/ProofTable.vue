@@ -46,16 +46,6 @@ const unresolvedSuppositionText = `
   supposition has been resolved.
 `
 
-watch(
-  () => proof,
-  async () => {
-    if (proof.deductions.length === 0) {
-      startedAt.value = Date.now()
-    }
-  },
-  { immediate: true },
-)
-
 const submitLine = () => {
   submitting.value = true
 
@@ -176,6 +166,17 @@ useEventListener(window, 'beforeunlead', (event: BeforeUnloadEvent) => {
   }
 })
 onBeforeRouteUpdate(confirmDiscard)
+
+watch(
+  () => proof,
+  async () => {
+    clearForm()
+    if (proof.deductions.length === 0) {
+      startedAt.value = Date.now()
+    }
+  },
+  { immediate: true },
+)
 
 defineExpose({ clear, solvedIn, confirmDiscard })
 </script>
