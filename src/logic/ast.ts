@@ -87,7 +87,7 @@ export class Conjunction extends BinaryExpression {
       [this.left, this.right],
       [this.right, this.left],
     ]
-    return !!pairs.find(([a, b]) => a instanceof Negation && a.inner.toString() === b.toString())
+    return pairs.some(([a, b]) => a instanceof Negation && a.inner.toString() === b.toString())
   }
 }
 
