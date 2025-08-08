@@ -85,9 +85,9 @@ test.describe('navigating away', () => {
   })
 
   test.describe('proof has been started but not completed', () => {
-    test.beforeEach('Open the URL and fill the formula field', async ({ page }) => {
+    test.beforeEach('Open the URL and fill the formula field', async ({ page, proofTable }) => {
       await page.goto('/problems/tqpiwb')
-      await getProofTable(page).getByPlaceholder('Formula').fill('testing')
+      await proofTable.getByPlaceholder('Formula').fill('testing')
     })
 
     test('confirming the alert', async ({ page }) => {
@@ -148,10 +148,6 @@ test.describe('problem navigation', () => {
     })
   })
 })
-
-const getProofTable = (page: Page) => {
-  return page.getByTestId('proof-table')
-}
 
 const ensureDialog = async (
   page: Page,
