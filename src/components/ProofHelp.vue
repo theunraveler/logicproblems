@@ -45,11 +45,13 @@ const collapseState = useStorage('help-expanded', true)
           <p class="mb-0">The following characters can be used in formulae:</p>
           <ul>
             <li>Any alphabetical character from <code>A</code> to <code>Z</code></li>
-            <li>Operators (
+            <li>
+              Operators (
               <code v-for="(operator, index) in Operator.all" :key="operator.symbol">
                 <span v-if="index !== 0">, </span>{{ operator.symbol }}
               </code>
-            )</li>
+              )
+            </li>
             <li>Parentheses (<code>()</code>)</li>
             <li>Spaces</li>
           </ul>
@@ -77,7 +79,10 @@ const collapseState = useStorage('help-expanded', true)
               <code>Shift + ?</code>: Insert a
               <code>{{ Operator.DISJUNCTION.symbol }}</code> operator
             </li>
-            <li>Number keys (<code>1</code>-<code>9</code>): Toggle the <em>nth</em> justification line</li>
+            <li>
+              Number keys (<code>1</code>-<code>9</code>): Toggle the <em>nth</em> justification
+              line
+            </li>
           </ul>
         </BCardText>
       </BCardBody>
@@ -88,7 +93,7 @@ const collapseState = useStorage('help-expanded', true)
 </template>
 
 <style scoped lang="scss">
-  :deep(.card-header) {
-    cursor: pointer;
-  }
+:deep(.card-header) {
+  cursor: pointer;
+}
 </style>

@@ -33,7 +33,7 @@ onKeyDown(
   (event) => {
     event.preventDefault()
     proofTable.value?.toggleJustification(keys[event.key])
-  }
+  },
 )
 
 const onQed = async (proof: Proof) => {

@@ -22,7 +22,7 @@ onKeyDown(
     event.preventDefault()
     addOperator(keys[event.key])
   },
-  { target: input.value?.$el }
+  { target: input.value?.$el },
 )
 
 const addOperator = (operator: Operator) => {
