@@ -64,7 +64,7 @@ const updatePage = (page: string | number) => {
 
       <BPagination
         :model-value="props.page"
-        :total-rows="allProblems.length"
+        :total-rows="problems.length"
         :per-page="perPage"
         align="center"
         data-testid="problem-paginator"
