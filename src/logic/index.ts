@@ -11,7 +11,7 @@ import { parse } from '@/logic/parse'
 
 export class InvalidDeductionError extends Error {}
 
-type LineEvalFunction = {
+type RuleEvalFunction = {
   (exp: Expression, justifications: Line[], proof: Proof): void
 }
 
@@ -52,7 +52,7 @@ export class Rule {
   constructor(
     public readonly shorthand: string,
     public readonly label: string,
-    public readonly evalFunc: LineEvalFunction,
+    public readonly evalFunc: RuleEvalFunction,
     public readonly requiredJustifications: number,
     public readonly resolvesSupposition: boolean = false,
   ) {
@@ -243,9 +243,7 @@ function evalArrowIn(exp: Expression, justifications: Line[], proof: Proof) {
   }
 }
 
-function evalBiconditionalOut(exp: Expression, [justification]: Line[]) {
-  const just = justification.formula
-
+function evalBiconditionalOut(exp: Expression, [{ formula: just }]: Line[]) {
   if (!(just instanceof Biconditional)) {
     throw new InvalidDeductionError('Justification must contain a double arrow operator')
   }
@@ -338,9 +336,7 @@ function evalWedgeIn(exp: Expression, [justification]: Line[]) {
   }
 }
 
-function evalAndOut(exp: Expression, [justification]: Line[]) {
-  const just = justification.formula
-
+function evalAndOut(exp: Expression, [{ formula: just }]: Line[]) {
   if (!(just instanceof Conjunction)) {
     throw new InvalidDeductionError('Justification must contain an ampersand operator')
   }
@@ -562,12 +558,10 @@ function evalDoubleNegation(exp: Expression, [justification]: Line[]) {
 
 function evalDemorgansLaw(
   exp: Expression,
-  [justification]: Line[],
+  [{ formula: justExp }]: Line[],
   proof: Proof,
   tryReciprocal: boolean = true,
 ) {
-  const justExp = justification.formula
-
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
   const throwOrRecip = (message: string) => {
@@ -619,11 +613,10 @@ function evalDemorgansLaw(
 
 function evalArrow(
   exp: Expression,
-  [justification]: Line[],
+  [{ formula: justExp }]: Line[],
   proof: Proof,
   tryReciprocal: boolean = true,
 ) {
-  const justExp = justification.formula
   // If this rule doesn't pass, try it's reciprocal, since the rule works both
   // ways.
   const throwOrRecip = (message: string) => {
@@ -687,9 +680,7 @@ function evalArrow(
   return throwOrRecip('InvalidDeduction')
 }
 
-function evalContraposition(exp: Expression, [justification]: Line[]) {
-  const justExp = justification.formula
-
+function evalContraposition(exp: Expression, [{ formula: justExp }]: Line[]) {
   if (!(justExp instanceof Conditional) || !(exp instanceof Conditional)) {
     throw new InvalidDeductionError(
       'Both the formula and the justification must contain an arrow operator',
