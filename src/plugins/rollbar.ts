@@ -27,5 +27,13 @@ export default (app: App) => {
     },
   })
 
+  app.config.errorHandler = (error, _, info) => {
+    rollbar.error(error as Rollbar.LogArgument, { info })
+    if (import.meta.env.PROD) {
+      alert('An error has occurred. Please refresh the page and try again.')
+    } else {
+      throw error
+    }
+  }
   app.provide('rollbar', rollbar)
 }
