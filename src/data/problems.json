@@ -1743,7 +1743,7 @@
     "title": "Chapter Eight #3",
     "chapter": 8,
     "premises": ["E → R", "M → -R", "-E → --L"],
-    "conclusion": "-L ∨ --M"
+    "conclusion": "--L ∨ -M"
   },
   "ohvdnj": {
     "title": "Chapter Eight #4",
