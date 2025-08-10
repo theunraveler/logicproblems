@@ -19,8 +19,7 @@ describe('Rule', () => {
         proof.addDeduction('A', Rule.SUPPOSITION)
         proof.addDeduction('B', Rule.ARROW_OUT, [0, 2])
         proof.addDeduction('C', Rule.ARROW_OUT, [1, 3])
-        proof.addDeduction('A → C', Rule.ARROW_IN, [2, 4])
-        expect(true).toBe(true) // We only get here if the previous line didn't error.
+        expect(() => proof.addDeduction('A → C', Rule.ARROW_IN, [2, 4])).not.toThrowError()
       })
 
       test('fails without exactly 2 justifications', () => {
@@ -304,6 +303,7 @@ describe('Rule', () => {
       ['B → A', ['-A → -B']],
       ['-B → A', ['-A → B']],
       ['B → -A', ['A → -B']],
+      ['-L → -M', ['M → --L']],
       ['B → -A', ['-A → B'], /invalid deduction/i],
       ['-B → A', ['A → -B'], /invalid deduction/i],
       ['-B → -A', ['-A → -B'], /invalid deduction/i],

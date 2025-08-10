@@ -698,8 +698,6 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
 
   // -B → -A from A → B
   if (
-    !(justExp.left instanceof Negation) &&
-    !(justExp.right instanceof Negation) &&
     exp.left instanceof Negation &&
     exp.right instanceof Negation &&
     exp.left.inner.toString() === justExp.right.toString() &&
@@ -712,8 +710,6 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
   if (
     justExp.left instanceof Negation &&
     justExp.right instanceof Negation &&
-    !(exp.left instanceof Negation) &&
-    !(exp.right instanceof Negation) &&
     justExp.left.inner.toString() === exp.right.toString() &&
     justExp.right.inner.toString() === exp.left.toString()
   ) {
@@ -723,9 +719,7 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
   // -B → A from -A → B
   if (
     justExp.left instanceof Negation &&
-    !(justExp.right instanceof Negation) &&
     exp.left instanceof Negation &&
-    !(exp.right instanceof Negation) &&
     justExp.left.inner.toString() === exp.right.toString() &&
     justExp.right.toString() === exp.left.inner.toString()
   ) {
@@ -734,9 +728,7 @@ function evalContraposition(exp: Expression, [justification]: Line[]) {
 
   // B → -A from A → -B
   if (
-    !(justExp.left instanceof Negation) &&
     justExp.right instanceof Negation &&
-    !(exp.left instanceof Negation) &&
     exp.right instanceof Negation &&
     justExp.left.toString() === exp.right.inner.toString() &&
     justExp.right.inner.toString() === exp.left.toString()
