@@ -18,29 +18,38 @@ const isSolved = computedAsync(async () => {
 </script>
 
 <template>
-  <BCard no-body>
+  <BCard no-body :class="{ compact }">
     <BCardHeader v-if="!compact" class="hstack justify-content-between">
-      <span>{{ props.problem.title }}</span>
+      <BLink
+        :to="{ name: 'problem', params: { id: props.problem.id } }"
+        class="text-reset text-decoration-none stretched-link">
+        <span>{{ props.problem.title }}</span>
+      </BLink>
       <span v-if="isSolved" class="badge rounded-pill text-bg-success">
         <IBiCheckCircleFill class="me-1" /> Solved
       </span>
     </BCardHeader>
-    <BListGroup flush numbered>
+    <BListGroup flush>
       <BListGroupItem v-for="(premise, index) in props.problem.premises" :key="index">
-        <span class="ms-3">{{ parse(premise) }}</span>
+        {{ index + 1 }}. <span class="ms-3">{{ parse(premise) }}</span>
       </BListGroupItem>
-    </BListGroup>
-    <BListGroup flush class="border-top-0">
       <BListGroupItem>
         <span>Conclusion: {{ parse(props.problem.conclusion) }}</span>
       </BListGroupItem>
     </BListGroup>
-    <BCardBody v-if="!props.compact">
-      <BLink
-        :to="{ name: 'problem', params: { id: props.problem.id } }"
-        class="btn btn-primary stretched-link">
-        Solve!
-      </BLink>
-    </BCardBody>
   </BCard>
 </template>
+
+<style scoped lang="scss">
+.card {
+  &.compact {
+    border: none;
+  }
+
+  &:not(.compact) {
+    &:hover {
+      border: 1px solid #999;
+    }
+  }
+}
+</style>

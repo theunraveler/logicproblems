@@ -30,7 +30,7 @@ defineExpose({ prev, next })
 
 <template>
   <BContainer class="d-flex justify-content-between align-items-center">
-    <BPopover v-if="prev" ref="prev-popover">
+    <BPopover v-if="prev" ref="prev-popover" body-class="p-0">
       <template #title>{{ prev.title }}</template>
       <template #target>
         <BLink
@@ -48,7 +48,7 @@ defineExpose({ prev, next })
     </BPopover>
     <span v-else />
 
-    <BPopover v-if="next" ref="next-popover">
+    <BPopover v-if="next" ref="next-popover" body-class="p-0">
       <template #title>{{ next.title }}</template>
       <template #target>
         <BLink
