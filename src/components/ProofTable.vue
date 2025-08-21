@@ -239,7 +239,11 @@ defineExpose({ clear, solvedIn, confirmDiscard, toggleJustification })
           </BTd>
           <BTd data-tour="justifications">{{ justifications }}</BTd>
           <BTd>
-            <BFormSelect v-model="form.rule.value" required data-tour="rule" :options="Rule.all.map((r) => r.shorthand)">
+            <BFormSelect
+              v-model="form.rule.value"
+              required
+              data-tour="rule"
+              :options="Rule.all.filter((r) => r !== Rule.ASSUMPTION).map((r) => r.shorthand)">
               <template #first>
                 <BFormSelectOption value="" disabled selected hidden>Rule</BFormSelectOption>
               </template>
