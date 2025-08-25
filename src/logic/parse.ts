@@ -3,7 +3,7 @@
  * but modified to include more symbols and a more opinionated AST.
  */
 
-import * as ast from './ast'
+import * as ast from '@/logic/ast'
 
 export const parse = (text: string) => parseTokenStream(tokenize(text))
 

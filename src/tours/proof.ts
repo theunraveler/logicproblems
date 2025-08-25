@@ -1,6 +1,6 @@
 import Shepherd from 'shepherd.js'
 import { offset } from '@floating-ui/dom'
-import { Rule } from '@/logic'
+import { Rule } from '@/logic/rules'
 import { advanceOnValue, advanceWhenChecked, waitForElement } from '@/tours/utils'
 
 export const tour = new Shepherd.Tour({

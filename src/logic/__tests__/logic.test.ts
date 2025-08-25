@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest'
-import { Line, Proof, Rule } from '@/logic'
+import { Line, Proof } from '@/logic'
 import { parse } from '@/logic/parse'
+import { Rule } from '@/logic/rules'
 
 describe('Rule', () => {
   describe('#evaluate', () => {

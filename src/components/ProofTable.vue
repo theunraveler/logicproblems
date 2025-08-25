@@ -6,7 +6,8 @@ import { useEventListener } from '@vueuse/core'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { tour } from '@/tours/proof'
 import { humanizeDuration } from '@/utils'
-import { Line, Proof, Rule, InvalidDeductionError } from '@/logic'
+import { Line, Proof } from '@/logic'
+import { InvalidDeductionError, Rule } from '@/logic/rules'
 
 const { proof } = defineProps<{ proof: Proof }>()
 const emit = defineEmits(['qed', 'clear'])

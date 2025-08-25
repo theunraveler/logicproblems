@@ -7,9 +7,90 @@ import {
   Negation,
   Operator,
 } from '@/logic/ast'
-import { InvalidDeductionError, Line, Proof, Rule } from '@/logic'
+import { Line, Proof } from '@/logic'
 
-export function arrowOut(exp: Expression, justifications: Line[]) {
+export class InvalidDeductionError extends Error {}
+
+type EvalFunction = {
+  (exp: Expression, justifications: Line[], proof: Proof): void
+}
+
+export class Rule {
+  static all: Rule[] = []
+
+  static readonly ASSUMPTION = new Rule('A', 'Assumption', () => {}, 0)
+  static readonly ARROW_OUT = new Rule('→ O', 'Arrow Out', arrowOut, 2)
+  static readonly ARROW_IN = new Rule('→ I', 'Arrow In', arrowIn, 2, true)
+  static readonly BICONDITIONAL_OUT = new Rule('↔ O', 'Biconditional Out', biconditionalOut, 1)
+  static readonly BICONDITIONAL_IN = new Rule('↔ I', 'Biconditional In', biconditionalIn, 2)
+  static readonly OR_OUT = new Rule('∨ O', 'Wedge Out', wedgeOut, 3)
+  static readonly OR_IN = new Rule('∨ I', 'Wedge In', wedgeIn, 1)
+  static readonly AND_OUT = new Rule('& O', 'Ampersand/And Out', andOut, 1)
+  static readonly AND_IN = new Rule('& I', 'Ampersand/And In', andIn, 2)
+  static readonly NEGATION_OUT = new Rule('- O', 'Dash Out', negationOut, 2, true)
+  static readonly NEGATION_IN = new Rule('- I', 'Dash In', negationIn, 2, true)
+  static readonly SUPPOSITION = new Rule('S', 'Supposition', () => {}, 0)
+  static readonly MODUS_TOLLENS = new Rule('MT', 'Modus Tollens', modusTollens, 2)
+  static readonly DISJUNCTIVE_ARGUMENT = new Rule(
+    'DA',
+    'Disjunctive Argument',
+    disjunctiveArgument,
+    2,
+  )
+  static readonly CONJUNCTIVE_ARGUMENT = new Rule(
+    'CA',
+    'Conjunctive Argument',
+    conjunctiveArgument,
+    2,
+  )
+  static readonly CHAIN_RULE = new Rule('CH', 'Chain Rule', chainRule, 2)
+  static readonly DOUBLE_NEGATION = new Rule('DN', 'Double Negation', doubleNegation, 1)
+  static readonly DEMORGANS_LAW = new Rule('DM', "Demorgan's Law", demorgansLaw, 1)
+  static readonly ARROW = new Rule('AR', 'Arrow', arrow, 1)
+  static readonly CONTRAPOSITION = new Rule('CN', 'Contraposition', contraposition, 1)
+
+  constructor(
+    public readonly shorthand: string,
+    public readonly label: string,
+    public readonly evalFunc: EvalFunction,
+    public readonly requiredJustifications: number,
+    public readonly resolvesSupposition: boolean = false,
+  ) {
+    Rule.all.push(this)
+  }
+
+  evaluate(formula: Expression, justifications: Line[], proof: Proof) {
+    evaluate(this, formula, justifications, proof)
+  }
+
+  valueOf(): string {
+    return this.shorthand
+  }
+
+  toString(): string {
+    return this.shorthand
+  }
+
+  public static findByShorthand(shorthand: string): Rule {
+    const trimmedShorthand = shorthand.replaceAll(' ', '')
+    const found = Rule.all.find((rule) => rule.shorthand.replaceAll(' ', '') === trimmedShorthand)
+    if (!found) {
+      throw new Error('Rule not found')
+    }
+    return found
+  }
+}
+
+export const evaluate = (rule: Rule, formula: Expression, justifications: Line[], proof: Proof) => {
+  if (justifications.length !== rule.requiredJustifications) {
+    throw new InvalidDeductionError(
+      `Rule requires ${rule.requiredJustifications} justification${rule.requiredJustifications === 1 ? '' : 's'}`,
+    )
+  }
+  rule.evalFunc(formula, justifications, proof)
+}
+
+function arrowOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orderedJust = [justExps, justExps.toReversed()].find(([a, b]) => {
     return a instanceof Conditional && a.left.toString() === b.toString()
@@ -29,7 +110,7 @@ export function arrowOut(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function arrowIn(exp: Expression, justifications: Line[], proof: Proof) {
+function arrowIn(exp: Expression, justifications: Line[], proof: Proof) {
   if (!(exp instanceof Conditional)) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
@@ -63,7 +144,7 @@ export function arrowIn(exp: Expression, justifications: Line[], proof: Proof) {
   }
 }
 
-export function biconditionalOut(exp: Expression, [{ formula: just }]: Line[]) {
+function biconditionalOut(exp: Expression, [{ formula: just }]: Line[]) {
   if (!(just instanceof Biconditional)) {
     throw new InvalidDeductionError('Justification must contain a double arrow operator')
   }
@@ -85,7 +166,7 @@ export function biconditionalOut(exp: Expression, [{ formula: just }]: Line[]) {
   }
 }
 
-export function biconditionalIn(exp: Expression, justifications: Line[]) {
+function biconditionalIn(exp: Expression, justifications: Line[]) {
   if (!(exp instanceof Biconditional)) {
     throw new InvalidDeductionError('Formula must contain a double arrow operator')
   }
@@ -111,7 +192,7 @@ export function biconditionalIn(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function wedgeOut(exp: Expression, justifications: Line[]) {
+function wedgeOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orJustIndex = justExps.findIndex((e) => e instanceof Disjunction)
   if (orJustIndex === -1) {
@@ -143,7 +224,7 @@ export function wedgeOut(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function wedgeIn(exp: Expression, [justification]: Line[]) {
+function wedgeIn(exp: Expression, [justification]: Line[]) {
   if (!(exp instanceof Disjunction)) {
     throw new InvalidDeductionError('Formula must contain a wedge operator')
   }
@@ -156,7 +237,7 @@ export function wedgeIn(exp: Expression, [justification]: Line[]) {
   }
 }
 
-export function andOut(exp: Expression, [{ formula: just }]: Line[]) {
+function andOut(exp: Expression, [{ formula: just }]: Line[]) {
   if (!(just instanceof Conjunction)) {
     throw new InvalidDeductionError('Justification must contain an ampersand operator')
   }
@@ -169,7 +250,7 @@ export function andOut(exp: Expression, [{ formula: just }]: Line[]) {
   }
 }
 
-export function andIn(exp: Expression, justifications: Line[]) {
+function andIn(exp: Expression, justifications: Line[]) {
   if (!(exp instanceof Conjunction)) {
     throw new InvalidDeductionError('Formula must contain an ampersand operator')
   }
@@ -190,7 +271,7 @@ export function andIn(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function negationOut(exp: Expression, justifications: Line[], proof: Proof) {
+function negationOut(exp: Expression, justifications: Line[], proof: Proof) {
   const orderedJusts = [justifications, justifications.toReversed()].find(([a, b]) => {
     return (
       a.rule.valueOf() === Rule.SUPPOSITION.valueOf() &&
@@ -218,7 +299,7 @@ export function negationOut(exp: Expression, justifications: Line[], proof: Proo
   }
 }
 
-export function negationIn(exp: Expression, justifications: Line[], proof: Proof) {
+function negationIn(exp: Expression, justifications: Line[], proof: Proof) {
   if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
@@ -247,7 +328,7 @@ export function negationIn(exp: Expression, justifications: Line[], proof: Proof
   }
 }
 
-export function modusTollens(exp: Expression, justifications: Line[]) {
+function modusTollens(exp: Expression, justifications: Line[]) {
   if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
@@ -277,7 +358,7 @@ export function modusTollens(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function disjunctiveArgument(exp: Expression, justifications: Line[]) {
+function disjunctiveArgument(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orderedJusts = [justExps, justExps.toReversed()].find(([a, b]) => {
     if (!(b instanceof Negation)) {
@@ -301,7 +382,7 @@ export function disjunctiveArgument(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function conjunctiveArgument(exp: Expression, justifications: Line[]) {
+function conjunctiveArgument(exp: Expression, justifications: Line[]) {
   if (!(exp instanceof Negation)) {
     throw new InvalidDeductionError('Formula must contain a dash operator')
   }
@@ -333,7 +414,7 @@ export function conjunctiveArgument(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function chainRule(exp: Expression, justifications: Line[]) {
+function chainRule(exp: Expression, justifications: Line[]) {
   if (!(exp instanceof Conditional)) {
     throw new InvalidDeductionError('Formula must contain an arrow operator')
   }
@@ -366,7 +447,7 @@ export function chainRule(exp: Expression, justifications: Line[]) {
   }
 }
 
-export function doubleNegation(exp: Expression, [justification]: Line[]) {
+function doubleNegation(exp: Expression, [justification]: Line[]) {
   const expStr = exp.toString(true)
   const justExp = justification.formula.toString(true)
   const doubleNegation = Operator.NEGATION.symbol.repeat(2)
@@ -376,7 +457,7 @@ export function doubleNegation(exp: Expression, [justification]: Line[]) {
   }
 }
 
-export function demorgansLaw(
+function demorgansLaw(
   exp: Expression,
   [{ formula: justExp }]: Line[],
   proof: Proof,
@@ -431,7 +512,7 @@ export function demorgansLaw(
   return throwOrRecip('Invalid deduction')
 }
 
-export function arrow(
+function arrow(
   exp: Expression,
   [{ formula: justExp }]: Line[],
   proof: Proof,
@@ -500,7 +581,7 @@ export function arrow(
   return throwOrRecip('InvalidDeduction')
 }
 
-export function contraposition(exp: Expression, [{ formula: justExp }]: Line[]) {
+function contraposition(exp: Expression, [{ formula: justExp }]: Line[]) {
   if (!(justExp instanceof Conditional) || !(exp instanceof Conditional)) {
     throw new InvalidDeductionError(
       'Both the formula and the justification must contain an arrow operator',
