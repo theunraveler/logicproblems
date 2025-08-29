@@ -23,8 +23,8 @@ export class Rule {
   static readonly ARROW_IN = new Rule('→ I', 'Arrow In', arrowIn, 2, true)
   static readonly BICONDITIONAL_OUT = new Rule('↔ O', 'Biconditional Out', biconditionalOut, 1)
   static readonly BICONDITIONAL_IN = new Rule('↔ I', 'Biconditional In', biconditionalIn, 2)
-  static readonly OR_OUT = new Rule('∨ O', 'Wedge Out', wedgeOut, 3)
-  static readonly OR_IN = new Rule('∨ I', 'Wedge In', wedgeIn, 1)
+  static readonly OR_OUT = new Rule('∨ O', 'Wedge Out', orOut, 3)
+  static readonly OR_IN = new Rule('∨ I', 'Wedge In', orIn, 1)
   static readonly AND_OUT = new Rule('& O', 'Ampersand/And Out', andOut, 1)
   static readonly AND_IN = new Rule('& I', 'Ampersand/And In', andIn, 2)
   static readonly NEGATION_OUT = new Rule('- O', 'Dash Out', negationOut, 2, true)
@@ -49,22 +49,27 @@ export class Rule {
   static readonly ARROW = new Rule('AR', 'Arrow', arrow, 1)
   static readonly CONTRAPOSITION = new Rule('CN', 'Contraposition', contraposition, 1)
 
-  constructor(
+  private constructor(
     public readonly shorthand: string,
     public readonly label: string,
-    public readonly evalFunc: EvalFunction,
-    public readonly requiredJustifications: number,
+    private readonly evalFunc: EvalFunction,
+    private readonly requiredJustifications: number,
     public readonly resolvesSupposition: boolean = false,
   ) {
     Rule.all.push(this)
   }
 
   evaluate(formula: Expression, justifications: Line[], proof: Proof) {
-    evaluate(this, formula, justifications, proof)
+    if (justifications.length !== this.requiredJustifications) {
+      throw new InvalidDeductionError(
+        `Rule requires ${this.requiredJustifications} justification${this.requiredJustifications === 1 ? '' : 's'}`,
+      )
+    }
+    this.evalFunc(formula, justifications, proof)
   }
 
   valueOf(): string {
-    return this.shorthand
+    return this.toString()
   }
 
   toString(): string {
@@ -79,15 +84,6 @@ export class Rule {
     }
     return found
   }
-}
-
-export const evaluate = (rule: Rule, formula: Expression, justifications: Line[], proof: Proof) => {
-  if (justifications.length !== rule.requiredJustifications) {
-    throw new InvalidDeductionError(
-      `Rule requires ${rule.requiredJustifications} justification${rule.requiredJustifications === 1 ? '' : 's'}`,
-    )
-  }
-  rule.evalFunc(formula, justifications, proof)
 }
 
 function arrowOut(exp: Expression, justifications: Line[]) {
@@ -192,7 +188,7 @@ function biconditionalIn(exp: Expression, justifications: Line[]) {
   }
 }
 
-function wedgeOut(exp: Expression, justifications: Line[]) {
+function orOut(exp: Expression, justifications: Line[]) {
   const justExps = justifications.map((j) => j.formula)
   const orJustIndex = justExps.findIndex((e) => e instanceof Disjunction)
   if (orJustIndex === -1) {
@@ -224,7 +220,7 @@ function wedgeOut(exp: Expression, justifications: Line[]) {
   }
 }
 
-function wedgeIn(exp: Expression, [justification]: Line[]) {
+function orIn(exp: Expression, [justification]: Line[]) {
   if (!(exp instanceof Disjunction)) {
     throw new InvalidDeductionError('Formula must contain a wedge operator')
   }

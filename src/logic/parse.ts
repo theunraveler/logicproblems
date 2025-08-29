@@ -10,31 +10,25 @@ export const parse = (text: string) => parseTokenStream(tokenize(text))
 const parseTokenStream = (tokenStream: Token[]): ast.Expression => {
   let currentToken = 0
 
-  const peek = () => tokenStream[currentToken]
+  const current = () => tokenStream[currentToken]
   const previous = () => tokenStream[currentToken - 1]
   const advance = () => tokenStream[currentToken++]
 
-  const check = (type: TokenType) =>
-    currentToken >= tokenStream.length ? false : peek().type == type
-  const match = (...types: TokenType[]) => {
+  const match = (...types: TokenType[]): boolean => {
+    if (currentToken >= tokenStream.length) {
+      return false
+    }
+
     for (const type of types) {
-      if (check(type)) {
+      if (current().type === type) {
         advance()
         return true
       }
     }
     return false
   }
-  const expect = (type: TokenType, message: string) => {
-    if (check(type)) return advance()
-    throw Error('[' + (peek()?.lexeme || 'end') + '] ' + message)
-  }
 
   // Grammar implementation
-  function expression(): ast.Expression {
-    return binary()
-  }
-
   function binary(): ast.Expression {
     let left = unary()
 
@@ -60,12 +54,14 @@ const parseTokenStream = (tokenStream: Token[]): ast.Expression => {
     }
     // groupings
     if (match(TokenType.PAREN_L)) {
-      const inner = expression()
-      expect(TokenType.PAREN_R, 'unclosed grouping')
+      const inner = binary()
+      if (!match(TokenType.PAREN_R)) {
+        throw Error('Unclosed parenthesis')
+      }
       return inner
     }
     // something else
-    const token = peek()?.lexeme
+    const token = current()?.lexeme
     if (token) {
       throw Error('Unexpected token ' + token)
     } else {
@@ -73,10 +69,10 @@ const parseTokenStream = (tokenStream: Token[]): ast.Expression => {
     }
   }
 
-  const expr = expression()
+  const expr = binary()
 
-  if (peek()?.lexeme) {
-    throw Error('Unexpected token ' + peek().lexeme)
+  if (current()?.lexeme) {
+    throw Error('Unexpected token ' + current().lexeme)
   }
 
   return expr
@@ -128,72 +124,43 @@ function tokenize(source: string): Token[] {
     current++
     return true
   }
-  // const peek = (n = 0) => {
-  //     if (current + n > source.length) return '\0';
-  //     return source[current + n];
-  // }
+
   const addToken = (type: TokenType, lexeme = source.substring(start, current)) => {
     tokens.push(new Token(type, lexeme))
   }
 
   while (current < source.length) {
-    // Beginning of current lexeme
     start = current
     const char = advance()
 
-    switch (char) {
-      // parentheses
-      case '(':
+    switch (true) {
+      case char === '(':
         addToken(TokenType.PAREN_L)
         break
-      case ')':
+      case char === ')':
         addToken(TokenType.PAREN_R)
         break
-
-      // logical operators
-      case '-':
-      case '!':
-      case '~':
-      case '¬':
+      case ['-', '!', '~', '¬'].includes(char):
         addToken(TokenType.NOT)
         break
-      case '∨':
-      case '|':
+      case ['∨', '|'].includes(char):
         addToken(TokenType.OR)
         break
-      case '&':
-      case 'Λ':
+      case ['&', 'Λ'].includes(char):
         addToken(TokenType.AND)
         break
-      case '→':
+      case char === '→' || (char === '=' && match('>')):
         addToken(TokenType.IF)
         break
-      case '=':
-        if (match('>')) {
-          addToken(TokenType.IF)
-          break
-        }
-        throw Error('expected > after =')
-      case '↔':
+      case char === '↔' || (char === '<' && match('=') && match('>')):
         addToken(TokenType.IFF)
         break
-      case '<':
-        if (match('=') && match('>')) {
-          addToken(TokenType.IFF)
-          break
-        }
-        throw Error('expected => after <')
-      // ignore
-      case ' ':
-      case '\t':
-      case '\r':
-      case '\n':
+      case char.trim() === '':
+        break
+      case isLetter(char):
+        addToken(TokenType.VARIABLE)
         break
       default:
-        if (isLetter(char)) {
-          addToken(TokenType.VARIABLE)
-          break
-        }
         throw Error('Unexpected character ' + char)
     }
   }
