@@ -4,14 +4,14 @@ import type { Problem } from '@/plugins/data'
 import { db, uniqueKeys } from '@/store'
 
 const props = defineProps<{ problems: Problem[] }>()
-const ids = computed(() => props.problems.map((problem) => problem.id))
-const solved = ref<string[]>([])
+const ids = computed(() => props.problems.map((p) => p.id))
+const total = computed(() => props.problems.length)
+const solved = ref(0)
 
 watch(
   ids,
   async (ids) => {
-    const allSolved = await uniqueKeys(db.solutions.orderBy('problemId'))
-    solved.value = allSolved.filter((id) => ids.includes(id))
+    solved.value = (await uniqueKeys(db.solutions.where('problemId').anyOf(ids))).length
   },
   { immediate: true },
 )
@@ -19,10 +19,7 @@ watch(
 
 <template>
   <aside>
-    <BProgress
-      :value="solved.length"
-      :max="ids.length"
-      :variant="solved.length === ids.length ? 'success' : undefined" />
-    <small class="text-center"> Solved {{ solved.length }} of {{ ids.length }} </small>
+    <BProgress :value="solved" :max="total" :variant="solved === total ? 'success' : undefined" />
+    <small class="text-center"> Solved {{ solved }} of {{ total }} </small>
   </aside>
 </template>
