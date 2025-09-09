@@ -23,7 +23,7 @@
     "@unhead/vue": "^2.0.12",
     "@vueuse/core": "^13.5.0",
     "bootstrap": "^5.3.7",
-    "bootstrap-vue-next": "^0.30.4",
+    "bootstrap-vue-next": "^0.40.1",
     "dexie": "^4.0.11",
     "downloadjs": "^1.4.7",
     "humanize-duration": "^3.33.0",

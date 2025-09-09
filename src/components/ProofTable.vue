@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, useId, useTemplateRef, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { useModal, useModalController } from 'bootstrap-vue-next'
+import { useModal, useToggle } from 'bootstrap-vue-next'
 import { useEventListener } from '@vueuse/core'
 import FormulaInput from '@/components/FormulaInput.vue'
 import { tour } from '@/tours/proof'
@@ -28,9 +28,9 @@ const justifications = computed(() =>
 const submitting = ref(false)
 const formulaInput = useTemplateRef<InstanceType<typeof FormulaInput>>('formula-input')
 const error = ref('')
-const { show: showErrorModal } = useModal(`error-modal-${id}`)
-const { hide: hideQedModal, show: showQedModal } = useModal(`qed-modal-${id}`)
-const { create: createModal } = useModalController()
+const { show: showErrorModal } = useToggle(`error-modal-${id}`)
+const { hide: hideQedModal, show: showQedModal } = useToggle(`qed-modal-${id}`)
+const { create: createModal } = useModal()
 
 const startedAt = ref<number>(Date.now())
 const solvedIn = ref<number>()
@@ -129,17 +129,18 @@ const confirmDiscard = async (): Promise<boolean> => {
     return true
   }
 
-  const modal = createModal(
-    {
-      props: {
-        body: confirmDiscardMessage,
-        noHeader: true,
-        centered: true,
-      },
-    },
-    { returnBoolean: true },
-  )
-  return !!(await modal.show())
+  const result = await createModal({
+    body: confirmDiscardMessage,
+    noHeader: true,
+    centered: true,
+  }).show()
+  if (typeof result === 'boolean') {
+    return result
+  } else if (!result) {
+    return false
+  } else {
+    return !!result.ok
+  }
 }
 
 const clearForm = () => {

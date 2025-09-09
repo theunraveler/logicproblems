@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, onMounted, useId } from 'vue'
 import { StorageSerializers, useStorage } from '@vueuse/core'
-import { useModal } from 'bootstrap-vue-next'
+import { useToggle } from 'bootstrap-vue-next'
 import { useRouter, NavigationFailureType, isNavigationFailure } from 'vue-router'
 import { tour } from '@/tours/proof'
 import { problemsInjectionKey, type ProblemList } from '@/plugins/data'
@@ -10,7 +10,7 @@ const problem = Object.values(inject(problemsInjectionKey) as ProblemList)[0]
 const id = useId()
 const $router = useRouter()
 
-const { show: prompt } = useModal(`tour-modal-${id}`)
+const { show: prompt } = useToggle(`tour-modal-${id}`)
 
 const currentStep = useStorage('proof-tour', null, undefined, {
   serializer: StorageSerializers.string,
