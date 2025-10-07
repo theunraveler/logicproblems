@@ -45,7 +45,7 @@
     "@types/downloadjs": "^1.4.6",
     "@types/humanize-duration": "^3.27.4",
     "@types/insert-text-at-cursor": "^0.3.2",
-    "@types/jsdom": "^21.1.7",
+    "@types/jsdom": "^27.0.0",
     "@types/node": "^24.0.10",
     "@types/number-to-words": "^1.2.3",
     "@types/pluralize": "^0.0.33",
