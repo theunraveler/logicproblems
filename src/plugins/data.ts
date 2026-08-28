@@ -3,7 +3,7 @@ import { default as numberToWords } from 'number-to-words'
 import { titleCase } from 'title-case'
 
 const _problems: Record<string, Omit<Problem, 'id'>> = (
-  await import('@/data/problems.json', { assert: { type: 'json' } })
+  await import('@/data/problems.json', { with: { type: 'json' } })
 ).default
 export const problems: ProblemList = Object.fromEntries(
   Object.entries(_problems).map(([id, problem]) => {
