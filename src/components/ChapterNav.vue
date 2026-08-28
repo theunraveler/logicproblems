@@ -16,7 +16,7 @@ const chapters = inject(chaptersInjectionKey) as ChapterList
         v-for="(name, key) in chapters"
         :key="key"
         :to="{ name: 'problems', query: { chapter: key } }"
-        :class="{ active: props.current == key }">
+        :class="{ active: props.current == parseInt(key) }">
         {{ name }}
       </BListGroupItem>
     </BListGroup>

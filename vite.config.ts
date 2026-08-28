@@ -8,7 +8,7 @@ import { BootstrapVueNextResolver } from 'bootstrap-vue-next'
 import IconsResolve from 'unplugin-icons/resolver'
 import viteRollbar from 'vite-plugin-rollbar-sourcemap'
 import childProcess from 'child_process'
-import packageInfo from './package.json'
+import packageInfo from './package.json' with { type: 'json' }
 
 const commit = childProcess.execSync('git rev-parse --short HEAD').toString().trim()
 

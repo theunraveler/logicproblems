@@ -17,6 +17,7 @@ test.describe('filtering by chapter', () => {
     await page.goto('/problems?chapter=4')
     await expect(page.locator('h1')).toHaveText('Chapter Four')
   })
+
   test('shows only problems in the specified chapter', async ({ page }) => {
     await page.goto('/problems?chapter=4')
     await expect(

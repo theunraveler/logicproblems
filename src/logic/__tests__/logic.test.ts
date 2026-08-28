@@ -324,8 +324,10 @@ describe('Rule', () => {
         (formula: string, justifications: string[], error: string | RegExp | null = null) => {
           const caller = () => evaluateSimple(rule, formula, justifications)
           if (error) {
+            // eslint-disable-next-line vitest/no-standalone-expect
             expect(caller).toThrowError(error)
           } else {
+            // eslint-disable-next-line vitest/no-standalone-expect
             expect(caller()).toBeUndefined()
           }
         },
